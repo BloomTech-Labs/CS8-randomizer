@@ -1,7 +1,7 @@
 import React from 'react';
-import { Card, Button, CardTitle, CardText } from 'reactstrap';
+import { Card, Button, CardTitle } from 'reactstrap';
 
-const Example = (props) => {
+const AddClass = (props) => {
   return (
     <div>
       <Card body className="text-center">
@@ -12,4 +12,4 @@ const Example = (props) => {
   );
 };
 
-export default Example;
+export default AddClass;

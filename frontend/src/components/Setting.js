@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 
@@ -8,7 +8,7 @@ export default class Settings extends React.Component{
       return (
         <Form>
           <FormGroup>
-            <Label for="userEmail">Email: </Label>
+            <Label for="userEmail">Email:</Label>
             <Input type="email" name="email" id="userEmail" placeholder="Enter your email here" />
           </FormGroup>
           <FormGroup>
