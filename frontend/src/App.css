@@ -23,8 +23,26 @@
 }
 
 .LogBar{
-  padding-left: 90%;
+  padding-left: 92%;
 }
 
+.LandingComponentHidden{
+  display: none;
+}
+
+.LandingComponent{
+  display: block;
+}
+
+.MainComponentsHidden{
+  display: none;
+}
+
+.MainAppComponents{
+  display: block;
+  border: 1px solid black;
+  margin-left: .5%;
+  width: 85%;
+}
 
 

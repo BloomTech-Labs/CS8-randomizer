@@ -1,8 +1,9 @@
 
 .SideDiv{
     border: 1px solid black;
-    padding-bottom: 35%;
+    /* padding-bottom: 40%; */
     padding-right: 0;
-    width: 10%;
+    width: 12%;
+    height: 855px;
     margin: 0;
   }

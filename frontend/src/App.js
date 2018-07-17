@@ -11,6 +11,7 @@ import Breadcrumbs from 'react-router-dynamic-breadcrumbs';
 
 import './App.css';
 
+// Breadcrumb Routes
 const routes = {
   '/': 'Home',
   '/classes': 'Classes',
@@ -28,13 +29,17 @@ class App extends Component {
     super();
     this.test = this.test.bind(this);
     this.state={
-      isAuth: false
+      isAuth: false,
+      condition: false
       }
     }
   
+  // Placeholder test for showing navbars on login
   test() {
     this.setState({
-      isAuth: !this.state.isAuth
+      isAuth: !this.state.isAuth,
+      // condition: !this.state.condition
+
     })
   }
 
@@ -49,16 +54,24 @@ class App extends Component {
       <Router>
       <div className="App">
         <div className='LogBar'>
-          {/* <LogOut className='Logout' /> */}
           {loggedOut}
+          {/* Logbar */}
         </div>
         <div className='CrumbBar'>
           <Breadcrumbs id="Crumb" mappedRoutes={routes} />
+          {/* CrumBar */}
         </div>
-        {loggedSide}
-        {logTest}
-        <div>
+
+        {/* Hideable sidebar and Auth test button */}
+          {loggedSide}
+          {logTest}
+
+        <div className={this.state.isAuth ? 'LandingComponentHidden' : 'LandingComponent'} >
           <Route exact path={'/'} render={() => <Landing />} />
+        {/* Landing Component */}
+        </div>
+
+        <div className={this.state.isAuth ? 'MainAppComponents' : 'MainComponentsHidden'} >
           <Route exact path={'/home'} />
           <Route exact path={'/magic-randomizer'} render={() => <MagicRandomizer />} />
           <Route exact path={'/create'} />
@@ -66,8 +79,10 @@ class App extends Component {
           <Route exact path={'/classlist'} />
           <Route exact path={'/billing'} />
           <Route exact path={'/settings'} />
+          {/* MainAppComponents */}
         </div>
-      </div>
+        {/*App*/}
+      </div> 
       </Router>
     );
   }
