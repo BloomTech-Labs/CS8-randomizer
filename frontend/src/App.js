@@ -6,7 +6,7 @@ import SideBar from './navigation/SideBar';
 import TopBar from './navigation/TopBar';
 import { Landing } from "./components";
 import { MagicRandomizer } from "./components";
-import { AddClass } from "./components";
+// import { AddClass } from "./components";
 import { Settings } from "./components";
 import { About } from "./components";
 import { SignUp } from "./components";
@@ -23,7 +23,7 @@ class App extends Component {
         <SideBar className="SideBar" />
         <Route exact path={'/'} render={() => <Landing />} />
         <Route exact path={'/magic-randomizer'} render={() => <MagicRandomizer />} />
-        <Route exact path={'/addClass'} render={() => <AddClass />} />
+        {/* <Route exact path={'/addClass'} render={() => <AddClass />} /> */}
         <Route exact path={'/settings'} render={() => <Settings />} />
         <Route exact path={'/about'} render={() => <About />} />
         <Route exact path={'/signup'} render={() => <SignUp />} />
