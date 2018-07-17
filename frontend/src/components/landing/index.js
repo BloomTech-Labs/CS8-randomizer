@@ -19,6 +19,7 @@ export default class Example extends React.Component {
         }
         this.setState({ cSelected: [...this.state.cSelected] });
       }
+
   render() {
     return (
       <div>
