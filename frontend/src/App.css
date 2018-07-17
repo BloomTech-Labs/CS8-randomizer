@@ -5,4 +5,22 @@
   padding: 3% 1%;
 }
 
+.CrumbBar{
+  width: 100%;
+  margin-bottom: 1%;
+  background-color: white;
+}
+.breadcrumb{
+  background-color: white;
+}
+
+.breadcrumb:active{
+  text-decoration: underline;
+}
+
+.breadcrumb li{
+  margin-right: 10px;
+}
+
+
 
