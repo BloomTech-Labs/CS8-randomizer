@@ -35,6 +35,9 @@ render(){
                     <NavItem>
                         <NavLink href="/Settings">Settings</NavLink>
                     </NavItem>
+                    <NavItem>
+                        <NavLink href="/AddClass">Add Class</NavLink>
+                    </NavItem>
                 </Nav>
         </div>
 
