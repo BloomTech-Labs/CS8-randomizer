@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from "axios";
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import SideBar from './navigation/SideBar';
 import TopBar from './navigation/TopBar';
@@ -8,6 +8,7 @@ import { Landing } from "./components";
 import { MagicRandomizer } from "./components";
 import { AddClass } from "./components";
 import { Settings } from "./components";
+import { About } from "./components";
 
 import './App.css';
 
@@ -22,6 +23,7 @@ class App extends Component {
         <Route exact path={'/magic-randomizer'} render={() => <MagicRandomizer />} />
         <Route exact path={'/addClass'} render={() => <AddClass />} />
         <Route exact path={'/settings'} render={() => <Settings />} />
+        <Route exact path={'/about'} render={() => <About />} />
       </div>
       </Router>
     );

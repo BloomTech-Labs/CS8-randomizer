@@ -1,11 +1,14 @@
 import React from 'react';
+import { Container } from 'reactstrap';
 
 export default class About extends React.Component {
   render(){
     return (
     <div>
-        <h1 className="display-3">About the Magic Randomizer</h1>
-        <p className="lead">I need to finish this text at some point. I need to finish this text at some point. I need to finish this text at some point. I need to finish this text at some point. I need to finish this text at some point. I need to finish this text at some point. I need to finish this text at some point. I need to finish this text at some point. I need to finish this text at some point. I need to finish this text at some point. I need to finish this text at some point. I need to finish this text at some point. I need to finish this text at some point. I need to finish this text at some point. I need to finish this text at some point. I need to finish this text at some point. I need to finish this text at some point. I need to finish this text at some point. I need to finish this text at some point. I need to finish this text at some point. I need to finish this text at some point. I need to finish this text at some point. I need to finish this text at some point. </p>
+        <Container fluid>
+            <h1 className="title">About the Magic Randomizer</h1>
+            <p className="info">I need to finish this text at some point. I need to finish this text at some point. I need to finish this text at some point. I need to finish this text at some point. I need to finish this text at some point. I need to finish this text at some point. I need to finish this text at some point. I need to finish this text at some point. I need to finish this text at some point. I need to finish this text at some point. I need to finish this text at some point. I need to finish this text at some point. I need to finish this text at some point. I need to finish this text at some point. I need to finish this text at some point. I need to finish this text at some point. I need to finish this text at some point. I need to finish this text at some point. I need to finish this text at some point. I need to finish this text at some point. I need to finish this text at some point. I need to finish this text at some point. I need to finish this text at some point. </p>
+        </Container>
     </div>
     );
     };
