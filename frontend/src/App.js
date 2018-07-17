@@ -17,7 +17,7 @@ class App extends Component {
         <TopBar className="TopBar" />
         <SideBar className="SideBar" />
         <Route exact path={'/'} render={() => <Landing />} />
-        <Route exact path={'/magic-randomizer'} render={() => <MagicRandomizer />} />
+        <Route exact path={'/Classes/active'} render={() => <MagicRandomizer />} />
       </div>
       </Router>
     );
