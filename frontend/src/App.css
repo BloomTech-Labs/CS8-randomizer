@@ -34,11 +34,17 @@
   display: block;
 }
 
-.MainComponentsHidden{
+/* .MainComponentsHidden{
   display: none;
-}
+} */
 
 .MainAppComponents{
+  display: block;
+  border: 1px solid black;
+  margin-left: .5%;
+  width: 85%;
+}
+.MainComponentsHidden{
   display: block;
   border: 1px solid black;
   margin-left: .5%;

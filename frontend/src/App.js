@@ -37,6 +37,8 @@ class App extends Component {
     e.preventDefault();  
     this.setState({
       isAuth: !this.state.isAuth,
+      // condition: !this.state.condition
+
     })
   }
 
@@ -50,15 +52,18 @@ class App extends Component {
     // TODO: Setup to work with real authentication
 
     // Hides navbar when not logged in
-    let loggedSide = this.state.isAuth ? <SideBar /> : '';
-    let loggedOut = this.state.isAuth ? <LogOut className='Logout'/> : '';
-    let logTest = this.state.isAuth ? '' : <button onClick={this.test} />;
+    // let loggedSide = this.state.isAuth ? <SideBar /> : '';
+    // let loggedOut = this.state.isAuth ? <LogOut className='Logout'/> : '';
+    // let logTest = this.state.isAuth ? '' : <button onClick={this.test} />;
  
     return (
       <Router>
       <div className="App">
         <div className='LogBar'>
-          {loggedOut}
+          {/* {loggedOut} */}
+
+          <LogOut className='Logout' />
+
           {/* Logbar */}
         </div>
         <div className='CrumbBar'>
@@ -67,15 +72,18 @@ class App extends Component {
         </div>
 
         {/* Hideable sidebar and Auth test button */}
-          {loggedSide}
-          {logTest}
+          {/* {loggedSide}
+          {logTest} */}
 
-        <div className={this.state.isAuth ? 'LandingComponentHidden' : 'LandingComponent'} >
+          <SideBar />
+
+        {/* <div className={this.state.isAuth ? 'LandingComponentHidden' : 'LandingComponent'} >
           <Route exact path={'/'} render={() => <Landing />} />
-        {/* Landing Component */}
-        </div>
+         Landing Component 
+        </div> */}
 
         <div className={this.state.isAuth ? 'MainAppComponents' : 'MainComponentsHidden'} >
+          <Route exact path={'/'} render={() => <Landing />} />
           <Route exact path={'/home'} />
           <Route exact path={'/magic-randomizer'} render={() => <MagicRandomizer />} />
           <Route exact path={'/create'} />
