@@ -29,13 +29,13 @@ class App extends Component {
     super();
     this.test = this.test.bind(this);
     this.state={
-      isAuth: false,
-      condition: false
+      isAuth: true,
       }
     }
   
   // Placeholder test for showing navbars on login
-  test() {
+  test(e) {
+    e.preventDefault();  
     this.setState({
       isAuth: !this.state.isAuth,
       // condition: !this.state.condition
@@ -43,7 +43,14 @@ class App extends Component {
     })
   }
 
+  componentDidMount(){
+    console.log('Mounted...')
+    this.setState({isAuth: false} )
+  }
+
   render() {
+
+    // TODO: Setup to work with real authentication
 
     // Hides navbar when not logged in
     let loggedSide = this.state.isAuth ? <SideBar /> : '';
