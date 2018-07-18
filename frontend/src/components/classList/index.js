@@ -4,6 +4,12 @@ import { Button, Jumbotron, Container } from 'reactstrap';
 import './index.css'
 
 export default class ClassList extends React.Component {
+    constructor(){
+        super();
+        this.state={
+            classes: []
+        }
+    }
  
     render(){
         return(

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from "axios";
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import SideBar from './navigation/SideBar';
 import LogOut from './navigation/LogOut';
@@ -85,20 +85,24 @@ class App extends Component {
         <div className={this.state.isAuth ? 'MainAppComponents' : 'MainComponentsHidden'} >
           <Route exact path={'/'} render={() => <Landing />} />
           <Route exact path={'/home'} />
+          <Route exact path={'/classes/active'} render={() => <MagicRandomizer />} />
           <Route exact path={'/magic-randomizer'} render={() => <MagicRandomizer />} />
           <Route exact path={'/create'} />
           <Route exact path={'/edit'} />
           <Route exact path={'/classes'} render={() => <ClassList />} />
           <Route exact path={'/billing'} />
           <Route exact path={'/settings'} render={() => <Setup />} />
+          <Route exact path={'/about'} render={() => <About />} />
+          <Route exact path={'/signup'} render={() => <SignUp />} />
+          <Route exact path={'/login'} render={() => <LogIn />} />
           {/* MainAppComponents */}
         </div>
         {/*App*/}
       </div> 
+        {/* <Route exact path={'/addClass'} render={() => <AddClass />} /> */}
       </Router>
     );
   }
 }
-
 
 export default App;
