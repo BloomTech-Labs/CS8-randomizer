@@ -22,9 +22,6 @@ render(){
                     <NavItem>
                         <NavLink href="/settings">Settings</NavLink>
                     </NavItem>
-                    {/* <NavItem>
-                        <NavLink href="/AddClass">Add Class</NavLink>
-                    </NavItem> */}
                 </Nav>
         </div>
 
