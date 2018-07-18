@@ -33,7 +33,7 @@ render(){
                         <NavLink href="/Billing">Biling</NavLink>
                     </NavItem>
                     <NavItem>
-                        <NavLink href="/Setting">Settings</NavLink>
+                        <NavLink href="/Settings">Settings</NavLink>
                     </NavItem>
                 </Nav>
         </div>
