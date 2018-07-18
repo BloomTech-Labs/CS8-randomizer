@@ -1,5 +1,8 @@
 import React from 'react';
 import { Button, Jumbotron, Container } from 'reactstrap';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom'
+import { getClasses } from '../../actions'
 
 import './index.css'
 

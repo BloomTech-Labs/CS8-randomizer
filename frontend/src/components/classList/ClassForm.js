@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Button, FormGroup, Label, Input } from 'reactstrap';
+import { Button, FormGroup, Label, Input, Card, CardText, CardImg, CardBody, CardTitle, CardSubtitle } from 'reactstrap';
 
 import { addClass } from '../../actions';
 
 class ClassForm extends React.Component {
-    constructor(){
-        super()
+    constructor(props){
+        super(props)
         this.state = {
             classname: '',
             firstname: '',
@@ -92,6 +92,19 @@ class ClassForm extends React.Component {
                 <div>
                     <h3>Student List</h3>
                     <div>
+                        {/* {this.props.classlist.map(item => { */}
+                            {/* return( */}
+                                <div>
+                                    <Card>
+                                        <CardImg />
+                                            <CardBody>
+                                                <CardTitle></CardTitle>
+                                                <CardSubtitle></CardSubtitle>
+                                            </CardBody>
+                                    </Card>
+                                </div>
+                            {/* ) */}
+                    
 
                     </div>
                 </div>
