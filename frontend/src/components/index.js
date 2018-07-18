@@ -5,6 +5,7 @@ import MagicRandomizer from "./magicRandomizer";
 import About from "./About";
 import SignUp from "./SignUp";
 import LogIn from "./LogIn";
+import ClassForm from './classList/ClassForm';
 
 export { Setup }
 export { ClassList }
@@ -15,3 +16,4 @@ export { MagicRandomizer }
 export { About }
 export { SignUp }
 export { LogIn }
+export { ClassForm }

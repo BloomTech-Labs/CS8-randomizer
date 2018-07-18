@@ -1,5 +1,7 @@
+import { GETTINGCLASSES, GOTCLASSES, ADDINGCLASS, ADDEDCLASS, ERROR } from '../actions';
+
 const initialState = {
-  // notes: [],
+  classes: [],
   // modal: false,
   // loggingIn: false,
   // loggedIn: false,
@@ -11,7 +13,17 @@ const initialState = {
 export const Reducer = (state = initialState, action) => {
   switch (action.type) {
     // case's go here: e.g. ADD_USER, ADD_STUDENT etc.
-    default:
+    case GETTINGCLASSES:
+      return { ...state, retrieving: true};
+    case GOTCLASSES:
+      return { ...state, classes: action.classes, retrieving: false, error: null}
+    case ERROR:
+      return { ...state, error: action.errorMessage};
+    case ADDINGCLASS:
+      return { ...state, addingClass: true};
+    case ADDEDCLASS:
+      return { ...state, classes: action.classes, addingClass: false }
+    default:  
       return state;
   }
 };

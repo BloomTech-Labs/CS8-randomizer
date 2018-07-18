@@ -32,7 +32,7 @@ export const addClass = (theclass) => dispatch => {
             })
             .catch(err => {
                 dispatch({ type: ERROR, errorMessage: 'Error adding friend...' })
-            });
+             });
 
 };
 
