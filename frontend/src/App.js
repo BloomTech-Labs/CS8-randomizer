@@ -7,7 +7,6 @@ import TopBar from './navigation/TopBar';
 import { Landing } from "./components";
 import { MagicRandomizer } from "./components";
 
-
 import './App.css';
 import Settings from './components/Settings';
 import Billing from './components/Billing';

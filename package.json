@@ -11,7 +11,9 @@
     "morgan": "^1.9.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
-    "react-scripts": "1.1.4"
+    "react-payment": "^0.1.8",
+    "react-scripts": "1.1.4",
+    "react-stripe-elements": "^2.0.1"
   },
   "scripts": {
     "start": "node server.js",

@@ -1,18 +1,71 @@
-import React from 'react';
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
-
-
-        export default class Setting extends React.Component{
-          constructor(props) {
-            super(props);
-            this.state = {
-              email:'',
-              password:''
-            };
-          }       
-            render() {
-            return (
+import { CardForm, PaymentMethods } from 'react-payment';
+import React from 'react'
+import Dialog from 'material-ui/Dialog';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import {Stripe} from 'react-stripe-elements'; 
+ 
+let loadedStripe = false;
+ 
+export default class Billing extends React.Component {
+ 
+  state = {
+    dialogOpen: false,
+    cardDialog: true
+  };
+ 
+  componentWillMount() {
+    if (loadedStripe) {
+      return;
+    }
+ 
+    loadedStripe = true;
+  }
+ 
+  openDialog = (type) => {
+    this.setState({
+      dialogOpen: true,
+      cardDialog: type === 'card' ? true : false
+    });
+  };
+ 
+  closeDialog = () => {
+    this.setState({dialogOpen: false});
+  };
+ 
+ 
+ 
+  onSubmitCard = (card) => {
+    const { number, exp_month, exp_year, cvc, name, zip } = card;
+    Stripe.card.createToken({
+      number,
+      exp_month,
+      exp_year,
+      cvc,
+      name,
+      address_zip: zip
+    }, (status, response) => {
+      if (response.error) {
+        alert('Adding card failed with error: ' + response.error.message)
+      } else {
+        const cardToken = response.id;
+        this.closeDialog();
+        // show success message
+      }
+    });
+  };
+ 
+  
+ 
+  render() {
+ 
+    return (
+      <MuiThemeProvider>
+        <PaymentMethods
+          showCards={true}
+          cards={[{ id: '1', last4: '1234', brand: 'visa' }]}
+          />
+          
                 <div>
                 <h3>Billing</h3>
                 <Form>
@@ -30,7 +83,7 @@ import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
                     <Input type="text"  id="Expiration-year"  class ="form control" required/>
                     </div>
                     <div className ="FormGroup">
-                    <Label for="CVV">CVV#: </Label>
+                    <Label for="CVV">CVC#: </Label>
                     <Input type="text"  id="CVV"  class ="form control" required/>
                     </div>
                     <FormGroup check>
@@ -55,3 +108,12 @@ import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
             }
           }
         
+       
+          }
+        
+      </MuiThemeProvider>
+    );
+  }
+}
+
+
