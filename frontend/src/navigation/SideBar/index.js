@@ -30,10 +30,10 @@ render(){
                         <NavLink href="/Classes" active>Games</NavLink>
                     </NavItem>
                     <NavItem>
-                        <NavLink href="/Biling">Biling</NavLink>
+                        <NavLink href="/Billing">Biling</NavLink>
                     </NavItem>
                     <NavItem>
-                        <NavLink href="/Settings">Settings</NavLink>
+                        <NavLink href="/Setting">Settings</NavLink>
                     </NavItem>
                 </Nav>
         </div>

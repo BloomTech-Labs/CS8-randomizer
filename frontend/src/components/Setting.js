@@ -1,22 +1,29 @@
-import React, {Component} from react;
+import React from 'react';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
 
 
-        export default class Setting extends React{
+        export default class Setting extends React.Component{
+          constructor(props) {
+            super(props);
+            this.state = {
+              email:'',
+              password:''
+            };
+          }       
             render() {
-              return (
+            return (
                 <Form>
                   <FormGroup>
                     <Label for="userEmail">Email: </Label>
                     <Input type="email" name="email" id="userEmail" placeholder="Enter your email here" />
                   </FormGroup>
                   <FormGroup>
-                    <Label for="userPassword">Old Password</Label>
+                    <Label for="userPassword">Old Password:</Label>
                     <Input type="password" name="password" id="userPassword" placeholder=" Enter your old password here " />
                   </FormGroup>
                   <FormGroup>
-                    <Label for="userPassword">New Password</Label>
+                    <Label for="userPassword">New Password:</Label>
                     <Input type="password" name="password" id="userPassword" placeholder=" Enter your new password here " />
                   </FormGroup>
                  
@@ -27,3 +34,4 @@ import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
               );
             }
           }
+        
