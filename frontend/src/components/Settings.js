@@ -3,7 +3,7 @@ import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
 
 
-        export default class Setting extends React.Component{
+        export default class Settings extends React.Component{
           constructor(props) {
             super(props);
             this.state = {

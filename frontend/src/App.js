@@ -9,7 +9,7 @@ import { MagicRandomizer } from "./components";
 
 
 import './App.css';
-import Setting from './components/Setting';
+import Settings from './components/Settings';
 import Billing from './components/Billing';
 
 class App extends Component {
@@ -21,7 +21,7 @@ class App extends Component {
         <SideBar className="SideBar" />
         <Route exact path={'/'} render={() => <Landing />} />
         <Route exact path={'/magic-randomizer'} render={() => <MagicRandomizer />} />
-        <Route exact path={'/Setting'} render={() => <Setting />} />
+        <Route exact path={'/Settings'} render={() => <Settings />} />
         <Route exact path={'/Billing'} render={() => <Billing />} />
 
       </div>
