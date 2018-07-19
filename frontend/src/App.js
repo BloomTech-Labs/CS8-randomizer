@@ -8,7 +8,6 @@ import LogOut from './navigation/LogOut';
 import { Landing, MagicRandomizer, Setup, ClassList, About, SignUp, LogIn, ClassForm } from "./components";
 import Breadcrumbs from 'react-router-dynamic-breadcrumbs';   
 
-
 import './App.css';
 
 // Breadcrumb Routes
