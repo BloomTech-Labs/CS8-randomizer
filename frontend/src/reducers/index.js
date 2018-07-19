@@ -22,12 +22,12 @@ export const Reducer = (state = initialState, action) => {
       return { ...state, classes: action.classes, gettingClass: false, error: null}
     case ERROR:
       return { ...state, error: action.errorMessage};
-    case ADDCLASS:
-      return {
-        ...state,
-        classes: [...state.classes, {...action.classes}]
-      };
-    // case ADDINGCLASS:
+    // case ADDCLASS:
+    //   return {
+    //     ...state,
+    //     classes: [...state.classes, {...action.classes}]
+    //   };
+    // // case ADDINGCLASS:
     //   return { ...state, addingClass: true};
     // case ADDEDCLASS:
     //   return { ...state, classes: action.classes, addingClass: false };
