@@ -3,10 +3,9 @@
     margin-bottom: 1%;
 }
 
-#breadcrumb{
-    background-color: white;
-}
-
 .breadcrumb-item{
     text-decoration: underline;
+}
+#breadcrumb{
+    background-color: white;
 }

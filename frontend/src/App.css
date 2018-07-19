@@ -5,4 +5,50 @@
   padding: 3% 1%;
 }
 
+.CrumbBar{
+  width: 100%;
+  margin-bottom: 1%;
+  background-color: white;
+}
+.breadcrumb{
+  background-color: white;
+}
+
+.breadcrumb:active{
+  text-decoration: underline;
+}
+
+.breadcrumb li{
+  margin-right: 10px;
+}
+
+.LogBar{
+  padding-left: 92%;
+}
+
+.LandingComponentHidden{
+  display: none;
+}
+
+.LandingComponent{
+  display: block;
+}
+
+/* .MainComponentsHidden{
+  display: none;
+} */
+
+.MainAppComponents{
+  display: block;
+  border: 1px solid black;
+  margin-left: .5%;
+  width: 85%;
+}
+.MainComponentsHidden{
+  display: block;
+  border: 1px solid black;
+  margin-left: .5%;
+  width: 85%;
+}
+
 
