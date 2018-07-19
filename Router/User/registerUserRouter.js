@@ -78,7 +78,7 @@ function makeToken(user) {
 // ============ from ROUTES -- END ============= //
 
 //schema
-const User = require('../Schemas/User.js');
+const User = require('../../Schemas/User.js');
 
 //endpoints
 router.post('/', function(req, res) {
