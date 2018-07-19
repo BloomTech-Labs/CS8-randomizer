@@ -19,6 +19,10 @@ export const GOTSTUDENTS = "GOTSTUDENTS";
 export const ADDEDSTUDENT = "ADDEDSTUDENT";
 export const DELETESTUDENT = "DELETESTUDENT";
 export const DELETEDSTUDENT = "DELETEDSTUDENT";
+export const LOGIN = "LOGIN";
+export const LOGOUT = "LOGOUT";
+export const REGISTER = "REGISTER";
+export const CREATEUSER = "CREATEUSER";
 
 
 export const getClasses = () => dispatch => {
@@ -116,6 +120,38 @@ export const deleteStudent = studentid => dispatch => {
             })
 }
 
+export const logIn = user => dispatch => {
+    axios
+        .post(
+            'https://localhost:5000/api/login',
+            user
+        )
+        .then(response => {
+            if (response.data.success) {
+                dispatch({ type: LOGIN, user: response.data.user });
+            }
+            else {
+                dispatch({ type: ERROR, error: "Invalid Login or Password..."});
+            }
+        });
+};
+
+export const logOut = () => dispatch => {
+    dispatch({
+        type: logOut
+    });
+};
 
 
-
+export const Register = user => dispatch => {
+    dispatch({ type: REGISTER });
+    console.log(user);
+    axios
+        .post('https://localhost:5000/api/register', user)
+        .then(response => {
+            dispatch({
+                type: CREATEUSER,
+                user: response
+            });
+        });
+};

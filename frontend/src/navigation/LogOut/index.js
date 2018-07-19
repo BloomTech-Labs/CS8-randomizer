@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Nav, NavItem, NavLink, Dropdown, DropdownMenu, DropdownToggle } from 'reactstrap';
+import { Nav, NavItem, NavLink, Dropdown, DropdownMenu, DropdownToggle, Button } from 'reactstrap';
 
 import './index.css';
 
@@ -29,7 +29,7 @@ export default class LogOut extends React.Component{
                     data-toggle="dropdown"
                     aria-expanded={this.state.dropdownOpen}
                 >
-                    Logout
+                    <Button>Logout</Button>
                 </DropdownToggle>
                 <DropdownMenu>
                     <div><a href="/">Confirm</a></div>
