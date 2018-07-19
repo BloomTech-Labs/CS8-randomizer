@@ -1,7 +1,7 @@
 const express = require('express');
 
 //schema
-const Class = require('../Schemas/Class.js');
+const Class = require('../../Schemas/Class.js');
 
 const router = express.Router();
 
@@ -17,9 +17,10 @@ router
         res.status(500).json(err);
       });
   })
-  .delete((req, res) => {
+  .put((req, res) => {
     const { id } = req.params;
-    Class.findByIdAndRemove(id)
+    const updateInfo = req.body;
+    Class.findByIdAndUpdate(id, updateInfo)
       .then(response => {
         res.json(response);
       })

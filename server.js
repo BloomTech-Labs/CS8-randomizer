@@ -21,17 +21,17 @@ const corsOptions = {
 // ======== ROUTER requires ======== //
 
 // Note
-const createClassRouter = require('./Class/createClassRouter.js');
-const findClassesRouter = require('./Class/findClassesRouter.js');
-const deleteClassRouter = require('./Class/deleteClassRouter.js');
-const updateClassRouter = require('./Class/updateClassRouter.js');
+const createClassRouter = require('./Router/Class/createClassRouter.js');
+const findClassesRouter = require('./Router/Class/findClassesRouter.js');
+const deleteClassRouter = require('./Router/Class/deleteClassRouter.js');
+const updateClassRouter = require('./Router/Class/updateClassRouter.js');
 
 // User
-const registerUserRouter = require('./User/registerUserRouter.js');
-const loginUserRouter = require('./User/loginUserRouter.js');
-const findUsersRouter = require('./User/findUsersRouter.js');
-const deleteUserRouter = require('./User/deleteUserRouter.js');
-const updateUserRouter = require('./User/updateUserRouter.js');
+const registerUserRouter = require('./Router/User/registerUserRouter.js');
+const loginUserRouter = require('./Router/User/loginUserRouter.js');
+const findUsersRouter = require('./Router/User/findUsersRouter.js');
+const deleteUserRouter = require('./Router/User/deleteUserRouter.js');
+const updateUserRouter = require('./Router/User/updateUserRouter.js');
 
 const server = express();
 
@@ -58,14 +58,14 @@ server.get('/', function(req, res) {
 
 // Class
 server.use('/api/createclass', createClassRouter);
-server.use('/api/viewclasses', findClassesRouter);
+server.use('/api/classes', findClassesRouter);
 server.use('/api/deleteclass', deleteClassRouter);
 server.use('/api/updateclass', updateClassRouter);
 
 // User
 server.use('/api/register', registerUserRouter);
 server.use('/api/login', loginUserRouter);
-server.use('/api/viewusers', findUsersRouter);
+server.use('/api/users', findUsersRouter);
 server.use('/api/deleteuser', deleteUserRouter);
 server.use('/api/updateuser', updateUserRouter);
 
