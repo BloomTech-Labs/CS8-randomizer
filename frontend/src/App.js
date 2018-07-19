@@ -6,9 +6,11 @@ import SideBar from './navigation/SideBar';
 import LogOut from './navigation/LogOut';
 // import TopBar from './navigation/TopBar';
 import { Landing, MagicRandomizer, Setup, ClassList, About, SignUp, LogIn, ClassForm } from "./components";
-import Breadcrumbs from 'react-router-dynamic-breadcrumbs';   
+import Breadcrumbs from 'react-router-dynamic-breadcrumbs';
 
 import './App.css';
+import Settings from './components/Settings';
+// import Billing from './components/Billing';
 
 // Breadcrumb Routes
 const routes = {
@@ -31,10 +33,10 @@ class App extends Component {
       isAuth: true,
       }
     }
-  
+
   // Placeholder test for showing navbars on login
   test(e) {
-    e.preventDefault();  
+    e.preventDefault();
     this.setState({
       isAuth: !this.state.isAuth,
       // condition: !this.state.condition
@@ -90,8 +92,8 @@ class App extends Component {
           <Route exact path={'/edit'} />
           <Route exact path={'/classes'} render={() => <ClassList />} />
           <Route exact path={'/classes/create'} render={() => <ClassForm />} />
-          <Route exact path={'/Classes/active'} render={() => <MagicRandomizer />} />
-          <Route exact path={'/billing'} />
+          <Route exact path={'/classes/active'} render={() => <MagicRandomizer />} />
+          {/* <Route exact path={'/billing'} /> */}
           <Route exact path={'/settings'} render={() => <Setup />} />
           <Route exact path={'/about'} render={() => <About />} />
           <Route exact path={'/signup'} render={() => <SignUp />} />
