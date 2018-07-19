@@ -10,7 +10,9 @@ import Breadcrumbs from 'react-router-dynamic-breadcrumbs';
 
 import './App.css';
 import Settings from './components/Settings';
-import Billing from './components/Billing';
+
+// import Billing from './components/Billing';
+
 
 // import Billing from './components/Billing';
 

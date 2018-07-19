@@ -1,11 +1,12 @@
 import axios from 'axios';
-//import server from '../../../server'
+import server from '../../../server'
 const URL = 'https://lambda-labs-backend.herokuapp.com/';
 
 export const GETTINGCLASSES = 'GETTINGCLASSES';
 export const GOTCLASSES = 'GOTCLASSES';
+export const ADDCLASS = "ADDCLASS"
 export const ADDINGCLASS = 'ADDINGCLASS';
-export const ADDEDCLASS = 'ADDEDCLASS';
+// export const ADDEDCLASS = 'ADDEDCLASS';
 export const EDITCLASS = "EDITCLASS";
 export const EDITEDCLASS = "EDITEDCLASS";
 export const DELETECLASS = "DELETECLASS";
@@ -40,8 +41,8 @@ export const addClass = (classItem) => dispatch => {
     });
         axios
             .post('http://localhost:5000/api/classes', classItem)
-            .then(request => {
-                dispatch({ type: ADDEDCLASS, classes: request.data })
+            .then(response => {
+                dispatch({ type: ADDCLASS, classes: response.data })
             })
             .catch(err => {
                 dispatch({ type: ERROR, errorMessage: 'Error Adding Class...' })

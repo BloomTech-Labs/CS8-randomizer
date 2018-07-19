@@ -1,4 +1,4 @@
-import { GETTINGCLASSES, GOTCLASSES, ADDINGCLASS, ADDEDCLASS, EDITCLASS, 
+import { GETTINGCLASSES, GOTCLASSES, ADDCLASS, ADDINGCLASS, ADDEDCLASS, EDITCLASS, 
 EDITEDCLASS, DELETECLASS, DELETEDCLASS, GETTINGSTUDENTS, GOTSTUDENTS, 
 ADDINGSTUDENT, ADDEDSTUDENT, DELETESTUDENT, DELETEDSTUDENT, ERROR } from '../actions';
 
@@ -22,12 +22,16 @@ export const Reducer = (state = initialState, action) => {
       return { ...state, classes: action.classes, gettingClass: false, error: null}
     case ERROR:
       return { ...state, error: action.errorMessage};
-    // case ADDCLASS:
-    //   return {
-    //     ...state,
-    //     classes: [...state.classes, {...action.classes}]
-    //   };
-    // // case ADDINGCLASS:
+    case ADDCLASS:
+      return {
+        ...state,
+        classes: [...state.classes, {...action.classes}]
+      };
+      
+    {/* Not entirely sure if I need progressive states or not, 
+    if this comment is here I'm attempting with the single add case above (and it's working
+  and so I forgot to delete this...) */}
+    // case ADDINGCLASS:
     //   return { ...state, addingClass: true};
     // case ADDEDCLASS:
     //   return { ...state, classes: action.classes, addingClass: false };
