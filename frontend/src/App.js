@@ -10,7 +10,9 @@ import Breadcrumbs from 'react-router-dynamic-breadcrumbs';
 
 import './App.css';
 import Settings from './components/Settings';
+
 // import Billing from './components/Billing';
+
 
 // Breadcrumb Routes
 const routes = {
@@ -57,7 +59,7 @@ class App extends Component {
     // let loggedSide = this.state.isAuth ? <SideBar /> : '';
     // let loggedOut = this.state.isAuth ? <LogOut className='Logout'/> : '';
     // let logTest = this.state.isAuth ? '' : <button onClick={this.test} />;
- 
+
     return (
       <Router>
       <div className="App">

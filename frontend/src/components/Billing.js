@@ -5,7 +5,6 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {Stripe} from 'react-stripe-elements'; 
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
-
 let loadedStripe = false;
  
 export default class Billing extends React.Component {
