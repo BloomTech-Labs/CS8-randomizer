@@ -5,22 +5,6 @@
   padding: 3% 1%;
 }
 
-.CrumbBar{
-  width: 100%;
-  margin-bottom: 1%;
-  background-color: white;
-}
-.breadcrumb{
-  background-color: white;
-}
-
-.breadcrumb:active{
-  text-decoration: underline;
-}
-
-.breadcrumb li{
-  margin-right: 10px;
-}
 
 .LogBar{
   padding-left: 92%;
@@ -39,16 +23,45 @@
 } */
 
 .MainAppComponents{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  border: 1px solid black;
+  /* margin-left: .5%; */
+  width: 100%;
+}
+
+.CrumbBar{
+  width: 90%;
+  margin-bottom: 1%;
+  background-color: white;
+}
+.breadcrumb{
+  background-color: white;
+}
+
+.breadcrumb:active{
+  text-decoration: underline;
+}
+
+.breadcrumb li{
+  margin-right: 10px;
+}
+.breadcrumb{
+  width: 100%;
+}
+
+.appPanel{
+  width: 88%;
+  padding: 1%;
+}
+/* .MainComponentsHidden{
   display: block;
   border: 1px solid black;
   margin-left: .5%;
   width: 85%;
-}
-.MainComponentsHidden{
-  display: block;
-  border: 1px solid black;
-  margin-left: .5%;
-  width: 85%;
-}
+} */
 
-
+/* .sideBar{
+  display: none;
+} */

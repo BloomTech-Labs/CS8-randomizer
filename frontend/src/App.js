@@ -29,13 +29,16 @@ const routes = {
   '/settings': 'Settings'
 }
 
+const currentPath = window.location.pathname
+
 class App extends Component {
 
   constructor(){
     super();
     this.test = this.test.bind(this);
     this.state={
-      isAuth: true,
+      isAuth: false,
+      hideNav: true
       }
     }
 
@@ -49,50 +52,62 @@ class App extends Component {
     })
   }
 
+  // navCheck(){
+  //   if(currentPath == '/'){
+  //     this.setState({
+  //       hideNav: true
+  //     })
+  //   }
+  //       else{
+  //         this.setState({
+  //           hideNav: false
+  //         })
+  //       }
+  //   console.log(hideNav);
+  // }
+
   componentDidMount(){
     console.log('Mounted...')
-    this.setState({isAuth: false} )
+    console.log(this.state.isAuth)
+    // // this.setState({isAuth: false} )
+    //   if(currentPath == '/'){
+    //   this.setState({
+    //     hideNav: true
+    //   })
+    // }
+    //   else{
+    //       this.setState({
+    //         hideNav: false
+    //       })
+    //     }
+    // console.log('nav', this.state.hideNav);
   }
+
+
+  
 
   render() {
 
     // TODO: Setup to work with real authentication
-
+    
     // Hides navbar when not logged in
-    // let loggedSide = this.state.isAuth ? <SideBar /> : '';
-    // let loggedOut = this.state.isAuth ? <LogOut className='Logout'/> : '';
+    let loggedSide = this.state.hideNav ? '' : <SideBar /> ;
+    let loggedOut = this.state.isAuth ? <LogOut className='Logout'/> : '';
     // let logTest = this.state.isAuth ? '' : <button onClick={this.test} />;
-
+    
     return (
       <Router>
       <div className="App">
-        <div className='LogBar'>
-          {/* {loggedOut} */}
-
-          <LogOut className='Logout' />
-
-          {/* Logbar */}
-        </div>
-        <div className='CrumbBar'>
+      {currentPath == '/' ? 
+      <Route exact path={'/'} render={() => <Landing auth={this.state.isAuth} />} />
+      :
+        <div className='MainAppComponents' >
+        <div className="CrumbBar">
           <Breadcrumbs id="Crumb" mappedRoutes={routes} />
-          {/* CrumBar */}
         </div>
-
-        {/* Hideable sidebar and Auth test button */}
-          {/* {loggedSide}
-          {logTest} */}
-
+          <LogOut className="LogBar" />
           <SideBar />
-
-        {/* <div className={this.state.isAuth ? 'LandingComponentHidden' : 'LandingComponent'} >
-          <Route exact path={'/'} render={() => <Landing />} />
-         Landing Component 
-        </div> */}
-
-        <div className={this.state.isAuth ? 'MainAppComponents' : 'MainComponentsHidden'} >
-          <Route exact path={'/'} render={() => <Landing />} />
-          <Route exact path={'/home'} />
-          <Route exact path={'/magic-randomizer'} render={() => <MagicRandomizer />} />
+          <div className='appPanel'>
           <Route exact path={'/create'} />
           <Route exact path={'/edit'} />
           <Route exact path={'/classes'} render={() => <ClassList />} />
@@ -103,9 +118,10 @@ class App extends Component {
           <Route exact path={'/about'} render={() => <About />} />
           <Route exact path={'/signup'} render={() => <SignUp />} />
           <Route exact path={'/login'} render={() => <LogIn />} />
-          
-          {/* MainAppComponents */}
+          </div>
+        
         </div>
+      }
         {/*App*/}
       </div> 
         {/* <Route exact path={'/addClass'} render={() => <AddClass />} /> */}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Jumbotron, Container } from 'reactstrap';
+import { Button, Jumbotron, Container, NavLink, Nav } from 'reactstrap';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
 import { getClasses } from '../../actions'
@@ -13,8 +13,10 @@ export default class ClassList extends React.Component {
             <div>
                 <Jumbotron fluid>
                     <Container fluid>
-                        <div className="add_new_class">Add a new class</div>
-                        <Link className="plus_button" to={`/classes/create/`}> + </Link>
+                        <h1 className="display-3">Add a new class</h1>
+                        <Nav>
+                        <NavLink className="NewClass" href='/classes/create'><Button className="NewClass"> + </Button></NavLink>
+                        </Nav>
                     </Container>
                 </Jumbotron>
             </div>
