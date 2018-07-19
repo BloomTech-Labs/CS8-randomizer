@@ -14,6 +14,9 @@ import Settings from './components/Settings';
 // import Billing from './components/Billing';
 
 
+// import Billing from './components/Billing';
+
+
 // Breadcrumb Routes
 const routes = {
   '/': 'Home',
@@ -110,6 +113,7 @@ class App extends Component {
           <Route exact path={'/classes'} render={() => <ClassList />} />
           <Route exact path={'/classes/create'} render={() => <ClassForm />} />
           <Route exact path={'/classes/active'} render={() => <MagicRandomizer />} />
+          <Route exact path={'/billing'} render={() => < Billing/>} />
           <Route exact path={'/settings'} render={() => <Setup />} />
           <Route exact path={'/about'} render={() => <About />} />
           <Route exact path={'/signup'} render={() => <SignUp />} />
