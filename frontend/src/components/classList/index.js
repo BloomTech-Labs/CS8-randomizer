@@ -13,8 +13,8 @@ export default class ClassList extends React.Component {
             <div>
                 <Jumbotron fluid>
                     <Container fluid>
-                        <h1 className="display-3">Add a new class</h1>
-                        <Button className="NewClass"> + </Button>
+                        <div className="add_new_class">Add a new class</div>
+                        <Link className="plus_button" to={`/classes/create/`}> + </Link>
                     </Container>
                 </Jumbotron>
             </div>
