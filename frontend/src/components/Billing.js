@@ -1,10 +1,10 @@
-
 import { CardForm, PaymentMethods } from 'react-payment';
 import React from 'react'
 import Dialog from 'material-ui/Dialog';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {Stripe} from 'react-stripe-elements'; 
- 
+import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+
 let loadedStripe = false;
  
 export default class Billing extends React.Component {

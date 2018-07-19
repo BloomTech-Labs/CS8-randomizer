@@ -10,7 +10,9 @@ import Breadcrumbs from 'react-router-dynamic-breadcrumbs';
 
 import './App.css';
 import Settings from './components/Settings';
-import Billing from './components/Billing';
+
+// import Billing from './components/Billing';
+
 
 // Breadcrumb Routes
 const routes = {
@@ -61,14 +63,50 @@ class App extends Component {
     return (
       <Router>
       <div className="App">
-        <TopBar className="TopBar" />
-        <SideBar className="SideBar" />
-        <Route exact path={'/'} render={() => <Landing />} />
-        <Route exact path={'/magic-randomizer'} render={() => <MagicRandomizer />} />
-        <Route exact path={'/Settings'} render={() => <Settings />} />
-        <Route exact path={'/Billing'} render={() => <Billing />} />
+        <div className='LogBar'>
+          {/* {loggedOut} */}
 
-      </div>
+          <LogOut className='Logout' />
+
+          {/* Logbar */}
+        </div>
+        <div className='CrumbBar'>
+          <Breadcrumbs id="Crumb" mappedRoutes={routes} />
+          {/* CrumBar */}
+        </div>
+
+        {/* Hideable sidebar and Auth test button */}
+          {/* {loggedSide}
+          {logTest} */}
+
+          <SideBar />
+
+        {/* <div className={this.state.isAuth ? 'LandingComponentHidden' : 'LandingComponent'} >
+          <Route exact path={'/'} render={() => <Landing />} />
+         Landing Component 
+        </div> */}
+
+        <div className={this.state.isAuth ? 'MainAppComponents' : 'MainComponentsHidden'} >
+          <Route exact path={'/'} render={() => <Landing />} />
+          <Route exact path={'/home'} />
+          <Route exact path={'/magic-randomizer'} render={() => <MagicRandomizer />} />
+          <Route exact path={'/create'} />
+          <Route exact path={'/edit'} />
+          <Route exact path={'/classes'} render={() => <ClassList />} />
+          <Route exact path={'/classes/create'} render={() => <ClassForm />} />
+          <Route exact path={'/classes/active'} render={() => <MagicRandomizer />} />
+          {/* <Route exact path={'/billing'} /> */}
+          <Route exact path={'/settings'} render={() => <Setup />} />
+          <Route exact path={'/about'} render={() => <About />} />
+          <Route exact path={'/signup'} render={() => <SignUp />} />
+          <Route exact path={'/login'} render={() => <LogIn />} />
+          
+          {/* MainAppComponents */}
+        </div>
+        {/*App*/}
+      </div> 
+        {/* <Route exact path={'/addClass'} render={() => <AddClass />} /> */}
+        
       </Router>
     );
   }
