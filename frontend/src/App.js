@@ -23,6 +23,9 @@ import Breadcrumbs from "react-router-dynamic-breadcrumbs";
 import "./App.css";
 // import Billing from "./components/Billing";
 
+// import Billing from './components/Billing';
+
+
 // Breadcrumb Routes
 const routes = {
   "/": "Index",
@@ -71,6 +74,7 @@ class App extends Component {
 
     return (
       <Router>
+<<<<<<< swedishgoodbye
         <div className="App">
           {currentPath == "/" ? (
             <Route
@@ -113,6 +117,53 @@ class App extends Component {
           {/*App*/}
         </div>
         {/* <Route exact path={'/addClass'} render={() => <AddClass />} /> */}
+=======
+      <div className="App">
+        <div className='LogBar'>
+          {/* {loggedOut} */}
+
+          <LogOut className='Logout' />
+
+          {/* Logbar */}
+        </div>
+        <div className='CrumbBar'>
+          <Breadcrumbs id="Crumb" mappedRoutes={routes} />
+          {/* CrumBar */}
+        </div>
+
+        {/* Hideable sidebar and Auth test button */}
+          {/* {loggedSide}
+          {logTest} */}
+
+          <SideBar />
+
+        {/* <div className={this.state.isAuth ? 'LandingComponentHidden' : 'LandingComponent'} >
+          <Route exact path={'/'} render={() => <Landing />} />
+         Landing Component 
+        </div> */}
+
+        <div className={this.state.isAuth ? 'MainAppComponents' : 'MainComponentsHidden'} >
+          <Route exact path={'/'} render={() => <Landing />} />
+          <Route exact path={'/home'} />
+          <Route exact path={'/magic-randomizer'} render={() => <MagicRandomizer />} />
+          <Route exact path={'/create'} />
+          <Route exact path={'/edit'} />
+          <Route exact path={'/classes'} render={() => <ClassList />} />
+          <Route exact path={'/classes/create'} render={() => <ClassForm />} />
+          <Route exact path={'/classes/active'} render={() => <MagicRandomizer />} />
+          <Route exact path={'/billing'} render={() => < Billing/>} />
+          <Route exact path={'/settings'} render={() => <Setup />} />
+          <Route exact path={'/about'} render={() => <About />} />
+          <Route exact path={'/signup'} render={() => <SignUp />} />
+          <Route exact path={'/login'} render={() => <LogIn />} />
+          
+          {/* MainAppComponents */}
+        </div>
+        {/*App*/}
+      </div> 
+        {/* <Route exact path={'/addClass'} render={() => <AddClass />} /> */}
+        
+>>>>>>> mock up billing done
       </Router>
     );
   }
@@ -125,4 +176,8 @@ const mapStateToProps = (state) => {
   };
 };
 
+<<<<<<< swedishgoodbye
 export default connect(mapStateToProps, {})(App);
+=======
+export default App;
+>>>>>>> mock up billing done

@@ -1,3 +1,4 @@
+<<<<<<< swedishgoodbye
 import axios from "axios";
 import jwt_decode from 'jwt-decode';
 import { Route, Redirect } from 'react-router';
@@ -11,6 +12,16 @@ export const GOTCLASSES = "GOTCLASSES";
 export const ADDCLASS = "ADDCLASS";
 export const ADDINGCLASS = "ADDINGCLASS";
 // export const ADDEDCLASS = 'ADDEDCLASS';
+=======
+import axios from 'axios';
+//import server from '../../../server'
+const URL = 'https://lambda-labs-backend.herokuapp.com/';
+
+export const GETTINGCLASSES = 'GETTINGCLASSES';
+export const GOTCLASSES = 'GOTCLASSES';
+export const ADDINGCLASS = 'ADDINGCLASS';
+export const ADDEDCLASS = 'ADDEDCLASS';
+>>>>>>> mock up billing done
 export const EDITCLASS = "EDITCLASS";
 export const EDITEDCLASS = "EDITEDCLASS";
 export const DELETECLASS = "DELETECLASS";
