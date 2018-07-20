@@ -14,7 +14,6 @@ export const ADDINGCLASS = "ADDINGCLASS";
 // export const ADDEDCLASS = 'ADDEDCLASS';
 =======
 import axios from 'axios';
-//import server from '../../../server'
 const URL = 'https://lambda-labs-backend.herokuapp.com/';
 
 export const GETTINGCLASSES = 'GETTINGCLASSES';
