@@ -77,7 +77,7 @@ const protected = passport.authenticate('jwt', { session: false });
 // ============ from ROUTES -- END ============= //
 
 //schema
-const User = require("../Schemas/User.js");
+const User = require("../../Schemas/User.js");
 
 //endpoints
 router.post("/", authenticate, (req, res) => {

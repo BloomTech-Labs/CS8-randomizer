@@ -1,7 +1,7 @@
 const express = require('express');
 
 //schema
-const User = require('../Schemas/User.js');
+const Class = require('../../Schemas/Class.js');
 
 const router = express.Router();
 
@@ -9,7 +9,7 @@ router
   .route('/:id')
   .get((req, res) => {
     const { id } = req.params;
-    User.findById(id)
+    Class.findById(id)
       .then(response => {
         res.json(response);
       })
@@ -19,7 +19,7 @@ router
   })
   .delete((req, res) => {
     const { id } = req.params;
-    User.findByIdAndRemove(id)
+    Class.findByIdAndRemove(id)
       .then(response => {
         res.json(response);
       })
