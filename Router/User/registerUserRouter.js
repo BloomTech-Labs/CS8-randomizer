@@ -84,6 +84,7 @@ const User = require('../../Schemas/User.js');
 router.post('/', function(req, res) {
   const credentials = req.body;
   const user = new User(credentials);
+  
   user.save().then(inserted => {
     
     const token = makeToken(inserted);
