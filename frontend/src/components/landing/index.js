@@ -114,6 +114,7 @@ class Landing extends React.Component {
   render() {
     return (
       <div className="landing">
+      <h1 classname='hello'>hello.</h1>
         <Nav className="nav">
           <NavItem className="nav-about">
             <NavLink>
