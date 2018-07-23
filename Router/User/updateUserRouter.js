@@ -2,7 +2,6 @@ const express = require('express');
 
 //schema
 const User = require('../../Schemas/User.js');
-
 const router = express.Router();
 
 router

@@ -30,6 +30,7 @@ export default class LogOut extends React.Component{
                     aria-expanded={this.state.dropdownOpen}
                 >
                     <Button>Logout</Button>
+                    {/* TODO: Add onClick(this.props.toggleAuth) - to set authed: false; */}
                 </DropdownToggle>
                 <DropdownMenu>
                     <div><a href="/">Confirm</a></div>
