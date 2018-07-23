@@ -2,6 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 
 const port = process.env.PORT || 5000;
+console.log('HEROKU PORT', process.env.PORT)
+console.log('process.env:', process.env)
 
 // ========== MIDDLEWARE ============== //
 
@@ -49,7 +51,7 @@ mongoose.connect('mongodb://lambda_labs_backend:_sJ7X3;{pWfzfMR@ds239681.mlab.co
 // ========== ROUTES ========== //
 
 server.get('/', function(req, res) {
-  res.send({ api: 'up and running' });
+  res.send({ api: 'up and funning' });
 });
 
 // const setupRoutes = require('./setup/routes')(server);
