@@ -25,7 +25,7 @@ export default class ClassList extends React.Component {
 
         return(
             <div className='jumbo-div'>
-                <Jumbotron fluid>
+                <Jumbotron fluid id="jumb">
                     <Container fluid>
                         <h1 className="display-3">Start By Adding A Class</h1>
                         <Nav>

@@ -16,11 +16,12 @@ import {
   About,
   SignUp,
   ClassForm,
-  Home
+  Home,
+  Billing
 } from "./components";
 import Breadcrumbs from "react-router-dynamic-breadcrumbs";
 import "./App.css";
-import Billing from "./components/Billing";
+// import Billing from "./components/Billing";
 
 // Breadcrumb Routes
 const routes = {
