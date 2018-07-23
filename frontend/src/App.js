@@ -4,8 +4,9 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 
-import SideBar from "./navigation/SideBar";
-import LogOut from "./navigation/LogOut";
+// import SideBar from './navigation/SideBar';
+import DropBar from './navigation/SideBar/SideDrop';
+import LogOut from './navigation/LogOut';
 // import TopBar from './navigation/TopBar';
 import {
   Landing,
@@ -14,12 +15,10 @@ import {
   ClassList,
   About,
   SignUp,
-  LogIn,
   ClassForm
 } from "./components";
 import Breadcrumbs from "react-router-dynamic-breadcrumbs";
 import "./App.css";
-import Settings from "./components/Settings";
 import Billing from "./components/Billing";
 
 // Breadcrumb Routes
@@ -55,44 +54,17 @@ class App extends Component {
     });
   }
 
-  // navCheck(){
-  //   if(currentPath == '/'){
-  //     this.setState({
-  //       hideNav: true
-  //     })
-  //   }
-  //       else{
-  //         this.setState({
-  //           hideNav: false
-  //         })
-  //       }
-  //   console.log(hideNav);
-  // }
+
 
   componentDidMount() {
     console.log("Mounted...");
     console.log(this.state.isAuth);
-    // // this.setState({isAuth: false} )
-    //   if(currentPath == '/'){
-    //   this.setState({
-    //     hideNav: true
-    //   })
-    // }
-    //   else{
-    //       this.setState({
-    //         hideNav: false
-    //       })
-    //     }
-    // console.log('nav', this.state.hideNav);
+
   }
 
   render() {
     // TODO: Setup to work with real authentication
 
-    // Hides navbar when not logged in
-    let loggedSide = this.state.hideNav ? "" : <SideBar />;
-    let loggedOut = this.state.isAuth ? <LogOut className="Logout" /> : "";
-    // let logTest = this.state.isAuth ? '' : <button onClick={this.test} />;
 
     return (
       <Router>
@@ -106,12 +78,12 @@ class App extends Component {
             />
           ) : (
             <div className="MainAppComponents">
-              <div className="CrumbBar">
+              <div className="top">
                 <Breadcrumbs id="Crumb" mappedRoutes={routes} />
+                <LogOut className="LogBar" />
               </div>
-              <LogOut className="LogBar" />
-              <SideBar />
               <div className="appPanel">
+                <DropBar />
                 <Route exact path={"/create"} />
                 <Route exact path={"/edit"} />
                 <Route exact path={"/classes"} render={() => <ClassList />} />

@@ -6,7 +6,7 @@ class Setup extends Component{
 
     render(){
         return(
-            <div>
+            <div className='jumbo-div'>
             <Form>
               <FormGroup>
                 <Label for="userEmail">Email: </Label>

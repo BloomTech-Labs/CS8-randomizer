@@ -220,7 +220,7 @@ class Landing extends React.Component {
             </Modal>
           </NavItem>
         </Nav>
-      </div>
+        </div>
     );
   }
 }
