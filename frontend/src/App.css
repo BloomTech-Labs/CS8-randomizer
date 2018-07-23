@@ -1,15 +1,10 @@
 .App{
   display: flex;
   flex-direction: row;
-<<<<<<< Updated upstream
-  flex-wrap: wrap;
-  padding: 3% 1%;
-=======
   flex-wrap: nowrap;
   /* padding: .5% 0%; */
   background: #584573;
-  height: 980px;
->>>>>>> Stashed changes
+  height: 974px;
 }
 
 
@@ -30,34 +25,27 @@
 } */
 
 .MainAppComponents{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  /* display: flex; */
+  /* flex-direction: row; */
+  /* flex-wrap: wrap; */
   border: 1px solid black;
   /* margin-left: .5%; */
   width: 100%;
 }
 
 .CrumbBar{
-<<<<<<< Updated upstream
-  width: 90%;
-  margin-bottom: 1%;
-  background-color: white;
-}
-.breadcrumb{
-  background-color: white;
-=======
-  width: 95%;
+  width: 35%;
   margin-top: 5%;
   margin-bottom: 0%;
   background-color: #332259;
   height: 0%;
+  /* display: flex;
+  flex-direction: row; */
 }
 .breadcrumb{
   background-color: #332259;
   color: #56B5BF;
   padding: 0;
->>>>>>> Stashed changes
 }
 
 .breadcrumb:active{
@@ -73,15 +61,10 @@
 }
 
 .appPanel{
-<<<<<<< Updated upstream
-  width: 88%;
-  padding: 1%;
-=======
   width: 100%;
   padding: .3%;
   padding-top: .1%;
   border-radius: 0rem;
->>>>>>> Stashed changes
 }
 /* .MainComponentsHidden{
   display: block;
@@ -93,13 +76,11 @@
 /* .sideBar{
   display: none;
 } */
-<<<<<<< Updated upstream
-=======
 
 #nav-log-button{
   background-color: #445878;
   color: #BBD4D8;
-  margin-left: 10%;
+  /* margin-left: 10%; */
   padding-top: 5%;
   padding-bottom: 5%;
   text-align: center;
@@ -117,4 +98,3 @@
   width: 100%;
   height: 3.7%;
 }
->>>>>>> Stashed changes

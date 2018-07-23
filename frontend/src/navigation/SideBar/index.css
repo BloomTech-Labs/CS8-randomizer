@@ -3,14 +3,7 @@
     border: 1px solid black;
     /* padding-bottom: 40%; */
     padding-right: 0;
-<<<<<<< Updated upstream
-    width: 12%;
-    height: 855px;
-    margin: 0;
-  
-  }
-=======
-    width: 100%;
+    width: 5%;
     /* height: 455px; */
     margin: 0;
     
@@ -54,7 +47,7 @@
 
 .bar div{
   height: 8px;
-  width: 20px;
+  /* width: 20px; */
   background-color: #BBD4D8;
   position: absolute;
   transition: all 0.5s ease;
@@ -115,4 +108,3 @@
 #dropdownitem:hover{
   background-color: #584573;
 }
->>>>>>> Stashed changes

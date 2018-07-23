@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-import axios from 'axios';
-const URL = 'https://lambda-labs-backend.herokuapp.com/';
-
-export const GETTINGCLASSES = 'GETTINGCLASSES';
-export const GOTCLASSES = 'GOTCLASSES';
-export const ADDCLASS = "ADDCLASS"
-export const ADDINGCLASS = 'ADDINGCLASS';
-=======
 import axios from "axios";
 import jwt_decode from 'jwt-decode';
 import { Route, Redirect } from 'react-router';
@@ -19,7 +10,6 @@ export const GETTINGCLASSES = "GETTINGCLASSES";
 export const GOTCLASSES = "GOTCLASSES";
 export const ADDCLASS = "ADDCLASS";
 export const ADDINGCLASS = "ADDINGCLASS";
->>>>>>> master
 // export const ADDEDCLASS = 'ADDEDCLASS';
 export const EDITCLASS = "EDITCLASS";
 export const EDITEDCLASS = "EDITEDCLASS";
@@ -39,7 +29,8 @@ export const LOGOUT = "LOGOUT";
 export const REGISTER = "REGISTER";
 export const CREATEUSER = "CREATEUSER";
 
-const URL = "http://localhost:5000/api";
+// const URL = "http://localhost:5000/api";
+const URL = "http://lambda-labs-frontend.herokuapp.com/api/"
 
 export const getClasses = () => dispatch => {
   dispatch({
