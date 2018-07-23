@@ -4,8 +4,14 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 
+<<<<<<< Updated upstream
 import SideBar from "./navigation/SideBar";
 import LogOut from "./navigation/LogOut";
+=======
+// import SideBar from './navigation/SideBar';
+import DropBar from './navigation/SideBar/SideDrop';
+import LogOut from './navigation/LogOut';
+>>>>>>> Stashed changes
 // import TopBar from './navigation/TopBar';
 import {
   Landing,
@@ -102,12 +108,15 @@ class App extends Component {
       <Route exact path={'/'} render={() => <Landing auth={this.state.isAuth} />} />
       :
         <div className='MainAppComponents' >
-        <div className="CrumbBar">
+        {/* <div className="CrumbBar">
+        </div> */}
+        <div className='top'>
           <Breadcrumbs id="Crumb" mappedRoutes={routes} />
-        </div>
           <LogOut className="LogBar" />
-          <SideBar />
+        </div>
+          {/* <SideBar /> */}
           <div className='appPanel'>
+          <DropBar /> 
           <Route exact path={'/create'} />
           <Route exact path={'/edit'} />
           <Route exact path={'/classes'} render={() => <ClassList />} />

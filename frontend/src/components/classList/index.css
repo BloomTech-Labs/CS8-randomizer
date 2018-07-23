@@ -1,3 +1,13 @@
+<<<<<<< Updated upstream
+=======
+.jumbo-div{
+    /* margin-bottom: 50%; */
+    height: 890px;
+    background: #BBD4D8;
+    border-radius: .25rem;
+}
+
+>>>>>>> Stashed changes
 .add_new_class{
     display: flex;
     justify-content: center;
@@ -5,8 +15,29 @@
 }
 
 .NewClass{
+<<<<<<< Updated upstream
     margin-left: 49%;
     border-radius: 1.25rem;
+=======
+    margin-left: 35%;
+    margin-top: 3%;
+    border-radius: 3.25rem;
+    height: 80px;
+    width: 22%; 
+    background-color: #BBD4D8;
+}
+
+#nc{
+    background: #BBD4D8;
+    border-color: rgb(160, 60, 92);
+    color: rgb(160, 60, 92);
+}
+
+#nc:hover{
+    border-color: #BBD4D8;
+    color: #BBD4D8;
+    background-color: rgb(160, 60, 92);
+>>>>>>> Stashed changes
 }
 
 .plus_button{
