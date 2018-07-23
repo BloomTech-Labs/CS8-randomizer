@@ -1,8 +1,10 @@
 .App{
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
-  padding: 3% 1%;
+  flex-wrap: nowrap;
+  /* padding: .5% 0%; */
+  background: #584573;
+  height: 974px;
 }
 
 
@@ -23,37 +25,46 @@
 } */
 
 .MainAppComponents{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  /* display: flex; */
+  /* flex-direction: row; */
+  /* flex-wrap: wrap; */
   border: 1px solid black;
   /* margin-left: .5%; */
   width: 100%;
 }
 
 .CrumbBar{
-  width: 90%;
-  margin-bottom: 1%;
-  background-color: white;
+  width: 35%;
+  margin-top: 5%;
+  margin-bottom: 0%;
+  background-color: #332259;
+  height: 0%;
+  /* display: flex;
+  flex-direction: row; */
 }
 .breadcrumb{
-  background-color: white;
+  background-color: #332259;
+  color: #56B5BF;
+  padding: 0;
 }
 
 .breadcrumb:active{
   text-decoration: underline;
+  color: #56B5BF;
 }
 
 .breadcrumb li{
   margin-right: 10px;
 }
 .breadcrumb{
-  width: 100%;
+  width:92%;
 }
 
 .appPanel{
-  width: 88%;
-  padding: 1%;
+  width: 100%;
+  padding: .3%;
+  padding-top: .1%;
+  border-radius: 0rem;
 }
 /* .MainComponentsHidden{
   display: block;
@@ -65,3 +76,25 @@
 /* .sideBar{
   display: none;
 } */
+
+#nav-log-button{
+  background-color: #445878;
+  color: #BBD4D8;
+  /* margin-left: 10%; */
+  padding-top: 5%;
+  padding-bottom: 5%;
+  text-align: center;
+}
+
+#nav-log-button:hover{
+  background-color: #332259;
+  color: #445878;
+}
+
+.top{
+  display: flex;
+  flex-direction: row;
+  background: #332259;
+  width: 100%;
+  height: 3.7%;
+}

@@ -29,7 +29,8 @@ export const LOGOUT = "LOGOUT";
 export const REGISTER = "REGISTER";
 export const CREATEUSER = "CREATEUSER";
 
-const URL = "http://localhost:5000/api";
+// const URL = "http://localhost:5000/api";
+const URL = "http://lambda-labs-frontend.herokuapp.com/api/"
 
 export const getClasses = () => dispatch => {
   dispatch({

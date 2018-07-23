@@ -1,5 +1,9 @@
 .landing{
+<<<<<<< Updated upstream
     background: #31353D;
+=======
+    background: #584573;
+>>>>>>> Stashed changes
     background-image: url('./download.jpg');
     background-repeat: no-repeat;
     background-position: center;
@@ -34,3 +38,6 @@
     background-color: #445878;
 }
 
+.mobile{
+    visibility: hidden;
+}
