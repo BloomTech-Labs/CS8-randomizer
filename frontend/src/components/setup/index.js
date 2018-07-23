@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 
 import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 
+import './setup.css'
+
 class Setup extends Component{
 
     render(){
         return(
-            <div className='jumbo-div'>
+            <div className='set-div'>
             <Form>
               <FormGroup>
                 <Label for="userEmail">Email: </Label>

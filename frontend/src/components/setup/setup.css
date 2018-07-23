@@ -1,6 +1,7 @@
-.jumbo-div{
+.set-div{
     /* margin-bottom: 50%; */
     height: 835px;
     background: #BBD4D8;
     border-radius: .25rem;
+    margin-top: 8%;
 }

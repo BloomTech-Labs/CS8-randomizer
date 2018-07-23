@@ -51,6 +51,10 @@ export const Reducer = (state = initialState, action) => {
         error: null
       };
     case ERROR:
+<<<<<<< swedishgoodbye
+<<<<<<< swedishgoodbye
+=======
+>>>>>>> User Signup and Login almost Done
       return { ...state, error: action.errorMessage };
     case ADDCLASS:
       return {
@@ -64,6 +68,15 @@ export const Reducer = (state = initialState, action) => {
   and so I forgot to delete this...) */
       }
     // case ADDINGCLASS:
+=======
+      return { ...state, error: action.errorMessage};
+    // case ADDCLASS:
+    //   return {
+    //     ...state,
+    //     classes: [...state.classes, {...action.classes}]
+    //   };
+    // // case ADDINGCLASS:
+>>>>>>> mock up billing done
     //   return { ...state, addingClass: true};
     // case ADDEDCLASS:
     //   return { ...state, classes: action.classes, addingClass: false };

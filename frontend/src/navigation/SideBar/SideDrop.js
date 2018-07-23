@@ -37,41 +37,41 @@ render(){
             <div className="SideDiv">
                 <Dropdown direction="right" isOpen={this.state.btnDropright} toggle={() => { this.setState({ btnDropright: !this.state.btnDropright }); }} >
                         {/* <div className='bar' tpe='button' onMouseOver={this.toggle}> */}
-                    <div className='bar'>
                     <DropdownToggle className='dropbutton' >
+                    <div className='bar'>
                     {/* <div className={this.state.active ? 'bar:active' : 'bar'}> */}
                     {/* <button className='wrapper' onClick={this.toggle}> */}
-                        {/* <div > */}
+                        {/* <div> */}
                             <div className='first'>
                             </div>
-                            <div className='second'>
+                             <div className='second'>
                             </div>
                             <div className='third'>
-                            </div>  
+                            </div>   
                             {/* <div className='first'>
                             </div>
                             <div className='second'>
                             </div>
                             <div className='third'>
-                            </div>   */}
+                            </div>    */}
                         {/* </button> */}
                     {/* </div> */}
 
 
-                    </DropdownToggle>
                     </div>
+                    </DropdownToggle>
                     <DropdownMenu id='dropmenu'>
                         <DropdownItem id='dropdownitem'>                     
                                  <NavItem>
                             </NavItem> 
                                     <NavLink className='side-link' href="/classes" active>Classes</NavLink>
                     </DropdownItem>
-                        <DropdownItem>                     
+                        <DropdownItem id='dropdownitem'>                     
                             <NavItem>
                             </NavItem>
                                 <NavLink className='side-link' href="/billing">Billing</NavLink>
                     </DropdownItem>
-                    <DropdownItem>                    
+                    <DropdownItem id='dropdownitem'>                    
                         <NavItem>
                         </NavItem>
                             <NavLink className='side-link' href="/settings">Settings</NavLink>

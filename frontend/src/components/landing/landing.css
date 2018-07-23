@@ -1,21 +1,20 @@
 .landing{
-<<<<<<< Updated upstream
-    background: #31353D;
-=======
+    /* background: #31353D; */
     background: #584573;
->>>>>>> Stashed changes
     background-image: url('./download.jpg');
     background-repeat: no-repeat;
     background-position: center;
     display: flex;
     width: 100%;
-    height: 840px;
-    padding-left: 41%;
+    height: 730px;
+    padding-left: 43%;
     justify-content: space-between;
 }
 
 .nav-about{
     align-self: flex-end;
+    /* margin-left:  */
+    width: 50%;
 }
 
 #nav-login{
@@ -31,11 +30,19 @@
 } */
 
 #nav-button{
-    background-color: #92CDCF;
+    background-color: #584573;
+    border-left-color: #352847;
+    border-right-color: #352847;
+    border-bottom-color: #352847;
+    border-top: #584573;
+    text-align: center;
 }
 
 #nav-button:hover{
-    background-color: #445878;
+    background-color: whitesmoke;
+    color: gray;
+    font-weight: 900;
+    text-align: center;
 }
 
 .mobile{
