@@ -52,6 +52,9 @@ export const Reducer = (state = initialState, action) => {
       };
     case ERROR:
 <<<<<<< swedishgoodbye
+<<<<<<< swedishgoodbye
+=======
+>>>>>>> User Signup and Login almost Done
       return { ...state, error: action.errorMessage };
     case ADDCLASS:
       return {
