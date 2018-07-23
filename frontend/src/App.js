@@ -15,7 +15,8 @@ import {
   ClassList,
   About,
   SignUp,
-  ClassForm
+  ClassForm,
+  Home
 } from "./components";
 import Breadcrumbs from "react-router-dynamic-breadcrumbs";
 import "./App.css";
@@ -23,7 +24,8 @@ import Billing from "./components/Billing";
 
 // Breadcrumb Routes
 const routes = {
-  "/": "Home",
+  "/": "Index",
+  "/home": "Home",
   "/classes": "Classes",
   "/classes/:c_id": ":c_id",
   "/classes/magicrandomizer": "Game",
@@ -84,6 +86,7 @@ class App extends Component {
               </div>
               <div className="appPanel">
                 <DropBar />
+                <Route exact path={"/"} render={() => <Home />} />
                 <Route exact path={"/create"} />
                 <Route exact path={"/edit"} />
                 <Route exact path={"/classes"} render={() => <ClassList />} />
@@ -98,9 +101,9 @@ class App extends Component {
                   render={() => <MagicRandomizer />}
                 />
                 <Route exact path={"/billing"} render={() => <Billing />} />
-                <Route exact path={"/settings"} render={() => <Setup />} />
+                {/* <Route exact path={"/settings"} render={() => <Setup />} /> */}
                 <Route exact path={"/about"} render={() => <About />} />
-                <Route exact path={"/signup"} render={() => <SignUp />} />
+                <Route exact path={"/settings"} render={() => <Setup />} />
                 {/* <Route exact path={"/login"} render={() => <LogIn />} /> */}
                 
               </div>

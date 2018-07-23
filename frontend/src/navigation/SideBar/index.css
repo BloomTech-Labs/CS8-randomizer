@@ -1,53 +1,53 @@
 
 .SideDiv{
-    border: 1px solid black;
-    /* padding-bottom: 40%; */
-    padding-right: 0;
-    width: 5%;
-    /* height: 455px; */
-    margin: 0;
-    
-    /* background-color: #445878; */
-    background-color: #BBD4D8;
-    /* border-radius: .25rem; */
-    text-align: left;
-    padding: 0;
-  }
+    border: 1px solid black; 
+    padding-bottom: 40%; 
+     padding-right: 0; 
+     width: 0%; 
+     height: 0px; 
+     margin: 0; 
 
+     background-color: #445878; 
+     background-color: #BBD4D8; 
+     border-radius: .25rem; 
+     text-align: left; 
+     padding: 0;
+   }
+ 
   .side-link{
     padding-bottom: 20%;
     color: white;
     background-color: rgb(126, 150, 156);
     text-align: center;
-  }
-  /* .side-link{
+  } 
+   .side-link{
     color: #BBD4D8;
-  } */
+  } 
 
-  .side-link:hover{
+   .side-link:hover{
     color: #BBD4D8;
     background-color: rgb(160, 60, 92);
-  }
-  /* .side-link:hover{
+  } 
+   .side-link:hover{
     color: #72898F;
     background-color: #BBD4D8;
-  } */
+  } 
 
-  .bar{
+   .bar{
     width: 40px;
     height: 45px;
     position: relative;
-    /* border: 5px solid #49b293; */
+    border: 5px solid #49b293;
     cursor: pointer;
     transition: all 0.3s ease;
     background-color: #445878;
 
     opacity: 1;
-}
+} 
 
-.bar div{
-  height: 8px;
-  /* width: 20px; */
+ .bar div{
+  height: 5px;
+  width: 20px;
   background-color: #BBD4D8;
   position: absolute;
   transition: all 0.5s ease;
@@ -56,21 +56,21 @@
 
 .bar .first{
   top: 5px;
-  left: 9px;
+  left: 5px;
 }
 
 .bar .second{
-  top: 18px;
-  left: 9px;
+  top: 14.5px;
+  left: 5px;
 }
 
 .bar .third{
-  top: 31px;
-  left: 9px;
+  top: 25px;
+  left: 5px;
 }
 
 .bar:hover .first {
-  transform: translateY(19px) rotate(-50deg);
+  transform: translateY(17px) rotate(-50deg);
   transition: all 0.5s ease;
   color: #445878;
 }
@@ -82,11 +82,11 @@
 }
 
 .bar:hover .third{
-  transform: translateY(-19px) rotate(50deg);
+  transform: translateY(-17px) rotate(50deg);
   transition: all 0.5s ease;
   color: #445878;
-}
-
+} 
+ 
 .bar:hover{
   border-radius:50%;
   transition: all 0.3s ease;  
@@ -94,10 +94,11 @@
 }
 
 .dropbutton{
-  margin-left: 12%;
-  margin-top: 40%;
-  background-color: #BBD4D8;
-
+  /* margin-left: %; */
+  /* margin-top: 40%; */
+  /* background-color: #BBD4D8; */
+  /* width: 50%; */
+  /* height: 5%; */
 }
 
 #dropmenu{
@@ -107,4 +108,4 @@
 
 #dropdownitem:hover{
   background-color: #584573;
-}
+} 

@@ -1,6 +1,7 @@
 
 import React from 'react'
 import StripeCheckout from 'react-stripe-checkout';
+import './stripe.css';
  
 export default class Billing extends React.Component {
   onToken = (token) => {
@@ -22,6 +23,7 @@ export default class Billing extends React.Component {
       <StripeCheckout
         token={this.onToken}
         stripeKey="pk_live_eL39XfKV3dh9k5mk8Lxch3Yc"
+        className = 'stripe'
       />
     )
   }
