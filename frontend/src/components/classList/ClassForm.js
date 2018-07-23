@@ -4,6 +4,8 @@ import { Button, FormGroup, Label, Input, Card, CardText, CardImg, CardBody, Car
 
 import { addClass } from '../../actions';
 
+import './form.css';
+
 class ClassForm extends React.Component {
     constructor(props){
         super(props)
@@ -28,8 +30,8 @@ class ClassForm extends React.Component {
 
     render(){
         return(
-            <div>
-                <div>
+            <div className="Form-div">
+                <div className="classdiv">
                     <h3>Settings</h3>
                         <div className='classname-box'>
                             <input 
