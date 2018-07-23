@@ -1,7 +1,3 @@
-<<<<<<< swedishgoodbye
-<<<<<<< swedishgoodbye
-=======
->>>>>>> User Signup and Login almost Done
 import axios from "axios";
 import jwt_decode from 'jwt-decode';
 import { Route, Redirect } from 'react-router';
@@ -15,18 +11,6 @@ export const GOTCLASSES = "GOTCLASSES";
 export const ADDCLASS = "ADDCLASS";
 export const ADDINGCLASS = "ADDINGCLASS";
 // export const ADDEDCLASS = 'ADDEDCLASS';
-<<<<<<< swedishgoodbye
-=======
-import axios from 'axios';
-const URL = 'https://lambda-labs-backend.herokuapp.com/';
-
-export const GETTINGCLASSES = 'GETTINGCLASSES';
-export const GOTCLASSES = 'GOTCLASSES';
-export const ADDINGCLASS = 'ADDINGCLASS';
-export const ADDEDCLASS = 'ADDEDCLASS';
->>>>>>> mock up billing done
-=======
->>>>>>> User Signup and Login almost Done
 export const EDITCLASS = "EDITCLASS";
 export const EDITEDCLASS = "EDITEDCLASS";
 export const DELETECLASS = "DELETECLASS";
@@ -45,12 +29,8 @@ export const LOGOUT = "LOGOUT";
 export const REGISTER = "REGISTER";
 export const CREATEUSER = "CREATEUSER";
 
-<<<<<<< swedishgoodbye
 // const URL = "http://localhost:5000/api";
-const URL = "https://lambda-labs-frontend.herokuapp.com/api/"
-=======
-const URL = "http://localhost:5000/api";
->>>>>>> User Signup and Login almost Done
+const URL = "https://lambda-labs-frontend.herokuapp.com/api"
 
 export const getClasses = () => dispatch => {
   dispatch({
@@ -111,7 +91,7 @@ export const getStudents = () => dispatch => {
     type: GETTINGSTUDENTS
   });
   axios
-    .get("http://localhost:500/api/:classid/students")
+    .get(`${URL}/api/:classid/students`)
     .then(response => {
       dispatch({ type: GOTSTUDENTS, students: response.data });
     })
@@ -128,7 +108,7 @@ export const addStudent = student => dispatch => {
     type: ADDINGSTUDENT
   });
   axios
-    .post("http://localhost:5000/api/:classid/students", student)
+    .post(`${URL}/api/:classid/students`, student)
     .then(request => {
       dispatch({ type: ADDEDSTUDENT, students: request.data });
     })
@@ -173,14 +153,8 @@ export const login = (user,history) => dispatch => {
 
         dispatch(setCurrentUser(jwt_decode(token)));
 
-<<<<<<< swedishgoodbye
-        history.push('/api/classes/');
-        window.location.reload();
-       
-=======
         // history.push('/api/classes/'); // TODO: Figure out why this is not working
         // <Redirect to="/api/classes/"/>
->>>>>>> User Signup and Login almost Done
       })
       .catch(err => {
         dispatch({ type: ERROR, payload: err });
