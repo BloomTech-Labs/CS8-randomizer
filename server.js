@@ -44,7 +44,7 @@ server.use(helmet());
 server.use(morgan('dev'));
 server.use(cors(corsOptions));
 
-mongoose.connect(process.env.MONGOLAB_AQUA_URI || 'mongodb://lambda_labs_backend:_sJ7X3;{pWfzfMR@ds239681.mlab.com:39681/lambda_labs_backend_database', { useNewUrlParser: true })
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://lambda_labs_backend:_sJ7X3;{pWfzfMR@ds239681.mlab.com:39681/lambda_labs_backend_database', { useNewUrlParser: true })
 
 .then(() => console.log('\n===connected to mongo===\n'))
 .catch(err =>console.log('not connected'))
