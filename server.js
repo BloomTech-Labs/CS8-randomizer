@@ -2,8 +2,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 
 const port = process.env.PORT || 5000;
-console.log('HEROKU PORT', process.env.PORT)
-console.log('process.env:', process.env)
+// console.log('HEROKU PORT', process.env.PORT)
+console.log('HEROKU MONGODB_URI', process.env.MONGODB_URI)
+// console.log('process.env:', process.env)
 
 // ========== MIDDLEWARE ============== //
 
@@ -43,7 +44,7 @@ server.use(helmet());
 server.use(morgan('dev'));
 server.use(cors(corsOptions));
 
-mongoose.connect('mongodb://lambda_labs_backend:_sJ7X3;{pWfzfMR@ds239681.mlab.com:39681/lambda_labs_backend_database', { useNewUrlParser: true })
+mongoose.connect(process.env.MONGOLAB_AQUA_URI || 'mongodb://lambda_labs_backend:_sJ7X3;{pWfzfMR@ds239681.mlab.com:39681/lambda_labs_backend_database', { useNewUrlParser: true })
 
 .then(() => console.log('\n===connected to mongo===\n'))
 .catch(err =>console.log('not connected'))
@@ -51,7 +52,7 @@ mongoose.connect('mongodb://lambda_labs_backend:_sJ7X3;{pWfzfMR@ds239681.mlab.co
 // ========== ROUTES ========== //
 
 server.get('/', function(req, res) {
-  res.send({ api: 'up and funning' });
+  res.send({ api: 'up and sprinting' });
 });
 
 // const setupRoutes = require('./setup/routes')(server);
@@ -59,16 +60,16 @@ server.get('/', function(req, res) {
 // ======== ROUTERS .use ========== //
 
 // Class
-server.use('/api/createclass', createClassRouter);
-server.use('/api/classes', findClassesRouter);
-server.use('/api/deleteclass', deleteClassRouter);
-server.use('/api/updateclass', updateClassRouter);
+server.use('/api/createclass/', createClassRouter);
+server.use('/api/classes/', findClassesRouter);
+server.use('/api/deleteclass/', deleteClassRouter);
+server.use('/api/updateclass/', updateClassRouter);
 
 // User
-server.use('/api/register', registerUserRouter);
-server.use('/api/login', loginUserRouter);
-server.use('/api/users', findUsersRouter);
-server.use('/api/deleteuser', deleteUserRouter);
-server.use('/api/updateuser', updateUserRouter);
+server.use('/api/register/', registerUserRouter);
+server.use('/api/login/', loginUserRouter);
+server.use('/api/users/', findUsersRouter);
+server.use('/api/deleteuser/', deleteUserRouter);
+server.use('/api/updateuser/', updateUserRouter);
 
 server.listen(port, () => console.log('API on port 5000...or wherever Heroku is'));
