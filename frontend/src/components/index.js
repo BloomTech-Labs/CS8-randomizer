@@ -7,7 +7,7 @@ import About from "./about";
 import SignUp from "./signup";
 import LogIn from "./login";
 import Home from './home'
-import Billing from './billing';
+import Billing from './billing/index.js';
 
 export { Setup }
 export { ClassList }

@@ -114,7 +114,7 @@ class Landing extends React.Component {
   render() {
     return (
       <div className="landing">
-      <h1 classname='hello'>hello.</h1>
+      <header id='greeting'>Welcome to the Magic Randomizer</header>
         <Nav className="nav">
           <NavItem className="nav-about">
             <NavLink>
@@ -131,6 +131,7 @@ class Landing extends React.Component {
             >
               <ModalHeader className = 'modalHeader' toggle={this.abToggle}>Our App</ModalHeader>
               <ModalFooter className = 'modalFooter'>
+                <p>Magic Randomiser is a web app that allows teachers to pick students randomly to call on in class. This allows the teacher to make sure that all students get a chance to answer a question before they are called on a second time.</p>
                 <Button id = 'nav-button' color="primary" onClick={this.signToggle}>
                   Sign Up
                 </Button>{" "}
@@ -192,7 +193,7 @@ class Landing extends React.Component {
               toggle={this.logToggle}
               className={this.props.className}
             >
-              <ModalHeader toggle={this.logToggle}>Login</ModalHeader>
+              <ModalHeader className = 'modalHeader' toggle={this.logToggle}>Login</ModalHeader>
               <ModalBody>
                 <Input 
                     type="username"
@@ -212,8 +213,8 @@ class Landing extends React.Component {
                     value={this.state.password}/>
 
               </ModalBody>
-              <ModalFooter> 
-                  <Button color="primary" onClick={this.handleLogin}>Confirm NOW!</Button>
+              <ModalFooter className = 'modalFooter'> 
+                  <Button id = 'nav-button'color="primary" onClick={this.handleLogin}>Confirm</Button>
                 {/* <Button color="secondary" onClick={this.logToggle}>
                   Cancel
                 </Button> */}
