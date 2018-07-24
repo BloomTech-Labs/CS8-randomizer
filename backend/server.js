@@ -52,7 +52,7 @@ mongoose.connect(process.env.MONGOLAB_AQUA_URI || 'mongodb://lambda_labs_backend
 // ========== ROUTES ========== //
 
 server.get('/', function(req, res) {
-  res.send({ api: 'up and driving' });
+  res.send({ api: 'up and sprinting' });
 });
 
 // const setupRoutes = require('./setup/routes')(server);

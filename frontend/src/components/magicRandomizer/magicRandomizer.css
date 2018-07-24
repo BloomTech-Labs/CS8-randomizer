@@ -1,0 +1,123 @@
+.main {
+  display: flex;
+  flex-wrap: wrap;
+  width: 90%;
+  /* background: blue; */
+
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  flex: wrap;
+  width: 80%;
+  height: 50px;
+  /* background: rgb(224, 171, 171); */
+
+}
+
+.classid {
+  width: 10%;
+  text-align: center;
+  height: 50px;
+  /* background: orange; */
+}
+
+
+
+
+.participated {
+  padding: 10px;
+  height: 30px;
+  /* TODO: Remove this hack */
+  line-height: 0.6;
+  border: 2px dashed black;
+  /* background: brown; */
+}
+
+.studentName {
+  font-size: 1.5em;
+  font-style: 1;
+  height: 30px;
+  text-align: center;
+  line-height: 1;
+  margin: 10px;
+  /* background: pink; */
+}
+
+.declined {
+  /* TODO: Remove this hack */
+  border: 2px dashed black;
+  line-height: 0.6;
+  padding: 10px;
+  height: 30px;
+  /* background: yellow; */
+}
+
+.edit {
+  border: 2px dashed black;
+  width: 80px;
+  height: 25px;
+  text-align: center;
+  /* background: green; */
+}
+
+.caro_container {
+  display: flex;
+  flex-wrap: wrap;
+  /* TODO: center and width = 100% at mobile. */
+  justify-content: center;
+  width: 100%;
+
+}
+
+.reset {
+  width: 120px;
+  margin: 30px;
+  height: 120px;
+  /* background: rgb(140, 140, 194); */
+}
+
+.reset_border{
+  font-size: 18px;
+  text-align: center;
+  border: 2px dashed black;
+  width: 120px;
+}
+
+.date {
+  text-align: center;
+  width: 80px;
+  margin: 20px;
+  height: 30px;
+  /* background: purple; */
+}
+
+.caros {
+  /* TODO: THIS IS WORKING CORRECTLY! - just need the correct image sizes! */
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin-top: 20px;
+}
+
+.ondeck {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.part_data {
+  width: 100%;
+}
+
+.part_data_title {
+  margin-bottom: 15px;
+}
+
+.part_graph {
+  background: green;
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+  height: 300px;
+}
