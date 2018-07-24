@@ -82,7 +82,7 @@ class Landing extends React.Component {
       confirmPassword: "",
       dropdownOpen: false,
       signModal: false,
-      logModal: true,
+      logModal: false,
       abModal: false,
     });
   };
@@ -133,7 +133,7 @@ class Landing extends React.Component {
                 <Button color="primary" onClick={this.signToggle}>
                   Sign Up
                 </Button>{" "}
-                <Button color="secondary" onClick={this.signToggle}>
+                <Button color="secondary" onClick={this.abToggle}>
                   Cancel
                 </Button>
               </ModalFooter>

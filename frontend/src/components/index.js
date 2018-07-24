@@ -6,7 +6,8 @@ import ClassForm from './classList/ClassForm';
 import About from "./about";
 import SignUp from "./signup";
 import LogIn from "./login";
-
+import Home from './home'
+import Billing from './billing';
 
 export { Setup }
 export { ClassList }
@@ -18,3 +19,5 @@ export { About }
 export { SignUp }
 export { LogIn }
 export { ClassForm }
+export { Billing }
+export {Home}
