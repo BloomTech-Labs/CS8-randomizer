@@ -61,8 +61,6 @@ server.get('/', function(req, res) {
   res.send({ api: 'up and flying' });
 });
 
-// const setupRoutes = require('./setup/routes')(server);
-
 // ======== ROUTERS .use ========== //
 
 // Student
