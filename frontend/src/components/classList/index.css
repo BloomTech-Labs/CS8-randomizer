@@ -1,0 +1,74 @@
+.jumbo-div{
+    /* margin-bottom: 50%; */
+    height: 852px;
+
+    background: rgb(230, 230, 230);
+    border-radius: .25rem;
+    width: 100%;
+}
+
+#jumb{
+    background-color: rgb(230, 230, 230);
+}
+
+.add_new_class{
+    display: flex;
+    justify-content: center;
+    font-size: 40px;
+    
+}
+
+.display-3{
+    text-align: center;;
+}
+
+.NewClass{
+    margin-left: 50%;
+    margin-top: 3%;
+    border-radius: 3.25rem;
+    height: 50px;
+    width: 3.6%; 
+    background-color: #BBD4D8;
+    
+}
+
+#add-plus{
+    background: #322842;
+    border-color: rgb(160, 60, 92);
+    color: whitesmoke;
+    padding-left: 1.50%;
+    padding-top: .75%;
+    transition: all 0.3s ease;
+    /* width: 10%; */
+    /* height: 30px; */
+    /* margin-left: 22%; */
+    /* margin-top: 40%; */
+    /* text-align: left; */
+    /* padding: 0% 30% 0%; */
+}
+
+/* #add-button{ */
+    /* height: 40px; */
+    /* margin-right: 20%; */
+    /* padding-left: 3px; */
+/* } */
+
+#add-plus:hover{
+    border-color: #BBD4D8;
+    color: #BBD4D8;
+    background-color: rgb(160, 60, 92);
+    transition: all 0.3s ease;
+}
+
+.plus_button{
+    display: flex;
+    justify-content: center;
+    font-size: 40px;
+}
+
+
+/* .jumbotron{
+    background-color: rgb(63, 29, 29);
+    text-align: center;
+} */
+

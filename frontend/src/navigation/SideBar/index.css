@@ -1,0 +1,122 @@
+
+.SideDiv{
+    /* border: 1px solid black;  */
+    padding-bottom: 40%; 
+     padding-right: 0; 
+     width: 0%; 
+     height: 0px; 
+     margin: 0; 
+
+     background-color: #332259; 
+     border-radius: .25rem; 
+     text-align: left; 
+     padding: 0;
+   }
+ 
+  .side-link{
+    padding-bottom: 20%;
+    color: white;
+    background-color: #584573;
+    text-align: center;
+    transition: all 0.5s ease;
+  } 
+
+   .side-link:hover{
+    color: #332259;
+    background-color: whitesmoke;
+    border-color: #332259;
+    border: 5px;
+    transition: all 0.5s ease;
+  } 
+
+
+   .bar{
+    width: 40px;
+    height: 45px;
+    position: relative;
+    border: 5px solid #332259;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: #584573;
+
+    opacity: 1;
+} 
+
+ .bar div{
+  height: 5px;
+  width: 20px;
+  background-color: whitesmoke;
+  position: absolute;
+  transition: all 1s ease;
+  
+}
+
+.bar .first{
+  top: 5px;
+  left: 15%;
+}
+
+.bar .second{
+  top: 14.8px;
+  left: 15%;
+}
+
+.bar .third{
+  top: 25px;
+  left: 15%;
+}
+
+.bar:hover .first {
+  transform: translateY(16px) rotate(-50deg);
+  transition: all 0.3s ease;
+  color: #445878;
+}
+
+.bar:hover .second{
+  opacity: 0;
+  transition: all 0.2s ease;
+  
+}
+
+.bar:hover .third{
+  transform: translateY(-16px) rotate(50deg);
+  transition: all 0.3s ease;
+  color: #445878;
+} 
+ 
+.bar:hover{
+  border-radius:50%;
+  transition: all 0.3s ease;  
+  background-color: #332259;
+}
+
+.dropbutton{
+  /* margin-left: %; */
+  /* margin-top: 40%; */
+  /* background-color: #BBD4D8; */
+  /* width: 50%; */
+  /* height: 5%; */
+}
+
+#dropmenu{
+  background-color: #332259;
+  border-color: #332259;
+  transition: all 0.3s ease;
+}
+
+#dropdownitem:hover{
+  background-color: #584573;
+  /* border-color: #332259; */
+  border: 5px;
+  transition: all 0.3s ease;
+} 
+
+#dropdown-button{
+  background-color: rgb(230, 230, 230);
+  border: none;
+  padding: 0;
+  padding-left: 3px;
+  padding-top: 2px;
+  /* padding-left: 0px;
+  padding-top: 0px; */
+}

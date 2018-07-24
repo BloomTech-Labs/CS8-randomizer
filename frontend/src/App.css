@@ -1,0 +1,98 @@
+a{
+  text-decoration: none;
+  
+}
+
+.App{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 1.2% 1%;
+  background: #584573;
+  height: 974px;
+}
+
+
+.LogBar{
+  padding-left: 100%;
+}
+
+.LandingComponentHidden{
+  display: none;
+}
+
+.LandingComponent{
+  display: block;
+}
+
+/* .MainComponentsHidden{
+  display: none;
+} */
+
+.MainAppComponents{
+  /* display: flex; */
+  /* flex-direction: row; */
+  /* flex-wrap: wrap; */
+  /* border: 1px solid black; */
+  /* margin-left: .5%; */
+  width: 100%;
+}
+
+.CrumbBar{
+  width: 50%;
+  margin-top: 0%;
+  margin-bottom: 0%;
+  background-color: #BBD4D8;
+  height: 0%;
+}
+.breadcrumb{
+  background-color: #BBD4D8;
+  color: #233040;
+}
+
+.breadcrumb:active{
+  text-decoration: underline;
+}
+
+.breadcrumb li{
+  margin-right: 10px;
+}
+.breadcrumb{
+  width: 100%;
+}
+
+.appPanel{
+  width: 100%;
+  padding: .1%;
+  padding-top: .1%;
+  border-radius: 0rem;
+  display: flex;
+}
+/* .MainComponentsHidden{
+  display: block;
+  border: 1px solid black;
+  margin-left: .5%;
+  width: 85%;
+} */
+
+/* .sideBar{
+  display: none;
+} */
+
+#nav-log-button{
+  background-color: #445878;
+  color: #BBD4D8;
+  margin-left: 5%;
+  padding-top: 15.5%;
+  padding-bottom: 13%;
+  text-align: center;
+}
+
+#nav-log-button:hover{
+  background-color: #BBD4D8;
+  color: #445878;
+}
+
+.top{
+  display: flex;
+}
