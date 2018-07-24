@@ -1,4 +1,13 @@
-.stripe{
-    margin-left: 45%;
-    margin-top: 20%;
+.Stripe-div{
+    /* margin-left: 45%;
+    margin-top: 20%; */
+
+    margin-left: 0%;
+    width: 100%;
+    height: 852px;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(230, 230, 230);
+    padding-top: 5%;
+    padding: 4% 2% 0;
 }

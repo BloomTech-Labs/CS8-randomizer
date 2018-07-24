@@ -31,18 +31,21 @@ class ClassForm extends React.Component {
     render(){
         return(
             <div className="Form-div">
-                <div className="classdiv">
-                    <h3>Settings</h3>
-                        <div className='classname-box'>
-                            <input 
-                                className='classname-input' 
-                                value={this.state.classname}
-                                name="classname"
-                                text="text"
-                                placeholder="Class Name"
-                                onChange={this.handleInputChange}    
-                            />
-                        </div>
+                <div className="Class-div">
+                
+                    <div className='Classname-box'>
+                        <h3>Settings</h3>
+                        
+                                <input 
+                                    className='Classname-input' 
+                                    value={this.state.classname}
+                                    name="classname"
+                                    text="text"
+                                    placeholder="Class Name"
+                                    onChange={this.handleInputChange}    
+                                />
+                            </div>
+                    <div className='Options-box'>
                         <FormGroup check>
                             <Label check>
                                 <Input type="checkbox" />{' '}
@@ -55,7 +58,7 @@ class ClassForm extends React.Component {
                                     Show On Deck
                             </Label>
                         </FormGroup>
-                        <Button>
+                        <Button id="Reset-button">
                             Reset Participation
                         </Button>
                         <FormGroup check>
@@ -64,9 +67,10 @@ class ClassForm extends React.Component {
                                     All Go
                             </Label>
                         </FormGroup>
+                    </div>
                 </div>
 
-                <div>
+                <div className="Add-div">
                     <h3>Add Students</h3>
                         <input
                             className='lastname-input'
@@ -84,22 +88,23 @@ class ClassForm extends React.Component {
                             placeholder="First Name"
                             onChange={this.handleInputChange}
                         />
-                        <Button>
+                        <Button id="Add-button">
                             Add
                         </Button>
-                        <Button>
+                        <Button id="Add-button">
                             Import CSV
                         </Button>
 
-                <div>
+                </div>
+                <div className="List-div">
                     <h3>Student List</h3>
-                    <div>
+                    <div >
                         {/* {this.props.classlist.map(item => { */}
                             {/* return( */}
                                 <div>
                                     <Card>
                                         <CardImg />
-                                            <CardBody>
+                                            <CardBody className="List-display">
                                                 <CardTitle></CardTitle>
                                                 <CardSubtitle></CardSubtitle>
                                             </CardBody>
@@ -109,11 +114,10 @@ class ClassForm extends React.Component {
                     
 
                     </div>
-                </div>
 
                 </div>
             </div>
-        )
+        );
     }
 }
 
