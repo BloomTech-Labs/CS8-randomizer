@@ -37,7 +37,7 @@ render(){
             <div className="SideDiv">
                 <Dropdown direction="right" isOpen={this.state.btnDropright} toggle={() => { this.setState({ btnDropright: !this.state.btnDropright }); }} >
                         {/* <div className='bar' tpe='button' onMouseOver={this.toggle}> */}
-                    <DropdownToggle className='dropbutton' >
+                    <DropdownToggle id="dropdown-button" className='dropbutton' >
                     <div className='bar'>
                     {/* <div className={this.state.active ? 'bar:active' : 'bar'}> */}
                     {/* <button className='wrapper' onClick={this.toggle}> */}
