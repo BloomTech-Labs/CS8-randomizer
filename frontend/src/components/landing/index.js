@@ -124,19 +124,19 @@ class Landing extends React.Component {
             </NavLink>
           </NavItem>
           <NavItem className="nav-signup">
-            <Modal
+            <Modal 
               isOpen={this.state.abModal}
               toggle={this.abToggle}
               className={this.props.className}
             >
-              <ModalHeader toggle={this.abToggle}>Our App</ModalHeader>
-              <ModalFooter>
-                <Button color="primary" onClick={this.signToggle}>
+              <ModalHeader className = 'modalHeader' toggle={this.abToggle}>Our App</ModalHeader>
+              <ModalFooter className = 'modalFooter'>
+                <Button id = 'nav-button' color="primary" onClick={this.signToggle}>
                   Sign Up
                 </Button>{" "}
-                <Button color="secondary" onClick={this.signToggle}>
+                {/* <Button color="secondary" onClick={this.signToggle}>
                   Cancel
-                </Button>
+                </Button> */}
               </ModalFooter>
               <Modal isOpen={this.state.signModal} toggle={this.signToggle}>
                 <ModalHeader toggle={this.signToggle}>Sign Up</ModalHeader>
@@ -174,9 +174,9 @@ class Landing extends React.Component {
                 </ModalBody>
                 <ModalFooter>
                   <Button color="primary" onClick={this.handleSubmit} >Submit</Button>
-                  <Button color="primary" onClick={this.signToggle}>
+                  {/* <Button color="primary" onClick={this.signToggle}>
                     Cancel
-                  </Button>
+                  </Button> */}
                 </ModalFooter>
               </Modal>
             </Modal>
@@ -214,9 +214,9 @@ class Landing extends React.Component {
               </ModalBody>
               <ModalFooter> 
                   <Button color="primary" onClick={this.handleLogin}>Confirm NOW!</Button>
-                <Button color="secondary" onClick={this.logToggle}>
+                {/* <Button color="secondary" onClick={this.logToggle}>
                   Cancel
-                </Button>
+                </Button> */}
               </ModalFooter>
             </Modal>
           </NavItem>
