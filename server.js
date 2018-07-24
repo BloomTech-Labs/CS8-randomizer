@@ -23,7 +23,13 @@ const corsOptions = {
 
 // ======== ROUTER requires ======== //
 
-// Note
+// Student
+const createStudentRouter = require('./Router/Student/createStudentRouter.js');
+const findStudentsRouter = require('./Router/Student/findStudentsRouter.js');
+const deleteStudentRouter = require('./Router/Student/deleteStudentRouter.js');
+const updateStudentRouter = require('./Router/Student/updateStudentRouter.js');
+
+// Class
 const createClassRouter = require('./Router/Class/createClassRouter.js');
 const findClassesRouter = require('./Router/Class/findClassesRouter.js');
 const deleteClassRouter = require('./Router/Class/deleteClassRouter.js');
@@ -58,6 +64,12 @@ server.get('/', function(req, res) {
 // const setupRoutes = require('./setup/routes')(server);
 
 // ======== ROUTERS .use ========== //
+
+// Student
+server.use('/api/createstudent/', createStudentRouter);
+server.use('/api/students/', findStudentsRouter);
+server.use('/api/deletestudent/', deleteStudentRouter);
+server.use('/api/updatestudent/', updateStudentRouter);
 
 // Class
 server.use('/api/createclass/', createClassRouter);
