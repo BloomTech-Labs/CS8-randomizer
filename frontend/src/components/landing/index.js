@@ -82,7 +82,7 @@ class Landing extends React.Component {
       confirmPassword: "",
       dropdownOpen: false,
       signModal: false,
-      logModal: true,
+      logModal: false,
       abModal: false,
     });
   };

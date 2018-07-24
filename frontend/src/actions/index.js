@@ -30,7 +30,7 @@ export const REGISTER = "REGISTER";
 export const CREATEUSER = "CREATEUSER";
 
 // const URL = "http://localhost:5000/api";
-const URL = "http://lambda-labs-frontend.herokuapp.com/api/"
+const URL = "https://lambda-labs-frontend.herokuapp.com/api"
 
 export const getClasses = () => dispatch => {
   dispatch({
@@ -91,7 +91,7 @@ export const getStudents = () => dispatch => {
     type: GETTINGSTUDENTS
   });
   axios
-    .get("http://localhost:500/api/:classid/students")
+    .get(`${URL}/api/:classid/students`)
     .then(response => {
       dispatch({ type: GOTSTUDENTS, students: response.data });
     })
@@ -108,7 +108,7 @@ export const addStudent = student => dispatch => {
     type: ADDINGSTUDENT
   });
   axios
-    .post("http://localhost:5000/api/:classid/students", student)
+    .post(`${URL}/api/:classid/students`, student)
     .then(request => {
       dispatch({ type: ADDEDSTUDENT, students: request.data });
     })

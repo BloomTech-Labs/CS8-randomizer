@@ -1,6 +1,6 @@
 .landing{
     /* background: #31353D; */
-    background: #BBD4D8;
+    background: #584573;
     background-image: url('./download.jpg');
     background-repeat: no-repeat;
     background-position: center;
@@ -33,11 +33,19 @@
 } */
 
 #nav-button{
-    background-color: #92CDCF;
+    background-color: #584573;
+    border-left-color: #352847;
+    border-right-color: #352847;
+    border-bottom-color: #352847;
+    border-top: #584573;
+    text-align: center;
 }
 
 #nav-button:hover{
-    background-color: #445878;
+    background-color: whitesmoke;
+    color: gray;
+    font-weight: 900;
+    text-align: center;
 }
 
 @media (max-width:960px){
