@@ -28,8 +28,8 @@ export default class ClassList extends React.Component {
                 <Jumbotron fluid id="jumb">
                     <Container fluid>
                         <h1 className="display-3">Start By Adding A Class</h1>
-                        <Nav>
-                        <NavLink className="NewClass" id="nc" href='/classes/create'> + </NavLink>
+                        <Nav id="add-button">
+                        <NavLink className="NewClass" id="add-plus" href='/classes/create'> + </NavLink>
                         </Nav>
                     </Container>
                 </Jumbotron>

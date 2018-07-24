@@ -1,14 +1,13 @@
 
 .SideDiv{
-    border: 1px solid black; 
+    /* border: 1px solid black;  */
     padding-bottom: 40%; 
      padding-right: 0; 
      width: 0%; 
      height: 0px; 
      margin: 0; 
 
-     background-color: #445878; 
-     background-color: #BBD4D8; 
+     background-color: #332259; 
      border-radius: .25rem; 
      text-align: left; 
      padding: 0;
@@ -17,30 +16,28 @@
   .side-link{
     padding-bottom: 20%;
     color: white;
-    background-color: rgb(126, 150, 156);
+    background-color: #584573;
     text-align: center;
-  } 
-   .side-link{
-    color: #BBD4D8;
+    transition: all 0.5s ease;
   } 
 
    .side-link:hover{
-    color: #BBD4D8;
-    background-color: rgb(160, 60, 92);
+    color: #332259;
+    background-color: whitesmoke;
+    border-color: #332259;
+    border: 5px;
+    transition: all 0.5s ease;
   } 
-   .side-link:hover{
-    color: #72898F;
-    background-color: #BBD4D8;
-  } 
+
 
    .bar{
     width: 40px;
     height: 45px;
     position: relative;
-    border: 5px solid #49b293;
+    border: 5px solid #332259;
     cursor: pointer;
     transition: all 0.3s ease;
-    background-color: #445878;
+    background-color: #584573;
 
     opacity: 1;
 } 
@@ -48,30 +45,30 @@
  .bar div{
   height: 5px;
   width: 20px;
-  background-color: #BBD4D8;
+  background-color: whitesmoke;
   position: absolute;
-  transition: all 0.5s ease;
+  transition: all 1s ease;
   
 }
 
 .bar .first{
   top: 5px;
-  left: 5px;
+  left: 15%;
 }
 
 .bar .second{
-  top: 14.5px;
-  left: 5px;
+  top: 14.8px;
+  left: 15%;
 }
 
 .bar .third{
   top: 25px;
-  left: 5px;
+  left: 15%;
 }
 
 .bar:hover .first {
-  transform: translateY(17px) rotate(-50deg);
-  transition: all 0.5s ease;
+  transform: translateY(16px) rotate(-50deg);
+  transition: all 0.3s ease;
   color: #445878;
 }
 
@@ -82,8 +79,8 @@
 }
 
 .bar:hover .third{
-  transform: translateY(-17px) rotate(50deg);
-  transition: all 0.5s ease;
+  transform: translateY(-16px) rotate(50deg);
+  transition: all 0.3s ease;
   color: #445878;
 } 
  
@@ -102,10 +99,24 @@
 }
 
 #dropmenu{
-  background-color: #BBD4D8;
-  border-color: rgb(160, 60, 92);
+  background-color: #332259;
+  border-color: #332259;
+  transition: all 0.3s ease;
 }
 
 #dropdownitem:hover{
   background-color: #584573;
+  /* border-color: #332259; */
+  border: 5px;
+  transition: all 0.3s ease;
 } 
+
+#dropdown-button{
+  background-color: rgb(230, 230, 230);
+  border: none;
+  padding: 0;
+  padding-left: 3px;
+  padding-top: 2px;
+  /* padding-left: 0px;
+  padding-top: 0px; */
+}
