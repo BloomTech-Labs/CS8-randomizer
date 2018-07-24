@@ -1,6 +1,7 @@
 .jumbo-div{
     /* margin-bottom: 50%; */
     height: 852px;
+
     background: rgb(230, 230, 230);
     border-radius: .25rem;
     width: 100%;
@@ -60,7 +61,9 @@
     font-size: 40px;
 }
 
+
 /* .jumbotron{
     background-color: rgb(63, 29, 29);
     text-align: center;
 } */
+
