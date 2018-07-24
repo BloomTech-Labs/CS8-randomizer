@@ -34,7 +34,7 @@
 
 #add-plus{
     background: #322842;
-    border-color: rgb(160, 60, 92);
+    border: 1px solid #322842;
     color: whitesmoke;
     padding-left: 1.50%;
     padding-top: .75%;
@@ -54,9 +54,9 @@
 /* } */
 
 #add-plus:hover{
-    border-color: #BBD4D8;
-    color: #BBD4D8;
-    background-color: rgb(160, 60, 92);
+    border-color: #322842;
+    color: #322842;
+    background-color: rgb(230, 230, 230);
     transition: all 0.3s ease;
 }
 
