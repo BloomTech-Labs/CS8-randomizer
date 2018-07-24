@@ -22,19 +22,20 @@ export default class LogOut extends React.Component{
 
     render(){
         return(
-            <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+            <Dropdown direction="left" id="logout-toggle" size="lg" isOpen={this.state.dropdownOpen} toggle={this.toggle}>
                 <DropdownToggle
+                    
                     tag="span"
                     onClick={this.toggle}
                     data-toggle="dropdown"
                     aria-expanded={this.state.dropdownOpen}
                 >
-                    <Button>Logout</Button>
+                    <Button id="logout-button">Logout</Button>
                     {/* TODO: Add onClick(this.props.toggleAuth) - to set authed: false; */}
                 </DropdownToggle>
-                <DropdownMenu>
-                    <div><a href="/">Confirm</a></div>
-                    <div onClick={this.toggle}>Cancel</div>
+                <DropdownMenu id="logout-dropdown">
+                    <div className="logout-link"><a href="/">Confirm</a></div>
+                    <div className="logout-link" onClick={this.toggle}>Cancel</div>
                 </DropdownMenu>
             </Dropdown>
         );

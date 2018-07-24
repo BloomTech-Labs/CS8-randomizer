@@ -32,10 +32,13 @@
     
 }
 
-#nc{
-    background: #BBD4D8;
+#add-plus{
+    background: #322842;
     border-color: rgb(160, 60, 92);
-    color: rgb(160, 60, 92);
+    color: whitesmoke;
+    padding-left: 1.50%;
+    padding-top: .75%;
+    transition: all 0.3s ease;
     /* width: 10%; */
     /* height: 30px; */
     /* margin-left: 22%; */
@@ -44,15 +47,17 @@
     /* padding: 0% 30% 0%; */
 }
 
-#ncbutton{
-    height: 40px;
+/* #add-button{ */
+    /* height: 40px; */
     /* margin-right: 20%; */
-}
+    /* padding-left: 3px; */
+/* } */
 
-#nc:hover{
+#add-plus:hover{
     border-color: #BBD4D8;
     color: #BBD4D8;
     background-color: rgb(160, 60, 92);
+    transition: all 0.3s ease;
 }
 
 .plus_button{
