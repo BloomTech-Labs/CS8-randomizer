@@ -1,7 +1,28 @@
 .set-div{
     /* margin-bottom: 50%; */
-    height: 835px;
-    background: #BBD4D8;
-    border-radius: .25rem;
-    margin-top: 8%;
+    margin-left: 0%;
+    width: 100%;
+    height: 852px;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(230, 230, 230);
+    padding-top: 5%;
+    padding: 4% 2% 0;
+}
+
+.set-div button{
+    margin-left: .2%;
+    background-color: #322842;
+    border-left-color: #352847;
+    border-right-color: #352847;
+    border-bottom-color: #352847;
+    border-top: #584573;
+    transition: all 0.5s ease;
+}
+
+.set-div button:hover{
+    background-color: whitesmoke;
+    border-color: whitesmoke;
+    color: #584573;
+    transition: all 0.5s ease;
 }

@@ -25,7 +25,7 @@ import "./App.css";
 
 // Breadcrumb Routes
 const routes = {
-  "/": "Index",
+  // "/": "Index",
   "/home": "Home",
   "/classes": "Classes",
   "/classes/:c_id": ":c_id",
