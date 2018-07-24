@@ -67,7 +67,7 @@
     flex-direction: column;
 }
 
-@media (max-width:960px){
+@media (max-width:1070px){
 
     .landing{
         background: #584573;
@@ -84,6 +84,7 @@
         /* padding-left: 41%; */
         /* justify-content: space-between; */
         text-emphasis-color: white;
+        text-align: center;
         height: -1%;
         align-content: flex-end;
         font-size: 300%;   
