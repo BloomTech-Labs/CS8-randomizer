@@ -31,6 +31,9 @@ export default class ClassList extends React.Component {
                         <Nav id="add-button">
                         <NavLink className="NewClass" id="add-plus" href='/classes/create'> + </NavLink>
                         </Nav>
+                        <Nav id="createClass">
+                        <NavLink id = 'addButton' href='/classes/create'> add </NavLink>
+                        </Nav>
                     </Container>
                 </Jumbotron>
             {/* </div> */}

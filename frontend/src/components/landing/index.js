@@ -139,8 +139,8 @@ class Landing extends React.Component {
                 </Button> */}
               </ModalFooter>
               <Modal isOpen={this.state.signModal} toggle={this.signToggle}>
-                <ModalHeader toggle={this.signToggle}>Sign Up</ModalHeader>
-                <ModalBody>
+                <ModalHeader className = 'modalHeader' toggle={this.signToggle}>Sign Up</ModalHeader>
+                <ModalBody className='modalFooter'>
                   <Input
                     className="form__input"
                     type="email"
@@ -172,8 +172,8 @@ class Landing extends React.Component {
                     value={this.state.confirmPassword}
                   />
                 </ModalBody>
-                <ModalFooter>
-                  <Button color="primary" onClick={this.handleSubmit} >Submit</Button>
+                <ModalFooter className = 'modalFooter'>
+                  <Button id = 'nav-button' onClick={this.handleSubmit} >Submit</Button>
                   {/* <Button color="primary" onClick={this.signToggle}>
                     Cancel
                   </Button> */}
