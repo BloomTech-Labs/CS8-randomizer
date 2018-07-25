@@ -7,7 +7,6 @@ const router = express.Router();
 
 router.route('/').get((req, res) => {
   Class.find({})
-    .populate('students')
     .then(classes => {
       if (classes.length === 0) {
         res.status(404).json({ error: 'No classes found!' });
