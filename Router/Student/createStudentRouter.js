@@ -11,6 +11,7 @@ router.route('/').get((req, res) => {
     .then(students => {
       if (students.length === 0) {
         res.status(404).json({ error: 'No students found!' });
+        return students;
       } else {
         res.status(200).json(students);
       }
