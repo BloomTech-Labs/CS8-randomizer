@@ -45,6 +45,7 @@ class ClassForm extends React.Component {
                                     onChange={this.handleInputChange}    
                                 />
                             </div>
+                                <Button id="Classname-button">Submit</Button>
                     <div className='Options-box'>
                         <FormGroup check>
                             <Label check>
