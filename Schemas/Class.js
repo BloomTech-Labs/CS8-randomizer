@@ -10,11 +10,9 @@ const classSchema = new mongoose.Schema({
   },
   num_of_students: {
     type: Number,
-    required: true,
   },
   participation: {
     type: Number,
-    required: true,
   },
   // user: [{ type: ObjectId, ref: 'User' }]
 });
