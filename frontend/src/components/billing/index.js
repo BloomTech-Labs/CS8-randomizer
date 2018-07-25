@@ -20,11 +20,12 @@ export default class Billing extends React.Component {
   render() {
     return (
       // ...
-      <StripeCheckout
-        token={this.onToken}
-        stripeKey="pk_live_eL39XfKV3dh9k5mk8Lxch3Yc"
-        className = 'stripe'
-      />
-    )
+      <div className='Stripe-div'>
+        <StripeCheckout
+          token={this.onToken}
+          stripeKey="pk_live_eL39XfKV3dh9k5mk8Lxch3Yc"
+        />
+      </div>
+    );
   }
 }
