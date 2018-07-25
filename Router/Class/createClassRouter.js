@@ -19,9 +19,9 @@ router.route('/').get((req, res) => {
 });
 
 router.post('/', (req, res) => {
-  const note = req.body;
-  Class.create(note)
-    .then(note => res.status(201).json('Saved new class'))
+  const class = req.body;
+  Class.create(class)
+    .then(class => res.status(201).json('Saved new class'))
     .catch(error => res.status(500).json(`Error from server: ${error}`));
 });
 
