@@ -7,6 +7,7 @@ const router = express.Router();
 
 router.route('/').get((req, res) => {
   Class.find({})
+    .populate('students')
     .then(classes => {
       if (classes.length === 0) {
         res.status(404).json({ error: 'No classes found!' });
@@ -21,6 +22,7 @@ router.route('/:id')
 .get((req, res) => {
   const { id } = req.params;
   Class.findById(id)
+    .populate('students')
     .then(response => {
       res.json(response);
     })
