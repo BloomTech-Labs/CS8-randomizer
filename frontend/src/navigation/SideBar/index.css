@@ -102,6 +102,7 @@
   background-color: #332259;
   border-color: #332259;
   transition: all 0.3s ease;
+  opacity: 60%;
 }
 
 #dropdownitem:hover{

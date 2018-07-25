@@ -47,12 +47,13 @@ export const getClasses = () => dispatch => {
     });
 };
 
-export const addClass = classItem => dispatch => {
+export const addClass = className => dispatch => {
+  console.log(className)
   dispatch({
     type: ADDINGCLASS
   });
   axios
-    .post(`${URL}/createclass`, classItem)
+    .post(`${URL}/createclass`, className)
     .then(response => {
       dispatch({ type: ADDCLASS, classes: response.data });
     })
@@ -61,15 +62,14 @@ export const addClass = classItem => dispatch => {
     });
 };
 
-export const editClass = (classid, classItem) => dispatch => {
+export const editClass = (className) => dispatch => {
   dispatch({
     type: EDITCLASS
   });
-  axios.put(`${URL}/updateclass`, classItem).then(response => {
+  axios.put(`${URL}/updateclass`, className).then(response => {
     dispatch({
       type: EDITEDCLASS,
-      classItem: response.data,
-      classid: response.data._id
+      className: response.data
     });
   });
 };
@@ -80,8 +80,7 @@ export const deleteClass = classid => dispatch => {
   });
   axios.delete(`${URL}/deleteclass/${classid}`).then(response => {
     dispatch({
-      type: DELETEDCLASS,
-      classid: classid
+      type: DELETEDCLASS
     });
   });
 };
@@ -91,7 +90,7 @@ export const getStudents = () => dispatch => {
     type: GETTINGSTUDENTS
   });
   axios
-    .get(`${URL}/api/:classid/students`)
+    .get(`${URL}/:classid/students`)
     .then(response => {
       dispatch({ type: GOTSTUDENTS, students: response.data });
     })
@@ -103,13 +102,14 @@ export const getStudents = () => dispatch => {
     });
 };
 
-export const addStudent = student => dispatch => {
+export const addStudent = studentName => dispatch => {
   dispatch({
     type: ADDINGSTUDENT
   });
   axios
-    .post(`${URL}/api/:classid/students`, student)
+    .post(`${URL}/createstudent`, studentName)
     .then(request => {
+      console.log(request)
       dispatch({ type: ADDEDSTUDENT, students: request.data });
     })
     .catch(err => {

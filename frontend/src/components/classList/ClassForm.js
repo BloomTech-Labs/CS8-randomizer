@@ -1,131 +1,145 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { Button, FormGroup, Label, Input, Card, CardText, CardImg, CardBody, CardTitle, CardSubtitle } from 'reactstrap';
+import React from "react";
+import { connect } from "react-redux";
+import {
+  Button,
+  FormGroup,
+  Label,
+  Input,
+  Card,
+  CardText,
+  CardImg,
+  CardBody,
+  CardTitle,
+  CardSubtitle
+} from "reactstrap";
 
-import { addClass } from '../../actions';
+import { addClass, addStudent } from "../../actions";
 
-import './form.css';
+import "./form.css";
 
 class ClassForm extends React.Component {
-    constructor(props){
-        super(props)
-        this.state = {
-            classname: '',
-            firstname: '',
-            lastname: '',
-            classlist: []
-        }
-    }
-    
-    handleInputChange = event => {
-        event.preventDefault();
-        this.setState({ [event.target.name]: event.target.value })
-    }
-
-    handleAddClass = event => {
-        const {classname, firstname, lastname} = this.state;
-        this.props.addClass({classname, firstname, lastname});
-        this.setState({classname: '', firstname: '', lastname: ''})
+  constructor(props) {
+    super(props);
+    this.state = {
+      classname: "",
+      firstname: "",
+      lastname: "",
+      studentslist: ["Betty SmellBad", "Johnny EatCookies", "Aaron Luckypants"]
     };
+  }
 
-    render(){
-        return(
-            <div className="Form-div">
-                <div className="Class-div">
-                
-                    <div className='Classname-box'>
-                        <h3>Settings</h3>
-                        
-                                <input 
-                                    className='Classname-input' 
-                                    value={this.state.classname}
-                                    name="classname"
-                                    text="text"
-                                    placeholder="Class Name"
-                                    onChange={this.handleInputChange}    
-                                />
-                            </div>
-                    <div className='Options-box'>
-                        <FormGroup check>
-                            <Label check>
-                                <Input type="checkbox" />{' '}
-                                    Track Participation
-                            </Label>
-                        </FormGroup>
-                        <FormGroup check>
-                            <Label check>
-                                <Input type="checkbox" />{' '}
-                                    Show On Deck
-                            </Label>
-                        </FormGroup>
-                        <Button id="Reset-button">
-                            Reset Participation
-                        </Button>
-                        <FormGroup check>
-                            <Label check>
-                                <Input type="checkbox" />{' '}
-                                    All Go
-                            </Label>
-                        </FormGroup>
-                    </div>
-                </div>
+  handleInputChange = event => {
+    console.log("handleInputChange");
+    event.preventDefault();
+    this.setState({ [event.target.name]: event.target.value });
+  };
 
-                <div className="Add-div">
-                    <h3>Add Students</h3>
-                        <input
-                            className='lastname-input'
-                            value={this.state.lastname}
-                            name="lastname"
-                            text="text"
-                            placeholder="Last Name"
-                            onChange={this.handleInputChange}
-                        />
-                        <input 
-                            className='firstname-input'
-                            value={this.state.firstname}
-                            name="firstname"
-                            text="text"
-                            placeholder="First Name"
-                            onChange={this.handleInputChange}
-                        />
-                        <Button id="Add-button">
-                            Add
-                        </Button>
-                        <Button id="Add-button">
-                            Import CSV
-                        </Button>
+  handleAddClass = event => {
+    const { classname } = this.state;
+    this.props.addClass({ name: classname });
+    this.setState({ classname: "" });
+  };
 
-                </div>
-                <div className="List-div">
-                    <h3>Student List</h3>
-                    <div >
-                        {/* {this.props.classlist.map(item => { */}
-                            {/* return( */}
-                                <div>
-                                    <Card>
+  handleAddStudent = event => {
+    const { firstname, lastname } = this.state;
+    this.props.addStudents({ first_name: firstname, last_name: lastname });
+    this.setState({ firstname: "", lastname: "" });
+  };
+
+  render() {
+    return (
+      <div className="Form-div">
+        <div className="Class-div">
+          <div className="Classname-box">
+            <h3>Settings</h3>
+
+            <input
+              className="Classname-input"
+              value={this.state.classname}
+              name="classname"
+              text="text"
+              placeholder="Class Name"
+              onChange={this.handleInputChange}
+            />
+          </div>
+          <Button id="Classname-button" onClick={this.handleAddClass}>
+            Submit
+          </Button>
+          <div className="Options-box">
+            <FormGroup check>
+              <Label check>
+                <Input type="checkbox" /> Track Participation
+              </Label>
+            </FormGroup>
+            <FormGroup check>
+              <Label check>
+                <Input type="checkbox" /> Show On Deck
+              </Label>
+            </FormGroup>
+            <Button id="Reset-button">Reset Participation</Button>
+            <FormGroup check>
+              <Label check>
+                <Input type="checkbox" /> All Go
+              </Label>
+            </FormGroup>
+          </div>
+        </div>
+
+        <div className="Add-div">
+          <h3>Add Students</h3>
+          <input
+            className="lastname-input"
+            value={this.state.lastname}
+            name="lastname"
+            text="text"
+            placeholder="Last Name"
+            onChange={this.handleInputChange}
+          />
+          <input
+            className="firstname-input"
+            value={this.state.firstname}
+            name="firstname"
+            text="text"
+            placeholder="First Name"
+            onChange={this.handleInputChange}
+          />
+          <Button id="Add-button" onClick={this.handleAddStudent}>
+            Add
+          </Button>
+          <Button id="Add-button">Import CSV</Button>
+        </div>
+        <div className="List-div">
+          <h3>Student List</h3>
+          <div>
+            {this.state.studentslist.map(item => {
+              return (
+                <ul>
+                  <li>{item}</li>
+                  {/* <Card>
                                         <CardImg />
                                             <CardBody className="List-display">
-                                                <CardTitle></CardTitle>
+                                                <CardTitle>{item}</CardTitle>
                                                 <CardSubtitle></CardSubtitle>
                                             </CardBody>
-                                    </Card>
-                                </div>
-                            {/* ) */}
-                    
-
-                    </div>
-
-                </div>
-            </div>
-        );
-    }
+                                    </Card> */}
+                </ul>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
 const mapStateToProps = state => {
-    return{
-        error: state.errorMessage,
-        addingClass: state.addingClass
-    }
-}
+  return {
+    error: state.errorMessage,
+    addingClass: state.addingClass
+  };
+};
 
-export default connect(mapStateToProps, {addClass})(ClassForm)
+export default connect(
+  mapStateToProps,
+  { addClass, addStudent }
+)(ClassForm);
