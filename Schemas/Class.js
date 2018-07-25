@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const ObjectId = mongoose.Schema.Types.ObjectId;
 
 const classSchema = new mongoose.Schema({
-  class_name: {
+  name: {
     type: String,
     require: true,
     unique: true,
