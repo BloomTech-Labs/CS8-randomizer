@@ -24,6 +24,7 @@ router.route('/:id')
   Class.findById(id)
     .populate('students')
     .then(response => {
+      console.log(response)
       res.json(response);
     })
     .catch(err => {
