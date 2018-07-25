@@ -23,7 +23,13 @@ const corsOptions = {
 
 // ======== ROUTER requires ======== //
 
-// Note
+// Student
+const createStudentRouter = require('./Router/Student/createStudentRouter.js');
+const findStudentsRouter = require('./Router/Student/findStudentsRouter.js');
+const deleteStudentRouter = require('./Router/Student/deleteStudentRouter.js');
+const updateStudentRouter = require('./Router/Student/updateStudentRouter.js');
+
+// Class
 const createClassRouter = require('./Router/Class/createClassRouter.js');
 const findClassesRouter = require('./Router/Class/findClassesRouter.js');
 const deleteClassRouter = require('./Router/Class/deleteClassRouter.js');
@@ -44,7 +50,7 @@ server.use(helmet());
 server.use(morgan('dev'));
 server.use(cors(corsOptions));
 
-mongoose.connect(process.env.MONGOLAB_AQUA_URI || 'mongodb://lambda_labs_backend:_sJ7X3;{pWfzfMR@ds239681.mlab.com:39681/lambda_labs_backend_database', { useNewUrlParser: true })
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://lambda_labs_backend:_sJ7X3;{pWfzfMR@ds239681.mlab.com:39681/lambda_labs_backend_database', { useNewUrlParser: true })
 
 .then(() => console.log('\n===connected to mongo===\n'))
 .catch(err =>console.log('not connected'))
@@ -52,12 +58,16 @@ mongoose.connect(process.env.MONGOLAB_AQUA_URI || 'mongodb://lambda_labs_backend
 // ========== ROUTES ========== //
 
 server.get('/', function(req, res) {
-  res.send({ api: 'up and sprinting' });
+  res.send({ api: 'up and flying' });
 });
 
-// const setupRoutes = require('./setup/routes')(server);
-
 // ======== ROUTERS .use ========== //
+
+// Student
+server.use('/api/createstudent/', createStudentRouter);
+server.use('/api/students/', findStudentsRouter);
+server.use('/api/deletestudent/', deleteStudentRouter);
+server.use('/api/updatestudent/', updateStudentRouter);
 
 // Class
 server.use('/api/createclass/', createClassRouter);

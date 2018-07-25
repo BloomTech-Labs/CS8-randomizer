@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import Carousel from "./Carousel";
+// import Carousel from "./Carousel";
+import {Button} from 'reactstrap';
+
 import "./magicRandomizer.css";
 
 class MagicRandomizer extends Component {
@@ -8,18 +10,19 @@ class MagicRandomizer extends Component {
       <div className="main">
         <div className="classid"> FSW438 </div>
         <div className="header">
-          <div className="participated">Participated</div>
+        <Button className="participated" id="Rando-top-button">Participated</Button> 
           <div className="studentName"> Chris Smith </div>
-          <div className="declined"> Declined </div>
+          <Button id="Rando-top-button"> Declined </Button> 
         </div>
-        <div className="edit"> Edit </div>
+        <Button className="edit" id="Rando-top-button"> Edit </Button> 
         <div className="caro_container">
           <div className="reset">
-            <div className="reset_border">Reset 'All Go'</div>
+          <Button className="reset_border" id="Rando-top-button">Reset 'All Go'</Button> 
             <div className="date">DATE</div>
           </div>
           <div className="caros">
-            <Carousel />
+            {/* <Carousel /> */}
+            <Button id="Randomize-button"> RANDOMIZE! </Button> 
             <div className="ondeck">On Deck: Jane</div>
           </div>
          
