@@ -6,7 +6,8 @@ const Class = require('../../Schemas/Class.js');
 
 //endpoints
 // This is just for quick checking
-router.route('/').get((req, res) => {
+router.route('/')
+.get((req, res) => {
   Class.find({})
     .then(classes => {
       if (classes.length === 0) {
@@ -19,9 +20,11 @@ router.route('/').get((req, res) => {
 });
 
 router.post('/', (req, res) => {
-  const class = req.body;
-  Class.create(class)
-    .then(class => res.status(201).json('Saved new class'))
+  const boat = req.body;
+  Class.create(boat)
+  console.log(boat)
+    .then(boat => 
+      res.status(201).json('Saved new class'))
     .catch(error => res.status(500).json(`Error from server: ${error}`));
 });
 
