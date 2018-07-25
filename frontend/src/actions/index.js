@@ -30,7 +30,7 @@ export const REGISTER = "REGISTER";
 export const CREATEUSER = "CREATEUSER";
 
 // const URL = "http://localhost:5000/api";
-const URL = "https://lambda-labs-frontend.herokuapp.com/api"
+const URL = "https://lambda-labs-backend.herokuapp.com/api"
 
 export const getClasses = () => dispatch => {
   dispatch({
@@ -153,8 +153,7 @@ export const login = (user,history) => dispatch => {
 
         dispatch(setCurrentUser(jwt_decode(token)));
 
-        // history.push('/api/classes/'); // TODO: Figure out why this is not working
-        // <Redirect to="/api/classes/"/>
+        window.location.reload(true);
       })
       .catch(err => {
         dispatch({ type: ERROR, payload: err });
