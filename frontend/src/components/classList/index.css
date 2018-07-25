@@ -72,3 +72,23 @@
     text-align: center;
 } */
 
+#Class-card{
+    width: 20%;
+    padding-bottom: 10%;
+    /* margin: 0; */
+}
+
+.Class-div{
+    width: 80%;
+    padding-bottom: 0%;
+    padding-left: 20%;
+    padding-top: 2%;
+}
+
+#Class-title{
+    margin-bottom: 10%;
+}
+
+#Class-subtitle{
+    margin-bottom: 5%;
+}

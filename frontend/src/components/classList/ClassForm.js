@@ -30,9 +30,9 @@ class ClassForm extends React.Component {
 
     render(){
         return(
+            
             <div className="Form-div">
-                <div className="Class-div">
-                
+                <div className="Classform-div">
                     <div className='Classname-box'>
                         <h3>Settings</h3>
                         
@@ -110,6 +110,7 @@ class ClassForm extends React.Component {
                                             </CardBody>
                                     </Card>
                                 </div>
+                        <Button id="Class-submit-button">Submit</Button>
                             {/* ) */}
                     
 
