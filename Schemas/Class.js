@@ -14,7 +14,7 @@ const classSchema = new mongoose.Schema({
   participation: {
     type: Number,
   },
-  students: [{ type: ObjectId, ref: 'Student' }]
+  student: [{ type: ObjectId, ref: 'Student' }]
 });
 
 module.exports = mongoose.model('Class', classSchema, 'classes');
