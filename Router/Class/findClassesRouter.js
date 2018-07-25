@@ -17,4 +17,16 @@ router.route('/').get((req, res) => {
     .catch(error => res.status(500).json(`Error from server: ${error}`));
 });
 
+router.route('/:id')
+.get((req, res) => {
+  const { id } = req.params;
+  Class.findById(id)
+    .then(response => {
+      res.json(response);
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
+})
+
 module.exports = router;
