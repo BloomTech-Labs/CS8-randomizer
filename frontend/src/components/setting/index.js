@@ -1,12 +1,13 @@
 import React from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import './setting.css';
 
 
 
 export default class Settings extends React.Component{
     render() {
       return (
-        <Form>
+        <Form id = "main">
           <FormGroup>
             <Label for="userEmail">Email:</Label>
             <Input type="email" name="email" id="userEmail" placeholder="Enter your email here" />
