@@ -42,51 +42,16 @@ class ClassForm extends React.Component {
 
   handleAddStudent = event => {
     const { firstname, lastname } = this.state;
-    this.props.addStudents({ first_name: firstname, last_name: lastname });
+    this.props.addStudent({ first_name: firstname, last_name: lastname });
     this.setState({ firstname: "", lastname: "" });
   };
 
-    render(){
-        return(
-            
-            <div className="Form-div">
-                <div className="Classform-div">
-                    <div className='Classname-box'>
-                        <h3>Settings</h3>
-                        
-                                <input 
-                                    className='Classname-input' 
-                                    value={this.state.classname}
-                                    name="classname"
-                                    text="text"
-                                    placeholder="Class Name"
-                                    onChange={this.handleInputChange}    
-                                />
-                            </div>
-                    <div className='Options-box'>
-                        <FormGroup check>
-                            <Label check>
-                                <Input type="checkbox" />{' '}
-                                    Track Participation
-                            </Label>
-                        </FormGroup>
-                        <FormGroup check>
-                            <Label check>
-                                <Input type="checkbox" />{' '}
-                                    Show On Deck
-                            </Label>
-                        </FormGroup>
-                        <Button id="Reset-button">
-                            Reset Participation
-                        </Button>
-                        <FormGroup check>
-                            <Label check>
-                                <Input type="checkbox" />{' '}
-                                    All Go
-                            </Label>
-                        </FormGroup>
-                    </div>
-                </div>
+  render() {
+    return (
+      <div className="Form-div">
+        <div className="Class-div">
+          <div className="Classname-box">
+            <h3>Settings</h3>
 
             <input
               className="Classname-input"
@@ -156,19 +121,15 @@ class ClassForm extends React.Component {
                                                 <CardTitle>{item}</CardTitle>
                                                 <CardSubtitle></CardSubtitle>
                                             </CardBody>
-
-                                    </Card>
-                                </div>
-                        <Button id="Class-submit-button">Submit</Button>
-                            {/* ) */}
-                    
-
-                    </div>
-
-                </div>
-            </div>
-        );
-    }
+                                    </Card> */}
+                </ul>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
 const mapStateToProps = state => {
