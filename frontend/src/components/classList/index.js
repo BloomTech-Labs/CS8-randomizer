@@ -21,7 +21,7 @@ export default class ClassList extends React.Component {
     constructor(props){
         super(props)
         this.state = {
-            classlist: [1],
+            classlist: [],
             classEmpt: "true"
         }
     }
