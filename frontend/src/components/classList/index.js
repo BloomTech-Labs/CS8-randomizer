@@ -17,6 +17,17 @@ import './index.css';
 // classAmount = this.state.classes.length();
 
 export default class ClassList extends React.Component {
+
+    constructor(props){
+        super(props)
+        this.state = {
+            classlist: [],
+            classEmpt: "true"
+        }
+    }
+
+
+
     componentDidMount() {
         // this.props.getClasses(this.props.user);
     }
