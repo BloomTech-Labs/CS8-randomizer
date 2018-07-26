@@ -81,7 +81,6 @@ const User = require("../../Schemas/User.js");
 
 //endpoints
 router.post("/", authenticate, (req, res) => {
-  console.log('REQ:', req)
   res.json({
     success: `${req.user.username}, you are logged in!`,
     token: makeToken(req.user),
