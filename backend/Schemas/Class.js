@@ -10,13 +10,11 @@ const classSchema = new mongoose.Schema({
   },
   num_of_students: {
     type: Number,
-    required: true,
   },
   participation: {
     type: Number,
-    required: true,
   },
-  // user: [{ type: ObjectId, ref: 'User' }]
+  student: [{ type: ObjectId, ref: 'Student' }]
 });
 
 module.exports = mongoose.model('Class', classSchema, 'classes');
