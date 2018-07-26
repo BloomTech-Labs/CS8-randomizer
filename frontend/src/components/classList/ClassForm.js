@@ -42,133 +42,103 @@ class ClassForm extends React.Component {
 
   handleAddStudent = event => {
     const { firstname, lastname } = this.state;
-    this.props.addStudents({ first_name: firstname, last_name: lastname });
+    this.props.addStudent({ first_name: firstname, last_name: lastname });
     this.setState({ firstname: "", lastname: "" });
   };
 
-    render(){
-        return(
-            
-            <div className="Form-div">
-                <div className="Classform-div">
-                    <div className='Classname-box'>
-                        <h3>Settings</h3>
-                        
-                                <input 
-                                    className='Classname-input' 
-                                    value={this.state.classname}
-                                    name="classname"
-                                    text="text"
-                                    placeholder="Class Name"
-                                    onChange={this.handleInputChange}    
-                                />
-                            </div>
-                    <div className='Options-box'>
-                        <FormGroup check>
-                            <Label check>
-                                <Input type="checkbox" />{' '}
-                                    Track Participation
-                            </Label>
-                        </FormGroup>
-                        <FormGroup check>
-                            <Label check>
-                                <Input type="checkbox" />{' '}
-                                    Show On Deck
-                            </Label>
-                        </FormGroup>
-                        <Button id="Reset-button">
-                            Reset Participation
-                        </Button>
-                        <FormGroup check>
-                            <Label check>
-                                <Input type="checkbox" />{' '}
-                                    All Go
-                            </Label>
-                        </FormGroup>
-                    </div>
-                </div>
 
-            <input
-              className="Classname-input"
-              value={this.state.classname}
-              name="classname"
-              text="text"
-              placeholder="Class Name"
-              onChange={this.handleInputChange}
-            />
-          </div>
-          <Button id="Classname-button" onClick={this.handleAddClass}>
-            Submit
-          </Button>
-          <div className="Options-box">
-            <FormGroup check>
-              <Label check>
-                <Input type="checkbox" /> Track Participation
-              </Label>
-            </FormGroup>
-            <FormGroup check>
-              <Label check>
-                <Input type="checkbox" /> Show On Deck
-              </Label>
-            </FormGroup>
-            <Button id="Reset-button">Reset Participation</Button>
-            <FormGroup check>
-              <Label check>
-                <Input type="checkbox" /> All Go
-              </Label>
-            </FormGroup>
-          </div>
-        </div>
-
-        <div className="Add-div">
-          <h3>Add Students</h3>
-          <input
-            className="lastname-input"
-            value={this.state.lastname}
-            name="lastname"
-            text="text"
-            placeholder="Last Name"
-            onChange={this.handleInputChange}
-          />
-          <input
-            className="firstname-input"
-            value={this.state.firstname}
-            name="firstname"
-            text="text"
-            placeholder="First Name"
-            onChange={this.handleInputChange}
-          />
-          <Button id="Add-button" onClick={this.handleAddStudent}>
-            Add
-          </Button>
-          <Button id="Add-button">Import CSV</Button>
-        </div>
-        <div className="List-div">
-          <h3>Student List</h3>
-          <div>
-            {this.state.studentslist.map(item => {
-              return (
-                <ul>
-                  <li>{item}</li>
-                  {/* <Card>
-                                        <CardImg />
-                                            <CardBody className="List-display">
-                                                <CardTitle>{item}</CardTitle>
-                                                <CardSubtitle></CardSubtitle>
-                                            </CardBody>
-
-                                    </Card>
-                                </div>
-                        <Button id="Class-submit-button">Submit</Button>
-                            {/* ) */}
+  render(){
+    return(
+        
+        <div className="Form-div">
+            <div className="Classform-div">
+                <div className='Classname-box'>
+                    <h3>Settings</h3>
                     
-
-                    </div>
-
+                            <input 
+                                className='Classname-input' 
+                                value={this.state.classname}
+                                name="classname"
+                                text="text"
+                                placeholder="Class Name"
+                                onChange={this.handleInputChange}    
+                            />
+                        </div>
+                <div className='Options-box'>
+                    <FormGroup check>
+                        <Label check>
+                            <Input type="checkbox" />{' '}
+                                Track Participation
+                        </Label>
+                    </FormGroup>
+                    <FormGroup check>
+                        <Label check>
+                            <Input type="checkbox" />{' '}
+                                Show On Deck
+                        </Label>
+                    </FormGroup>
+                    <Button id="Reset-button">
+                        Reset Participation
+                    </Button>
+                    <FormGroup check>
+                        <Label check>
+                            <Input type="checkbox" />{' '}
+                                All Go
+                        </Label>
+                    </FormGroup>
                 </div>
             </div>
-        );
-    }
+
+            <div className="Add-div">
+                <h3>Add Students</h3>
+                    <input
+                        className='lastname-input'
+                        value={this.state.lastname}
+                        name="lastname"
+                        text="text"
+                        placeholder="Last Name"
+                        onChange={this.handleInputChange}
+                    />
+                    <input 
+                        className='firstname-input'
+                        value={this.state.firstname}
+                        name="firstname"
+                        text="text"
+                        placeholder="First Name"
+                        onChange={this.handleInputChange}
+                    />
+                    <Button id="Add-button">
+                        Add
+                    </Button>
+                    <Button id="Add-button">
+                        Import CSV
+                    </Button>
+
+            </div>
+            <div className="List-div">
+                <h3>Student List</h3>
+                <div >
+                    {/* {this.props.classlist.map(item => { */}
+                        {/* return( */}
+                            <div>
+                                <Card>
+                                    <CardImg />
+                                        <CardBody className="List-display">
+                                            <CardTitle></CardTitle>
+                                            <CardSubtitle></CardSubtitle>
+                                        </CardBody>
+                                </Card>
+                            </div>
+                    <Button id="Class-submit-button">Submit</Button>
+                        {/* ) */}
+                
+
+                </div>
+
+            </div>
+        </div>
+    );
+}
 }
 
 const mapStateToProps = state => {

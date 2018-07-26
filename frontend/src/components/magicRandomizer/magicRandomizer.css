@@ -1,24 +1,16 @@
 .main {
   display: flex;
   flex-wrap: wrap;
-  /* width: 90%; */ 
-  /* background: blue; */ 
- 
-  height: 852px; 
- 
-  background: rgb(230, 230, 230); 
-  border-radius: .25rem; 
-  width: 100%; 
+  width: 90%;
+  /* background: blue; */
+
 }
 
 .header {
   display: flex;
   justify-content: center;
   flex: wrap;
-  width: 70%; 
-  margin-left: 2.5%; 
-  height: 50px; 
-  margin-top: 2%; 
+  width: 80%;
   height: 50px;
   /* background: rgb(224, 171, 171); */
 
@@ -28,8 +20,6 @@
   width: 10%;
   text-align: center;
   height: 50px;
-  margin-left: 5%; 
-  margin-top: 1%; 
   /* background: orange; */
 }
 
@@ -38,7 +28,7 @@
 
 .participated {
   padding: 10px;
-  height: 35px;
+  height: 30px;
   /* TODO: Remove this hack */
   line-height: 0.6;
   border: 2px dashed black;
@@ -55,51 +45,20 @@
   /* background: pink; */
 }
 
-#declined {
+.declined {
   /* TODO: Remove this hack */
   border: 2px dashed black;
   line-height: 0.6;
   padding: 10px;
-  height: 35px; 
-  background-color: whitesmoke; 
-  border-color: whitesmoke; 
-  border-style: solid; 
-  color: #584573; 
-  transition: all 0.5s ease; 
+  height: 30px;
   /* background: yellow; */
 }
-
-#Rando-top-button{ 
-  border: 2px dashed black; 
-  line-height: 0.6; 
-  padding: 10px; 
-  height: 35px; 
-  background-color: whitesmoke; 
-  border-color: whitesmoke; 
-  border-style: solid; 
-  color: #584573; 
-  transition: all 0.5s ease; 
-} 
- 
-#declined:hover{ 
-background-color: #322842; 
-color:whitesmoke; 
-transition: all 0.5s ease; 
- 
-} 
- 
-#Rando-top-button:hover{ 
-  background-color: #322842; 
-color:whitesmoke; 
-transition: all 0.5 s ease; 
-} 
 
 .edit {
   border: 2px dashed black;
   width: 80px;
-  height: 38px;
+  height: 25px;
   text-align: center;
-  margin-top: 1%;
   /* background: green; */
 }
 
@@ -108,7 +67,7 @@ transition: all 0.5 s ease;
   flex-wrap: wrap;
   /* TODO: center and width = 100% at mobile. */
   justify-content: center;
-  width: 92%;
+  width: 100%;
 
 }
 
@@ -138,26 +97,8 @@ transition: all 0.5 s ease;
   /* TODO: THIS IS WORKING CORRECTLY! - just need the correct image sizes! */
   display: flex;
   flex-direction: column;
-  width: 30%; 
-  margin-top: -50px; 
-  /* padding-bottom: 100px; */ 
-} 
- 
-#Randomize-button{ 
-  padding-top: 70px; 
-  padding-bottom: 70px; 
-  background: rgb(230, 230, 230); 
-  color: #332259; 
-  font-size: 50px; 
-  transition: all 1s ease-in; 
-  /* padding: 10% 0; */ 
-} 
- 
-#Randomize-button:hover{ 
-  background-color: red; 
-  color: white; 
-  /* padding: 20% 0; */ 
-  transition: all 10s ease; 
+  width: 50%;
+  margin-top: 20px;
 }
 
 .ondeck {

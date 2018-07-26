@@ -12,7 +12,7 @@
 
 } */
 
-.Classform-div{
+.Class-div{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -21,33 +21,22 @@
     margin-top: 2%;    
     margin-left: 5%;
     margin-right: 5%;
-    width: 40%;
-}
-
-.Classname-box{
-    margin-right: 120%;
-    padding-right: 20%;
-
-    width: 50%;
-    
 }
 
 .Classname-box h3{
     margin-left: 150%;
     margin-top: 10%;
     margin-bottom: 18%;
-
 }
 
 .Classname-input{
-    width: 350%;
+    width: 260%;
     margin-left: 30%;
 }
 
-
-#Class-submit-button{
-    /* margin-left: -18%;
-    margin-top: 4.5%; */
+#Classname-button{
+    margin-left: -18%;
+    margin-top: 4.5%;
     background-color: #322842;
     border-left-color: #352847;
     border-right-color: #352847;
@@ -57,8 +46,7 @@
     height: 40px;
 }
 
-
-#Class-submit-button:hover{
+#Classname-button:hover{
     background-color: whitesmoke;
     border-color: whitesmoke;
     color: #584573;
@@ -67,25 +55,19 @@
 
 .Options-box{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
-    margin-right: 0%;
-    /* width: 20%; */
-    /* left: 20% */
+    margin-right: 20%;
     
     /* height: */
 }
 
 .Options-box div {
-    margin: 0 0%;
+    padding: 5% 0;
 }
 
 #Reset-button{
-
-    /* margin-left: 3%;
-    margin-top: 12.7%;
-    margin-bottom: 16.1%; */
-
+    margin-left: -13%;
     background-color: #322842;
     border-left-color: #352847;
     border-right-color: #352847;

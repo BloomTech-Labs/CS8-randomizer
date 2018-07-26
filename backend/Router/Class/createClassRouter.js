@@ -26,4 +26,21 @@ router.post('/', (req, res) => {
     .catch(error => res.status(500).json(`Error from server: ${error}`));
 });
 
+router.get('/addstudent', (req, res) => {
+  console.log("req.body", req.body)
+  console.log("req.params", req.params)
+  const { id } = req.params;
+  Class.findById(id)
+    .populate('student')
+    .then(response => {
+
+      res.json(response);
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
+})
+.post((req, res) => {
+
+})
 module.exports = router;

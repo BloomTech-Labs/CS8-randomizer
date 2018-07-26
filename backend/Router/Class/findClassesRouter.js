@@ -22,8 +22,7 @@ router.route('/:id')
 .get((req, res) => {
   const { id } = req.params;
   Class.findById(id)
-    console.log(id)
-    .populate('students')
+    .populate('student')
     .then(response => {
       res.json(response);
     })
