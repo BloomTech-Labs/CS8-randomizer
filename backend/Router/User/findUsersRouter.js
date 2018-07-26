@@ -7,6 +7,7 @@ const router = express.Router();
 
 router.route('/').get((req, res) => {
   User.find({})
+    .populate('classes student')
     .then(users => {
       if (users.length === 0) {
         res.status(404).json({ error: 'No users found!' });
@@ -16,5 +17,18 @@ router.route('/').get((req, res) => {
     })
     .catch(error => res.status(500).json(`Error from server: ${error}`));
 });
+
+router.route('/:id')
+.get((req, res) => {
+  const { id } = req.params;
+  User.findById(id)
+    .populate('classes student')
+    .then(response => {
+      res.json(response);
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
+})
 
 module.exports = router;

@@ -49,7 +49,7 @@ class ClassForm extends React.Component {
   render() {
     return (
       <div className="Form-div">
-        <div className="Classform-div">
+        <div className="Class-div">
           <div className="Classname-box">
             <h3>Settings</h3>
 
@@ -62,6 +62,9 @@ class ClassForm extends React.Component {
               onChange={this.handleInputChange}
             />
           </div>
+          <Button id="Classname-button" onClick={this.handleAddClass}>
+            Submit
+          </Button>
           <div className="Options-box">
             <FormGroup check>
               <Label check>
@@ -100,23 +103,29 @@ class ClassForm extends React.Component {
             placeholder="First Name"
             onChange={this.handleInputChange}
           />
-          <Button id="Add-button">Add</Button>
+          <Button id="Add-button" onClick={this.handleAddStudent}>
+            Add
+          </Button>
           <Button id="Add-button">Import CSV</Button>
         </div>
         <div className="List-div">
           <h3>Student List</h3>
-          
           <div>
             {this.state.studentslist.map(item => {
               return (
                 <ul>
                   <li>{item}</li>
+                  {/* <Card>
+                                        <CardImg />
+                                            <CardBody className="List-display">
+                                                <CardTitle>{item}</CardTitle>
+                                                <CardSubtitle></CardSubtitle>
+                                            </CardBody>
+                                    </Card> */}
                 </ul>
               );
             })}
           </div>
-
-          <Button id="Class-submit-button">Submit</Button>
         </div>
       </div>
     );
