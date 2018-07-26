@@ -11,10 +11,6 @@
     background-color: rgb(230, 230, 230);
 }
 
-#createClass{
-    visibility: hidden;
-}
-
 .add_new_class{
     display: flex;
     justify-content: center;
@@ -96,6 +92,7 @@
     background-color: rgb(63, 29, 29);
     text-align: center;
 } */
+
 
 @media (max-width: 1070px){
     .jumbo-div{

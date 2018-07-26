@@ -122,7 +122,7 @@ export const deleteStudent = studentid => dispatch => {
     type: DELETESTUDENT
   });
   axios
-    .delet("http://localhost:5000/api/${classid}/${studentid)")
+    .delete("http://localhost:5000/api/${classid}/${studentid)")
     .then(response => {
       dispatch({
         type: DELETEDSTUDENT,
@@ -132,8 +132,6 @@ export const deleteStudent = studentid => dispatch => {
 };
 
 export const login = (user,history) => dispatch => {
-    // console.log("history", history);
-    console.log("user", user);
     axios
       .post(`${URL}/login`, {
         username: user.username,
