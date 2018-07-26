@@ -1,11 +1,13 @@
 const express = require('express');
 
+// authentication
+const { authenticate } = require('../../authenticate');
 //schema
 const Class = require('../../Schemas/Class.js');
 
 const router = express.Router();
 
-router.route('/').get((req, res) => {
+router.get('/', authenticate, (req, res) => {
   Class.find({})
     .populate('student')
     .then(classes => {

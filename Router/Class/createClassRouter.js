@@ -1,12 +1,15 @@
 const express = require('express');
 const router = express.Router();
 
+// authentication
+const { authenticate } = require('../../authenticate');
+
 //schema
 const Class = require('../../Schemas/Class.js');
 
 //endpoints
 // This is just for quick checking
-router.route('/').get((req, res) => {
+router.get('/', authenticate, (req, res) => {
   Class.find({})
     .then(classes => {
       if (classes.length === 0) {
