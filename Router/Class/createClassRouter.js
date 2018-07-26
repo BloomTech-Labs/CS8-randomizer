@@ -18,7 +18,7 @@ router.route('/').get((req, res) => {
     .catch(error => res.status(500).json(`Error from server: ${error}`));
 });
 
-router.post('/addstudent', (req, res) => {
+router.post('/', (req, res) => {
   const boat = req.body;
   console.log(boat)
   Class.create(boat)
@@ -26,10 +26,14 @@ router.post('/addstudent', (req, res) => {
     .catch(error => res.status(500).json(`Error from server: ${error}`));
 });
 
-router.get((req, res) => {
+router.get('/addstudent', (req, res) => {
+  console.log("req.body", req.body)
+  console.log("req.params", req.params)
   const { id } = req.params;
   Class.findById(id)
+    .populate('student')
     .then(response => {
+
       res.json(response);
     })
     .catch(err => {
