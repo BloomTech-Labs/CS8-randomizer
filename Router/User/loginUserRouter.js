@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { authenticate } = require("../authenticate.js"); // DOES NOT WORK?
+const { authenticate } = require("../../authenticate");
 
 //schema
 const User = require("../../Schemas/User.js");
