@@ -28,8 +28,9 @@ const routes = {
   // "/": "Index",
   "/home": "Home",
   "/classes": "Classes",
-  "/classes/:c_id": ":c_id",
-  "/classes/magicrandomizer": "Game",
+  "/create": "New Class",
+  "/classes/:id": ":id",
+  "/classes/randomizer/:id": "Randomizer",
   "/classes/edit": "Edit Class",
   "/classes/create": "Create Class",
   "/billing": "Billing",
@@ -77,7 +78,7 @@ class App extends Component {
               exact
               path={"/"}
               render={() =>
-                this.props.authed? <Redirect to="/classes/" /> : <Landing auth={this.state.isAuth} />}
+                this.props.authed? <Redirect to="/api/classes/" /> : <Landing auth={this.state.isAuth} />}
             />
           ) : (
             <div className="MainAppComponents">
@@ -88,17 +89,15 @@ class App extends Component {
               <div className="appPanel">
                 <DropBar />
                 <Route exact path={"/"} render={() => <Home />} />
-                <Route exact path={"/create"} />
-                <Route exact path={"/edit"} />
+                {/* <Route exact path={"/create"} /> */}
+                <Route exact path={"/:id/edit"} />
                 <Route exact path={"/classes"} render={() => <ClassList />} />
                 <Route
-                  exact
-                  path={"/classes/create"}
+                  exact path={"/create"}
                   render={() => <ClassForm />}
                 />
                 <Route
-                  exact
-                  path={"/classes/active"}
+                  exact path={"/classes/:id"}
                   render={() => <MagicRandomizer />}
                 />
                 <Route exact path={"/billing"} render={() => <Billing />} />
