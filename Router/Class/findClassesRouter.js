@@ -22,8 +22,6 @@ router.route('/:id')
 .get((req, res) => {
   const { id } = req.params;
   Class.findById(id)
-    console.log(id)
-    .populate('students')
     .then(response => {
       res.json(response);
     })
