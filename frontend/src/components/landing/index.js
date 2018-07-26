@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from 'react-redux';
-import { login, signup } from '../../actions';
+import { logIn, addUser } from '../../actions';
 import { withRouter } from "react-router-dom";
 
 import {
@@ -72,7 +72,7 @@ class Landing extends React.Component {
       alert("Password must be six or more characters in length");
       return;
     }
-    this.props.signup({
+    this.props.addUser({
       username: this.state.username.trim(),
       password: this.state.password.trim()
     }, this.props.history);
@@ -93,7 +93,7 @@ class Landing extends React.Component {
       alert("Password must be six or more characters in length");
       return;
     }
-    this.props.login({
+    this.props.logIn({
       username: this.state.username.trim(),
       password: this.state.password.trim()
     }, this.props.history);
@@ -231,4 +231,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { login, signup })(withRouter(Landing));
+export default connect(mapStateToProps, { logIn, addUser })(withRouter(Landing));

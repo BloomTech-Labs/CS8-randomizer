@@ -1,4 +1,11 @@
 import {
+  ADDINGUSER,
+  ADDEDUSER,
+  LOGGINGIN,
+  LOGGEDIN,
+  LOGGINGOUT,
+  LOGGEDOUT,
+
   GETTINGCLASSES,
   GOTCLASSES,
   ADDCLASS,
@@ -14,14 +21,7 @@ import {
   ADDEDSTUDENT,
   DELETESTUDENT,
   DELETEDSTUDENT,
-  LOGIN,
-  LOGOUT,
-  REGISTER,
-  CREATEUSER,
-  ERROR,
-  SIGNING_UP,
-  USER_CREATED,
-  SET_CURRENT_USER,
+  ERROR
 } from "../actions";
 
 const initialState = {
@@ -29,18 +29,41 @@ const initialState = {
   students: [],
   users: [],
   authed: false,
-  // modal: false,
-  // loggingIn: false,
-  // loggedIn: false,
-  // error: null,
-  // signingIn: false,
   homepage: true,
-  signingup: false
+  addingUser: false,
+  loggingIn: false,
+  loggingOut: false,
+  addingClass: false
 };
 
 export const Reducer = (state = initialState, action) => {
   switch (action.type) {
-    // case's go here: e.g. ADD_USER, ADD_STUDENT etc.
+    // ========== ORDER: USER, CLASS, STUDENT ========= //
+    case ADDINGUSER:
+      return {
+        ...state,
+        addingUser: true
+      };
+    case ADDEDUSER:
+      return {
+        ...state,
+        addingUser: false,
+        users: action.users
+      };
+    case LOGGINGIN:
+      return { ...state, loggingIn: true };
+    case LOGGEDIN:
+      return {
+        ...state,
+        authed: true,
+        user: action.user
+      };
+    case LOGGINGOUT:
+      return { ...state, loggingOut: true };
+    case LOGGEDOUT:
+      return { ...state, authed: false, loggingOut: false };
+
+
     case GETTINGCLASSES:
       return { ...state, gettingClass: true };
     case GOTCLASSES:
@@ -50,33 +73,18 @@ export const Reducer = (state = initialState, action) => {
         gettingClass: false,
         error: null
       };
-    case ERROR:
-      return { ...state, error: action.errorMessage };
-    case ADDCLASS:
+    case ADDINGCLASS:
+      return { ...state, addingClass: true };
+    case ADDEDCLASS:
       return {
         ...state,
-        classes: [...state.classes, { ...action.classes }]
+        classes: [...state.classes, { ...action.classes }],
+        addingClass: false
       };
-
-      {
-        /* Not entirely sure if I need progressive states or not, 
-    if this comment is here I'm attempting with the single ADDCLASS case above (and it's working
-  and so I forgot to delete this...) */
-      }
-    // case ADDINGCLASS:
-    //   return { ...state, addingClass: true};
-    // case ADDEDCLASS:
-    //   return { ...state, classes: action.classes, addingClass: false };
-    // case EDITCLASS:
-    //   let copy = state.classes.slice();
-    //   console.log('Class in reducer: ', action.classes);
-
-    //   copy.filter(class => {
-
-    //   };
-    //   return { ...state, editingClass: true};
     case EDITEDCLASS:
       return { ...state, classes: action.classes, editingClass: false };
+
+
     case GETTINGSTUDENTS:
       return { ...state, gettingStudents: true };
     case GOTSTUDENTS:
@@ -85,29 +93,10 @@ export const Reducer = (state = initialState, action) => {
       return { ...state, addingStudent: true };
     case ADDEDSTUDENT:
       return { ...state, students: action.students, addingStudent: false };
-    case LOGIN:
-      return { ...state, authed: true, user: action.user.username };
-    case LOGOUT:
-      return { ...state, authed: false };
-    // case CREATEUSER:
-    //   return { ...state, authed: true, user: action.user.username}
-    case REGISTER:
-      return {
-        ...state,
-        signingUp: false,
-        users: action.users
-      };
-    case SIGNING_UP:
-      return {
-        ...state,
-        signingUp: true
-      };
-    case SET_CURRENT_USER:
-      return {
-        ...state,
-        authed: true,
-        user: action.user
-      };
+
+
+    case ERROR:
+      return { ...state, error: action.errorMessage };
     default:
       return state;
   }
