@@ -1,10 +1,13 @@
-// // ============ from ROUTES ============= //
+// ============ from ROUTES ============= //
 // Libraries:
 const { ExtractJwt } = require('passport-jwt');
 const JwtStrategy = require('passport-jwt').Strategy;
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const jwt = require('jsonwebtoken');
+
+//schema
+const User = require('./Schemas/User.js');
 
 const secret = 'no size limit on tokens';
 
@@ -68,4 +71,9 @@ passport.use(localStrategy);
 passport.use(jwtStrategy);
 
 const authenticate = passport.authenticate('local', { session: false });
+// This is what you will use to protect user's notes -- see Auth Code Along hobbits [POST] for example
 const protected = passport.authenticate('jwt', { session: false });
+
+module.exports = {
+  authenticate
+};
