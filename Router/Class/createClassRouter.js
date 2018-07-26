@@ -20,6 +20,7 @@ router.route('/').get((req, res) => {
 
 router.post('/', (req, res) => {
   const boat = req.body;
+  console.log('REQ.USER', req.user)
   console.log(boat)
   Class.create(boat)
     .then(boat => res.status(201).json('Saved new class'))
