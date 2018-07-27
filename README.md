@@ -17,7 +17,7 @@ Registers a new user.
 
 #GET -- `/api/login` -- GET
 
-Authorization through JWT. Checks to see if user is valid, or already authorized.
+Authorization through JWT. Checks to see if user is valid or already authorized.
 
 # POST -- `/api/login/` -- POST
 
