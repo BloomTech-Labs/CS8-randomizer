@@ -1,29 +1,29 @@
 const express = require('express');
 const router = express.Router();
 const cors = require('cors');
-// // const { authenticate } = require("../authenticate.js");
+// const { authenticate } = require("../authenticate.js");
 
-// // ============ from ROUTES ============= //
-// // Libraries:
+// ============ from ROUTES ============= //
+// Libraries:
 // const { ExtractJwt } = require('passport-jwt');
 // const JwtStrategy = require('passport-jwt').Strategy;
 // const passport = require('passport');
 // const LocalStrategy = require('passport-local');
-// const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 
-// const secret = 'no size limit on tokens';
+const secret = 'no size limit on tokens';
 
-// function makeToken(user) {
-//   const timestamp = new Date().getTime();
-//   const payload = {
-//     sub: user._id,
-//     username: user.username,
-//     iat: timestamp
-//   };
+function makeToken(user) {
+  const timestamp = new Date().getTime();
+  const payload = {
+    sub: user._id,
+    username: user.username,
+    iat: timestamp
+  };
 
-//   const options = { expiresIn: '300000' }; // 300,000 milliseconds or 5 minutes
-//   return jwt.sign(payload, secret, options);
-// }
+  const options = { expiresIn: '300000' }; // 300,000 milliseconds or 5 minutes
+  return jwt.sign(payload, secret, options);
+}
 
 // const localStrategy = new LocalStrategy(function(username, password, done) {
 //   User.findOne({ username }, function(err, user) {
@@ -75,7 +75,7 @@ const cors = require('cors');
 // const authenticate = passport.authenticate('local', { session: false });
 // // This is what you will use to protect user's notes -- see Auth Code Along hobbits [POST] for example
 // const protected = passport.authenticate('jwt', { session: false });
-// // ============ from ROUTES -- END ============= //
+// ============ from ROUTES -- END ============= //
 
 //schema
 const User = require('../../Schemas/User.js');
