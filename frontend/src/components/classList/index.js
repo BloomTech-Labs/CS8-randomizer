@@ -8,28 +8,34 @@ import { getClasses } from '../../actions';
 
 import './index.css';
 
-// function mapStateToProps(state){
-//     return { 
-//         classes: state.classes,
-//         user: state.user    
-//     };
-// }
+function mapStateToProps(state){
+    return { 
+        classes: state.classes,
+        user: state.user    
+    };
+}
 
 // classAmount = this.state.classes.length();
 
-export default class ClassList extends React.Component {
+class ClassList extends React.Component {
     constructor(props){
         super(props)
         this.state = {
             classlist: [],
-            classEmpt: "true"
+            classEmpt: "true",
+            // classes: this.state.classes,
+            // user: this.state.user
         }
     }
 
 
-
     componentDidMount() {
         // this.props.getClasses(this.props.user);
+
+        this.props.getClasses(this.props.user);
+
+
+
         if(this.state.classlist.length == 0){
             this.setState({
                 classEmpt: 'true'
@@ -72,21 +78,34 @@ export default class ClassList extends React.Component {
         </div>
             ):(
                 <div className='Class-div'> 
-                
+                {/* {this.props.classes.map(class => { */}
+                {/* return( */}
                     <Card id='Class-card'>
                         <Link to="/classes/:id">
 
+
+                    {/* Uncomment me when the redux actions are ready!  */}
+                        {/* <CardBody>
+                            <CardTitle>(Insert Class Name){classes.classname}</CardTitle>
+                            <CardSubtitle>(Insert Class Size){classes.students.length()}</CardSubtitle>
+                            <CardSubtitle>(Insert Participation Amount)</CardSubtitle>
+                        </CardBody> */}
+                        
                         <CardBody>
                             <CardTitle id='Class-title'>Class Name</CardTitle>
                             <CardSubtitle id='Class-subtitle'>Students</CardSubtitle>
                             <CardSubtitle>Participation</CardSubtitle>
                         </CardBody>
                         {/* <CardImg>A graph</CardImg> */}
-                </Link>
+                        
+                        </Link>
                     </Card>
+                {/* )})} */}
                 </div>
             )}
             </div>
         );
     }
 }
+
+export default connect(mapStateToProps, { getClasses })(ClassList);

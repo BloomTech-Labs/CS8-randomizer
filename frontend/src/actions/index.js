@@ -112,7 +112,7 @@ export const addClass = className => dispatch => {
     })
     .catch(err => {
       dispatch({ type: ERROR, errorMessage: "Error Adding Class..." });
-    });
+    })
 };
 
 export const editClass = className => dispatch => {
