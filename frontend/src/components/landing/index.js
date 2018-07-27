@@ -128,18 +128,19 @@ class Landing extends React.Component {
               toggle={this.abToggle}
               className={this.props.className}
             >
-              <ModalHeader toggle={this.abToggle}>Our App</ModalHeader>
-              <ModalFooter>
-                <Button color="primary" onClick={this.signToggle}>
+              <ModalHeader className = 'modalHeader' toggle={this.abToggle}>Our App</ModalHeader>
+              <ModalFooter className = 'modalFooter'>
+              <p>Magic Randomiser is a web app that allows teachers to pick students randomly to call on in class. This allows the teacher to make sure that all students get a chance to answer a question before they are called on a second time.</p>
+                <Button id="nav-button" onClick={this.signToggle}>
                   Sign Up
                 </Button>{" "}
-                <Button color="secondary" onClick={this.abToggle}>
+                {/* <Button id="nav-button" onClick={this.abToggle}>
                   Cancel
-                </Button>
+                </Button> */}
               </ModalFooter>
               <Modal isOpen={this.state.signModal} toggle={this.signToggle}>
-                <ModalHeader toggle={this.signToggle}>Sign Up</ModalHeader>
-                <ModalBody>
+                <ModalHeader className = 'modalHeader' toggle={this.signToggle}>Sign Up</ModalHeader>
+                <ModalBody className='modalFooter'>
                   <Input
                     className="form__input"
                     type="email"
@@ -171,11 +172,11 @@ class Landing extends React.Component {
                     value={this.state.confirmPassword}
                   />
                 </ModalBody>
-                <ModalFooter>
-                  <Button color="primary" onClick={this.handleSubmit} >Submit</Button>
-                  <Button color="primary" onClick={this.signToggle}>
+                <ModalFooter className='modalFooter'>
+                  <Button id = 'nav-button' onClick={this.handleSubmit} >Submit</Button>
+                  {/* <Button color="primary" onClick={this.signToggle}>
                     Cancel
-                  </Button>
+                  </Button> */}
                 </ModalFooter>
               </Modal>
             </Modal>
@@ -191,7 +192,7 @@ class Landing extends React.Component {
               toggle={this.logToggle}
               className={this.props.className}
             >
-              <ModalHeader toggle={this.logToggle}>Login</ModalHeader>
+              <ModalHeader className = 'modalHeader' toggle={this.logToggle}>Login</ModalHeader>
               <ModalBody>
                 <Input 
                     type="username"
@@ -211,11 +212,11 @@ class Landing extends React.Component {
                     value={this.state.password}/>
 
               </ModalBody>
-              <ModalFooter> 
-                  <Button color="primary" onClick={this.handleLogin}>Confirm NOW!</Button>
-                <Button color="secondary" onClick={this.logToggle}>
+              <ModalFooter className = 'modalFooter'> 
+                  <Button id="nav-button" onClick={this.handleLogin}>Confirm</Button>
+                {/* <Button color="secondary" onClick={this.logToggle}>
                   Cancel
-                </Button>
+                </Button> */}
               </ModalFooter>
             </Modal>
           </NavItem>
