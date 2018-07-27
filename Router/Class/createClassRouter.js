@@ -6,17 +6,17 @@ const Class = require('../../Schemas/Class.js');
 
 //endpoints
 // This is just for quick checking
-router.route('/').get((req, res) => {
-  Class.find({})
-    .then(classes => {
-      if (classes.length === 0) {
-        res.status(404).json({ error: 'No classes found!' });
-      } else {
-        res.status(200).json(classes);
-      }
-    })
-    .catch(error => res.status(500).json(`Error from server: ${error}`));
-});
+// router.route('/').get((req, res) => {
+//   Class.find({})
+//     .then(classes => {
+//       if (classes.length === 0) {
+//         res.status(404).json({ error: 'No classes found!' });
+//       } else {
+//         res.status(200).json(classes);
+//       }
+//     })
+//     .catch(error => res.status(500).json(`Error from server: ${error}`));
+// });
 
 router.post('/', (req, res) => {
   const boat = req.body;
@@ -27,21 +27,4 @@ router.post('/', (req, res) => {
     .catch(error => res.status(500).json(`Error from server: ${error}`));
 });
 
-router.get('/addstudent', (req, res) => {
-  console.log("req.body", req.body)
-  console.log("req.params", req.params)
-  const { id } = req.params;
-  Class.findById(id)
-    .populate('student')
-    .then(response => {
-
-      res.json(response);
-    })
-    .catch(err => {
-      res.status(500).json(err);
-    });
-})
-.post((req, res) => {
-
-})
 module.exports = router;
