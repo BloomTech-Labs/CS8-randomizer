@@ -42,6 +42,7 @@ const loginUserRouter = require('./Router/User/loginUserRouter.js');
 const findUsersRouter = require('./Router/User/findUsersRouter.js');
 const deleteUserRouter = require('./Router/User/deleteUserRouter.js');
 const updateUserRouter = require('./Router/User/updateUserRouter.js');
+const addclasstoUserRouter = require('./Router/User/addclasstoUserRouter.js');
 
 const server = express();
 
@@ -82,5 +83,6 @@ server.use('/api/login/', loginUserRouter);
 server.use('/api/users/', findUsersRouter);
 server.use('/api/deleteuser/', deleteUserRouter);
 server.use('/api/updateuser/', updateUserRouter);
+server.use('/api/addclasstouser/', addclasstoUserRouter);
 
 server.listen(port, () => console.log('API on port 5000...or wherever Heroku is'));
