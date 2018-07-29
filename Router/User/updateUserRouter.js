@@ -20,6 +20,7 @@ router
     const { id } = req.params;
     const updateInfo = req.body;
     User.classes.push(updateInfo)
+    User.save(done)
       .then(response => {
         res.json(response);
       })
