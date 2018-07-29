@@ -10,7 +10,6 @@ router
   .get((req, res) => {
     const { id } = req.params;
     Class.findById(id)
-      .populate("student")
       .then(response => {
         res.json(response);
       })
@@ -19,9 +18,12 @@ router
       });
   })
   .put((req, res) => {
+    console.log('REQ', req.body)
     const { id } = req.params;
     const updateInfo = req.body;
-    Class.findByIdAndUpdate(id, updateInfo)
+    Class.findByIdAndUpdate(id, {
+      $push: { users: updateInfo.users }
+    }, { 'new': true})
       .then(response => {
         res.json(response);
       })

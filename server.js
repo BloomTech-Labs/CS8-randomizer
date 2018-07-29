@@ -53,9 +53,9 @@ server.use(morgan('dev'));
 server.use(cors(corsOptions));
 
 // For Heroku:
-mongoose.connect(process.env.MONGOLAB_PUCE_URI || 'mongodb://lambda_labs_backend:_sJ7X3;{pWfzfMR@ds239681.mlab.com:39681/lambda_labs_backend_database', { useNewUrlParser: true })
+// mongoose.connect(process.env.MONGOLAB_PUCE_URI || 'mongodb://lambda_labs_backend:_sJ7X3;{pWfzfMR@ds239681.mlab.com:39681/lambda_labs_backend_database', { useNewUrlParser: true })
 // For Local:
-// mongoose.connect('mongodb://lambda_labs_backend:_sJ7X3;{pWfzfMR@ds239681.mlab.com:39681/lambda_labs_backend_database', { useNewUrlParser: true })
+mongoose.connect('mongodb://lambda_labs_backend:_sJ7X3;{pWfzfMR@ds239681.mlab.com:39681/lambda_labs_backend_database', { useNewUrlParser: true })
 
 .then(() => console.log('\n===connected to mongo===\n'))
 .catch(err =>console.log('not connected'))
