@@ -17,13 +17,11 @@ router
       });
   })
   .put((req, res) => {
-    console.log("REQ.BODY...SAYWHAT!", req.body)
+    console.log("REQ>BODYSAYWHAT",req.body)
     const { id } = req.params;
     const updateInfo = req.body;
-    User.update(
-      {$push: {classes: updateInfo}},
-      done
-    )
+    User.findByIdAndUpdate({ _id: id }, {$push: {classes: updateInfo}},
+      done)
       .then(response => {
         res.json(response);
       })
