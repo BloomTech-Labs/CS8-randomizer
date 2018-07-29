@@ -19,7 +19,7 @@ router
   .put((req, res) => {
     const { id } = req.params;
     const updateInfo = req.body;
-    User.findByIdAndUpdate(id, updateInfo)
+    User.classes.push(updateInfo)
       .then(response => {
         res.json(response);
       })
