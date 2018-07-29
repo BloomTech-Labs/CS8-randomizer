@@ -5,10 +5,10 @@ const cors = require('cors');
 
 // ============ from ROUTES ============= //
 // Libraries:
-const { ExtractJwt } = require('passport-jwt');
-const JwtStrategy = require('passport-jwt').Strategy;
-const passport = require('passport');
-const LocalStrategy = require('passport-local');
+// const { ExtractJwt } = require('passport-jwt');
+// const JwtStrategy = require('passport-jwt').Strategy;
+// const passport = require('passport');
+// const LocalStrategy = require('passport-local');
 const jwt = require('jsonwebtoken');
 
 const secret = 'no size limit on tokens';
