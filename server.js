@@ -35,6 +35,9 @@ const createClassRouter = require('./Router/Class/createClassRouter.js');
 const findClassesRouter = require('./Router/Class/findClassesRouter.js');
 const deleteClassRouter = require('./Router/Class/deleteClassRouter.js');
 const updateClassRouter = require('./Router/Class/updateClassRouter.js');
+const addtoClassRouter = require('./Router/Class/addtoClassRouter.js');
+const removefromClassRouter = require('./Router/Class/removefromClassRouter.js');
+
 
 // User
 const registerUserRouter = require('./Router/User/registerUserRouter.js');
@@ -42,7 +45,8 @@ const loginUserRouter = require('./Router/User/loginUserRouter.js');
 const findUsersRouter = require('./Router/User/findUsersRouter.js');
 const deleteUserRouter = require('./Router/User/deleteUserRouter.js');
 const updateUserRouter = require('./Router/User/updateUserRouter.js');
-const addclasstoUserRouter = require('./Router/User/addclasstoUserRouter.js');
+const addtoUserRouter = require('./Router/User/addtoUserRouter.js');
+const removefromUserRouter = require('./Router/User/removefromUserRouter.js');
 
 const server = express();
 
@@ -53,9 +57,9 @@ server.use(morgan('dev'));
 server.use(cors(corsOptions));
 
 // For Heroku:
-// mongoose.connect(process.env.MONGOLAB_PUCE_URI || 'mongodb://lambda_labs_backend:_sJ7X3;{pWfzfMR@ds239681.mlab.com:39681/lambda_labs_backend_database', { useNewUrlParser: true })
+mongoose.connect(process.env.MONGOLAB_PUCE_URI || 'mongodb://lambda_labs_backend:_sJ7X3;{pWfzfMR@ds239681.mlab.com:39681/lambda_labs_backend_database', { useNewUrlParser: true })
 // For Local:
-mongoose.connect('mongodb://lambda_labs_backend:_sJ7X3;{pWfzfMR@ds239681.mlab.com:39681/lambda_labs_backend_database', { useNewUrlParser: true })
+// mongoose.connect('mongodb://lambda_labs_backend:_sJ7X3;{pWfzfMR@ds239681.mlab.com:39681/lambda_labs_backend_database', { useNewUrlParser: true })
 
 .then(() => console.log('\n===connected to mongo===\n'))
 .catch(err =>console.log('not connected'))
@@ -79,6 +83,8 @@ server.use('/api/createclass/', createClassRouter);
 server.use('/api/classes/', findClassesRouter);
 server.use('/api/deleteclass/', deleteClassRouter);
 server.use('/api/updateclass/', updateClassRouter);
+server.use('/api/addtoclass/', addtoClassRouter); // Adds users or students to ref arrays
+server.use('/api/removefromclass/', removefromClassRouter);
 
 // User
 server.use('/api/register/', registerUserRouter);
@@ -86,6 +92,7 @@ server.use('/api/login/', loginUserRouter);
 server.use('/api/users/', findUsersRouter);
 server.use('/api/deleteuser/', deleteUserRouter);
 server.use('/api/updateuser/', updateUserRouter);
-server.use('/api/addclasstouser/', addclasstoUserRouter);
+server.use('/api/addtouser/', addtoUserRouter); // Adds classes to ref arrays
+server.use('/api/removefromuser/', removefromUserRouter);
 
 server.listen(port, () => console.log('API on port 5000...or wherever Heroku is'));

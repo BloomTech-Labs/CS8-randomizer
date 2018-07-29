@@ -14,7 +14,7 @@ const classSchema = new mongoose.Schema({
   participation: {
     type: Number,
   },
-  student: [{ type: ObjectId, ref: 'Student' }],
+  students: [{ type: ObjectId, ref: 'Student' }],
   users: [{ type: ObjectId, ref: 'User' }]
 });
 

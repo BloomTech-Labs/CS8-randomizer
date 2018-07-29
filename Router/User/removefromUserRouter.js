@@ -2,6 +2,7 @@ const express = require('express');
 
 //schema
 const User = require('../../Schemas/User.js');
+
 const router = express.Router();
 
 router
@@ -17,17 +18,18 @@ router
       });
   })
   .put((req, res) => {
-    console.log("REQ>BODYSAYWHAT",req.body)
+    console.log('REQ', req.body)
     const { id } = req.params;
     const updateInfo = req.body;
-    User.findByIdAndUpdate({ _id: id }, {$push: {classes: updateInfo}},
-      done)
+    User.findByIdAndUpdate(id, {
+      $pull: { classes: updateInfo.classes }
+    }, { 'new': true})
       .then(response => {
         res.json(response);
       })
       .catch(err => {
         res.status(500).json(err);
       });
-  });
+  })
 
 module.exports = router;
