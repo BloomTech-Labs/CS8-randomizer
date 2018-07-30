@@ -1,13 +1,12 @@
 import React from 'react';
 // import { NavLink } from 'react-router-dom';
 
-import { Nav, NavItem, NavLink, Alert, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import { Nav, NavItem, NavLink, Button, ButtonGroup } from 'reactstrap';
 import './index.css';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 export default class SideBar extends React.Component {
-
 
 render(){
         return (
@@ -26,7 +25,7 @@ render(){
                         <NavLink href="/AddClass">Add Class</NavLink>
                     </NavItem> */}
                 </Nav>
-        </div>
+            </div>
 
         )
     }
