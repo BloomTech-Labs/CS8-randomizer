@@ -20,12 +20,15 @@ function mapStateToProps(state){
 class ClassList extends React.Component {
     constructor(props){
         super(props)
+        this.toggle = this.toggle.bind(this);
         this.state = {
-            classlist: [],
+            classlist: [1],
             classEmpt: "true",
+            dropdownOpen: false
+            
             // classes: this.state.classes,
             // user: this.state.user
-        }
+        };
     }
 
 

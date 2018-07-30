@@ -78,7 +78,7 @@ class App extends Component {
               exact
               path={"/"}
               render={() =>
-                this.props.authed? <Redirect to="/api/classes/" /> : <Landing auth={this.state.isAuth} />}
+                this.props.authed? <Redirect to="/classes/" /> : <Landing auth={this.state.isAuth} />}
             />
           ) : (
             <div className="MainAppComponents">
