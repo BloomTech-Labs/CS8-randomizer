@@ -70,11 +70,13 @@
     flex-direction: column;
     flex-wrap: wrap;
     margin-right: 0%;
+
     border: 1px solid black;
     width: 100%;
     padding-left: 2%;
     padding-right: 25%;
     /* padding-left: 10%; */
+
     /* width: 20%; */
     /* left: 20% */
     
@@ -82,9 +84,11 @@
 }
 
 .Options-box div {
+
     margin: 5% 5%;
     padding-left: 15%;
     /* width: 20%; */
+
 }
 
 #Reset-button{

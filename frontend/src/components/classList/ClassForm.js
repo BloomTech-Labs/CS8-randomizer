@@ -36,13 +36,13 @@ class ClassForm extends React.Component {
 
   handleAddClass = event => {
     const { classname } = this.state;
-    this.props.addClass({ name: classname });
+    this.props.addClass(classname);
     this.setState({ classname: "" });
   };
 
   handleAddStudent = event => {
     const { firstname, lastname } = this.state;
-    this.props.addStudents({ first_name: firstname, last_name: lastname });
+    this.props.addStudent({ first_name: firstname, last_name: lastname });
     this.setState({ firstname: "", lastname: "" });
   };
 
@@ -128,7 +128,9 @@ class ClassForm extends React.Component {
                                         </CardBody>
                                 </Card>
                             </div>
-                    <Button id="Class-submit-button">Submit</Button>
+
+                    <Button id="Class-submit-button" onClick={this.handleAddClass}>Submit</Button>
+
                         {/* ) */}
                 
 

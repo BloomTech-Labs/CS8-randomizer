@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.route('/').get((req, res) => {
   User.find({})
-    .populate('classes student')
+    .populate('classes students')
     .then(users => {
       if (users.length === 0) {
         res.status(404).json({ error: 'No users found!' });

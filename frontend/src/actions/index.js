@@ -4,8 +4,13 @@ import { Route, Redirect } from "react-router";
 
 // NEED GETTINGUSERS
 // NEED GOTUSERS
-export const ADDEDUSER = "ADDEDUSER";
+
 export const ADDINGUSER = "ADDINGUSER";
+export const ADDEDUSER = "ADDEDUSER";
+
+export const EDITINGUSER = "EDITINGUSER";
+export const EDITEDUSER = "EDITEDUSER";
+
 export const LOGGINGIN = "LOGGINGIN";
 export const LOGGEDIN = "LOGGEDIN";
 export const LOGGINGOUT = "LOGGINGOUT";
@@ -14,13 +19,13 @@ export const LOGGEDOUT = "LOGOUT";
 export const GETTINGCLASSES = "GETTINGCLASSES";
 export const GOTCLASSES = "GOTCLASSES";
 export const ADDINGCLASS = "ADDINGCLASS";
-export const ADDEDCLASS = 'ADDEDCLASS';
+export const ADDEDCLASS = "ADDEDCLASS";
 export const EDITEDCLASS = "EDITEDCLASS";
 export const EDITINGCLASS = "EDITINGCLASS";
 export const DELETECLASS = "DELETECLASS";
 export const DELETEDCLASS = "DELETEDCLASS";
 
-export const GETTINGSTUDENTS = "GETTINGSTUDENTS"
+export const GETTINGSTUDENTS = "GETTINGSTUDENTS";
 export const GOTSTUDENTS = "GOTSTUDENTS";
 export const ADDINGSTUDENT = "ADDINGSTUDENTS";
 export const ADDEDSTUDENT = "ADDEDSTUDENT";
@@ -29,11 +34,10 @@ export const DELETEDSTUDENT = "DELETEDSTUDENT";
 
 export const ERROR = "ERROR";
 
-
 const URL = "https://lambda-labs-backend.herokuapp.com/api";
+// const URL = "http://localhost:5000/api";
 
 export const logIn = (user, history) => dispatch => {
-  
   axios
     .post(`${URL}/login`, {
       username: user.username,
@@ -102,17 +106,72 @@ export const getClasses = () => dispatch => {
 };
 
 export const addClass = className => dispatch => {
+  // ===== Create New Class and Add Logged in User as Ref ===== //
+  console.log(jwt_decode(localStorage.jwtToken));
+  const decoded_token = jwt_decode(localStorage.jwtToken);
   dispatch({
     type: ADDINGCLASS
   });
   axios
-    .post(`${URL}/createclass`, className)
+    .post(`${URL}/createclass`, {
+      name: className,
+      users: decoded_token.sub
+    })
     .then(response => {
+      // console.log("RESPONSE:", response);
       dispatch({ type: ADDEDCLASS, classes: response.data });
     })
     .catch(err => {
       dispatch({ type: ERROR, errorMessage: "Error Adding Class..." });
     })
+
+
+    .then(response => {
+      // ======= Find ALL Classes associated with Logged in User ===== //
+      dispatch({
+        type: GETTINGCLASSES
+      });
+
+      axios
+        .get(`${URL}/classes`)
+        .then(response => {
+          console.log(
+            `THESE ARE ${decoded_token.username}'s CLASSES:`,
+            response
+          );
+          // // console.log("Last Added Class ID", response.data[response.data.length-1]._id)
+          const user_id = decoded_token.sub
+          const class_id = response.data[response.data.length-1]._id
+          dispatch({ type: GOTCLASSES, classes: response.data });
+
+          dispatch({
+            type: EDITINGUSER
+          });
+
+    //       // LAST STEP: Add CLASS ID to stored in "response" to logged in User
+    //       console.log("user_id", user_id)
+    //       console.log("class_id", class_id)
+          axios // FIX THIS IN BACKEND
+            .put(`${URL}/addtouser/${user_id}`, {
+              classes: class_id
+            })
+            .then(res => {
+              dispatch({ type: EDITEDUSER, payload: {classes: class_id}});
+            })
+            .catch(err => {
+              dispatch({ type: ERROR, payload: err });
+            });
+
+          
+        })
+        .catch(err => {
+          dispatch({ type: ERROR, errorMessage: "Error fetching classes..." });
+        });
+    })
+    .catch(err => {
+      dispatch({ type: ERROR, errorMessage: "Error fetching the data..." });
+    });
+
 };
 
 export const editClass = className => dispatch => {
@@ -182,5 +241,3 @@ export const deleteStudent = studentid => dispatch => {
       });
     });
 };
-
-
