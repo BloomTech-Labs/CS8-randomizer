@@ -55,9 +55,9 @@ export default class BottomMenu extends React.Component {
                                     <Button>Logout</Button>
                                     {/* TODO: Add onClick(this.props.toggleAuth) - to set authed: false; */}
                                 </DropdownToggle>
-                                <DropdownMenu>
-                                    <div className="logout-link"><a href="/">Confirm</a></div>
-                                    <div className="logout-link" onClick={this.toggle}>Cancel</div>
+                                <DropdownMenu id='logoutToggleBottom'>
+                                    <div id='buttomButton'><a href="/">Confirm</a></div>
+                                    <div id='buttomButton' onClick={this.toggle}>Cancel</div>
                                 </DropdownMenu>
                             </Dropdown>
                         </Button>
