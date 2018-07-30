@@ -67,7 +67,7 @@
 
 .Options-box{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
     margin-right: 0%;
 
