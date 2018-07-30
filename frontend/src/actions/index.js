@@ -105,17 +105,30 @@ export const getClasses = () => dispatch => {
     });
 };
 
+<<<<<<< HEAD
 export const addClass = className => dispatch => {
   // ===== Create New Class and Add Logged in User as Ref ===== //
   console.log(jwt_decode(localStorage.jwtToken));
   const decoded_token = jwt_decode(localStorage.jwtToken);
+=======
+export const addClass = class_data => dispatch => {
+  // ===== Create New Class and Add Logged in User as Ref ===== //
+  console.log(jwt_decode(localStorage.jwtToken));
+  const decoded_token = jwt_decode(localStorage.jwtToken);
+  const class_data = {...class_data, users: decoded_token.sub}
+  console.log(class_data)
+>>>>>>> 12c8f22a0d08d9d57e3b371731bf34ac573ee233
   dispatch({
     type: ADDINGCLASS
   });
   axios
     .post(`${URL}/createclass`, {
+<<<<<<< HEAD
       name: className,
       users: decoded_token.sub
+=======
+      class_data
+>>>>>>> 12c8f22a0d08d9d57e3b371731bf34ac573ee233
     })
     .then(response => {
       // console.log("RESPONSE:", response);
@@ -125,7 +138,10 @@ export const addClass = className => dispatch => {
       dispatch({ type: ERROR, errorMessage: "Error Adding Class..." });
     })
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 12c8f22a0d08d9d57e3b371731bf34ac573ee233
     .then(response => {
       // ======= Find ALL Classes associated with Logged in User ===== //
       dispatch({
@@ -171,17 +187,20 @@ export const addClass = className => dispatch => {
     .catch(err => {
       dispatch({ type: ERROR, errorMessage: "Error fetching the data..." });
     });
+<<<<<<< HEAD
 
+=======
+>>>>>>> 12c8f22a0d08d9d57e3b371731bf34ac573ee233
 };
 
-export const editClass = className => dispatch => {
+export const editClass = class_data => dispatch => {
   dispatch({
     type: EDITINGCLASS
   });
-  axios.put(`${URL}/updateclass`, className).then(response => {
+  axios.put(`${URL}/updateclass`, class_data).then(response => {
     dispatch({
       type: EDITEDCLASS,
-      className: response.data
+      class_data: response.data
     });
   });
 };
