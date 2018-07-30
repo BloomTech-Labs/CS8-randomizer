@@ -121,3 +121,128 @@
   /* padding-left: 0px;
   padding-top: 0px; */
 }
+
+.bottomDiv{
+  display: none;
+}
+
+@media (max-width: 1070px){
+  
+.SideDiv{
+visibility: hidden;
+ }
+
+.side-link{
+visibility: hidden;
+} 
+
+ .side-link:hover{
+visibility: hidden;
+} 
+
+
+ .bar{
+visibility: hidden;
+} 
+
+.bar div{
+visibility: hidden;
+}
+
+.bar .first{
+visibility: hidden;
+}
+
+.bar .second{
+visibility: hidden;
+}
+
+.bar .third{
+visibility: hidden;
+}
+
+.bar:hover .first {
+visibility: hidden;
+}
+
+.bar:hover .second{
+visibility: hidden;
+}
+
+.bar:hover .third{
+visibility: hidden;
+} 
+
+.bar:hover{
+visibility: hidden;
+}
+
+.dropbutton{
+visibility: hidden;
+}
+
+#dropmenu{
+visibility: hidden;
+}
+
+#dropdownitem:hover{
+visibility: hidden;
+} 
+
+#dropdown-button{
+visibility: hidden;
+}
+
+.bottomDiv{
+  /* display: unset; */
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  /* background-color: greenyellow; */
+  color: #fff;
+  height: 500px;
+  width: 100%;
+  order: -1;
+  margin-top: auto;
+}
+
+#buttonGroup{
+  width: 100%;
+  align-self: flex-end;
+}
+
+#sideBarButtonA{
+  flex: 1 0 auto;
+  flex-shrink: 0;
+  width:33%;
+  background-color: #584573;
+  border: 0px;
+  color: #fff;
+}
+
+#sideBarButtonB{
+  flex: 1 0 auto;
+  flex-shrink: 0;
+  width:33%;
+  background-color: #584573;
+  border: 0px;
+  color: #fff;
+}
+
+#sideBarButtonC{
+  flex: 1 0 auto;
+  flex-shrink: 0;
+  width:33%;
+  background-color: #584573;
+  border: 0px;
+  color: #fff;
+}
+#sideBarButtonD{
+  flex: 1 0 auto;
+  flex-shrink: 0;
+  width:33%;
+  background-color: #584573;
+  border: 0px;
+  color: #fff;
+}
+}

@@ -110,3 +110,31 @@ a{
 .top{
   display: flex;
 }
+
+@media (max-width: 1070px){
+  .CrumbBar{
+    width: 50%;
+    margin-top: 0%;
+    margin-bottom: 0%;
+    background-color: #584573;
+    height: 0%;
+  }
+  .breadcrumb{
+    color: black;
+    
+  }
+  
+  .breadcrumb li{
+    margin-right: 10px;
+    color: #584573; 
+  }
+  
+  .breadcrumb a{
+    color: #584573;
+    border: 1px solid #584573
+    /* padding: 20% 0; */
+  }
+  .top{
+    background-color: #584573;
+  }
+}
