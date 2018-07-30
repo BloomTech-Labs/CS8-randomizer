@@ -11,3 +11,23 @@
     padding-top: 5%;
     padding: 4% 2% 0;
 }
+
+.Stripe-button{
+    margin-left: 40%;
+    width: 20%;
+    margin-top: 2%;
+}
+
+.Stripe-option{
+    margin-left: 5%;
+    width: 15%;
+    color: #322842;
+}
+.Stripe-option-label{
+    margin-left: 40%;
+    width: 20%;
+    color: #322842;
+    border: 3px solid #322842;
+    padding: 1%;
+    /* margin-bottom: 20%; */
+}

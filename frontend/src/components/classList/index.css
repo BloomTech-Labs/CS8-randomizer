@@ -64,6 +64,14 @@
     transition: all 0.3s ease;
 }
 
+#add-plus a{
+    color: whitesmoke;
+}
+
+#add-plus a:hover{
+    color: #322842;
+}
+
 .plus_button{
     display: flex;
     justify-content: center;
@@ -209,6 +217,3 @@
     }
 
 }
-
-
-

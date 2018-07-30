@@ -128,7 +128,9 @@ class ClassForm extends React.Component {
                                         </CardBody>
                                 </Card>
                             </div>
+
                     <Button id="Class-submit-button" onClick={this.handleAddClass}>Submit</Button>
+
                         {/* ) */}
                 
 

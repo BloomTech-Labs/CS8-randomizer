@@ -125,6 +125,7 @@ export const addClass = className => dispatch => {
       dispatch({ type: ERROR, errorMessage: "Error Adding Class..." });
     })
 
+
     .then(response => {
       // ======= Find ALL Classes associated with Logged in User ===== //
       dispatch({
@@ -170,6 +171,7 @@ export const addClass = className => dispatch => {
     .catch(err => {
       dispatch({ type: ERROR, errorMessage: "Error fetching the data..." });
     });
+
 };
 
 export const editClass = className => dispatch => {
