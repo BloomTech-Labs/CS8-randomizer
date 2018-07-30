@@ -42,7 +42,7 @@ class ClassForm extends React.Component {
 
   handleAddStudent = event => {
     const { firstname, lastname } = this.state;
-    this.props.addStudents({ first_name: firstname, last_name: lastname });
+    this.props.addStudent({ first_name: firstname, last_name: lastname });
     this.setState({ firstname: "", lastname: "" });
   };
 
