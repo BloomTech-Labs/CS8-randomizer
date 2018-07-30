@@ -1,10 +1,9 @@
 .landing{
     /* background: #31353D; */
     background: #584573;
-    background-image: url('./randologob.jpeg');
+    /* background-image: url('./download.jpg'); */
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 40%;
     display: flex;
     width: 100%;
     height: 730px;
