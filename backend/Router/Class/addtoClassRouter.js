@@ -7,17 +7,6 @@ const router = express.Router();
 
 router
   .route("/:id")
-  // .get((req, res) => {
-  //   const { id } = req.params;
-  //   Class.findById(id)
-  //     console.log("RES", res)
-  //     .then(response => {
-  //       res.json(response);
-  //     })
-  //     .catch(err => {
-  //       res.status(500).json(err);
-  //     });
-  // })
   .put((req, res) => {
     console.log("REQ", req.body);
     const { id } = req.params;
