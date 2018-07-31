@@ -6,7 +6,45 @@ import "./magicRandomizer.css";
 
 class MagicRandomizer extends Component {
 
+  constructor(props){
+    super(props)
+    this.state = {
+      className: "",
+      students: [1, 2, 3, 4],
+      participated: Number,
+      declined: Number
+    }
+  }
+
+  randomHandler = () => {
+    // const stat = this.state
+    let studentArray = this.state.students;
+    let studentPick = studentArray[Math.floor(Math.random() * studentArray.length)];
+    console.log(studentPick);
+    return studentPick;
+  }
+
+  allGoHandler = () => {
+    let allArray = this.state.students;
+    let pickedArray = allArray;
+    let allPick = Math.ceil(Math.random() * pickedArray.length);
+
+    if(pickedArray.length > 0){
+    pickedArray.splice(allPick - 1, allPick);
+    console.log('allArray:', pickedArray);
+    console.log('allPick', allPick);
+    return allPick;
+    }
+    else if(pickedArray.length == 0){
+      console.log('Restarting...')
+      pickedArray = allArray;
+    }
+
+
+  }
   
+
+  // componentDidUpdate()
 
   render() {
     return (
@@ -25,7 +63,7 @@ class MagicRandomizer extends Component {
           </div>
           <div className="caros">
             {/* <Carousel /> */} 
-            <Button id="Randomize-button"> RANDOMIZE! </Button>  
+            <Button id="Randomize-button" onClick={this.allGoHandler}> RANDOMIZE! </Button>  
             <div className="ondeck">On Deck: Jane</div>
           </div>
          
