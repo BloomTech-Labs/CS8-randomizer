@@ -126,8 +126,11 @@
   display: none;
 }
 
-@media (max-width: 1070px){
-  
+@media only screen 
+  and (max-width: 1024px) 
+  and (-webkit-min-device-pixel-ratio: 2)
+  {  
+ 
 .SideDiv{
 visibility: hidden;
  }
@@ -136,7 +139,7 @@ visibility: hidden;
 visibility: hidden;
 } 
 
- .side-link:hover{
+.side-link:hover{
 visibility: hidden;
 } 
 
@@ -212,13 +215,14 @@ visibility: hidden;
   position: fixed;
   right: 0;
   left: 0;
-  top: 100%;
-  width: 8em;
+  bottom: 0;
+  /* top: 100%; */
+  width: 100%;
   margin-top: -2.5em;
   background-color: #584573;
-  border: 0px;
+  border: hidden;
   color: #fff;
-  width:100%;
+  align-items: center;
   /* justify-content: flex-end; */
   /* width: 0px; */
   /* min-width: 100%; */
@@ -228,25 +232,48 @@ visibility: hidden;
 }
 
 #sideBarButtonA{
-  width:100%;
-  margin-bottom: 50px;
+  align-items: center;
+  width:25%;
+  background-color: #584573;
+  color: #fff;
+  border: hidden;
+  /* margin-bottom: 50px; */
 }
 
 #sideBarButtonB{
-  width:100%;
-  margin-bottom: 50px;
+  align-items: center;
+  width:25%;
+  background-color: #584573;
+  color: #fff;
+  border: hidden;
+  /* margin-bottom: 50px; */
 }
 
 #sideBarButtonC{
-  width:100%;
-  margin-bottom: 50px;
+  align-items: center;
+  width:25%;
+  background-color: #584573;
+  color: #fff;
+  border: hidden;
+  /* margin-bottom: 50px; */
 }
 
 #sideBarButtonD{
-  width:100%;
-  margin-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width:25%;
+  background-color: #584573;
+  color: #fff;
+  border: hidden;
+  /* margin-bottom: 50px; */
 }
 
+.nav{
+  background-color: #584573;
+  color: #fff;
+  border: hidden;
+}
 #buttomButton{
   text-decoration-style: none;
   background-color: #584573;
@@ -255,12 +282,81 @@ visibility: hidden;
   /* width: 100%; */
   margin-top: -8px;
   margin-bottom: -8px;
-  border: 5px, greenyellow;
-  width: 175px;
-  margin-right: -90px;
+  width: 100%;
+  transition: all 0.5s ease;
+  /* margin-right: -90px; */
 }
 
 #buttomButton:hover{
-  background-color: #775d9b;
+  
+}
+
+.modal-content{
+  height: 300px;
+  color: #fff;
+}
+.modalFooter.modal-footer{
+  display: flex;
+  flex-direction: column;
+  /* margin-top: 15px; */
+  align-self: center;
+  justify-content: space-around;
+  border: hidden;
+  height: 100%;
+  color: #fff;
+}
+
+.modalHeader{
+  background-color: #584573;
+  color: #fff;
+}
+
+#modalSignup{
+  background-color: #584573;
+  color: #fff;
+}
+.nav-link{
+  background-color: #584573;
+  color: #fff;
+  border: hidden;
+}
+
+#nav-button{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  color: #fff;
+}
+
+.btn.btn-secondary{
+  background-color: #584573;
+  color: #fff;
+  border: hidden;
+}
+.btn.btn-secondary:hover{
+  background-color: #775d9b
+}
+#buttonConfirm.btn.btn-secondary{
+  background-color: #584573;
+  color: #fff;
+  border: hidden;
+  border: 1px #352847;
+  box-shadow: 0 3px 1px 0 #352847; 
+  width: 300px; 
+  height: 75px;
+}
+
+#buttonConfirm:active{
+  background: #775d9b;
+  box-shadow: none;
+  margin-bottom: -3px;
+  margin-top: 3px;
+
+  font-family: Arial, Helvetica, sans-serif;
+  color: #fff;
+}
+
+.logout-link{
+  color: #fff;
 }
 }

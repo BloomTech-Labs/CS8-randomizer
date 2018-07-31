@@ -1,5 +1,5 @@
 import React from 'react';
-import { Nav, NavItem, NavLink, Button, ButtonGroup, Dropdown, DropdownMenu, DropdownToggle } from 'reactstrap';
+import { Nav, NavItem, NavLink, Button, ButtonGroup, Dropdown, DropdownMenu, DropdownToggle, Modal, ModalHeader, ModalFooter, ModalBody, } from 'reactstrap';
 import './index.css';
 
 export default class BottomMenu extends React.Component {
@@ -7,7 +7,8 @@ export default class BottomMenu extends React.Component {
     constructor (props) {
         super(props);
         this.toggle = this.toggle.bind(this);
-        this.state = { cSelected: [], dropdownOpen: false };
+        this.abToggle = this.abToggle.bind(this);
+        this.state = { cSelected: [], dropdownOpen: false, abModal: false };
     
         this.onRadioBtnClick = this.onRadioBtnClick.bind(this);
       }
@@ -19,7 +20,13 @@ export default class BottomMenu extends React.Component {
       toggle() {
           this.setState({
               dropdownOpen: !this.state.dropdownOpen
-          })
+          });
+      }
+
+      abToggle() {
+        this.setState({
+          abModal: !this.state.abModal
+        });
       }
     
 
@@ -43,7 +50,7 @@ export default class BottomMenu extends React.Component {
                                 <NavLink href="/settings">Settings</NavLink>
                             </NavItem>
                         </Button>
-                        <Button id='sideBarButtonD' onClick={() => this.onRadioBtnClick(4)} active={this.state.rSelected === 4}>
+                        {/* <Button id='sideBarButtonD' onClick={() => this.onRadioBtnClick(4)} active={this.state.rSelected === 4}>
                             <Dropdown direction="up" size="lg" isOpen={this.state.dropdownOpen} toggle={this.toggle}>
                                 <DropdownToggle
                                     
@@ -53,14 +60,35 @@ export default class BottomMenu extends React.Component {
                                     aria-expanded={this.state.dropdownOpen}
                                 >
                                     <Button>Logout</Button>
-                                    {/* TODO: Add onClick(this.props.toggleAuth) - to set authed: false; */}
                                 </DropdownToggle>
                                 <DropdownMenu id='logoutToggleBottom'>
                                     <div id='buttomButton'><a href="/">Confirm</a></div>
                                     <div id='buttomButton' onClick={this.toggle}>Cancel</div>
                                 </DropdownMenu>
                             </Dropdown>
-                        </Button>
+                        </Button> */}
+                        <NavItem id='sideBarButtonD'>
+                            <NavLink>
+                                <Button onClick={this.abToggle}>
+                                    Logout
+                                </Button>
+                            </NavLink>
+                        </NavItem>
+                        <NavItem className="nav-signup">
+                            <Modal
+                            isOpen={this.state.abModal}
+                            toggle={this.abToggle}
+                            className={this.props.className}
+                            >
+                            <ModalHeader className = 'modalHeader' toggle={this.abToggle}>Logout</ModalHeader>
+                            <ModalFooter className = 'modalFooter'>
+                                <Button id='buttonConfirm'><a href="/">Confirm</a></Button>
+                                <Button id="nav-button" onClick={this.abToggle}>
+                                Cancel
+                                </Button>{" "}
+                            </ModalFooter>
+                        </Modal>
+                        </NavItem>
                     </ButtonGroup>
                 </Nav>
                 </div>
