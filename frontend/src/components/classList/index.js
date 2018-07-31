@@ -21,10 +21,8 @@ class ClassList extends React.Component {
     constructor(props){
         super(props)
         this.state = {
-            classlist: [1],
-            classEmpt: "true",
-
-            
+            // classlist: state.classes,
+            // classEmpt: true,
             // classes: this.state.classes,
             // user: this.state.user
         };
@@ -34,31 +32,33 @@ class ClassList extends React.Component {
 
 
     componentDidMount() {
-        // this.props.getClasses(this.props.user);
 
-        this.props.getClasses(this.props.user);
+        console.log('mounted', this.state)
+    //     // this.props.getClasses(this.props.user);
+
+    //     this.props.getClasses(this.props.user);
 
 
 
-        if(this.state.classlist.length == 0){
-            this.setState({
-                classEmpt: 'true'
-            })
+    //     if(this.state.classes.length == 0){
+    //         this.setState({
+    //             classEmpt: 'true'
+    //         })
 
-            console.log(this.state.classlist.length)
-        }
+    //         console.log(this.state.classes.length)
+    //     }
         
-        else if(this.state.classlist.length < 0){
-            alert('You have done something really bad to get here, please contact the devs with this message...');
-            console.log(this.state.classlist.length)
-        }
+    //     else if(this.state.classes.length < 0){
+    //         alert('You have done something really bad to get here, please contact the devs with this message...');
+    //         console.log(this.state.classes.length)
+    //     }
         
-        else{
-            this.setState({
-                classEmpt: 'false'
-            })
-            console.log(this.state.classlist.length)
-        }
+    //     else{
+    //         this.setState({
+    //             classEmpt: 'false'
+    //         })
+    //         console.log(this.state.classes.length)
+        // }
     }
     
     render(){
@@ -82,29 +82,30 @@ class ClassList extends React.Component {
         </div>
             ):(
                 <div className='Class-div'> 
-                {/* {this.props.classes.map(class => { */}
-                {/* return( */}
+                {this.props.classes.map(classitem => {
+                 return( 
                     <Card id='Class-card'>
                         <Link to="/classes/:id">
 
-
-                    {/* Uncomment me when the redux actions are ready!  */}
-                        {/* <CardBody>
-                            <CardTitle>(Insert Class Name){classes.classname}</CardTitle>
-                            <CardSubtitle>(Insert Class Size){classes.students.length()}</CardSubtitle>
-                            <CardSubtitle>(Insert Participation Amount)</CardSubtitle>
-                        </CardBody> */}
-                        
                         <CardBody>
-                            <CardTitle id='Class-title'>Class Name</CardTitle>
-                            <CardSubtitle id='Class-subtitle'>Students</CardSubtitle>
-                            <CardSubtitle>Participation</CardSubtitle>
+                            <CardTitle>(Insert Class Name){classitem.classname}</CardTitle>
+                            <CardSubtitle>(Insert Class Size){classitem.students.length()}</CardSubtitle>
+                            <CardSubtitle>(Insert Participation Amount)</CardSubtitle>
                         </CardBody>
-                        {/* <CardImg>A graph</CardImg> */}
+
                         
                         </Link>
                     </Card>
-                {/* )})} */}
+                            );
+                        }
+                    )
+                }
+                    <Nav id="add-button">
+                        <NavLink className="NewClass" id="add-plus"><Link to="/create"> + </Link></NavLink>
+                        </Nav>
+                        <Nav id="createClass">
+                        <NavLink id = 'addButton' href='/classes/create'> add </NavLink>
+                        </Nav>
                 </div>
             )}
             </div>

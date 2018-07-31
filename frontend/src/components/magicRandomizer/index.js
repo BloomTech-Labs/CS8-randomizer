@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 // import Carousel from "./Carousel"; 
 import {Button} from 'reactstrap'; 
+import { Link } from 'react-router-dom';
  
 import "./magicRandomizer.css";
 
@@ -10,10 +11,15 @@ class MagicRandomizer extends Component {
     super(props)
     this.state = {
       className: "",
-      students: [1, 2, 3, 4],
+      students: ['1', '2', '3', '4'],
+      allstudents: ['1', '2', '3', '4'],
       participated: Number,
       declined: Number
     }
+  }
+
+  log = () => {
+    console.log(this.state.students);
   }
 
   randomHandler = () => {
@@ -25,22 +31,26 @@ class MagicRandomizer extends Component {
   }
 
   allGoHandler = () => {
-    let allArray = this.state.students;
-    let pickedArray = allArray;
-    let allPick = Math.ceil(Math.random() * pickedArray.length);
+    let allArray = this.state.allstudents;
+    // let pickArray = [];
 
-    if(pickedArray.length > 0){
-    pickedArray.splice(allPick - 1, allPick);
-    console.log('allArray:', pickedArray);
-    console.log('allPick', allPick);
-    return allPick;
-    }
-    else if(pickedArray.length == 0){
-      console.log('Restarting...')
-      pickedArray = allArray;
+    console.log('pick', allArray);
+    
+    if(allArray.length > 0){
+      let pick = allArray.splice(Math.floor(Math.random() * allArray.length), 1);
+      console.log('p', pick)
+      return pick;
     }
 
+    else{
+      console.log('Please Reset!')
+    }
+    
+  }
 
+  resetHandler = () => {
+    console.log('Reset', this.state.allstudents, this.state.students);
+    return this.state.allstudents = this.state.students.slice(0);
   }
   
 
@@ -55,10 +65,10 @@ class MagicRandomizer extends Component {
           <div className="studentName"> Chris Smith </div>
           <Button id="Rando-top-button"> Declined </Button>
         </div>
-        <Button className="edit" id="Rando-top-button"> Edit </Button>
+        <Button className="edit" id="Rando-top-button" href="/:id/edit"> Edit </Button>
         <div className="caro_container">
           <div className="reset">
-          <Button className="reset_border" id="Rando-top-button">Reset 'All Go'</Button>
+          <Button className="reset_border" id="Rando-top-button" onClick={this.resetHandler} >Reset 'All Go'</Button>
             <div className="date">DATE</div>
           </div>
           <div className="caros">

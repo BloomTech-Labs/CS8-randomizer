@@ -8,6 +8,7 @@ import SignUp from "./signup";
 import LogIn from "./login";
 import Home from './home'
 import Billing from './billing/';
+import EditForm from './classList/editForm'; 
 
 export { Setup }
 export { ClassList }
@@ -20,4 +21,5 @@ export { SignUp }
 export { LogIn }
 export { ClassForm }
 export { Billing }
-export {Home}
+export { Home }
+export { EditForm }
