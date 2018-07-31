@@ -6,6 +6,7 @@ import { Redirect } from 'react-router';
 
 // import SideBar from './navigation/SideBar';
 import DropBar from './navigation/SideBar/SideDrop';
+import BottomMenu from './navigation/SideBar/BottomMenu';
 import LogOut from './navigation/LogOut';
 // import TopBar from './navigation/TopBar';
 import {
@@ -88,6 +89,7 @@ class App extends Component {
               </div>
               <div className="appPanel">
                 <DropBar />
+                <BottomMenu />
                 <Route exact path={"/"} render={() => <Home />} />
                 {/* <Route exact path={"/create"} /> */}
                 <Route exact path={"/:id/edit"} />

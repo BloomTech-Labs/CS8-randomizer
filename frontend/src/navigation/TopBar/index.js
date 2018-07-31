@@ -16,14 +16,14 @@ export default class TopBar extends React.Component{
                     <BreadcrumbItem tag="a" href="#">Link</BreadcrumbItem>
                 </Breadcrumb> */}
 
-                <Breadcrumb>
+                <Breadcrumb id='BreadCrumb'>
                     <BreadcrumbItem active>Home</BreadcrumbItem>
                 </Breadcrumb>
-                <Breadcrumb>
+                <Breadcrumb id='BreadCrumb'>
                     <BreadcrumbItem><a href="#">Home</a></BreadcrumbItem>
                     <BreadcrumbItem active>Classes</BreadcrumbItem>
                 </Breadcrumb>
-                <Breadcrumb>
+                <Breadcrumb id='BreadCrumb'>
                     <BreadcrumbItem><a href="/"></a></BreadcrumbItem>
                     <BreadcrumbItem><a href=""></a></BreadcrumbItem>
                     <BreadcrumbItem active>Current Page</BreadcrumbItem>
