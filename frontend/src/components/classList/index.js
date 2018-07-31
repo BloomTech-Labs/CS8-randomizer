@@ -21,12 +21,16 @@ class ClassList extends React.Component {
     constructor(props){
         super(props)
         this.state = {
-            classlist: [],
+            classlist: [1],
             classEmpt: "true",
+
+            
             // classes: this.state.classes,
             // user: this.state.user
-        }
+        };
     }
+
+
 
 
     componentDidMount() {

@@ -5,10 +5,17 @@ import {
   FormGroup,
   Label,
   Input,
+
+  Card,
+  CardText,
+  CardImg,
+  CardBody,
+  CardTitle,
+  CardSubtitle,
   Dropdown,
+  DropdownToggle,
   DropdownItem,
   DropdownMenu,
-  DropdownToggle,
   UncontrolledButtonDropdown
 } from "reactstrap";
 
@@ -26,6 +33,7 @@ class ClassForm extends React.Component {
       classname: "",
       firstname: "",
       lastname: "",
+
       students: [],
       btnDropleft: false
     };
@@ -40,6 +48,7 @@ class ClassForm extends React.Component {
     event.preventDefault();
     this.setState({ [event.target.name]: event.target.value });
   };
+
 
   handleAddClassAndStudents = () => {
     const { classname, students } = this.state;
@@ -113,6 +122,7 @@ class ClassForm extends React.Component {
         <div className="Add-div">
           <h3>Add Students</h3>
 
+
           <input
             className="firstname-input"
             value={this.state.firstname}
@@ -137,6 +147,7 @@ class ClassForm extends React.Component {
         <div className="List-div">
           <h3>Student List</h3>
           <div>
+
             {this.state.students.map(obj => {
               var first = obj.first_name;
               var last = obj.last_name;
@@ -165,6 +176,7 @@ class ClassForm extends React.Component {
           </div>
         </div>
       </div>
+
     );
   }
 }

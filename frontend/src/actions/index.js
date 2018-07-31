@@ -105,6 +105,7 @@ export const getClasses = () => dispatch => {
     });
 };
 
+
 export const addClass = class_data => dispatch => {
   // ===== Create New Class and Add Logged in User as Ref ===== //
   console.log(jwt_decode(localStorage.jwtToken));
