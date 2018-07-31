@@ -1,21 +1,38 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const ObjectId = mongoose.Schema.Types.ObjectId;
+// const uuidv4 = require("uuid/v4");
 
-const classSchema = new mongoose.Schema({
-  name: {
+const subSchema = new mongoose.Schema({
+  first_name: {
     type: String,
-    require: true,
-    unique: true,
     maxlength: 25
   },
-  num_of_students: {
-    type: Number,
-  },
-  participation: {
-    type: Number,
-  },
-  students: [{ type: ObjectId, ref: 'Student' }],
-  users: [{ type: ObjectId, ref: 'User' }]
+  last_name: {
+    type: String,
+    maxlength: 25
+  }
 });
 
-module.exports = mongoose.model('Class', classSchema, 'classes');
+const classSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      require: true,
+      unique: true,
+      maxlength: 25
+    },
+    num_of_students: {
+      type: Number
+    },
+    participation: {
+      type: Number
+    },
+    students: [subSchema],
+    users: [{ type: ObjectId, ref: 'User' }]
+  },
+  {
+    timestamps: true
+  }
+);
+
+module.exports = mongoose.model("Class", classSchema, "classes");

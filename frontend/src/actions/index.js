@@ -34,8 +34,8 @@ export const DELETEDSTUDENT = "DELETEDSTUDENT";
 
 export const ERROR = "ERROR";
 
-const URL = "https://lambda-labs-backend.herokuapp.com/api";
-//const URL = "http://localhost:5000/api";
+// const URL = "https://lambda-labs-backend.herokuapp.com/api";
+const URL = "http://localhost:5000/api";
 
 export const logIn = (user, history) => dispatch => {
   axios
@@ -69,6 +69,7 @@ export const logOut = () => dispatch => {
   dispatch({
     type: logOut
   });
+  localStorage.clear();
 };
 
 export const addUser = (data, history) => dispatch => {
@@ -104,6 +105,7 @@ export const getClasses = () => dispatch => {
       dispatch({ type: ERROR, errorMessage: "Error fetching the data..." });
     });
 };
+
 
 export const addClass = class_data => dispatch => {
   // ===== Create New Class and Add Logged in User as Ref ===== //
@@ -162,10 +164,12 @@ export const addClass = class_data => dispatch => {
     //       // LAST STEP: Add CLASS ID to stored in "response" to logged in User
     //       console.log("user_id", user_id)
     //       console.log("class_id", class_id)
-          axios // FIX THIS IN BACKEND
-            .put(`${URL}/addtouser/${user_id}`, {
-              classes: class_id
-            })
+
+          addClassRefToUser(user_id, class_id)
+          // axios // FIX THIS IN BACKEND
+          //   .put(`${URL}/addtouser/${user_id}`, {
+          //     classes: class_id
+          //   })
             // .then(() => {
             //   dispatch({ type: EDITEDUSER, payload: {classes: class_id}});
             // })
@@ -186,6 +190,13 @@ export const addClass = class_data => dispatch => {
     // window.location.reload(true);
   }
 };
+
+export const addClassRefToUser = (user_id, class_id) =>  {
+  axios // FIX THIS IN BACKEND
+            .put(`${URL}/addtouser/${user_id}`, {
+              classes: class_id
+            })
+} 
 
 export const editClass = class_data => dispatch => {
   dispatch({
