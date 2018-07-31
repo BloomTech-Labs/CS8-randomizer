@@ -82,7 +82,7 @@ export default class BottomMenu extends React.Component {
                             >
                             <ModalHeader className = 'modalHeader' toggle={this.abToggle}>Logout</ModalHeader>
                             <ModalFooter className = 'modalFooter'>
-                                <div id='buttonConfirm'><a href="/">Confirm</a></div>
+                                <Button id='buttonConfirm'><a href="/">Confirm</a></Button>
                                 <Button id="nav-button" onClick={this.abToggle}>
                                 Cancel
                                 </Button>{" "}

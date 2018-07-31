@@ -232,6 +232,7 @@ visibility: hidden;
 }
 
 #sideBarButtonA{
+  align-items: center;
   width:25%;
   background-color: #584573;
   color: #fff;
@@ -240,6 +241,7 @@ visibility: hidden;
 }
 
 #sideBarButtonB{
+  align-items: center;
   width:25%;
   background-color: #584573;
   color: #fff;
@@ -248,6 +250,7 @@ visibility: hidden;
 }
 
 #sideBarButtonC{
+  align-items: center;
   width:25%;
   background-color: #584573;
   color: #fff;
@@ -256,6 +259,9 @@ visibility: hidden;
 }
 
 #sideBarButtonD{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width:25%;
   background-color: #584573;
   color: #fff;
@@ -282,11 +288,12 @@ visibility: hidden;
 }
 
 #buttomButton:hover{
-  background-color: #775d9b;
+  
 }
 
 .modal-content{
   height: 300px;
+  color: #fff;
 }
 .modalFooter.modal-footer{
   display: flex;
@@ -296,6 +303,7 @@ visibility: hidden;
   justify-content: space-around;
   border: hidden;
   height: 100%;
+  color: #fff;
 }
 
 .modalHeader{
@@ -328,16 +336,27 @@ visibility: hidden;
 .btn.btn-secondary:hover{
   background-color: #775d9b
 }
-#buttonConfirm{
+#buttonConfirm.btn.btn-secondary{
   background-color: #584573;
   color: #fff;
   border: hidden;
-  /* align-self: center; */
   border: 1px #352847;
   box-shadow: 0 3px 1px 0 #352847; 
   width: 300px; 
   height: 75px;
-  align-content: center;
-  justify-content: center;
+}
+
+#buttonConfirm:active{
+  background: #775d9b;
+  box-shadow: none;
+  margin-bottom: -3px;
+  margin-top: 3px;
+
+  font-family: Arial, Helvetica, sans-serif;
+  color: #fff;
+}
+
+.logout-link{
+  color: #fff;
 }
 }
