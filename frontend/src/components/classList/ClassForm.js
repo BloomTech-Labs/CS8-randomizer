@@ -5,6 +5,7 @@ import {
   FormGroup,
   Label,
   Input,
+
   Card,
   CardText,
   CardImg,
@@ -14,65 +15,73 @@ import {
   Dropdown,
   DropdownToggle,
   DropdownItem,
-  DropdownMenu
+  DropdownMenu,
+  UncontrolledButtonDropdown
 } from "reactstrap";
 
 import { addClass, addStudent } from "../../actions";
 
 import "./form.css";
 
+import uuidv4 from "uuid/v4";
+
 class ClassForm extends React.Component {
   constructor(props) {
     super(props);
-    this.toggle = this.toggle.bind(this);
+    // this.toggle = this.toggle.bind(this);
     this.state = {
       classname: "",
       firstname: "",
       lastname: "",
-      students: [
-        {
-        firstname: String,
-        lastname: String,
-        }
 
-      ],
-      dropdownOpen: false
+      students: [],
+      btnDropleft: false
     };
   }
 
-  toggle() {
-    this.setState(prevState => ({
-        dropdownOpen: !prevState.dropdownOpen
-    }))
-}
+  toggle = () => {
+    this.setState({ btnDropleft: !this.state.btnDropleft });
+  };
 
   handleInputChange = event => {
-    console.log("handleInputChange");
+    // console.log("handleInputChange");
     event.preventDefault();
     this.setState({ [event.target.name]: event.target.value });
   };
 
 
-  handleAddClass = event => {
-    const { classname } = this.state;
-    this.props.addClass(classname);
-    this.setState({ classname: "" });
-
+  handleAddClassAndStudents = () => {
+    const { classname, students } = this.state;
+    this.props.addClass({ name: classname, students: students });
+    this.setState({ classname: "", students: [] });
   };
 
-  compileStudentList = () => { // This runs every time the `Add` button is pressed
-    const { firstname, lastname } = this.state.students;
-    console.log('add')
-
-    this.props.addStudent({ first_name: firstname, last_name: lastname });
-    this.setState({ firstname: "", lastname: "" });
-
+  compileStudentList = () => {
+    // This runs every time the `Add` button is pressed
+    const { firstname, lastname } = this.state;
+    const newStudent = {
+      first_name: firstname,
+      last_name: lastname,
+      state_id: uuidv4()
+    };
+    const students = this.state.students;
+    students.push(newStudent);
+    this.setState({
+      students: students,
+      firstname: "",
+      lastname: ""
+    });
+    // console.log("compileStudentList running:", this.state.students);
   };
 
-  handleAddStudent = () => { // TODO: This will be used to add new students to a class AFTER it is made
-
+  removeStudent = id => {
+    console.log("id from removeStudent:", id);
+    const students = this.state.students;
   };
 
+  handleAddStudent = () => {
+    // TODO: This will be used to add new students to a class AFTER it is made
+  };
 
   render() {
     return (
@@ -112,20 +121,22 @@ class ClassForm extends React.Component {
 
         <div className="Add-div">
           <h3>Add Students</h3>
-          <input
-            className="lastname-input"
-            value={this.state.students.lastname}
-            name="lastname"
-            text="text"
-            placeholder="Last Name"
-            onChange={this.handleInputChange}
-          />
+
+
           <input
             className="firstname-input"
-            value={this.state.students.firstname}
+            value={this.state.firstname}
             name="firstname"
             text="text"
             placeholder="First Name"
+            onChange={this.handleInputChange}
+          />
+          <input
+            className="lastname-input"
+            value={this.state.lastname}
+            name="lastname"
+            text="text"
+            placeholder="Last Name"
             onChange={this.handleInputChange}
           />
           <Button id="Add-button" onClick={this.compileStudentList}>
@@ -136,41 +147,36 @@ class ClassForm extends React.Component {
         <div className="List-div">
           <h3>Student List</h3>
           <div>
-            {/* {this.props.classlist.map(item => { */}
-            <div>
-            <div>
-              <Card>
-                <CardImg />
-                <CardBody className="List-display">
-            {this.state.students.map(student => {
-            return(
-              <div>
-                <Dropdown direction="left" isOpen={this.state.btnDropleft} toggle={() => { this.setState({ btnDropleft: !this.state.btnDropleft }); }}>
-                <DropdownToggle>
-                  {student.firstname}{student.lastname}
-                  {/* mark */}
-                </DropdownToggle>
-                <DropdownMenu>
-                  <DropdownItem>Remove</DropdownItem>
-                </DropdownMenu>
-              </Dropdown> 
-              </div>
-                )
-              }
-            )
-          }
-                </CardBody>
-              </Card>
 
-            </div>
-              </div>
-          {/* </div> */}
-            <Button id="Class-submit-button" onClick={this.handleAddClassAndStudents}>
+            {this.state.students.map(obj => {
+              var first = obj.first_name;
+              var last = obj.last_name;
+              var id = obj.state_id;
+              return (
+                <UncontrolledButtonDropdown
+                  direction="left"
+                  onClick={this.toggle}
+                  value={first}
+                >
+                  <DropdownToggle caret>{first + " " + last}</DropdownToggle>
+                  <DropdownMenu>
+                    <DropdownItem>
+                      <div onClick={this.removeStudent(id)}>Remove</div>
+                    </DropdownItem>
+                  </DropdownMenu>
+                </UncontrolledButtonDropdown>
+              );
+            })}
+            <Button
+              id="Class-submit-button"
+              onClick={this.handleAddClassAndStudents}
+            >
               Submit
             </Button>
+          </div>
         </div>
       </div>
-      </div>
+
     );
   }
 }

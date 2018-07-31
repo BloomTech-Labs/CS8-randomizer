@@ -106,18 +106,18 @@ export const getClasses = () => dispatch => {
 };
 
 
-export const addClass = className => dispatch => {
+export const addClass = class_data => dispatch => {
   // ===== Create New Class and Add Logged in User as Ref ===== //
   console.log(jwt_decode(localStorage.jwtToken));
   const decoded_token = jwt_decode(localStorage.jwtToken);
-
+  const combine = {...class_data, users: decoded_token.sub}
+  console.log(combine)
   dispatch({
     type: ADDINGCLASS
   });
   axios
     .post(`${URL}/createclass`, {
-      name: className,
-      users: decoded_token.sub
+      combine
     })
     .then(response => {
       // console.log("RESPONSE:", response);

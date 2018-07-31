@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 
 import DropBar from './navigation/SideBar/SideDrop';
+import BottomMenu from './navigation/SideBar/BottomMenu';
 import LogOut from './navigation/LogOut';
 
 import {
@@ -80,6 +81,7 @@ class App extends Component {
               </div>
               <div className="appPanel">
                 <DropBar />
+                <BottomMenu />
                 <Route exact path={"/"} render={() => <Home />} />
                 <Route exact path={"/:id/edit"} render={() => <EditForm />} />
                 <Route exact path={"/classes"} render={() => <ClassList />} />
