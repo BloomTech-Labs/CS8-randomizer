@@ -212,13 +212,13 @@ visibility: hidden;
   position: fixed;
   right: 0;
   left: 0;
-  top: 100%;
-  width: 8em;
+  bottom: 0;
+  /* top: 100%; */
+  width: 100%;
   margin-top: -2.5em;
   background-color: #584573;
   border: 0px;
   color: #fff;
-  width:100%;
   /* justify-content: flex-end; */
   /* width: 0px; */
   /* min-width: 100%; */
@@ -228,23 +228,23 @@ visibility: hidden;
 }
 
 #sideBarButtonA{
-  width:100%;
-  margin-bottom: 50px;
+  width:25%;
+  /* margin-bottom: 50px; */
 }
 
 #sideBarButtonB{
-  width:100%;
-  margin-bottom: 50px;
+  width:25%;
+  /* margin-bottom: 50px; */
 }
 
 #sideBarButtonC{
-  width:100%;
-  margin-bottom: 50px;
+  width:25%;
+  /* margin-bottom: 50px; */
 }
 
 #sideBarButtonD{
-  width:100%;
-  margin-bottom: 50px;
+  width:25%;
+  /* margin-bottom: 50px; */
 }
 
 #buttomButton{
@@ -256,8 +256,8 @@ visibility: hidden;
   margin-top: -8px;
   margin-bottom: -8px;
   border: 5px, greenyellow;
-  width: 175px;
-  margin-right: -90px;
+  width: 100%;
+  /* margin-right: -90px; */
 }
 
 #buttomButton:hover{
