@@ -43,8 +43,14 @@ class ClassForm extends React.Component {
 
   handleAddClassAndStudents = () => {
     const { classname, students } = this.state;
-    this.props.addClass({ name: classname, students: students });
-    this.setState({ classname: "", students: [] });
+    const collection = students
+    const full_name = [] 
+    collection.map(item=> {
+      full_name.push({first_name: item.first_name, last_name: item.last_name})
+    })
+    console.log("FULL_NAME ARRAY:", full_name)
+    this.props.addClass({ name: classname, students: full_name });
+    this.setState({ classname: "", students: [], firstname: "", lastname: "" });
   };
 
   compileStudentList = () => {
@@ -53,7 +59,7 @@ class ClassForm extends React.Component {
     const newStudent = {
       first_name: firstname,
       last_name: lastname,
-      state_id: uuidv4()
+      component_state_id: uuidv4()
     };
     const students = this.state.students;
     students.push(newStudent);
@@ -140,7 +146,7 @@ class ClassForm extends React.Component {
             {this.state.students.map(obj => {
               var first = obj.first_name;
               var last = obj.last_name;
-              var id = obj.state_id;
+              var id = obj.component_state_id;
               return (
                 <UncontrolledButtonDropdown
                   direction="left"
