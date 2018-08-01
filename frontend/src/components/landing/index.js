@@ -118,7 +118,7 @@ class Landing extends React.Component {
           <NavItem className="nav-about">
             <NavLink>
               <Button id="nav-button" onClick={this.abToggle}>
-                About Magic Randomizer
+                Magic Randomizer
               </Button>
             </NavLink>
           </NavItem>
@@ -130,7 +130,7 @@ class Landing extends React.Component {
             >
               <ModalHeader className = 'modalHeader' toggle={this.abToggle}>Our App</ModalHeader>
               <ModalFooter className = 'modalFooter'>
-              <p className = 'description'>Magic Randomiser is a web app that allows teachers to pick students randomly to call on in class. This allows the teacher to make sure that all students get a chance to answer a question before they are called on a second time.</p>
+              <p>Randomiser is a web app that allows teachers to pick students randomly to call on in class. This allows the teacher to make sure that all students get a chance to answer a question before they are called on a second time.</p>
                 <Button id="nav-button" onClick={this.signToggle}>
                   Sign Up
                 </Button>{" "}

@@ -180,3 +180,50 @@ transition: all 0.5 s ease;
   margin-right: 10%;
   height: 300px;
 }
+@media(max-width:1070){
+  .jumbo-div{
+    align-self: center;
+    background-color: #584573;
+    border: 1px #352847;
+    box-shadow: 0 3px 1px 0 #352847; 
+    width: 300px; 
+    height: 75px;
+    align-content: center;
+    color: #fff;
+  }
+  .main {
+    background-color: #584573;
+  }
+  .header {
+    background-color: #584573; 
+  }
+  #add-button{
+    align-self: center;
+    background-color: #584573;
+    border: 1px #352847;
+    box-shadow: 0 3px 1px 0 #352847; 
+    width: 300px; 
+    height: 75px;
+    align-content: center;
+    color: #fff;
+}
+
+#nav-button:hover{
+    display: none;
+}
+
+#nav-button:active{
+    display: none;
+}
+}
+@media (max-height:400px){
+  .main {
+    
+  }
+  .header {
+    
+  }
+  .studentName{
+    
+  }   
+}
