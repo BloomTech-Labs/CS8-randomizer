@@ -1,6 +1,5 @@
 import axios from "axios";
 import jwt_decode from "jwt-decode";
-import { Route, Redirect } from "react-router";
 
 // NEED GETTINGUSERS
 // NEED GOTUSERS
@@ -67,7 +66,10 @@ export const logIn = (user, history) => dispatch => {
 
 export const logOut = () => dispatch => {
   dispatch({
-    type: logOut
+    type: LOGGINGOUT
+  });
+  dispatch({
+    type: LOGGEDOUT
   });
   localStorage.clear();
 };
@@ -91,6 +93,41 @@ export const addUser = (data, history) => dispatch => {
     });
 };
 
+export const editUser = (update_info) => {
+  
+  const logged_in_user_id = jwt_decode(localStorage.jwtToken).sub;
+  if (update_info.password && update_info.email){
+  
+  // dispatch({ // React does not recognize... :/
+  //   type: EDITINGUSER
+  // });
+  axios.put(`${URL}/updateuser/${logged_in_user_id}`, 
+  {
+    username: update_info.email,
+    password: update_info.password
+  })
+} else if (update_info.email){
+  console.log("UPDATE_INFO", update_info)
+  axios.put(`${URL}/updateuser/${logged_in_user_id}`, 
+  {
+    username: update_info.email
+  })
+} else if (update_info.password){
+  axios.put(`${URL}/updateuser/${logged_in_user_id}`, 
+  {
+    password: update_info.password
+  })
+}
+  // .then(response => {
+    // dispatch({
+    //   type: EDITEDUSER,
+    //   class_data: response.data
+    // });
+  // })
+  // .catch()
+  
+}
+
 export const getClasses = () => dispatch => {
   dispatch({
     type: GETTINGCLASSES
@@ -100,13 +137,24 @@ export const getClasses = () => dispatch => {
     .get(`${URL}/classes`)
     .then(response => {
       console.log("RESPONSE FROM GETCLASSES", response.data.length);
-      const user_id = jwt_decode(localStorage.jwtToken).sub;
+      const logged_in_user_id = jwt_decode(localStorage.jwtToken).sub;
+      const all_classes = response.data
       const user_classes = [];
-      for (let i = 0; i < response.data.length; i++) {
-        if (response.data.users._id === user_id) {
-          user_classes.push(response.data[i]);
-        }
-      }
+      console.log("logged_in_user_id", logged_in_user_id)
+      console.log("ALL_CLASSES", all_classes)
+      // for (let i = 0; i < response.data.length; i++) {
+      //   if (response.data.users._id === logged_in_user_id) {
+      //     console.log("Bello")
+      //     user_classes.push(response.data[i]);
+      //   }
+      // }
+      all_classes.map(item => {
+        if (item.users[0]._id === logged_in_user_id) {
+              user_classes.push(item);
+            }
+      })
+      
+      console.log("USER_CLASSES", user_classes)
       dispatch({ type: GOTCLASSES, classes: user_classes });
     })
     .catch(err => {
@@ -174,11 +222,10 @@ export const addClass = class_data => dispatch => {
             //       console.log("user_id", user_id)
             //       console.log("class_id", class_id)
 
-            addClassRefToUser(user_id, class_id);
-            // axios // FIX THIS IN BACKEND
-            //   .put(`${URL}/addtouser/${user_id}`, {
-            //     classes: class_id
-            //   })
+            axios // FIX THIS IN BACKEND
+              .put(`${URL}/addtouser/${user_id}`, {
+                classes: class_id
+              })
             // .then(() => {
             //   dispatch({ type: EDITEDUSER, payload: {classes: class_id}});
             // })
@@ -186,26 +233,19 @@ export const addClass = class_data => dispatch => {
             //   dispatch({ type: ERROR, payload: err });
             // });
           })
-          .catch(err => {
+          .catch(res => {
             dispatch({
               type: ERROR,
-              errorMessage: "Error fetching classes..."
+              errorMessage: "Error getting classes..."
             });
           });
       })
       .catch(err => {
-        dispatch({ type: ERROR, errorMessage: "Error fetching the data..." });
+        dispatch({ type: ERROR, errorMessage: "Error creating class..." });
       });
     alert("Congratulations! You created a new class!");
     // window.location.reload(true);
   }
-};
-
-export const addClassRefToUser = (user_id, class_id) => {
-  axios // FIX THIS IN BACKEND
-    .put(`${URL}/addtouser/${user_id}`, {
-      classes: class_id
-    });
 };
 
 export const editClass = class_data => dispatch => {

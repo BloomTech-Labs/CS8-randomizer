@@ -38,7 +38,8 @@ const initialState = {
   addingUser: false,
   loggingIn: false,
   loggingOut: false,
-  addingClass: false
+  addingClass: false,
+  editingUser: false
 };
 
 export const Reducer = (state = initialState, action) => {
@@ -57,7 +58,7 @@ export const Reducer = (state = initialState, action) => {
       };
 
     case EDITINGUSER:
-     return{...state, };
+     return{ ...state, users: action.users, editingUser: false };
     case EDITEDUSER:
     return{}; 
     case LOGGINGIN:
