@@ -99,104 +99,114 @@ export const getClasses = () => dispatch => {
   axios
     .get(`${URL}/classes`)
     .then(response => {
-      dispatch({ type: GOTCLASSES, classes: response.data });
+      console.log("RESPONSE FROM GETCLASSES", response.data.length);
+      const user_id = jwt_decode(localStorage.jwtToken).sub;
+      const user_classes = [];
+      for (let i = 0; i < response.data.length; i++) {
+        if (response.data.users._id === user_id) {
+          user_classes.push(response.data[i]);
+        }
+      }
+      dispatch({ type: GOTCLASSES, classes: user_classes });
     })
     .catch(err => {
       dispatch({ type: ERROR, errorMessage: "Error fetching the data..." });
     });
 };
 
-
 export const addClass = class_data => dispatch => {
   // ===== Create New Class and Add Logged in User as Ref ===== //
   console.log(jwt_decode(localStorage.jwtToken));
   const decoded_token = jwt_decode(localStorage.jwtToken);
-  const user_id = decoded_token.sub
+  const user_id = decoded_token.sub;
   // const combine = {...class_data, users: decoded_token.sub}
-  if (class_data.students.length === 0){
-    alert("Ooops! Please 'Add' at least one student before clicking 'Submit' :D")
-    return
+  if (class_data.students.length === 0) {
+    alert(
+      "Ooops! Please 'Add' at least one student before clicking 'Submit' :D"
+    );
+    return;
   }
   // TODO: Write an 'else if' which throws an alert error if a person tries to add a class with a name that already exists!
   // To do this, you will need to do an axios call to check throw the current list of classes OR, just check the list in the redux store!
   else {
-  console.log("CLASS_DATA:", class_data)
-  console.log("users:", user_id)
-  dispatch({
-    type: ADDINGCLASS
-  });
-  axios
-    .post(`${URL}/createclass`, {
-      name: class_data.name,
-      students: class_data.students,
-      users: user_id
-    })
-    .then(response => {
-      console.log("ADDCLASS RESPONSE.CONFIG.DATA:", response.config.data);
-      dispatch({ type: ADDEDCLASS, classes: response.config.data });
-    })
-    .catch(() => {
-      dispatch({ type: ERROR, errorMessage: "Error Adding Class..." });
-    })
+    console.log("CLASS_DATA:", class_data);
+    console.log("users:", user_id);
+    dispatch({
+      type: ADDINGCLASS
+    });
+    axios
+      .post(`${URL}/createclass`, {
+        name: class_data.name,
+        students: class_data.students,
+        users: user_id
+      })
+      .then(response => {
+        console.log("ADDCLASS RESPONSE.CONFIG.DATA:", response.config.data);
+        dispatch({ type: ADDEDCLASS, classes: response.config.data });
+      })
+      .catch(() => {
+        dispatch({ type: ERROR, errorMessage: "Error Adding Class..." });
+      })
 
-    .then(() => {
-      // ======= Find ALL Classes associated with Logged in User ===== //
-      dispatch({
-        type: GETTINGCLASSES
-      });
+      .then(() => {
+        // ======= Find ALL Classes associated with Logged in User ===== //
+        dispatch({
+          type: GETTINGCLASSES
+        });
 
-      axios
-        .get(`${URL}/classes`)
-        .then(response => {
-          console.log(
-            `THESE ARE ${decoded_token.username}'s CLASSES:`,
-            response
-          );
-          // // console.log("Last Added Class ID", response.data[response.data.length-1]._id)
-          
-          const class_id = response.data[response.data.length-1]._id
-          dispatch({ type: GOTCLASSES, classes: response.data });
+        axios
+          .get(`${URL}/classes`)
+          .then(response => {
+            console.log(
+              `THESE ARE ${decoded_token.username}'s CLASSES:`,
+              response
+            );
+            // // console.log("Last Added Class ID", response.data[response.data.length-1]._id)
 
-          dispatch({
-            type: EDITINGUSER
-          });
+            const class_id = response.data[response.data.length - 1]._id;
+            dispatch({ type: GOTCLASSES, classes: response.data });
 
-    //       // LAST STEP: Add CLASS ID to stored in "response" to logged in User
-    //       console.log("user_id", user_id)
-    //       console.log("class_id", class_id)
+            dispatch({
+              type: EDITINGUSER
+            });
 
-          addClassRefToUser(user_id, class_id)
-          // axios // FIX THIS IN BACKEND
-          //   .put(`${URL}/addtouser/${user_id}`, {
-          //     classes: class_id
-          //   })
+            //       // LAST STEP: Add CLASS ID to stored in "response" to logged in User
+            //       console.log("user_id", user_id)
+            //       console.log("class_id", class_id)
+
+            addClassRefToUser(user_id, class_id);
+            // axios // FIX THIS IN BACKEND
+            //   .put(`${URL}/addtouser/${user_id}`, {
+            //     classes: class_id
+            //   })
             // .then(() => {
             //   dispatch({ type: EDITEDUSER, payload: {classes: class_id}});
             // })
             // .catch(err => {
             //   dispatch({ type: ERROR, payload: err });
             // });
-
-          
-        })
-        .catch(err => {
-          dispatch({ type: ERROR, errorMessage: "Error fetching classes..." });
-        });
-    })
-    .catch(err => {
-      dispatch({ type: ERROR, errorMessage: "Error fetching the data..." });
-    });
-    alert("Congratulations! You created a new class!")
+          })
+          .catch(err => {
+            dispatch({
+              type: ERROR,
+              errorMessage: "Error fetching classes..."
+            });
+          });
+      })
+      .catch(err => {
+        dispatch({ type: ERROR, errorMessage: "Error fetching the data..." });
+      });
+    alert("Congratulations! You created a new class!");
     // window.location.reload(true);
   }
 };
 
-export const addClassRefToUser = (user_id, class_id) =>  {
+export const addClassRefToUser = (user_id, class_id) => {
   axios // FIX THIS IN BACKEND
-            .put(`${URL}/addtouser/${user_id}`, {
-              classes: class_id
-            })
-} 
+    .put(`${URL}/addtouser/${user_id}`, {
+      classes: class_id
+    });
+};
 
 export const editClass = class_data => dispatch => {
   dispatch({
