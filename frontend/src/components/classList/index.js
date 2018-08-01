@@ -8,65 +8,39 @@ import { getClasses } from '../../actions';
 
 import './index.css';
 
-function mapStateToProps(state){
-    return { 
-        classes: state.classes,
-        user: state.user    
-    };
-}
-
-// classAmount = this.state.classes.length();
-
 class ClassList extends React.Component {
     constructor(props){
         super(props)
         this.state = {
-            // classlist: state.classes,
-            // classEmpt: true,
-            // classes: this.state.classes,
-            // user: this.state.user
+            classes: this.props.classes
         };
     }
 
-
-
-
     componentDidMount() {
-
-        console.log('mounted', this.state)
-    //     // this.props.getClasses(this.props.user);
-
-    //     this.props.getClasses(this.props.user);
-
-
-
-    //     if(this.state.classes.length == 0){
-    //         this.setState({
-    //             classEmpt: 'true'
-    //         })
-
-    //         console.log(this.state.classes.length)
-    //     }
-        
-    //     else if(this.state.classes.length < 0){
-    //         alert('You have done something really bad to get here, please contact the devs with this message...');
-    //         console.log(this.state.classes.length)
-    //     }
-        
-    //     else{
-    //         this.setState({
-    //             classEmpt: 'false'
-    //         })
-    //         console.log(this.state.classes.length)
-        // }
+        this.props.getClasses();
     }
     
     render(){
+        
+        // let x = this.props.classes[0]
 
+        // console.log('a', x.name)
+
+        let classEmpt = true;
+
+        if(this.props.classes.length == 0){
+                classEmpt = true
+        }
+
+        else{
+                classEmpt = false
+        }
+
+        console.log('Am I empty inside?', classEmpt);
 
         return(
             <div className='jumbo-div'>
-            { this.state.classEmpt == 'true' ?  (
+            { this.classEmpt == true ?  (
             <div className='jumbo-div'>
                 <Jumbotron fluid id="jumb">
                     <Container fluid>
@@ -83,23 +57,23 @@ class ClassList extends React.Component {
             ):(
                 <div className='Class-div'> 
                 {this.props.classes.map(classitem => {
-                 return( 
+                 return(  
                     <Card id='Class-card'>
-                        <Link to="/classes/:id">
+                        <Link to={`/classes/${classitem._id}`}>
 
                         <CardBody>
-                            <CardTitle>(Insert Class Name){classitem.classname}</CardTitle>
-                            <CardSubtitle>(Insert Class Size){classitem.students.length()}</CardSubtitle>
-                            <CardSubtitle>(Insert Participation Amount)</CardSubtitle>
+                            <CardTitle>{classitem.name}</CardTitle>
+                            <CardSubtitle>{classitem.students.length}</CardSubtitle>
+                            <CardSubtitle></CardSubtitle>
                         </CardBody>
 
                         
                         </Link>
                     </Card>
-                            );
+                             );
                         }
                     )
-                }
+                } 
                     <Nav id="add-button">
                         <NavLink className="NewClass" id="add-plus"><Link to="/create"> + </Link></NavLink>
                         </Nav>
@@ -111,6 +85,14 @@ class ClassList extends React.Component {
             </div>
         );
     }
+}
+
+const mapStateToProps = (state) => {
+    return { 
+        classes: state.classes,
+        user: state.user    
+    };
+    
 }
 
 export default connect(mapStateToProps, { getClasses })(ClassList);

@@ -39,6 +39,7 @@ const initialState = {
   loggingIn: false,
   loggingOut: false,
   addingClass: false
+  // classEmpty: true,
 };
 
 export const Reducer = (state = initialState, action) => {
