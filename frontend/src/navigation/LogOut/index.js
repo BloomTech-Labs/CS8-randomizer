@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import { Nav, NavItem, NavLink, Dropdown, DropdownMenu, DropdownToggle, Button } from 'reactstrap';
-
+import { connect } from 'react-redux';
+import { logOut } from "../../actions";
 import './index.css';
 
-export default class LogOut extends React.Component{
+class LogOut extends React.Component{
 
     constructor(props){
         super(props);
@@ -30,7 +31,7 @@ export default class LogOut extends React.Component{
                     data-toggle="dropdown"
                     aria-expanded={this.state.dropdownOpen}
                 >
-                    <Button id="logout-button">Logout</Button>
+                    <Button id="logout-button" onClick={this.props.logOut}>Logout</Button>
                     {/* TODO: Add onClick(this.props.toggleAuth) - to set authed: false; */}
                 </DropdownToggle>
                 <DropdownMenu id="logout-dropdown">
@@ -41,3 +42,12 @@ export default class LogOut extends React.Component{
         );
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+      users: state.users,
+      authed: state.authed
+    };
+  };
+  
+  export default connect(mapStateToProps, {logOut})(LogOut);
