@@ -40,6 +40,7 @@ const initialState = {
   loggingOut: false,
   addingClass: false,
   editingUser: false
+
 };
 
 export const Reducer = (state = initialState, action) => {

@@ -4,10 +4,10 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 
-// import SideBar from './navigation/SideBar';
 import DropBar from './navigation/SideBar/SideDrop';
+import BottomMenu from './navigation/SideBar/BottomMenu';
 import LogOut from './navigation/LogOut';
-// import TopBar from './navigation/TopBar';
+
 import {
   Landing,
   MagicRandomizer,
@@ -17,11 +17,11 @@ import {
   SignUp,
   ClassForm,
   Home,
-  Billing
+  Billing,
+  EditForm
 } from "./components";
 import Breadcrumbs from "react-router-dynamic-breadcrumbs";
 import "./App.css";
-// import Billing from "./components/Billing";
 
 // Breadcrumb Routes
 const routes = {
@@ -49,16 +49,12 @@ class App extends Component {
     };
   }
 
-  // Placeholder test for showing navbars on login
   test(e) {
     e.preventDefault();
     this.setState({
       isAuth: !this.state.isAuth
-      // condition: !this.state.condition
     });
   }
-
-
 
   componentDidMount() {
     console.log("Mounted...");
@@ -67,9 +63,6 @@ class App extends Component {
   }
 
   render() {
-    // TODO: Setup to work with real authentication
-
-
     return (
       <Router>
         <div className="App">
@@ -78,7 +71,7 @@ class App extends Component {
               exact
               path={"/"}
               render={() =>
-                this.props.authed? <Redirect to="/api/classes/" /> : <Landing auth={this.state.isAuth} />}
+                this.props.authed? <Redirect to="/classes/" /> : <Landing auth={this.state.isAuth} />}
             />
           ) : (
             <div className="MainAppComponents">
@@ -88,9 +81,9 @@ class App extends Component {
               </div>
               <div className="appPanel">
                 <DropBar />
+                <BottomMenu />
                 <Route exact path={"/"} render={() => <Home />} />
-                {/* <Route exact path={"/create"} /> */}
-                <Route exact path={"/:id/edit"} />
+                <Route exact path={"/:id/edit"} render={() => <EditForm />} />
                 <Route exact path={"/classes"} render={() => <ClassList />} />
                 <Route
                   exact path={"/create"}
@@ -101,17 +94,12 @@ class App extends Component {
                   render={() => <MagicRandomizer />}
                 />
                 <Route exact path={"/billing"} render={() => <Billing />} />
-                {/* <Route exact path={"/settings"} render={() => <Setup />} /> */}
                 <Route exact path={"/about"} render={() => <About />} />
-                <Route exact path={"/settings"} render={() => <Setup />} />
-                {/* <Route exact path={"/login"} render={() => <LogIn />} /> */}
-                
+                <Route exact path={"/settings"} render={() => <Setup />} />  
               </div>
             </div>
           )}
-          {/*App*/}
         </div>
-        {/* <Route exact path={'/addClass'} render={() => <AddClass />} /> */}
       </Router>
     );
   }
@@ -125,5 +113,3 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {})(App);
-
-// export default App;
