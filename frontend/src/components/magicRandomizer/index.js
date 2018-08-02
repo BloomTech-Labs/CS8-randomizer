@@ -105,7 +105,7 @@ class MagicRandomizer extends Component {
         <div className="classid"> {this.state.classid[0]}{this.state.classid[1]}{this.state.classid[2]}  </div>
         <div className="header">
         <Button className="participated" id="Rando-top-button">Participated</Button> 
-          <div className="studentName">{currentStudent.first_name} {currentStudent.last_name}</div>
+          <div className="studentName">{currentAll.first_name} {currentAll.last_name}</div>
           {/* <div className="studentName">{currentAll.first_name} {currentAll.last_name}</div> */}
           <Button id="Rando-top-button"> Declined </Button>
         </div>
@@ -124,7 +124,7 @@ class MagicRandomizer extends Component {
           <div className="caros">
             {/* <Carousel /> */} 
             {/* <Button id="Randomize-button" onClick={this.allPick == false ? (this.randomHandler) : (this.allGoHandler) }> RANDOMIZE! </Button>   */}
-            <Button id="Randomize-button" onClick={this.randomHandler }> RANDOMIZE! </Button>  
+            <Button id="Randomize-button" onClick={this.allGoHandler }> RANDOMIZE! </Button>  
             <div className="ondeck">On Deck: Jane</div>
           </div>
          

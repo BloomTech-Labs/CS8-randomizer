@@ -18,7 +18,6 @@ router
       });
   })
   .put((req, res) => {
-    console.log('REQ', req.body)
     const { id } = req.params;
     const updateInfo = req.body;
     Student.findByIdAndUpdate(id, updateInfo)
@@ -28,6 +27,6 @@ router
       .catch(err => {
         res.status(500).json(err);
       });
-  })
+  });
 
 module.exports = router;
