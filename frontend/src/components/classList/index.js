@@ -59,7 +59,12 @@ class ClassList extends React.Component {
                 {this.props.classes.map(classitem => {
                  return(  
                     <Card id='Class-card'>
-                        <Link to={`/classes/${classitem._id}`}>
+                <Link to={{ 
+                    pathname: `/classes/${classitem._id}`, 
+                    state: {classid: classitem._id,
+                            class: classitem
+                            } 
+                    }}>
 
                         <CardBody>
                             <CardTitle>{classitem.name}</CardTitle>

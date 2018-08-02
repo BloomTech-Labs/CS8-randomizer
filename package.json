@@ -1,8 +1,23 @@
 {
-  "name": "cs8-student",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "lambda_labs_backend",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "bcrypt": "^3.0.0",
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "helmet": "^3.12.1",
+    "mongoose": "^5.2.4",
+    "morgan": "^1.9.0",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-payment": "^0.1.8",
+    "react-scripts": "1.1.4",
+    "uuid": "^3.3.2"
+  },
   "scripts": {
     "start": "node ./backend/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -16,5 +31,8 @@
   "bugs": {
     "url": "https://github.com/Lambda-School-Labs/CS8-student/issues"
   },
-  "homepage": "https://github.com/Lambda-School-Labs/CS8-student#readme"
+  "engines": {
+    "node": "10.6.0",
+    "npm": "6.1.0"
+  }
 }

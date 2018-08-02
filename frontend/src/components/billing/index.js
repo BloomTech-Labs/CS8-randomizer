@@ -1,4 +1,3 @@
-
 import React from 'react'
 import StripeCheckout from 'react-stripe-checkout';
 import { Label, Input } from 'reactstrap';
@@ -7,8 +6,8 @@ import { Label, Input } from 'reactstrap';
 import './stripe.css';
  
 export default class Billing extends React.Component {
-  onToken = (token) => {
-    fetch('/save-stripe-token', {
+onToken = (token) => {
+   fetch('/save-stripe-token', {
       method: 'POST',
       body: JSON.stringify(token),
     }).then(response => {
