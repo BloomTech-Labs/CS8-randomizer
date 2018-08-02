@@ -67,7 +67,7 @@ class ClassList extends React.Component {
                     }}>
 
                         <CardBody>
-                            <CardTitle className='Class-title'>{classitem.name}</CardTitle>
+                            <CardTitle id='Class-title'>{classitem.name}</CardTitle>
                             <CardSubtitle className='Class-amount'>{classitem.students.length}</CardSubtitle>
                             <CardSubtitle></CardSubtitle>
                         </CardBody>
