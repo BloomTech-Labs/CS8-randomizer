@@ -1,7 +1,7 @@
 const express = require('express');
 
 //schema
-const Student = require('../../Schemas/Student.js');
+const User = require('../../Schemas/User.js');
 
 const router = express.Router();
 
@@ -9,7 +9,7 @@ router
   .route('/:id')
   .get((req, res) => {
     const { id } = req.params;
-    Student.findById(id)
+    User.findById(id)
       .then(response => {
         res.json(response);
       })
@@ -21,13 +21,9 @@ router
     console.log('REQ', req.body)
     const { id } = req.params;
     const updateInfo = req.body;
-<<<<<<< HEAD:backend/Router/Student/updateStudentRouter.js
-    Student.findByIdAndUpdate(id, updateInfo)
-=======
-    Class.findByIdAndUpdate(id, {
-      $push: { users: updateInfo.users, students: updateInfo.students }
+    User.findByIdAndUpdate(id, {
+      $pull: { classes: updateInfo.classes }
     }, { 'new': true})
->>>>>>> 56ecdf5038036926fa23fd5a2b5b5b4356ecd094:Router/Class/updateClassRouter.js
       .then(response => {
         res.json(response);
       })

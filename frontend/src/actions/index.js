@@ -152,7 +152,6 @@ export const addClass = class_data => dispatch => {
   // ===== Create New Class and Add Logged in User as Ref ===== //
   console.log(jwt_decode(localStorage.jwtToken));
   const decoded_token = jwt_decode(localStorage.jwtToken);
-<<<<<<< HEAD
   const user_id = decoded_token.sub;
   // const combine = {...class_data, users: decoded_token.sub}
   if (class_data.students.length === 0) {
@@ -188,24 +187,6 @@ export const addClass = class_data => dispatch => {
         dispatch({
           type: GETTINGCLASSES
         });
-=======
-  const combine = {...class_data, users: decoded_token.sub}
-  console.log(combine)
-  dispatch({
-    type: ADDINGCLASS
-  });
-  axios
-    .post(`${URL}/createclass`, {
-      combine
-    })
-    .then(response => {
-      // console.log("RESPONSE:", response);
-      dispatch({ type: ADDEDCLASS, classes: response.data });
-    })
-    .catch(err => {
-      dispatch({ type: ERROR, errorMessage: "Error Adding Class..." });
-    })
->>>>>>> 3ac3100bd25ec06aad139664716fb14e60da6438
 
         axios
           .get(`${URL}/classes`)
