@@ -22,7 +22,7 @@ import {
 } from "./components";
 import Breadcrumbs from "react-router-dynamic-breadcrumbs";
 import "./App.css";
-
+//import Checkout from './components/Checkout'
 // Breadcrumb Routes
 const routes = {
   // "/": "Index",
@@ -93,7 +93,7 @@ class App extends Component {
                   exact path={"/classes/:id"}
                   render={() => <MagicRandomizer />}
                 />
-                <Route exact path={"/billing"} render={() => <Billing />} />
+                <Route exact path={"/billing"} render={() => <Billing/>} />
                 <Route exact path={"/about"} render={() => <About />} />
                 <Route exact path={"/settings"} render={() => <Setup />} />  
               </div>
