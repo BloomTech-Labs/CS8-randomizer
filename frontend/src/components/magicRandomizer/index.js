@@ -124,7 +124,7 @@ class MagicRandomizer extends Component {
           <div className="caros">
             {/* <Carousel /> */} 
             {/* <Button id="Randomize-button" onClick={this.allPick == false ? (this.randomHandler) : (this.allGoHandler) }> RANDOMIZE! </Button>   */}
-            <Button id="Randomize-button" onClick={this.randomHandler }> RANDOMIZE! </Button>  
+            <Button id="Randomize-button" onClick={this.allGoHandler }> RANDOMIZE! </Button>  
             <div className="ondeck">On Deck: Jane</div>
           </div>
          
