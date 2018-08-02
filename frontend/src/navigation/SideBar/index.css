@@ -53,17 +53,17 @@
 
 .bar .first{
   top: 5px;
-  left: 15%;
+  left: 16%;
 }
 
 .bar .second{
-  top: 14.8px;
-  left: 15%;
+  top: 14px;
+  left: 16%;
 }
 
 .bar .third{
-  top: 25px;
-  left: 15%;
+  top: 24px;
+  left: 16%;
 }
 
 .bar:hover .first {

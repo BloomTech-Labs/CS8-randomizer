@@ -67,8 +67,8 @@ class ClassList extends React.Component {
                     }}>
 
                         <CardBody>
-                            <CardTitle>{classitem.name}</CardTitle>
-                            <CardSubtitle>{classitem.students.length}</CardSubtitle>
+                            <CardTitle className='Class-title'>{classitem.name}</CardTitle>
+                            <CardSubtitle className='Class-amount'>{classitem.students.length}</CardSubtitle>
                             <CardSubtitle></CardSubtitle>
                         </CardBody>
 
@@ -83,8 +83,12 @@ class ClassList extends React.Component {
                         <NavLink className="NewClass" id="add-plus"><Link to="/create"> + </Link></NavLink>
                         </Nav>
                         <Nav id="createClass">
-                        <NavLink id = 'addButton' href='/classes/create'> add </NavLink>
+                        <NavLink id = 'addButton' href='/classes/create'></NavLink>
                         </Nav>
+                        <div className='add-label'>
+                            ^<br />
+                            Click To Add A Class
+                        </div>
                 </div>
             )}
             </div>

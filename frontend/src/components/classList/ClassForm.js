@@ -16,7 +16,7 @@ import {
   DropdownToggle,
   DropdownItem,
   DropdownMenu,
-  UncontrolledButtonDropdown
+  ButtonDropdown
 } from "reactstrap";
 
 import { addClass, addStudent } from "../../actions";
@@ -85,9 +85,14 @@ class ClassForm extends React.Component {
     // console.log("compileStudentList running:", this.state.students);
   };
 
-  removeStudent = id => {
-    console.log("id from removeStudent:", id);
+  removeStudent = (event) => {
+    console.log('x', event.target._id);
     const students = this.state.students;
+    students.splice(event.target.id, 1);
+
+    this.setState({
+      students: students
+    })
   };
 
   handleAddStudent = () => {
@@ -158,26 +163,33 @@ class ClassForm extends React.Component {
         <div className="List-div">
           <h3>Student List</h3>
           <div>
-
+          <div>
+            {/* {this.props.classlist.map(item => { */}
+            <div>
+            <div>
+              <Card>
+                <CardImg />
+                <CardBody className="List-display">
             {this.state.students.map(obj => {
               var first = obj.first_name;
               var last = obj.last_name;
               var id = obj.component_state_id;
               return (
-                <UncontrolledButtonDropdown
-                  direction="left"
-                  onClick={this.toggle}
-                  value={first}
-                >
-                  <DropdownToggle caret>{first + " " + last}</DropdownToggle>
-                  <DropdownMenu>
-                    <DropdownItem>
-                      <div onClick={this.removeStudent(id)}>Remove</div>
-                    </DropdownItem>
-                  </DropdownMenu>
-                </UncontrolledButtonDropdown>
+
+                <Button 
+                  id='student-button' 
+                  onClick={this.removeStudent} 
+                  _id={id}> 
+                  x {first + " " + last} 
+                </Button>
+
               );
             })}
+            </CardBody>
+              </Card>
+
+            </div>
+              </div>
             <Button
               id="Class-submit-button"
               onClick={this.handleAddClassAndStudents}
@@ -186,6 +198,7 @@ class ClassForm extends React.Component {
             </Button>
           </div>
         </div>
+      </div>
       </div>
 
     );
