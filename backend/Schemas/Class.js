@@ -10,6 +10,10 @@ const subSchema = new mongoose.Schema({
   last_name: {
     type: String,
     maxlength: 25
+  },
+  participated: {
+    type: Boolean,
+    default: false,
   }
 });
 

@@ -33,6 +33,7 @@ const localStrategy = new LocalStrategy(function(username, password, done) {
       done(null, false);
     }
 
+    console.log("user in authenticate:", user)
     user.verifyPassword(password, function(err, isValid) {
       if (err) {
         return done(err);
@@ -55,7 +56,7 @@ const jwtOptions = {
 const jwtStrategy = new JwtStrategy(jwtOptions, function(payload, done) {
   User.findById(payload.sub)
 
-    .select('-password')
+    .select('*')
     .then(user => {
       if (user) {
         done(null, user);
@@ -72,7 +73,7 @@ passport.use(localStrategy);
 passport.use(jwtStrategy);
 
 const authenticate = passport.authenticate('local', { session: false });
-const protected = passport.authenticate('jwt', { session: false });
+const protected = passport.authenticate('jwt', { session: false }); // returns 'Unautherized'
 
 // ============ from ROUTES -- END ============= //
 
@@ -81,6 +82,7 @@ const User = require("../../Schemas/User.js");
 
 //endpoints
 router.post("/", authenticate, (req, res) => {
+  console.log("REQ.USER", req.user)
   res.json({
     success: `${req.user.username}, you are logged in!`,
     token: makeToken(req.user),
