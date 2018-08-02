@@ -1,6 +1,6 @@
 import React from "react";
-import { connect } from 'react-redux';
-import { logIn, addUser } from '../../actions';
+import { connect } from "react-redux";
+import { logIn, addUser } from "../../actions";
 import { withRouter } from "react-router-dom";
 
 import {
@@ -25,6 +25,7 @@ class Landing extends React.Component {
     this.signToggle = this.signToggle.bind(this);
     this.logToggle = this.logToggle.bind(this);
     this.abToggle = this.abToggle.bind(this);
+    this.mainSignToggle = this.mainSignToggle.bind(this);
     // this.isAuth = this.auth.bind(this);
     this.state = {
       dropdownOpen: false,
@@ -44,6 +45,13 @@ class Landing extends React.Component {
       logModal: !this.state.logModal
     });
   }
+  mainSignToggle() {
+    this.setState({
+      abModal: !this.state.abModal,
+      signModal: !this.state.signModal
+    });
+  }
+
   signToggle() {
     this.setState({
       // dropdownOpen: !this.state.dropdownOpen,
@@ -72,10 +80,13 @@ class Landing extends React.Component {
       alert("Password must be six or more characters in length");
       return;
     }
-    this.props.addUser({
-      username: this.state.username.trim(),
-      password: this.state.password.trim()
-    }, this.props.history);
+    this.props.addUser(
+      {
+        username: this.state.username.trim(),
+        password: this.state.password.trim()
+      },
+      this.props.history
+    );
     this.setState({
       username: "",
       password: "",
@@ -83,7 +94,7 @@ class Landing extends React.Component {
       dropdownOpen: false,
       signModal: false,
       logModal: false,
-      abModal: false,
+      abModal: false
     });
   };
 
@@ -93,10 +104,13 @@ class Landing extends React.Component {
       alert("Password must be six or more characters in length");
       return;
     }
-    this.props.logIn({
-      username: this.state.username.trim(),
-      password: this.state.password.trim()
-    }, this.props.history);
+    this.props.logIn(
+      {
+        username: this.state.username.trim(),
+        password: this.state.password.trim()
+      },
+      this.props.history
+    );
     this.setState({
       username: "",
       password: "",
@@ -128,19 +142,28 @@ class Landing extends React.Component {
               toggle={this.abToggle}
               className={this.props.className}
             >
-              <ModalHeader className = 'modalHeader' toggle={this.abToggle}>Our App</ModalHeader>
-              <ModalFooter className = 'modalFooter'>
-              <p className = 'description'>Magic Randomiser is a web app that allows teachers to pick students randomly to call on in class. This allows the teacher to make sure that all students get a chance to answer a question before they are called on a second time.</p>
+              <ModalHeader className="modalHeader" toggle={this.abToggle}>
+                Our App
+              </ModalHeader>
+              <ModalFooter className="modalFooter">
+                <p className="description">
+                  Magic Randomiser is a web app that allows teachers to pick
+                  students randomly to call on in class. This allows the teacher
+                  to make sure that all students get a chance to answer a
+                  question before they are called on a second time.
+                </p>
                 <Button id="nav-button" onClick={this.signToggle}>
-                  Sign Up
+                  Sign
                 </Button>{" "}
                 {/* <Button id="nav-button" onClick={this.abToggle}>
                   Cancel
                 </Button> */}
               </ModalFooter>
               <Modal isOpen={this.state.signModal} toggle={this.signToggle}>
-                <ModalHeader className = 'modalHeader' toggle={this.signToggle}>Sign Up</ModalHeader>
-                <ModalBody className='modalFooter'>
+                <ModalHeader className="modalHeader" toggle={this.mainSignToggle}>
+                  Sign Up
+                </ModalHeader>
+                <ModalBody className="modalFooter">
                   <Input
                     className="form__input"
                     type="email"
@@ -172,8 +195,10 @@ class Landing extends React.Component {
                     value={this.state.confirmPassword}
                   />
                 </ModalBody>
-                <ModalFooter className='modalFooter'>
-                  <Button id = 'nav-button' onClick={this.handleSubmit} >Submit</Button>
+                <ModalFooter className="modalFooter">
+                  <Button id="nav-button" onClick={this.handleSubmit}>
+                    Submit
+                  </Button>
                   {/* <Button color="primary" onClick={this.signToggle}>
                     Cancel
                   </Button> */}
@@ -184,6 +209,9 @@ class Landing extends React.Component {
         </Nav>
         <Nav id="nav-login" className="nav-login">
           <NavItem id="nav-login-button">
+            <Button id="nav-button" onClick={this.mainSignToggle}>
+              Sign Up
+            </Button>
             <Button id="nav-button" onClick={this.logToggle}>
               Login
             </Button>
@@ -192,28 +220,33 @@ class Landing extends React.Component {
               toggle={this.logToggle}
               className={this.props.className}
             >
-              <ModalHeader className = 'modalHeader' toggle={this.logToggle}>Login</ModalHeader>
+              <ModalHeader className="modalHeader" toggle={this.logToggle}>
+                Login
+              </ModalHeader>
               <ModalBody>
-                <Input 
-                    type="username"
-                    name="username"
-                    placeholder="Username (required, 30 chars max)..."
-                    maxLength="30"
-                    required
-                    onChange={this.handleChange}
-                    value={this.state.username} />
-                <Input 
-                    type="password"
-                    name="password"
-                    placeholder="Password (required, 15 chars max)..."
-                    maxLength="15"
-                    required
-                    onChange={this.handleChange}
-                    value={this.state.password}/>
-
+                <Input
+                  type="username"
+                  name="username"
+                  placeholder="Username (required, 30 chars max)..."
+                  maxLength="30"
+                  required
+                  onChange={this.handleChange}
+                  value={this.state.username}
+                />
+                <Input
+                  type="password"
+                  name="password"
+                  placeholder="Password (required, 15 chars max)..."
+                  maxLength="15"
+                  required
+                  onChange={this.handleChange}
+                  value={this.state.password}
+                />
               </ModalBody>
-              <ModalFooter className = 'modalFooter'> 
-                  <Button id="nav-button" onClick={this.handleLogin}>Confirm</Button>
+              <ModalFooter className="modalFooter">
+                <Button id="nav-button" onClick={this.handleLogin}>
+                  Confirm
+                </Button>
                 {/* <Button color="secondary" onClick={this.logToggle}>
                   Cancel
                 </Button> */}
@@ -221,15 +254,18 @@ class Landing extends React.Component {
             </Modal>
           </NavItem>
         </Nav>
-        </div>
+      </div>
     );
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     users: state.users
   };
 };
 
-export default connect(mapStateToProps, { logIn, addUser })(withRouter(Landing));
+export default connect(
+  mapStateToProps,
+  { logIn, addUser }
+)(withRouter(Landing));

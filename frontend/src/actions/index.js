@@ -96,28 +96,14 @@ export const addUser = (data, history) => dispatch => {
 export const editUser = (update_info) => {
   
   const logged_in_user_id = jwt_decode(localStorage.jwtToken).sub;
-  if (update_info.password && update_info.email){
+  console.log("logged_in_user_id:", logged_in_user_id)
+  
   
   // dispatch({ // React does not recognize... :/
   //   type: EDITINGUSER
   // });
-  axios.put(`${URL}/updateuser/${logged_in_user_id}`, 
-  {
-    username: update_info.email,
-    password: update_info.password
-  })
-} else if (update_info.email){
-  console.log("UPDATE_INFO", update_info)
-  axios.put(`${URL}/updateuser/${logged_in_user_id}`, 
-  {
-    username: update_info.email
-  })
-} else if (update_info.password){
-  axios.put(`${URL}/updateuser/${logged_in_user_id}`, 
-  {
-    password: update_info.password
-  })
-}
+  axios.put(`${URL}/updateuser/${logged_in_user_id}`, update_info)
+
   // .then(response => {
     // dispatch({
     //   type: EDITEDUSER,

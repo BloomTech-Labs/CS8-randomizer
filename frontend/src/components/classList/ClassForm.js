@@ -58,8 +58,13 @@ class ClassForm extends React.Component {
       full_name.push({first_name: item.first_name, last_name: item.last_name})
     })
     console.log("FULL_NAME ARRAY:", full_name)
+    if (classname === ""){
+      alert("Oh no!! Looks like you forgot to add a Class Name!")
+      return
+    } else {
     this.props.addClass({ name: classname, students: full_name });
     this.setState({ classname: "", students: [], firstname: "", lastname: "" });
+    }
   };
 
   compileStudentList = () => {
