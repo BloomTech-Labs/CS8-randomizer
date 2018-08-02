@@ -54,7 +54,7 @@ server.use(morgan('dev'));
 server.use(cors(corsOptions));
 
 // For Heroku:
-mongoose.connect(process.env.MONGOLAB_PUCE_URI || 'mongodb://username:abcd1234@ds161391.mlab.com:61391/lambda-labs', { useNewUrlParser: true })
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://username:abcd1234@ds161391.mlab.com:61391/lambda-labs', { useNewUrlParser: true })
 // For Local:
 // mongoose.connect('mongodb://username:abcd1234@ds161391.mlab.com:61391/lambda-labs', { useNewUrlParser: true })
 
