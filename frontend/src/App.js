@@ -91,7 +91,8 @@ class App extends Component {
                 />
                 <Route
                   exact path={"/classes/:id"}
-                  render={() => <MagicRandomizer />}
+                  // params ={thi}
+                  render={(props) => <MagicRandomizer {...props} />}
                 />
                 <Route exact path={"/billing"} render={() => <Billing />} />
                 <Route exact path={"/about"} render={() => <About />} />
