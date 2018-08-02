@@ -1,5 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
+import ReactDOM from 'react-dom'
+import {CSVLink, CSVDownload} from 'react-csv';
 import {
   Button,
   FormGroup,
@@ -24,6 +26,17 @@ import { addClass, addStudent } from "../../actions";
 import "./form.css";
 
 import uuidv4 from "uuid/v4";
+// const headers = [
+//   {label: 'Classname', key: 'classname'},
+//   {label: 'First Name', key: 'firstname'},
+//   {label: 'Last Name', key: 'lastname'},
+ 
+// ];
+const data = [
+  
+  ['classname','firstname', 'lastname' ] 
+  
+];
 
 class ClassForm extends React.Component {
   constructor(props) {
@@ -153,7 +166,11 @@ class ClassForm extends React.Component {
           <Button id="Add-button" onClick={this.compileStudentList}>
             Add
           </Button>
-          <Button id="Add-button">Import CSV</Button>
+          <Button id="Add-button">
+<span>
+ <CSVLink data={data} onClick={this.compileStudentList}>Import CSV</CSVLink>
+</span>
+</Button>
         </div>
         <div className="List-div">
           <h3>Student List</h3>
