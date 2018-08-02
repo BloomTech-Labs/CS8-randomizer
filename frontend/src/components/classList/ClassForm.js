@@ -5,6 +5,7 @@ import {
   FormGroup,
   Label,
   Input,
+<<<<<<< HEAD
 
   Card,
   CardText,
@@ -16,6 +17,12 @@ import {
   DropdownToggle,
   DropdownItem,
   DropdownMenu,
+=======
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownToggle,
+>>>>>>> 3ac3100bd25ec06aad139664716fb14e60da6438
   UncontrolledButtonDropdown
 } from "reactstrap";
 
@@ -33,7 +40,10 @@ class ClassForm extends React.Component {
       classname: "",
       firstname: "",
       lastname: "",
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3ac3100bd25ec06aad139664716fb14e60da6438
       students: [],
       btnDropleft: false
     };
@@ -49,6 +59,7 @@ class ClassForm extends React.Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
+<<<<<<< HEAD
 
   handleAddClassAndStudents = () => {
     const { classname, students } = this.state;
@@ -65,6 +76,12 @@ class ClassForm extends React.Component {
     this.props.addClass({ name: classname, students: full_name });
     this.setState({ classname: "", students: [], firstname: "", lastname: "" });
     }
+=======
+  handleAddClassAndStudents = () => {
+    const { classname, students } = this.state;
+    this.props.addClass({ name: classname, students: students });
+    this.setState({ classname: "", students: [] });
+>>>>>>> 3ac3100bd25ec06aad139664716fb14e60da6438
   };
 
   compileStudentList = () => {
@@ -73,7 +90,11 @@ class ClassForm extends React.Component {
     const newStudent = {
       first_name: firstname,
       last_name: lastname,
+<<<<<<< HEAD
       component_state_id: uuidv4()
+=======
+      state_id: uuidv4()
+>>>>>>> 3ac3100bd25ec06aad139664716fb14e60da6438
     };
     const students = this.state.students;
     students.push(newStudent);
@@ -133,7 +154,10 @@ class ClassForm extends React.Component {
         <div className="Add-div">
           <h3>Add Students</h3>
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3ac3100bd25ec06aad139664716fb14e60da6438
           <input
             className="firstname-input"
             value={this.state.firstname}
@@ -158,11 +182,18 @@ class ClassForm extends React.Component {
         <div className="List-div">
           <h3>Student List</h3>
           <div>
+<<<<<<< HEAD
 
             {this.state.students.map(obj => {
               var first = obj.first_name;
               var last = obj.last_name;
               var id = obj.component_state_id;
+=======
+            {this.state.students.map(obj => {
+              var first = obj.first_name;
+              var last = obj.last_name;
+              var id = obj.state_id;
+>>>>>>> 3ac3100bd25ec06aad139664716fb14e60da6438
               return (
                 <UncontrolledButtonDropdown
                   direction="left"
