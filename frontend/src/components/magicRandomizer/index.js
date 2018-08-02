@@ -109,7 +109,7 @@ class MagicRandomizer extends Component {
           {/* <div className="studentName">{currentAll.first_name} {currentAll.last_name}</div> */}
           <Button id="Rando-top-button"> Declined </Button>
         </div>
-        <Button className="edit" id="Rando-top-button" href="/:id/edit"> Edit </Button>
+        <Button className="edit" id="Rando-top-button" href={`/${this.state.classid}/edit`}> Edit </Button>
         <div className="caro_container">
           <div className="reset">
           <Button className="reset_border" id="Rando-top-button" onClick={this.resetHandler} >Reset 'All Go'</Button>
