@@ -25,8 +25,6 @@ class MagicRandomizer extends Component {
       participated: 0,
       declined: 0,
       partDecCheck: false,
-
-    
       // participated: Number,
       // declined: Number
     }
@@ -79,7 +77,8 @@ class MagicRandomizer extends Component {
     let studentArray = this.state.students;
     studentPick = studentArray[Math.floor(Math.random() * studentArray.length)];
     this.setState({
-      studentPick: studentPick
+      studentPick: studentPick,
+      partDecCheck: false
     })
   }
 
@@ -89,7 +88,8 @@ class MagicRandomizer extends Component {
       let pick = allArray.splice(Math.floor(Math.random() * allArray.length), 1);
       console.log('p', pick)
       this.setState({
-        allArr: pick[0]
+        allArr: pick[0],
+        partDecCheck: false
       })
     }
     else{
@@ -117,10 +117,24 @@ class MagicRandomizer extends Component {
       })
     }
     else{
-      alert('Participation or Declination Already Tracked. Please Continue To The Next Student!')
+      alert('Participation Already Tracked. Please Continue To The Next Student!')
     }
 
     console.log(this.state.participated);
+  }
+
+  declinedHandler = () => {
+    if(this.state.partDecCheck == false){
+      let declinedAdd = this.state.declined;
+      ++declinedAdd;
+      this.this.setState({
+        declined: declinedAdd,
+        partDecCheck: true
+      })
+    }
+    else{
+      alert('Declination Already Tracked. Please Continue To The Next Student!')
+    }
   }
   
 
@@ -131,6 +145,9 @@ class MagicRandomizer extends Component {
     console.log('rander', this.props);
     let currentStudent = this.state.studentPick;
     let currentAll = this.state.allArr;
+
+    let partDecTrack = this.state.declined / this.state.declined * 100;
+
     // let allTracker = this.state.allstudents.length / this.state.students.length;
     console.log('current student', currentAll.first_name);
     return (
@@ -174,7 +191,7 @@ class MagicRandomizer extends Component {
         </div>
         <div className="part_data">
             <div className="part_data_title">Participation Rate Graph:</div>
-            <div className="part_graph">Participation Graph Goes HERE</div>
+            <div className="part_graph">{partDecTrack}%</div>
             </div>
       </div>
     );
