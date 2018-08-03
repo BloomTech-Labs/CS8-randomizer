@@ -1,6 +1,10 @@
 {
-  "name": "lambda_labs_backend",
-  "version": "0.1.0",
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Notes:",
+  "main": "server.js",
+  "author": "",
+  "license": "ISC",
   "private": true,
   "dependencies": {
     "bcrypt": "^3.0.0",
