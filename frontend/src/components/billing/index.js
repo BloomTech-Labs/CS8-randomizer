@@ -1,40 +1,25 @@
-import React from 'react'
-import StripeCheckout from 'react-stripe-checkout';
-import { Label, Input } from 'reactstrap';
+import "./billing.css";
+import React, { Component } from "react";
+import { Elements, StripeProvider } from "react-stripe-elements";
+import CheckoutForm from "./checkoutForm";
+const {PUBLISH_KEY} = require('./config');
 
 
-import './stripe.css';
- 
-export default class Billing extends React.Component {
-onToken = (token) => {
-   fetch('/save-stripe-token', {
-      method: 'POST',
-      body: JSON.stringify(token),
-    }).then(response => {
-      response.json().then(data => {
-        alert(`We are in business, ${data.email}`);
-      });
-    });
-  }
- 
-  
- 
+class Billing extends Component {
   render() {
     return (
-      // ...
-      <div className='Stripe-div'>
-        <Label check className="Stripe-option-label">
-          1 Year Subscription - $9.99
-        <Input type="checkbox" className="Stripe-option"/>
-        </Label>
-        <StripeCheckout
-          className='Stripe-button'
-          token={this.onToken}
-          stripeKey="pk_live_eL39XfKV3dh9k5mk8Lxch3Yc"
-        />
-
-
+      <div className="billing">
+      <StripeProvider apiKey={PUBLISH_KEY}>
+        <div className="example">
+          <div className="billing_title">Payment Info</div>
+          <Elements className="elements">
+            <CheckoutForm />
+          </Elements>
+        </div>
+      </StripeProvider>
       </div>
     );
   }
 }
+
+export default Billing;
