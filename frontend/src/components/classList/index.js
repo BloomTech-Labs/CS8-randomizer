@@ -12,44 +12,46 @@ class ClassList extends React.Component {
     constructor(props){
         super(props)
         this.state = {
-            classes: this.props.classes
+            classes: [],
+            classEmpt: true
         };
     }
 
     componentDidMount() {
         this.props.getClasses();
+        console.log("this.props.classes from componentDidMount:", this.props.classes)
+        console.log("this.state.classes.length", this.state.classes.length)
+        console.log("this.state.classEmpt:", this.state.classEmpt)
+        if(this.state.classes.length === 0){
+            this.setState({classEmpt: true
+            })
+    }
+
+    else{
+        this.setState({classEmpt:  false
+        })
+    }
     }
     
     render(){
+
+
         
-        // let x = this.props.classes[0]
 
-        // console.log('a', x.name)
-
-        let classEmpt = true;
-
-        if(this.props.classes.length == 0){
-                classEmpt = true
-        }
-
-        else{
-                classEmpt = false
-        }
-
-        console.log('Am I empty inside?', classEmpt);
+        console.log('this.state.classEmpt inside render', this.state.classEmpt);
 
         return(
             <div className='jumbo-div'>
-            { this.classEmpt == true ?  (
+            { this.state.classEmpt == true ?  (
             <div className='jumbo-div'>
                 <Jumbotron fluid id="jumb">
                     <Container fluid>
-                        <h1 className="display-3">Start By Adding A Class</h1>
+                        <div className="display-3">Start By Adding A Class</div>
                         <Nav id="add-button">
                         <NavLink className="NewClass" id="add-plus"><Link to="/create"> + </Link></NavLink>
                         </Nav>
                         <Nav id="createClass">
-                        <NavLink id = 'addButton' href='/classes/create'> add </NavLink>
+                        <NavLink id = 'addButton' href='/create'> add </NavLink>
                         </Nav>
                     </Container>
                 </Jumbotron>
@@ -83,7 +85,7 @@ class ClassList extends React.Component {
                         <NavLink className="NewClass" id="add-plus"><Link to="/create"> + </Link></NavLink>
                         </Nav>
                         <Nav id="createClass">
-                        <NavLink id = 'addButton' href='/classes/create'> add </NavLink>
+                        <NavLink id = 'addButton' href='/create'> add </NavLink>
                         </Nav>
                 </div>
             )}

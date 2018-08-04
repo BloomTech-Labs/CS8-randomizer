@@ -21,6 +21,9 @@ import {
   UncontrolledButtonDropdown
 } from "reactstrap";
 
+import { withRouter } from "react-router-dom";
+
+
 import { addClass, addStudent } from "../../actions";
 
 import "./form.css";
@@ -71,11 +74,12 @@ class ClassForm extends React.Component {
       full_name.push({first_name: item.first_name, last_name: item.last_name})
     })
     console.log("FULL_NAME ARRAY:", full_name)
+    console.log("this.props.history:", this.props.history)
     if (classname === ""){
       alert("Oh no!! Looks like you forgot to add a Class Name!")
       return
     } else {
-    this.props.addClass({ name: classname, students: full_name });
+    this.props.addClass({ name: classname, students: full_name }, this.props.history);
     this.setState({ classname: "", students: [], firstname: "", lastname: "" });
     }
   };
@@ -217,7 +221,7 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   { addClass, addStudent }
-)(ClassForm);
+)(ClassForm));

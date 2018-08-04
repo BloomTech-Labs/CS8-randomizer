@@ -3,9 +3,13 @@ import React, { Component } from "react";
 import {Button, FormGroup, Label, Input} from 'reactstrap'; 
 import { Link } from 'react-router-dom';
 import { getClasses } from '../../actions';
+import swal from "sweetalert";
+
  
 import "./magicRandomizer.css";
 import { connect } from "react-redux";
+
+
 
 class MagicRandomizer extends Component {
 
@@ -81,7 +85,8 @@ class MagicRandomizer extends Component {
       })
     }
     else{
-      alert('Please Reset!')
+      this.resetHandler()
+      swal({icon: "warning", text: `"${this.props.location.state.class.name}" Randomizer has been reset!`})
     }
   }
 

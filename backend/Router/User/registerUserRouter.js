@@ -9,21 +9,21 @@ const cors = require('cors');
 // const JwtStrategy = require('passport-jwt').Strategy;
 // const passport = require('passport');
 // const LocalStrategy = require('passport-local');
-const jwt = require('jsonwebtoken');
+// const jwt = require('jsonwebtoken');
 
-const secret = 'no size limit on tokens';
+// const secret = 'no size limit on tokens';
 
-function makeToken(user) {
-  const timestamp = new Date().getTime();
-  const payload = {
-    sub: user._id,
-    username: user.username,
-    iat: timestamp
-  };
+// function makeToken(user) {
+//   const timestamp = new Date().getTime();
+//   const payload = {
+//     sub: user._id,
+//     username: user.username,
+//     iat: timestamp
+//   };
 
-  const options = { expiresIn: '300000' }; // 300,000 milliseconds or 5 minutes
-  return jwt.sign(payload, secret, options);
-}
+//   const options = { expiresIn: '300000' }; // 300,000 milliseconds or 5 minutes
+//   return jwt.sign(payload, secret, options);
+// }
 
 // const localStrategy = new LocalStrategy(function(username, password, done) {
 //   User.findOne({ username }, function(err, user) {
@@ -83,13 +83,15 @@ const User = require('../../Schemas/User.js');
 //endpoints
 router.post('/', function(req, res) {
   const credentials = req.body;
+  console.log("registerUser req.body:", req.body)
   const user = new User(credentials);
   
   user.save().then(inserted => {
     
-    const token = makeToken(inserted);
-    console.log('inserted',inserted)
-    res.status(201).json(token);
+    // const token = makeToken(inserted);
+    // console.log('inserted:',inserted)
+    // res.status(201).json(token);
+    res.status(201).json(inserted); // no token
   });
 });
 
