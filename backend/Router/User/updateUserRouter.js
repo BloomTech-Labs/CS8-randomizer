@@ -41,7 +41,8 @@ router
       { _id: id },
       {
         username: updateInfo.username,
-        password: updateInfo.password
+        password: updateInfo.password,
+        
       }
     )
       .then(response => {

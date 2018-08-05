@@ -44,6 +44,8 @@ const deleteUserRouter = require('./Router/User/deleteUserRouter.js');
 const updateUserRouter = require('./Router/User/updateUserRouter.js');
 const addtoUserRouter = require('./Router/User/addtoUserRouter.js');
 const removefromUserRouter = require('./Router/User/removefromUserRouter.js');
+const stripepaymentUserRouter = require('./Router/User/stripepaymentUserRouter.js');
+
 
 const server = express();
 
@@ -91,5 +93,10 @@ server.use('/api/deleteuser/', deleteUserRouter);
 server.use('/api/updateuser/', updateUserRouter);
 server.use('/api/addtouser/', addtoUserRouter); // Adds classes to ref arrays
 server.use('/api/removefromuser/', removefromUserRouter);
+server.use('/api/charge/', stripepaymentUserRouter);
+
+
+
+
 
 server.listen(port, () => console.log('API on port 5000...or wherever Heroku is'));

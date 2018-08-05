@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
+const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
 const ObjectId = mongoose.Schema.Types.ObjectId;
 
 const userSchema = new mongoose.Schema({
@@ -17,11 +17,14 @@ const userSchema = new mongoose.Schema({
   classes: [
     {
       type: ObjectId,
-      ref: 'Class'
+      ref: "Class"
     }
-  ]
+  ],
+  subscription: {
+    type: String,
+    default: "trial"
+  }
 });
-
 
 // userSchema.pre('update', function(next) {
 //   this.findOne({"_id":this.getUpdate().$set._id},function(err, doc){
@@ -32,7 +35,8 @@ const userSchema = new mongoose.Schema({
 //   })
 // });
 
-userSchema.pre('save', function(next) { // Do this before any call of save() method
+userSchema.pre("save", function(next) {
+  // Do this before any call of save() method
   bcrypt.hash(this.password, 10).then(hash => {
     this.password = hash;
     next();
@@ -48,6 +52,4 @@ userSchema.methods.verifyPassword = function(guess, callback) {
   });
 };
 
-module.exports = mongoose.model('User', userSchema, 'users');
-
-
+module.exports = mongoose.model("User", userSchema, "users");
