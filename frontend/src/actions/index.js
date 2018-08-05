@@ -2,9 +2,6 @@ import axios from "axios";
 import jwt_decode from "jwt-decode";
 import swal from "sweetalert";
 
-// NEED GETTINGUSERS
-// NEED GOTUSERS
-
 export const ADDINGUSER = "ADDINGUSER";
 export const ADDEDUSER = "ADDEDUSER";
 
@@ -38,6 +35,7 @@ export const ERROR = "ERROR";
 const URL = "http://localhost:5000/api";
 
 export const logIn = (user, history) => dispatch => {
+  localStorage.clear();
   axios
     .post(`${URL}/login`, {
       username: user.username,
@@ -53,19 +51,22 @@ export const logIn = (user, history) => dispatch => {
       //   } else {
       //     delete axios.defaults.headers.common.Authorization;
       //   }
-      swal("You are logged in!");
+      
       const decoded_token = jwt_decode(token);
       dispatch({ type: LOGGEDIN, payload: decoded_token });
 
-      window.location.reload(true); // Fixes bug where url appears but page does not load
+       // Fixes bug where url appears but page does not load
+       window.location.reload(true); // TODO: Fix this so that you are only using withRouter redirects
+      // swal({ icon: "success", text: "You are logged in!" }); // TODO: Find a way to have this render properly
     })
     .catch(err => {
       dispatch({ type: ERROR, payload: err });
       swal({
         icon: "error",
-        text: "There was a user error while logging in, please try again"
+        text: "Well that didn't work! Click Signup to create a new account!"
       });
     });
+    
 };
 
 export const logOut = () => dispatch => {
@@ -94,18 +95,19 @@ export const addUser = data => dispatch => {
         dispatch({ type: ADDEDUSER, payload: res });
         swal({
           icon: "success",
-          text: "You are registered! Click on Login to start magic randomizing!"
+          text:
+            "You are registered! Click on Login to start magic randomizing!"
         });
       })
       .catch(err => {
         dispatch({ type: ERROR, payload: err });
         swal({
           icon: "error",
-          text: "There was a user error while logging in, please try again"
+          text: "There was a user error while registering a new user"
         });
       });
   } else if (axios.get(`${URL}/users`).response.data.length > 0) {
-    // Check if username already exists in database:
+    //  If username is already taken, send sweet alert, else add the user.
     axios
       .get(`${URL}/users`)
       .then(response => {
@@ -141,7 +143,7 @@ export const addUser = data => dispatch => {
                 swal({
                   icon: "error",
                   text:
-                    "There was a user error while logging in, please try again"
+                    "We're sorry! There was an error in processing your registration.  Please check back soon!"
                 });
               });
           }
@@ -153,55 +155,67 @@ export const addUser = data => dispatch => {
   }
 };
 
-export const editUser = update_info => {
-  const logged_in_user_id = jwt_decode(localStorage.jwtToken).sub;
-  console.log("logged_in_user_id:", logged_in_user_id);
+export const editUser = (update_info, history) => dispatch => {
+  const logged_in_user_id = jwt_decode(localStorage.jwtToken).sub + "";
+  console.log("typeof logged_in_user_id:", typeof logged_in_user_id);
+  console.log("typeof update_info", typeof update_info);
 
-  // dispatch({ // React does not recognize... :/
-  //   type: EDITINGUSER
-  // });
-  axios.put(`${URL}/updateuser/${logged_in_user_id}`, update_info);
+  dispatch({
+    type: EDITINGUSER
+  });
+  axios
+    .put(`${URL}/updateuser/${logged_in_user_id}`, update_info)
 
-  // .then(response => {
-  // dispatch({
-  //   type: EDITEDUSER,
-  //   class_data: response.data
-  // });
-  // })
-  // .catch()
+    .then(response => {
+      dispatch({
+        type: EDITEDUSER,
+        class_data: response.data
+      });
+      swal({ icon: "success", text: "Username and password updated!" });
+      history.push("../classes");
+    })
+    .catch(err => {
+      dispatch({ type: ERROR, errorMessage: "Error updating user." });
+      swal({
+        icon: "error",
+        text:
+          "Sorry! We were unable to update your username and password! Please try again later!"
+      });
+    });
 };
 
 export const getClasses = () => dispatch => {
-  if (axios.get(`${URL}/classes`).response === undefined) {
-    dispatch({ type: GOTCLASSES, classes: [] });
-    return
-  } else {
-    dispatch({
-      type: GETTINGCLASSES
-    });
+  // if (axios.get(`${URL}/classes`).response === undefined) {
+  //   console.log('axios.get(`${URL}/classes`).response === undefined')
+  //   dispatch({ type: GOTCLASSES, classes: [] });
+  //   return
+  // }
 
-    axios
-      .get(`${URL}/classes`)
-      .then(response => {
-        console.log("RESPONSE FROM GETCLASSES", response.data.length);
-        const logged_in_user_id = jwt_decode(localStorage.jwtToken).sub;
-        const all_classes = response.data;
-        const user_classes = [];
-        console.log("logged_in_user_id", logged_in_user_id);
-        console.log("ALL_CLASSES", all_classes);
-        all_classes.map(item => {
-          if (item.users[0]._id === logged_in_user_id) {
-            user_classes.push(item);
-          }
-        });
+  dispatch({
+    type: GETTINGCLASSES
+  });
 
-        console.log("USER_CLASSES", user_classes);
-        dispatch({ type: GOTCLASSES, classes: user_classes });
-      })
-      .catch(err => {
-        dispatch({ type: ERROR, errorMessage: "Error fetching the data..." });
+  axios
+    .get(`${URL}/classes`)
+    .then(response => {
+      console.log("RESPONSE FROM GETCLASSES", response.data.length);
+      const logged_in_user_id = jwt_decode(localStorage.jwtToken).sub;
+      const all_classes = response.data;
+      const user_classes = [];
+      console.log("logged_in_user_id", logged_in_user_id);
+      console.log("ALL_CLASSES", all_classes);
+      all_classes.map(item => {
+        if (item.users[0]._id === logged_in_user_id) {
+          user_classes.push(item);
+        }
       });
-  }
+
+      console.log("USER_CLASSES", user_classes);
+      dispatch({ type: GOTCLASSES, classes: user_classes });
+    })
+    .catch(err => {
+      dispatch({ type: ERROR, payload: err });
+    });
 };
 
 export const addClass = (class_data, history) => dispatch => {
@@ -211,9 +225,11 @@ export const addClass = (class_data, history) => dispatch => {
   const user_id = decoded_token.sub;
   // const combine = {...class_data, users: decoded_token.sub}
   if (class_data.students.length === 0) {
-    swal(
-      "Ooops! Please 'Add' at least one student before clicking 'Submit' :D"
-    );
+    swal({
+      icon: "error",
+      text:
+        "Ooops! Please 'Add' at least one student before clicking 'Submit' :D"
+    });
     return;
   }
   // TODO: Write an 'else if' which throws an swal error if a person tries to add a class with a name that already exists!
@@ -274,6 +290,11 @@ export const addClass = (class_data, history) => dispatch => {
             // .catch(err => {
             //   dispatch({ type: ERROR, payload: err });
             // });
+            swal({
+              icon: "success",
+              text: "Congratulations! You created a new class!"
+            });
+            history.push("../classes");
           })
           .catch(res => {
             dispatch({
@@ -285,8 +306,6 @@ export const addClass = (class_data, history) => dispatch => {
       .catch(err => {
         dispatch({ type: ERROR, errorMessage: "Error creating class..." });
       });
-    swal("Congratulations! You created a new class!");
-    history.push("../classes");
   }
 };
 
