@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import './index.css';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import { Reducer } from './reducers'
 import logger from 'redux-logger';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -11,9 +11,22 @@ import thunk from 'redux-thunk';
 import Setting from './components';
 import Billing from './components';
 
-// const store = createStore(noteReducer, applyMiddleware(logger, thunk));
-const store = createStore(Reducer, applyMiddleware(logger, thunk));
+// Redux Thunk:
+// const store = createStore(Reducer, applyMiddleware(logger, thunk));
+// ====== Redux Thunk ONLY
 
+// Redux DevTools:
+const composeEnhancers =
+  typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
+    : compose;
+
+const enhancer = composeEnhancers(applyMiddleware(thunk, logger));
+// ====== END Redux DevTools
+
+
+
+const store = createStore(Reducer, enhancer);
 
 ReactDOM.render(
     <Provider store={store}>
