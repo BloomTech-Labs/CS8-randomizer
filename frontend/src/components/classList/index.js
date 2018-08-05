@@ -12,7 +12,10 @@ class ClassList extends React.Component {
     constructor(props){
         super(props)
         this.state = {
-            classes: this.props.classes
+            classes: this.props.classes,
+            participation: this.props.participation,
+            allMode: this.props.allMode,
+
         };
     }
 

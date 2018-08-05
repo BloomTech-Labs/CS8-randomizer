@@ -33,8 +33,8 @@ export const DELETEDSTUDENT = "DELETEDSTUDENT";
 
 export const ERROR = "ERROR";
 
-const URL = "https://lambda-labs-backend.herokuapp.com/api";
-// const URL = "http://localhost:5000/api";
+// const URL = "https://lambda-labs-backend.herokuapp.com/api";
+const URL = "http://localhost:5000/api";
 
 export const logIn = (user, history) => dispatch => {
   axios
@@ -172,6 +172,7 @@ export const addClass = class_data => dispatch => {
       .post(`${URL}/createclass`, {
         name: class_data.name,
         students: class_data.students,
+        allMode: class_data.allMode,
         users: user_id
       })
       .then(response => {

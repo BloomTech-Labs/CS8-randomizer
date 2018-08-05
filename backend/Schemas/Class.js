@@ -29,7 +29,12 @@ const classSchema = new mongoose.Schema(
       type: Number
     },
     participation: {
-      type: Number
+      type: Number,
+      default: 0,
+    },
+    allMode: {
+      type: Boolean,
+      default: false,
     },
     students: [subSchema],
     users: [{ type: ObjectId, ref: 'User' }]
