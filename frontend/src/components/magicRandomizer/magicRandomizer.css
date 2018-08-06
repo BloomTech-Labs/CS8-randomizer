@@ -30,8 +30,12 @@
   width: 10%;
   text-align: center;
   height: 50px;
-  margin-left: 5.5%;  
-  margin-top: 1%;  
+  margin-left: 6.3%;  
+  margin-top: .4%;  
+  padding-top: .7%;
+  background: #584573;
+  color: white;
+  border: 1px solid #584573;
   /* background: orange; */
 }
 
@@ -66,7 +70,7 @@
   /* TODO: Remove this hack */
   border: 2px dashed black;
   /* line-height: 0.6; */
-  padding: 10px;
+  padding: 10px 19px;
   
   /* padding-right: 2%; */
   height: 60px;  
@@ -217,7 +221,7 @@ transition: all 0.5 s ease;
 
 .part_data_title {
   margin-bottom: 15px;
-  margin-left: 3.5%;
+  margin-left: 4.5%;
   text-align: center;
   font-size: 120%;
 }
@@ -227,7 +231,7 @@ transition: all 0.5 s ease;
   margin-left: 10%;
   margin-right: 10%;
   height: 300px;
-  padding-left: 39%;
+  padding-left: 38%;
   padding-top: 4%;
   font-size: 500%;
   border: 2px solid #584573;
