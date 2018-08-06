@@ -17,7 +17,7 @@ import {
   DropdownToggle,
   DropdownItem,
   DropdownMenu,
-  UncontrolledButtonDropdown
+  ButtonDropdown
 } from "reactstrap";
 
 import { withRouter } from "react-router-dom";
@@ -106,9 +106,14 @@ class ClassForm extends React.Component {
     // console.log("compileStudentList running:", this.state.students);
   };
 
-  removeStudent = id => {
-    console.log("id from removeStudent:", id);
+  removeStudent = (event) => {
+    console.log('x', event.target._id);
     const students = this.state.students;
+    students.splice(event.target.id, 1);
+
+    this.setState({
+      students: students
+    })
   };
 
   handleAddStudent = () => {
@@ -188,6 +193,7 @@ class ClassForm extends React.Component {
               </div>
             </div>
           </div>
+
           <div className="List-box">
             <div className="List-box_content">
               <div className="title title_student-list">Student List</div>
@@ -228,6 +234,7 @@ class ClassForm extends React.Component {
           </div>
         </div>
       </div>
+
     );
   }
 }

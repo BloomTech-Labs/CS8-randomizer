@@ -95,6 +95,7 @@ class ClassList extends React.Component {
       </div>
     );
   }
+
 }
 
 const mapStateToProps = state => {
