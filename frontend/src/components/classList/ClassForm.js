@@ -1,3 +1,4 @@
+import { withRouter } from "react-router-dom";
 import React from "react";
 import { connect } from "react-redux";
 import ReactDOM from "react-dom";
@@ -7,23 +8,10 @@ import {
   FormGroup,
   Label,
   Input,
-  Card,
-  CardText,
-  CardImg,
-  CardBody,
-  CardTitle,
-  CardSubtitle,
-  Dropdown,
-  DropdownToggle,
-  DropdownItem,
-  DropdownMenu,
-  ButtonDropdown
 } from "reactstrap";
 
-import { withRouter } from "react-router-dom";
-
 import { addClass, addStudent } from "../../actions";
-
+import swal from "sweetalert";
 import "./form.css";
 
 import uuidv4 from "uuid/v4";
@@ -43,14 +31,20 @@ class ClassForm extends React.Component {
       classname: "",
       firstname: "",
       lastname: "",
-
+      participated: 0,
+      allMode: false,
+      partMode: false,
       students: [],
       btnDropleft: false
     };
   }
 
   toggle = () => {
-    this.setState({ btnDropleft: !this.state.btnDropleft });
+    this.setState({ allMode: !this.state.allMode });
+  };
+
+  partToggle = () => {
+    this.setState({ partMode: !this.state.partMode });
   };
 
   handleInputChange = event => {
@@ -70,9 +64,17 @@ class ClassForm extends React.Component {
       });
     });
     console.log("FULL_NAME ARRAY:", full_name);
-    console.log("this.props.history:", this.props.history);
     if (classname === "") {
-      alert("Oh no!! Looks like you forgot to add a Class Name!");
+      swal({
+        icon: "error",
+        text: "Oh no!! Looks like you forgot to add a Class Name!"
+      });
+      return;
+    } else if (students === []) {
+      swal({
+        icon: "error",
+        text: "Sorry! You must add at least one student to create a class!"
+      });
       return;
     } else {
       this.props.addClass(
@@ -90,30 +92,49 @@ class ClassForm extends React.Component {
 
   compileStudentList = () => {
     // This runs every time the `Add` button is pressed
-    const { firstname, lastname } = this.state;
-    const newStudent = {
-      first_name: firstname,
-      last_name: lastname,
-      component_state_id: uuidv4()
-    };
-    const students = this.state.students;
-    students.push(newStudent);
-    this.setState({
-      students: students,
-      firstname: "",
-      lastname: ""
-    });
-    // console.log("compileStudentList running:", this.state.students);
+    const { firstname, lastname, participated, allMode, partMode } = this.state;
+    if (firstname === "") {
+      swal({
+        icon: "error",
+        text: "Oops!! Looks like you forgot to add a first name!"
+      });
+      return;
+    } else if (lastname === "") {
+      swal({
+        icon: "error",
+        text: "Oops!! Looks like you forgot to add a last name!"
+      });
+      return;
+    }else {
+      const newStudent = {
+        first_name: firstname,
+        last_name: lastname,
+        component_state_id: uuidv4(),
+        participated: participated,
+        allMode: allMode,
+        partMode: partMode
+      };
+      const students = this.state.students;
+      students.push(newStudent);
+      this.setState({
+        students: students,
+        firstname: "",
+        lastname: "",
+        participated: 0,
+        allMode: false
+      });
+      // console.log("compileStudentList running:", this.state.students);
+    }
   };
 
-  removeStudent = (event) => {
-    console.log('x', event.target._id);
+  removeStudent = event => {
+    console.log("x", event.target._id);
     const students = this.state.students;
     students.splice(event.target.id, 1);
 
     this.setState({
       students: students
-    })
+    });
   };
 
   handleAddStudent = () => {
@@ -193,48 +214,41 @@ class ClassForm extends React.Component {
               </div>
             </div>
           </div>
-
           <div className="List-box">
             <div className="List-box_content">
               <div className="title title_student-list">Student List</div>
+
               <div>
+               
                 {this.state.students.map(obj => {
                   var first = obj.first_name;
                   var last = obj.last_name;
                   var id = obj.component_state_id;
                   return (
-                    <UncontrolledButtonDropdown
-                      direction="left"
-                      onClick={this.toggle}
-                      value={first}
+                    <Button
+                      id="student-button"
+                      onClick={this.removeStudent}
+                      _id={id}
                     >
-                      <DropdownToggle caret>
-                        {first + " " + last}
-                      </DropdownToggle>
-                      <DropdownMenu>
-                        <DropdownItem>
-                          <div onClick={this.removeStudent(id)}>Remove</div>
-                        </DropdownItem>
-                      </DropdownMenu>
-                    </UncontrolledButtonDropdown>
+                      x {first + " " + last}
+                    </Button>
                   );
                 })}
-                
-              </div>
               
+              </div>
             </div>
+
             <div className="submitButton-box">
-            <Button
-                  id="Class-submit-button"
-                  onClick={this.handleAddClassAndStudents}
-                >
-                  Submit
-                </Button>
-                </div>
+              <Button
+                id="Class-submit-button"
+                onClick={this.handleAddClassAndStudents}
+              >
+                Submit
+              </Button>
+            </div>
           </div>
         </div>
       </div>
-
     );
   }
 }

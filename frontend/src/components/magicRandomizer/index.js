@@ -25,9 +25,10 @@ class MagicRandomizer extends Component {
       studentPick:[],
       allstudents:[],
       allArr:[],
-      allPick: false,
-      participated: 0,
-      declined: 0,
+      allPick: this.props.location.state.class.allMode,
+      randInit: false,
+      participated: this.props.location.state.class.participation,
+      // declined: 0,
       partDecCheck: false,
       // participated: Number,
       // declined: Number
@@ -35,8 +36,9 @@ class MagicRandomizer extends Component {
   }
 
   toggle = () => {
-    this.setState({ allPick: !this.state.allPick })
-
+    // this
+    this.props.location.state.class.allMode = !this.props.location.state.class.allMode,
+    this.setState({ allPick: this.props.location.state.class.allMode, })
     console.log(this.state.allPick);
   }
 
@@ -97,48 +99,65 @@ class MagicRandomizer extends Component {
       })
     }
     else{
-      this.resetHandler()
-      swal({icon: "warning", text: `"${this.props.location.state.class.name}" Randomizer has been reset!`})
+      // this.resetHandler()
+      swal({icon: "warning", text: `"Please reset ${this.props.location.state.class.name}" Randomizer!`})
     }
   }
 
   resetHandler = () => {
-    let studentsCopy = this.state.students.slice(0);
-    this.setState({
-      allstudents: studentsCopy
-    })
-
+    // let studentsCopy = this.state.students.slice(0);
+    // this.setState({
+    //   allstudents: studentsCopy
+    // })
+    ++this.props.location.state.class.participation;
     // return this.state.allstudents = this.state.students.slice(0);
   }
 
   participatedHandler = () => {
     
     if(this.state.partDecCheck == false){
-      let participateAdd = this.state.participated;
-      ++participateAdd
+      // let participateAdd = this.state.participated;
+      // let participateAdd = this.props.location.state.class.participation;
+      ++this.props.location.state.class.participation;
+      // ++participateAdd
       this.setState({
-        participated: participateAdd,
-        partDecCheck: true
+        participated: this.props.location.state.class.participation,
+        partDecCheck: true,
+        // randInit: true,
       })
+      console.log(this.state);
     }
     else{
       alert('Participation Already Tracked. Please Continue To The Next Student!')
     }
 
-    console.log(this.state.participated);
+    // console.log(this.state.participated);
   }
 
   declinedHandler = () => {
     if(this.state.partDecCheck == false){
-      let declinedAdd = this.state.declined;
-      ++declinedAdd;
-      this.this.setState({
-        declined: declinedAdd,
-        partDecCheck: true
+      let participateSub = this.state.participated;
+      --participateSub;
+      this.setState({
+        participated: participateSub,
+        partDecCheck: true,
+        randInit: true,
       })
     }
     else{
       alert('Declination Already Tracked. Please Continue To The Next Student!')
+    }
+  }
+
+  participationTracker = () => {
+    // let declined = this.state.declined;
+    let participated = this.state.participated;
+
+    if(participated == 0){
+      return 0;
+    }
+    else{
+      return participated / this.state.students.length * 100;
     }
   }
   
@@ -147,11 +166,12 @@ class MagicRandomizer extends Component {
 
   render() {
     console.log('radneee', this.studentPick)
-    console.log('rander', this.props);
+    console.log('rander', this
+  );
     let currentStudent = this.state.studentPick;
     let currentAll = this.state.allArr;
 
-    let partDecTrack = this.state.declined / this.state.declined * 100;
+    // let partDecTrack = ((this.state.declined / this.state.participated) * 100);
 
     // let allTracker = this.state.allstudents.length / this.state.students.length;
     console.log('current student', currentAll.first_name);
@@ -168,19 +188,27 @@ class MagicRandomizer extends Component {
           <div className="studentName">{currentStudent.first_name} {currentStudent.last_name}</div>
         ) }
           {/* <div className="studentName">{currentAll.first_name} {currentAll.last_name}</div> */}
-          <Button id="Rando-top-button"> Declined </Button>
+          <Button id="declined" onClick={this.declinedHandler}> Declined </Button>
         </div>
         <Button className="edit" id="Rando-top-button" href={`/${this.state.classid}/edit`}> Edit </Button>
         <div className="caro_container">
           <div className="reset">
-          <Button className="reset_border" id="Rando-top-button" onClick={this.resetHandler} >Reset 'All Go'</Button>
-            <FormGroup check>
+            
+
+           <Button className="reset_border" id="AllGo-button" onClick={this.resetHandler} >Reset 'All Go'</Button>
+           <Button id="AllGo-button" onClick={this.toggle}>Toggle All Go:{this.state.allPick == false ? (<div>Off</div>):(<div>On</div>)}</Button>
+
+           
+            {/* <FormGroup check>
               <Label check>
               <Input onClick={this.toggle} type='checkbox' /> {' '}
               Toggle All Go
               </Label>
-              </FormGroup>
-            <div className="allgo-tracker">{this.state.allstudents.length} / {this.state.students.length}</div>
+              </FormGroup>  */}
+
+            <div className="allgo-tracker">{this.state.allstudents.length} / {this.state.students.length}<br/> (?) 
+              <p>Participated / Total Students</p>
+            </div>
           </div>
           <div className="caros">
             {/* <Carousel /> */} 
@@ -195,8 +223,9 @@ class MagicRandomizer extends Component {
           
         </div>
         <div className="part_data">
-            <div className="part_data_title">Participation Rate Graph:</div>
-            <div className="part_graph">{partDecTrack}%</div>
+
+            <div className="part_data_title">Overall Class Participation Rate <br/> ↓ </div>
+            <div className="part_graph">{this.participationTracker()}%</div>
             </div>
       </div>
     );

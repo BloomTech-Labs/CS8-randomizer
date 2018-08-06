@@ -36,7 +36,8 @@ class Landing extends React.Component {
       // isAuth: this.props.auth
       username: "",
       password: "",
-      confirmPassword: ""
+      confirmPassword: "",
+
     };
   }
 
@@ -73,6 +74,7 @@ class Landing extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
+    
     if (this.state.confirmPassword !== this.state.password) {
       swal({ icon: "error", text: "Passwords do not match" });
       return;
@@ -91,6 +93,8 @@ class Landing extends React.Component {
       });
       return;
     }
+
+
     this.props.addUser(
       {
         username: this.state.username.trim(),
@@ -105,8 +109,14 @@ class Landing extends React.Component {
       dropdownOpen: false,
       signModal: false,
       logModal: false,
-      abModal: false
+      abModal: false,
     });
+
+    
+
+  
+
+    
   };
 
   handleLogin = event => {
@@ -140,12 +150,15 @@ class Landing extends React.Component {
   };
 
   render() {
+
+  
+
     return (
       <div className="landing">
         <Nav className="nav">
           <NavItem className="nav-about">
             <NavLink>
-              <Button id="nav-button" onClick={this.abToggle}>
+              <Button id="about-button" onClick={this.abToggle}>
                 About Magic Randomizer
               </Button>
             </NavLink>
@@ -161,8 +174,8 @@ class Landing extends React.Component {
               </ModalHeader>
               <ModalFooter className="modalFooter">
                 <p className="description">
-                  Magic Randomiser is a web app that allows teachers to pick
-                  students randomly to call on in class. This allows the teacher
+                  Magic Randomizer is a web app that allows teachers to pick
+                  students randomly to call on in class. It also features an "All Pick" mode allows the teacher
                   to make sure that all students get a chance to answer a
                   question before they are called on a second time.
                 </p>
@@ -216,9 +229,7 @@ class Landing extends React.Component {
                   <Button id="nav-button" onClick={this.handleSubmit}>
                     Submit
                   </Button>
-                  {/* <Button color="primary" onClick={this.signToggle}>
-                    Cancel
-                  </Button> */}
+                
                 </ModalFooter>
               </Modal>
             </Modal>
@@ -264,7 +275,6 @@ class Landing extends React.Component {
                 <Button id="nav-button" onClick={this.mainSignToggle}>
                   Signup
                 </Button>
-                <div className="invisibleBlock" />
                 <Button id="nav-button" onClick={this.handleLogin}>
                   Confirm
                 </Button>
@@ -273,6 +283,7 @@ class Landing extends React.Component {
                 </Button> */}
               </ModalFooter>
             </Modal>
+      
           </NavItem>
         </Nav>
       </div>

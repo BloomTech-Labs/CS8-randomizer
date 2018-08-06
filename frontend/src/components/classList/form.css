@@ -147,6 +147,15 @@
   /* border: 5px solid magenta; */
 }
 
+.List-display{
+  margin-bottom: 20%;
+}
+
+#student-button:hover{
+  background-color: rgb(56, 3, 49);
+
+}
+
 #Class-submit-button.btn.btn-secondary {
   /* margin-left: -18%;
       margin-top: 4.5%; */
@@ -178,6 +187,8 @@
   border-radius: 0%;
   margin: 2px;
 }
+
+
 
 @media (max-width: 1070px) {
   .Form-div {

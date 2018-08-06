@@ -17,9 +17,9 @@ import { getClasses } from "../../actions";
 import "./index.css";
 
 class ClassList extends React.Component {
+
   componentDidMount() {
     this.props.getClasses();
-
     console.log(
       "this.props.classes from componentDidMount:",
       this.props.classes
