@@ -194,8 +194,10 @@ class MagicRandomizer extends Component {
         <div className="caro_container">
           <div className="reset">
             
-           <Button className="reset_border" id="Rando-top-button" onClick={this.resetHandler} >Reset 'All Go'</Button>
-           <Button onClick={this.toggle}>Toggle All Go:{this.state.allPick == false ? (<div>Off</div>):(<div>On</div>)}</Button>
+
+           <Button className="reset_border" id="AllGo-button" onClick={this.resetHandler} >Reset 'All Go'</Button>
+           <Button id="AllGo-button" onClick={this.toggle}>Toggle All Go:{this.state.allPick == false ? (<div>Off</div>):(<div>On</div>)}</Button>
+
            
             {/* <FormGroup check>
               <Label check>
@@ -203,7 +205,10 @@ class MagicRandomizer extends Component {
               Toggle All Go
               </Label>
               </FormGroup>  */}
-            <div className="allgo-tracker">{this.state.allstudents.length} / {this.state.students.length}</div>
+
+            <div className="allgo-tracker">{this.state.allstudents.length} / {this.state.students.length}<br/> (?) 
+              <p>Participated / Total Students</p>
+            </div>
           </div>
           <div className="caros">
             {/* <Carousel /> */} 
@@ -218,7 +223,8 @@ class MagicRandomizer extends Component {
           
         </div>
         <div className="part_data">
-            <div className="part_data_title">Participation Rate Graph:</div>
+
+            <div className="part_data_title">Overall Class Participation Rate <br/> ↓ </div>
             <div className="part_graph">{this.participationTracker()}%</div>
             </div>
       </div>

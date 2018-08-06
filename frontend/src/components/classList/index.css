@@ -1,3 +1,5 @@
+
+@media(min-width: 801px){
 .Class-div{
     display: flex;
     flex-wrap: wrap;
@@ -143,7 +145,9 @@
     text-align: center;
 } */
 
-@media (max-width: 1070px){
+}
+
+@media (max-width: 800px){
     .jumbo-div{
         /* margin-bottom: 50%; */
         display: flex;
