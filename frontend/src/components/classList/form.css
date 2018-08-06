@@ -3,7 +3,7 @@
   flex-wrap: wrap;
   width: 100%;
   height: 100%;
-  background-color: hsl(263, 60%, 80%);
+  background-color: rgb(229, 229, 229);
 }
 
 .Form-container {
@@ -19,8 +19,8 @@
 .Form-container_left {
   width: 480px;
   height: 100%;
-  /* border: 5px solid gold; */
-  background: hsl(263, 60%, 70%);
+  border: 5px solid white;
+  /* background: hsl(263, 60%, 70%); */
   /* background:#775d9b */
 }
 

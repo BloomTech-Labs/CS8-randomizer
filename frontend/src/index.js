@@ -15,7 +15,7 @@ import Billing from './components';
 // const store = createStore(Reducer, applyMiddleware(logger, thunk));
 // ====== Redux Thunk ONLY
 
-// Redux DevTools:
+// Redux DevTools (https://github.com/zalmoxisus/redux-devtools-extension):
 const composeEnhancers =
   typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
@@ -23,8 +23,6 @@ const composeEnhancers =
 
 const enhancer = composeEnhancers(applyMiddleware(thunk, logger));
 // ====== END Redux DevTools
-
-
 
 const store = createStore(Reducer, enhancer);
 
