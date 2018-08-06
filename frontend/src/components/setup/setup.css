@@ -10,6 +10,12 @@
     padding: 4% 2% 0;
 }
 
+.set-div_title {
+    margin-top: 10px;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
 .set-div button{
     margin-left: .2%;
     background-color: #322842;

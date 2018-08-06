@@ -1,16 +1,16 @@
 const express = require("express");
 const router = express.Router();
-// const { authenticate } = require("../authenticate.js"); // DOES NOT WORK?
+const User = require("../../Schemas/User.js");
 
-// // ============ from ROUTES ============= //
 // Libraries:
-const { ExtractJwt } = require('passport-jwt');
-const JwtStrategy = require('passport-jwt').Strategy;
-const passport = require('passport');
-const LocalStrategy = require('passport-local');
-const jwt = require('jsonwebtoken');
 
-const secret = 'no size limit on tokens';
+const passport = require("passport");
+const LocalStrategy = require("passport-local");
+const jwt = require("jsonwebtoken");
+
+const secret = "no size limit on tokens"; // TODO: HIDE THIS IN PRODUCTION
+
+// Make Token:
 
 function makeToken(user) {
   const timestamp = new Date().getTime();
@@ -20,69 +20,45 @@ function makeToken(user) {
     iat: timestamp
   };
 
-  const options = { expiresIn: '300000' }; // 300,000 milliseconds or 5 minutes
+  const options = { expiresIn: "300000" }; // 300,000 milliseconds or 5 minutes
   return jwt.sign(payload, secret, options);
 }
 
+// Local Strategy:
+
 const localStrategy = new LocalStrategy(function(username, password, done) {
   User.findOne({ username }, function(err, user) {
+    console.log("BELLOBELLOBELLO");
+    console.log("user in localStrategy (updateUserRouter.js):", user);
+    console.log("username in localStrategy (updateUserRouter.js):", username);
+    console.log("password in localStrategy (updateUserRouter.js):", password);
     if (err) {
       done(err);
-    }
-    if (!user) {
-      done(null, false);
-    }
-
-    console.log("user in authenticate:", user)
-    user.verifyPassword(password, function(err, isValid) {
-      if (err) {
-        return done(err);
-      }
-      if (isValid) {
-        const { _id, username } = user;
-        return done(null, { _id, username });
-      }
+    } else if (user) {
+      user.verifyPassword(password, function(err, isValid) {
+        if (err) {
+          return done(err);
+        }
+        if (isValid) {
+          const { _id, username } = user;
+          return done(null, { _id, username });
+        }
+        return done(null, false);
+      });
+    } else {
       return done(null, false);
-    });
+    }
   });
 });
 
-const jwtOptions = {
-  jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-
-  secretOrKey: secret
-};
-
-const jwtStrategy = new JwtStrategy(jwtOptions, function(payload, done) {
-  User.findById(payload.sub)
-
-    .select('*')
-    .then(user => {
-      if (user) {
-        done(null, user);
-      } else {
-        done(null, false);
-      }
-    })
-    .catch(err => {
-      return done(err, false);
-    });
-});
-
 passport.use(localStrategy);
-passport.use(jwtStrategy);
 
-const authenticate = passport.authenticate('local', { session: false });
-const protected = passport.authenticate('jwt', { session: false }); // returns 'Unautherized'
+const authenticate = passport.authenticate("local", { session: false });
 
-// ============ from ROUTES -- END ============= //
+// Endpoint:
 
-//schema
-const User = require("../../Schemas/User.js");
-
-//endpoints
 router.post("/", authenticate, (req, res) => {
-  console.log("REQ.USER", req.user)
+  console.log("TEQ.USER", req.user);
   res.json({
     success: `${req.user.username}, you are logged in!`,
     token: makeToken(req.user),

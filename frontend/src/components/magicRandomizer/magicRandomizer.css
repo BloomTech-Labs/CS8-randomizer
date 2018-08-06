@@ -208,7 +208,7 @@ transition: all 0.5 s ease;
 }  
   
 #Randomize-button:hover{  
-  background-color: #584573;  
+  background-color: hsl(259, 45%, 60%);  
   color: white;  
   /* padding: 20% 0; */  
   transition: all 10s ease;  

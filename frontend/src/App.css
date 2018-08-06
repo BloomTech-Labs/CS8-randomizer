@@ -9,8 +9,8 @@ a{
   flex-direction: row;
   flex-wrap: wrap;
   padding: 1.2% 1%;
-  background: #584573;
-  height: 1013.5px;
+  background: hsl(265, 25%, 36%);
+  height: 100%;
 }
 
 .LogBar{
@@ -36,6 +36,11 @@ a{
   /* border: 1px solid black; */
   /* margin-left: .5%; */
   width: 100%;
+  height: 100%;
+}
+
+.appPanel {
+  height: 100%;
 }
 
 .CrumbBar{
