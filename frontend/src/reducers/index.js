@@ -9,7 +9,6 @@ import {
   LOGGINGOUT,
   LOGGEDOUT,
 
-
   GETTINGCLASSES,
   GOTCLASSES,
   ADDCLASS,
@@ -19,6 +18,7 @@ import {
   EDITEDCLASS,
   DELETECLASS,
   DELETEDCLASS,
+
   GETTINGSTUDENTS,
   GOTSTUDENTS,
   ADDINGSTUDENT,
@@ -59,9 +59,9 @@ export const Reducer = (state = initialState, action) => {
       };
 
     case EDITINGUSER:
-     return{ ...state, users: action.users, editingUser: false };
+     return{ ...state, editingUser: true };
     case EDITEDUSER:
-    return{}; 
+    return{ ...state, users: action.users, editingUser: false }; 
     case LOGGINGIN:
       return { ...state, loggingIn: true };
     case LOGGEDIN:

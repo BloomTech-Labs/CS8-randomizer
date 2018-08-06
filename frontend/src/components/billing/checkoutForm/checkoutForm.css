@@ -1,0 +1,22 @@
+button.checkout_button.btn.btn-secondary {
+  margin-top: 10px;
+  background-color: #584573;
+}
+
+.checkout_paymentinfo {
+  border: 2px solid black;
+  padding: 10px 0px;
+  background: white;
+}
+
+.cardelement {
+  box-shadow: none;
+}
+
+.checkout_subscribe {
+  margin-top: 10px;
+}
+
+input.subscribe_input{
+margin-right: 10px;
+}

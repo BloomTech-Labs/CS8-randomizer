@@ -39,6 +39,10 @@
     text-align: center;
 }
 
+.invisibleBlock {
+    width: 300px;
+}
+
 #nav-button:hover{
     background-color: whitesmoke;
     color: gray;

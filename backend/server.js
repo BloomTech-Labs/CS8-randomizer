@@ -44,6 +44,8 @@ const deleteUserRouter = require('./Router/User/deleteUserRouter.js');
 const updateUserRouter = require('./Router/User/updateUserRouter.js');
 const addtoUserRouter = require('./Router/User/addtoUserRouter.js');
 const removefromUserRouter = require('./Router/User/removefromUserRouter.js');
+const stripepaymentUserRouter = require('./Router/User/stripepaymentUserRouter.js');
+
 
 const server = express();
 
@@ -54,9 +56,9 @@ server.use(morgan('dev'));
 server.use(cors(corsOptions));
 
 // For Heroku:
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://username:abcd1234@ds161391.mlab.com:61391/lambda-labs', { useNewUrlParser: true })
+// mongoose.connect(process.env.MONGODB_URI || 'mongodb://username:abcd1234@ds161391.mlab.com:61391/lambda-labs', { useNewUrlParser: true })
 // For Local:
-// mongoose.connect('mongodb://username:abcd1234@ds161391.mlab.com:61391/lambda-labs', { useNewUrlParser: true })
+mongoose.connect('mongodb://username:abcd1234@ds161391.mlab.com:61391/lambda-labs', { useNewUrlParser: true })
 
 .then(() => console.log('\n===connected to mongo===\n'))
 .catch(err =>console.log('not connected'))
@@ -64,7 +66,7 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://username:abcd1234@ds16139
 // ========== ROUTES ========== //
 
 server.get('/', function(req, res) {
-  res.send({ api: 'up and flying' });
+  res.send({ api: 'up and sighing' });
 });
 
 // ======== ROUTERS .use ========== //
@@ -91,5 +93,10 @@ server.use('/api/deleteuser/', deleteUserRouter);
 server.use('/api/updateuser/', updateUserRouter);
 server.use('/api/addtouser/', addtoUserRouter); // Adds classes to ref arrays
 server.use('/api/removefromuser/', removefromUserRouter);
+server.use('/api/charge/', stripepaymentUserRouter);
+
+
+
+
 
 server.listen(port, () => console.log('API on port 5000...or wherever Heroku is'));

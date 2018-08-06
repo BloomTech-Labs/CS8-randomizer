@@ -3,14 +3,14 @@ import { connect } from "react-redux";
 import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 import { editUser } from "../../actions";
 import jwt_decode from "jwt-decode";
-
+import { withRouter } from "react-router-dom";
 import "./setup.css";
 
 class Setup extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: "",
+      username: "",
       password: "",
       confirmPassword: ""
     };
@@ -32,16 +32,16 @@ class Setup extends Component {
       alert("Password must be six or more chatacters in length");
       return;
     }
-    console.log("this.state.email", this.state.email)
+    console.log("this.state.username", this.state.username)
     console.log("this.state.password", this.state.password)
     const logged_in_user_id = jwt_decode(localStorage.jwtToken).sub;
   console.log("logged_in_user_id:", logged_in_user_id)
     this.props.editUser({
-      email: this.state.email.trim(),
+      username: this.state.username.trim(),
       password: this.state.password.trim()
-    });
+    }, this.props.history);
     this.setState({
-      email: "",
+      username: "",
       password: "",
       confirmPassword: ""
     });
@@ -52,18 +52,19 @@ class Setup extends Component {
     return (
       <div className="set-div">
         <Form>
+          <div className="set-div_title"><b>Update Username and Password</b></div>
           <FormGroup>
-            <Label for="userEmail">Email: </Label>
+            {/* <Label for="userUsername">Username: </Label> */}
             <Input
               type="email"
-              name="email"
-              id="userEmail"
-              placeholder="Enter your email here and 'Save' to Update"
+              name="username"
+              id="userUsername"
+              placeholder="Enter your username here and 'Save' to Update"
               onChange={this.handleInputChange}
             />
           </FormGroup>
           <FormGroup>
-            <Label for="userPassword">Old Password</Label>
+            {/* <Label for="userPassword">Old Password</Label> */}
             <Input
               type="password"
               name="password"
@@ -73,7 +74,7 @@ class Setup extends Component {
             />
           </FormGroup>
           <FormGroup>
-            <Label for="userPassword">New Password</Label>
+            {/* <Label for="userPassword">New Password</Label> */}
             <Input
               type="password"
               name="confirmPassword"
@@ -94,7 +95,7 @@ const mapStateToProps = state => {
   return {};
 };
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   { editUser }
-)(Setup);
+)(Setup));
