@@ -35,7 +35,9 @@ class Landing extends React.Component {
       // isAuth: this.props.auth
       username: "",
       password: "",
-      confirmPassword: ""
+      confirmPassword: "",
+      regAlert: "",
+      regSucc: "",
     };
   }
 
@@ -72,14 +74,25 @@ class Landing extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
+    
     if (this.state.confirmPassword !== this.state.password) {
-      alert("Passwords do not match");
-      return;
+      // alert("Passwords do not match");
+      // regAlert = 1;
+      // console.log('reg', this.state.regAlert);
+      return this.setState({
+        regAlert: "A",
+      })
+      
+      
     }
     if (this.state.password.length < 6) {
-      alert("Password must be six or more characters in length");
-      return;
+      // alert("Password must be six or more characters in length");
+      return this.setState({
+        regAlert: "B",
+      })
     }
+
+
     this.props.addUser(
       {
         username: this.state.username.trim(),
@@ -94,8 +107,17 @@ class Landing extends React.Component {
       dropdownOpen: false,
       signModal: false,
       logModal: false,
-      abModal: false
+      abModal: false,
+      regSucc: "A",
     });
+
+    // return this.setState({
+    //   regSucc: true,
+    // })
+
+    console.log('SubSucc', this.state.regSucc == false);
+
+    
   };
 
   handleLogin = event => {
@@ -126,12 +148,25 @@ class Landing extends React.Component {
   };
 
   render() {
+
+    let alertState;
+    let successState;
+    if(this.state.regAlert == "A"){
+      alertState = <div className="Alert-msg">Passwords Do Not Match!</div>;
+    };
+    if(this.state.regAlert == "B"){
+      alertState = <div className="Alert-msg">Password must be six or more characters in length!</div>;
+    };
+    if(this.state.regSucc == "A"){
+      successState = <div className="Alert-success">Thank You For Registering.<br/> Please Log In To Continue!</div>;
+    };
+
     return (
       <div className="landing">
         <Nav className="nav">
           <NavItem className="nav-about">
             <NavLink>
-              <Button id="nav-button" onClick={this.abToggle}>
+              <Button id="about-button" onClick={this.abToggle}>
                 About Magic Randomizer
               </Button>
             </NavLink>
@@ -147,13 +182,13 @@ class Landing extends React.Component {
               </ModalHeader>
               <ModalFooter className="modalFooter">
                 <p className="description">
-                  Magic Randomiser is a web app that allows teachers to pick
-                  students randomly to call on in class. This allows the teacher
+                  Magic Randomizer is a web app that allows teachers to pick
+                  students randomly to call on in class. It also features an "All Pick" mode allows the teacher
                   to make sure that all students get a chance to answer a
                   question before they are called on a second time.
                 </p>
                 <Button id="nav-button" onClick={this.signToggle}>
-                  Sign
+                  Sign Up
                 </Button>{" "}
                 {/* <Button id="nav-button" onClick={this.abToggle}>
                   Cancel
@@ -199,6 +234,7 @@ class Landing extends React.Component {
                   <Button id="nav-button" onClick={this.handleSubmit}>
                     Submit
                   </Button>
+                {alertState}
                   {/* <Button color="primary" onClick={this.signToggle}>
                     Cancel
                   </Button> */}
@@ -252,6 +288,11 @@ class Landing extends React.Component {
                 </Button> */}
               </ModalFooter>
             </Modal>
+          {/* <div className="Alert-success">
+          Thank You For Registering.
+          <br/>
+          Please Log In To Continue!</div> */}
+          {successState}
           </NavItem>
         </Nav>
       </div>
