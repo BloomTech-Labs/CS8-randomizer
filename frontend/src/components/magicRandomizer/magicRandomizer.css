@@ -1,3 +1,4 @@
+@media(min-width: 1142px){
 .main {
   display: flex;
   flex-wrap: wrap;
@@ -17,10 +18,11 @@
   justify-content: center;
   flex: wrap;
   /* width: 80%;  */
-  width: 70%;  
+  width: 71.3%;  
   /* margin-left: 3%;   */
   height: 50px;  
   margin-top: 2%;  
+  margin-bottom: 5%;
 
 }
 
@@ -40,7 +42,7 @@
   padding: 10px;
   height: 35px; 
   /* TODO: Remove this hack */
-  line-height: 0.6;
+  /* line-height: 0.6; */
   border: 2px dashed black;
   /* background: brown; */
 }
@@ -50,51 +52,74 @@
   font-style: 1;
   height: 30px;
   text-align: center;
-  line-height: 1;
+  /* line-height: 1; */
   /* margin: 10px; */
   /* margin-right: 1%; */
   width: 30%;
+  border: 4px solid #584573;
+  padding-top: .5%;
+  padding-bottom: 3.3%;
   /* background: pink; */
 }
 
 #declined { 
   /* TODO: Remove this hack */
   border: 2px dashed black;
-  line-height: 0.6;
+  /* line-height: 0.6; */
   padding: 10px;
   
   /* padding-right: 2%; */
-  height: 35px;  
-  background-color: whitesmoke;  
+  height: 60px;  
+  background-color: #322842;  
   border-color: whitesmoke;  
   border-style: solid;  
-  color: #584573;  
+  color: whitesmoke;  
   transition: all 0.5s ease; 
   margin-left: 1%; 
 }
 
 #Rando-top-button{  
   border: 2px dashed black;  
-  line-height: 0.6;  
+  /* line-height: 0.6;   */
   padding: 10px;  
-  height: 35px;  
-  background-color: whitesmoke;  
+  height: 60px;  
+  margin-right: 1%;
+  background-color: #322842;  
   border-color: whitesmoke;  
   border-style: solid;  
-  color: #584573;  
+  color: whitesmoke;  
   transition: all 0.5s ease;  
 }  
   
 #declined:hover{  
-background-color: #322842;  
-color:whitesmoke;  
+background-color: whitesmoke;  
+color: #584573;  
 transition: all 0.5s ease;  
   
 }  
   
 #Rando-top-button:hover{  
+  background-color: whitesmoke;  
+color: #584573;  
+transition: all 0.5 s ease;  
+}  
+
+#AllGo-button{
+  border: 2px dashed black;  
+  /* line-height: 0.6;   */
+  /* padding: 10px;   */
+  height: 100px;  
   background-color: #322842;  
-color:whitesmoke;  
+  border-color: whitesmoke;  
+  border-style: solid;  
+  color: whitesmoke;  
+  transition: all 0.5s ease;  
+  margin-bottom: 13%;
+}
+
+#AllGo-button:hover{  
+  background-color: whitesmoke;  
+color: #584573;  
 transition: all 0.5 s ease;  
 }  
 
@@ -111,7 +136,7 @@ transition: all 0.5 s ease;
   display: flex;
   flex-wrap: wrap;
   /* TODO: center and width = 100% at mobile. */
-  width: 92%; 
+  width: 85.5%; 
   justify-content: center;
   /* width: 100%; */
 
@@ -119,8 +144,9 @@ transition: all 0.5 s ease;
 
 .reset {
   width: 120px;
-  margin: 30px;
-  height: 120px;
+  margin: 90px;
+  margin-top: -3.3%;
+  height: 100px;
   /* background: rgb(140, 140, 194); */
 }
 
@@ -128,15 +154,30 @@ transition: all 0.5 s ease;
   font-size: 18px;
   text-align: center;
   border: 2px dashed black;
-  width: 120px;
+  width: 105%;
 }
 
 .allgo-tracker {
   text-align: center;
-  width: 80px;
+  width: 80%;
   margin: 20px;
-  height: 30px;
+  margin-left: 18px;
+  margin-top: 0px;
+  height: 50px;
+  border: 1px solid #584573;
   /* background: purple; */
+}
+
+.allgo-tracker p{
+  display: none;
+} 
+
+.allgo-tracker:hover p{
+  display: inherit;
+  height: 70px;
+  /* margin-bottom: 0; */
+  font-size: 100%;
+  border: 1px solid #584573;
 }
 
 .caros {
@@ -149,11 +190,15 @@ transition: all 0.5 s ease;
 }  
   
 #Randomize-button{  
-  padding-top: 70px;  
-  padding-bottom: 70px;  
-  background: rgb(230, 230, 230);  
-  color: #332259;  
-  font-size: 50px;  
+  /* padding-top: 70px;   */
+  /* padding-bottom: 70px;   */
+  /* background: rgb(230, 230, 230);  
+  color: #332259;   */
+  background: #332259;
+  color: rgb(230, 230, 230);
+  font-size: 380%;
+  width: 109%;  
+  height: 300px;
   transition: all 1s ease-in;  
   /* padding: 10% 0; */  
 }  
@@ -172,6 +217,9 @@ transition: all 0.5 s ease;
 
 .part_data_title {
   margin-bottom: 15px;
+  margin-left: 3.5%;
+  text-align: center;
+  font-size: 120%;
 }
 
 .part_graph {
@@ -185,3 +233,12 @@ transition: all 0.5 s ease;
   border: 2px solid #584573;
   color: #584573;
 }
+
+}
+
+/* @media(max-width: 1290px){
+  #Randomize-button{
+    font-size: 
+  }
+
+} */

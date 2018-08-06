@@ -1,3 +1,4 @@
+@media(min-width: 801px){
 a{
   text-decoration: none;
   
@@ -9,7 +10,7 @@ a{
   flex-wrap: wrap;
   padding: 1.2% 1%;
   background: #584573;
-  height: 974px;
+  height: 1013.5px;
 }
 
 .LogBar{
@@ -109,8 +110,9 @@ a{
 .top{
   display: flex;
 }
+}
 
-@media (max-width: 1070px){
+@media (max-width: 800px){
   .App{
     display: flex;
     /* flex-direction: row; */
