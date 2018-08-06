@@ -16,9 +16,9 @@
   display: flex;
   justify-content: center;
   flex: wrap;
-  width: 80%; 
+  /* width: 80%;  */
   width: 70%;  
-  margin-left: 2.5%;  
+  /* margin-left: 3%;   */
   height: 50px;  
   margin-top: 2%;  
 
@@ -28,7 +28,7 @@
   width: 10%;
   text-align: center;
   height: 50px;
-  margin-left: 5%;  
+  margin-left: 5.5%;  
   margin-top: 1%;  
   /* background: orange; */
 }
@@ -51,7 +51,9 @@
   height: 30px;
   text-align: center;
   line-height: 1;
-  margin: 10px;
+  /* margin: 10px; */
+  /* margin-right: 1%; */
+  width: 30%;
   /* background: pink; */
 }
 
@@ -60,12 +62,15 @@
   border: 2px dashed black;
   line-height: 0.6;
   padding: 10px;
+  
+  /* padding-right: 2%; */
   height: 35px;  
   background-color: whitesmoke;  
   border-color: whitesmoke;  
   border-style: solid;  
   color: #584573;  
-  transition: all 0.5s ease;  
+  transition: all 0.5s ease; 
+  margin-left: 1%; 
 }
 
 #Rando-top-button{  
@@ -108,7 +113,7 @@ transition: all 0.5 s ease;
   /* TODO: center and width = 100% at mobile. */
   width: 92%; 
   justify-content: center;
-  width: 100%;
+  /* width: 100%; */
 
 }
 
@@ -154,16 +159,13 @@ transition: all 0.5 s ease;
 }  
   
 #Randomize-button:hover{  
-  background-color: hsl(259, 45%, 60%);  
+  background-color: #584573;  
+
   color: white;  
   /* padding: 20% 0; */  
   transition: all 10s ease;  
 }
 
-.ondeck {
-  margin-top: 10px;
-  text-align: center;
-}
 
 .part_data {
   width: 100%;
@@ -174,9 +176,13 @@ transition: all 0.5 s ease;
 }
 
 .part_graph {
-  background: hsl(265, 25%, 60%);
   width: 80%;
   margin-left: 10%;
   margin-right: 10%;
   height: 300px;
+  padding-left: 39%;
+  padding-top: 4%;
+  font-size: 500%;
+  border: 2px solid #584573;
+  color: #584573;
 }

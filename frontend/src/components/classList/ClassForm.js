@@ -43,15 +43,21 @@ class ClassForm extends React.Component {
       classname: "",
       firstname: "",
       lastname: "",
-
+      participatied: 0,
+      allMode: false,
+      partMode: false,
       students: [],
       btnDropleft: false
     };
   }
 
   toggle = () => {
-    this.setState({ btnDropleft: !this.state.btnDropleft });
+    this.setState({ allMode: !this.state.allMode });
   };
+
+  partToggle = () => {
+    this.setState({ partMode: !this.state.partMode});
+  }
 
   handleInputChange = event => {
     // console.log("handleInputChange");
@@ -90,18 +96,23 @@ class ClassForm extends React.Component {
 
   compileStudentList = () => {
     // This runs every time the `Add` button is pressed
-    const { firstname, lastname } = this.state;
+    const { firstname, lastname, participated, allMode, partMode } = this.state;
     const newStudent = {
       first_name: firstname,
       last_name: lastname,
-      component_state_id: uuidv4()
+      component_state_id: uuidv4(),
+      participated: participated,
+      allMode: allMode,
+      partMode: partMode,
     };
     const students = this.state.students;
     students.push(newStudent);
     this.setState({
       students: students,
       firstname: "",
-      lastname: ""
+      lastname: "",
+      participated: 0,
+      allMode: false,
     });
     // console.log("compileStudentList running:", this.state.students);
   };
@@ -121,8 +132,10 @@ class ClassForm extends React.Component {
   };
 
   render() {
+    console.log('rand', this)
     return (
       <div className="Form-div">
+
         <div className="Form-container">
           <div className="Form-container_left">
             <div className="Classname-box">
