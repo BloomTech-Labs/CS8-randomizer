@@ -12,7 +12,6 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     minLength: 4,
-    unique: true
   },
   classes: [
     {
@@ -37,13 +36,22 @@ const userSchema = new mongoose.Schema({
 
 userSchema.pre("save", function(next) {
   // Do this before any call of save() method
-  bcrypt.hash(this.password, 10).then(hash => {
-    this.password = hash;
-    next();
-  });
+  
+  if (this.password.length < 40) { // TODO: Find a better solution to this double hashing of update User problem
+    console.log("this.password: ", this.password)
+    bcrypt.hash(this.password, 10).then(hash => {
+      this.password = hash;
+      console.log("hashed to:", this.password)
+      next();
+    });
+  } else {
+    console.log("password saved WITHOUT hashing")
+  }
 });
 
 userSchema.methods.verifyPassword = function(guess, callback) {
+  console.log("vP this.password:", this.password);
+  console.log("vP guess:", guess);
   bcrypt.compare(guess, this.password, function(err, isValid) {
     if (err) {
       return callback(err);

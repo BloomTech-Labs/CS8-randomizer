@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { logIn, addUser } from "../../actions";
 import { withRouter } from "react-router-dom";
+import swal from "sweetalert";
 
 import {
   Nav,
@@ -73,11 +74,21 @@ class Landing extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
     if (this.state.confirmPassword !== this.state.password) {
-      alert("Passwords do not match");
+      swal({ icon: "error", text: "Passwords do not match" });
       return;
     }
     if (this.state.password.length < 6) {
-      alert("Password must be six or more characters in length");
+      swal({
+        icon: "error",
+        text: "Password must be six or more characters in length"
+      });
+      return;
+    }
+    if (this.state.username.length < 6) {
+      swal({
+        icon: "error",
+        text: "Username must be six or more characters in length"
+      });
       return;
     }
     this.props.addUser(
@@ -101,7 +112,10 @@ class Landing extends React.Component {
   handleLogin = event => {
     event.preventDefault();
     if (this.state.password.length < 6) {
-      alert("Password must be six or more characters in length");
+      swal({
+        icon: "error",
+        text: "Password must be six or more characters in length"
+      });
       return;
     }
     this.props.logIn(
@@ -153,14 +167,17 @@ class Landing extends React.Component {
                   question before they are called on a second time.
                 </p>
                 <Button id="nav-button" onClick={this.signToggle}>
-                  Sign
+                  Sign Up
                 </Button>{" "}
                 {/* <Button id="nav-button" onClick={this.abToggle}>
                   Cancel
                 </Button> */}
               </ModalFooter>
               <Modal isOpen={this.state.signModal} toggle={this.signToggle}>
-                <ModalHeader className="modalHeader" toggle={this.mainSignToggle}>
+                <ModalHeader
+                  className="modalHeader"
+                  toggle={this.mainSignToggle}
+                >
                   Sign Up
                 </ModalHeader>
                 <ModalBody className="modalFooter">
@@ -176,17 +193,17 @@ class Landing extends React.Component {
                   />
                   <Input
                     className="form__input"
-                    type="email"
+                    type="password"
                     name="password"
-                    placeholder="Password (required, 15 chars max)..."
-                    maxLength="15"
+                    placeholder="Password (required, minimum 6 characters)..."
+                    maxLength="20"
                     required
                     onChange={this.handleChange}
                     value={this.state.password}
                   />
                   <Input
                     className="form__input"
-                    type="email"
+                    type="password"
                     name="confirmPassword"
                     placeholder="Confirm Password (required)..."
                     maxLength="15"
@@ -227,7 +244,7 @@ class Landing extends React.Component {
                 <Input
                   type="username"
                   name="username"
-                  placeholder="Username (required, 30 chars max)..."
+                  placeholder="Username (required, minimum 6 characters)..."
                   maxLength="30"
                   required
                   onChange={this.handleChange}
@@ -236,14 +253,18 @@ class Landing extends React.Component {
                 <Input
                   type="password"
                   name="password"
-                  placeholder="Password (required, 15 chars max)..."
-                  maxLength="15"
+                  placeholder="Password (required, minimum 6 characters)..."
+                  maxLength="20"
                   required
                   onChange={this.handleChange}
                   value={this.state.password}
                 />
               </ModalBody>
               <ModalFooter className="modalFooter">
+                <Button id="nav-button" onClick={this.mainSignToggle}>
+                  Signup
+                </Button>
+                <div className="invisibleBlock" />
                 <Button id="nav-button" onClick={this.handleLogin}>
                   Confirm
                 </Button>

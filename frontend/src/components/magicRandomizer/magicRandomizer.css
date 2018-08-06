@@ -154,7 +154,7 @@ transition: all 0.5 s ease;
 }  
   
 #Randomize-button:hover{  
-  background-color: red;  
+  background-color: hsl(259, 45%, 60%);  
   color: white;  
   /* padding: 20% 0; */  
   transition: all 10s ease;  
@@ -174,7 +174,7 @@ transition: all 0.5 s ease;
 }
 
 .part_graph {
-  background: green;
+  background: hsl(265, 25%, 60%);
   width: 80%;
   margin-left: 10%;
   margin-right: 10%;

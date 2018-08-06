@@ -1,3 +1,13 @@
+.Class-div{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#Class-card {
+    min-width: 140px;
+    height: 180px;
+}
+
 .jumbo-div{
     /* margin-bottom: 50%; */
     height: 852px;
@@ -27,22 +37,26 @@
 }
 
 .NewClass{
-    margin-left: 47.3%;
-    margin-top: 3%;
-    border-radius: 4rem;
-    height: 50px;
-    width: 5%; 
-    background-color: #BBD4D8;
-    text-align: center;
-    
+    height: 180px;
+    width: 140px;     
 }
 
 #add-plus{
+    display: flex;
+    /* align-content: center; */
+    justify-content: center;
+    line-height: 1.3;
+    font-size: 2rem;
+    height: 50px;
+    width: 50px; 
+    border-radius: 0.25rem;
+    text-align: center;
     background: #322842;
     border: 1px solid #322842;
     color: whitesmoke;
-    padding-left: 1.8%;
-    padding-top: 1.1%;
+    text-decoration: none;
+    /* padding-left: 1.50%;
+    padding-top: .75%; */
     transition: all 0.3s ease;
     /* width: 10%; */
     /* height: 30px; */
@@ -62,15 +76,23 @@
     /* padding-left: 3px; */
 /* } */
 
+#add-button.nav {
+    height: 180px;
+    width: 140px; 
+    
+}
+
 #add-plus:hover{
     border-color: #322842;
     color: #322842;
     background-color: rgb(230, 230, 230);
     transition: all 0.3s ease;
+    
 }
 
 #add-plus a{
     color: whitesmoke;
+    text-decoration: none;
 }
 
 #add-plus a:hover{
