@@ -37,8 +37,9 @@ class Landing extends React.Component {
       username: "",
       password: "",
       confirmPassword: "",
-      regAlert: "",
-      regSucc: "",
+
+
+
     };
   }
 
@@ -111,14 +112,13 @@ class Landing extends React.Component {
       signModal: false,
       logModal: false,
       abModal: false,
-      regSucc: "A",
+
     });
 
-    // return this.setState({
-    //   regSucc: true,
-    // })
+    
 
-    console.log('SubSucc', this.state.regSucc == false);
+  
+
 
     
   };
@@ -155,17 +155,10 @@ class Landing extends React.Component {
 
   render() {
 
-    let alertState;
-    let successState;
-    if(this.state.regAlert == "A"){
-      alertState = <div className="Alert-msg">Passwords Do Not Match!</div>;
-    };
-    if(this.state.regAlert == "B"){
-      alertState = <div className="Alert-msg">Password must be six or more characters in length!</div>;
-    };
-    if(this.state.regSucc == "A"){
-      successState = <div className="Alert-success">Thank You For Registering.<br/> Please Log In To Continue!</div>;
-    };
+
+  
+
+  
 
     return (
       <div className="landing">
@@ -243,10 +236,9 @@ class Landing extends React.Component {
                   <Button id="nav-button" onClick={this.handleSubmit}>
                     Submit
                   </Button>
-                {alertState}
-                  {/* <Button color="primary" onClick={this.signToggle}>
-                    Cancel
-                  </Button> */}
+
+                
+
                 </ModalFooter>
               </Modal>
             </Modal>
@@ -300,11 +292,9 @@ class Landing extends React.Component {
                 </Button> */}
               </ModalFooter>
             </Modal>
-          {/* <div className="Alert-success">
-          Thank You For Registering.
-          <br/>
-          Please Log In To Continue!</div> */}
-          {successState}
+
+      
+
           </NavItem>
         </Nav>
       </div>

@@ -99,8 +99,8 @@ class MagicRandomizer extends Component {
       })
     }
     else{
-      this.resetHandler()
-      swal({icon: "warning", text: `"${this.props.location.state.class.name}" Randomizer has been reset!`})
+      // this.resetHandler()
+      swal({icon: "warning", text: `"Please reset ${this.props.location.state.class.name}" Randomizer!`})
     }
   }
 
