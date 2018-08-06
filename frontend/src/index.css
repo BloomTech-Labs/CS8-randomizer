@@ -1,6 +1,12 @@
-body {
+html, body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  /* font-family: 'Love Ya Like A Sister', cursive !important; */
+  font-family: 'Acme', sans-serif !important;
   background-color: #584573;
+  height: 880px;
+}
+
+#root {
+  height: 100%;
 }

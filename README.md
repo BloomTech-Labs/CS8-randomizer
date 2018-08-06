@@ -3,7 +3,7 @@
 Welcome from the Randomizer App Team! Please use the `Navigation Guide` below to begin exploring Randomizer's features!
  
 
-Deployed at: https://lambda-labs-frontend.herokuapp.com/
+Deployed at: https://lambda-labs-backend.herokuapp.com/
 
 # Navigation Guide
 

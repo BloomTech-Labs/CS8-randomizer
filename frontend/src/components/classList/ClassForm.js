@@ -1,28 +1,17 @@
+import { withRouter } from "react-router-dom";
 import React from "react";
 import { connect } from "react-redux";
-import ReactDOM from 'react-dom'
-import {CSVLink, CSVDownload} from 'react-csv';
+import ReactDOM from "react-dom";
+import { CSVLink, CSVDownload } from "react-csv";
 import {
   Button,
   FormGroup,
   Label,
   Input,
-
-  Card,
-  CardText,
-  CardImg,
-  CardBody,
-  CardTitle,
-  CardSubtitle,
-  Dropdown,
-  DropdownToggle,
-  DropdownItem,
-  DropdownMenu,
-  ButtonDropdown
 } from "reactstrap";
 
 import { addClass, addStudent } from "../../actions";
-
+import swal from "sweetalert";
 import "./form.css";
 
 import uuidv4 from "uuid/v4";
@@ -30,13 +19,9 @@ import uuidv4 from "uuid/v4";
 //   {label: 'Classname', key: 'classname'},
 //   {label: 'First Name', key: 'firstname'},
 //   {label: 'Last Name', key: 'lastname'},
- 
+
 // ];
-const data = [
-  
-  ['classname','firstname', 'lastname' ] 
-  
-];
+const data = [["classname", "firstname", "lastname"]];
 
 class ClassForm extends React.Component {
   constructor(props) {
@@ -47,14 +32,22 @@ class ClassForm extends React.Component {
       firstname: "",
       lastname: "",
 
+      participated: 0,
+
+      allMode: false,
+      partMode: false,
       students: [],
       btnDropleft: false
     };
   }
 
   toggle = () => {
-    this.setState({ btnDropleft: !this.state.btnDropleft });
+    this.setState({ allMode: !this.state.allMode });
   };
+
+  partToggle = () => {
+    this.setState({ partMode: !this.state.partMode});
+  }
 
   handleInputChange = event => {
     // console.log("handleInputChange");
@@ -62,50 +55,90 @@ class ClassForm extends React.Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-
   handleAddClassAndStudents = () => {
     const { classname, students } = this.state;
-    const collection = students
-    const full_name = [] 
-    collection.map(item=> {
-      full_name.push({first_name: item.first_name, last_name: item.last_name})
-    })
-    console.log("FULL_NAME ARRAY:", full_name)
-    if (classname === ""){
-      alert("Oh no!! Looks like you forgot to add a Class Name!")
-      return
+    const collection = students;
+    const full_name = [];
+    collection.map(item => {
+      full_name.push({
+        first_name: item.first_name,
+        last_name: item.last_name
+      });
+    });
+    console.log("FULL_NAME ARRAY:", full_name);
+    if (classname === "") {
+      swal({
+        icon: "error",
+        text: "Oh no!! Looks like you forgot to add a Class Name!"
+      });
+      return;
+    } else if (students === []) {
+      swal({
+        icon: "error",
+        text: "Sorry! You must add at least one student to create a class!"
+      });
+      return;
     } else {
-    this.props.addClass({ name: classname, students: full_name });
-    this.setState({ classname: "", students: [], firstname: "", lastname: "" });
+      this.props.addClass(
+        { name: classname, students: full_name },
+        this.props.history
+      );
+      this.setState({
+        classname: "",
+        students: [],
+        firstname: "",
+        lastname: ""
+      });
     }
   };
 
   compileStudentList = () => {
     // This runs every time the `Add` button is pressed
-    const { firstname, lastname } = this.state;
-    const newStudent = {
-      first_name: firstname,
-      last_name: lastname,
-      component_state_id: uuidv4()
-    };
-    const students = this.state.students;
-    students.push(newStudent);
-    this.setState({
-      students: students,
-      firstname: "",
-      lastname: ""
-    });
-    // console.log("compileStudentList running:", this.state.students);
+    const { firstname, lastname, participated, allMode, partMode } = this.state;
+
+    if (firstname === "") {
+      swal({
+        icon: "error",
+        text: "Oops!! Looks like you forgot to add a first name!"
+      });
+      return;
+    } else if (lastname === "") {
+      swal({
+        icon: "error",
+        text: "Oops!! Looks like you forgot to add a last name!"
+      });
+      return;
+    }else {
+      const newStudent = {
+        first_name: firstname,
+        last_name: lastname,
+        component_state_id: uuidv4(),
+        participated: participated,
+        allMode: allMode,
+        partMode: partMode
+      };
+      const students = this.state.students;
+      students.push(newStudent);
+      this.setState({
+        students: students,
+        firstname: "",
+        lastname: "",
+        participated: 0,
+        allMode: false
+      });
+      // console.log("compileStudentList running:", this.state.students);
+    }
+
   };
 
-  removeStudent = (event) => {
-    console.log('x', event.target._id);
+  removeStudent = event => {
+    console.log("x", event.target._id);
     const students = this.state.students;
     students.splice(event.target.id, 1);
 
     this.setState({
       students: students
-    })
+    });
   };
 
   handleAddStudent = () => {
@@ -113,111 +146,115 @@ class ClassForm extends React.Component {
   };
 
   render() {
+    console.log('rand', this)
     return (
       <div className="Form-div">
-        <div className="Classform-div">
-          <div className="Classname-box">
-            <h3>Settings</h3>
 
-            <input
-              className="Classname-input"
-              value={this.state.classname}
-              name="classname"
-              text="text"
-              placeholder="Class Name"
-              onChange={this.handleInputChange}
-            />
-          </div>
-          <div className="Options-box">
-            <FormGroup check>
-              <Label check>
-                <Input type="checkbox" /> Track Participation
-              </Label>
-            </FormGroup>
-            <FormGroup check>
-              <Label check>
-                <Input type="checkbox" /> Show On Deck
-              </Label>
-            </FormGroup>
-            <Button id="Reset-button">Reset Participation</Button>
-            <FormGroup check>
-              <Label check>
-                <Input type="checkbox" /> All Go
-              </Label>
-            </FormGroup>
-          </div>
-        </div>
+        <div className="Form-container">
+          <div className="Form-container_left">
+            <div className="Classname-box">
+              <div className="Classname-box_content">
+                <div className="title">Settings</div>
 
-        <div className="Add-div">
-          <h3>Add Students</h3>
-
-
-          <input
-            className="firstname-input"
-            value={this.state.firstname}
-            name="firstname"
-            text="text"
-            placeholder="First Name"
-            onChange={this.handleInputChange}
-          />
-          <input
-            className="lastname-input"
-            value={this.state.lastname}
-            name="lastname"
-            text="text"
-            placeholder="Last Name"
-            onChange={this.handleInputChange}
-          />
-          <Button id="Add-button" onClick={this.compileStudentList}>
-            Add
-          </Button>
-          <Button id="Add-button">
-<span>
- <CSVLink data={data} onClick={this.compileStudentList}>Import CSV</CSVLink>
-</span>
-</Button>
-        </div>
-        <div className="List-div">
-          <h3>Student List</h3>
-          <div>
-          <div>
-            {/* {this.props.classlist.map(item => { */}
-            <div>
-            <div>
-              <Card>
-                <CardImg />
-                <CardBody className="List-display">
-            {this.state.students.map(obj => {
-              var first = obj.first_name;
-              var last = obj.last_name;
-              var id = obj.component_state_id;
-              return (
-
-                <Button 
-                  id='student-button' 
-                  onClick={this.removeStudent} 
-                  _id={id}> 
-                  x {first + " " + last} 
-                </Button>
-
-              );
-            })}
-            </CardBody>
-              </Card>
-
-            </div>
+                <input
+                  className="Classname-input"
+                  value={this.state.classname}
+                  name="classname"
+                  text="text"
+                  placeholder="Class Name"
+                  onChange={this.handleInputChange}
+                />
               </div>
-            <Button
-              id="Class-submit-button"
-              onClick={this.handleAddClassAndStudents}
-            >
-              Submit
-            </Button>
+            </div>
+            <div className="Options-box">
+              <div className="Options-box_content">
+                <div className="title">Options</div>
+                <FormGroup check>
+                  <Label check>
+                    <Input type="checkbox" /> Track Participation
+                  </Label>
+                </FormGroup>
+                <FormGroup check>
+                  <Label check>
+                    <Input type="checkbox" /> Show On Deck
+                  </Label>
+                </FormGroup>
+                <Button id="Reset-button">Reset Participation</Button>
+                <FormGroup check>
+                  <Label check>
+                    <Input type="checkbox" /> All Go
+                  </Label>
+                </FormGroup>
+              </div>
+            </div>
+            <div className="Add-box">
+              <div className="Add-box_content">
+                <div className="title">Add Students</div>
+
+                <input
+                  className="firstname-input"
+                  value={this.state.firstname}
+                  name="firstname"
+                  text="text"
+                  placeholder="First Name"
+                  onChange={this.handleInputChange}
+                />
+                <input
+                  className="lastname-input"
+                  value={this.state.lastname}
+                  name="lastname"
+                  text="text"
+                  placeholder="Last Name"
+                  onChange={this.handleInputChange}
+                />
+                <Button id="Add-button" onClick={this.compileStudentList}>
+                  Add
+                </Button>
+                <Button id="Add-button">
+                  <span>
+                    <CSVLink data={data} onClick={this.compileStudentList}>
+                      Import CSV
+                    </CSVLink>
+                  </span>
+                </Button>
+              </div>
+            </div>
+          </div>
+          <div className="List-box">
+            <div className="List-box_content">
+              <div className="title title_student-list">Student List</div>
+
+              <div>
+               
+                {this.state.students.map(obj => {
+                  var first = obj.first_name;
+                  var last = obj.last_name;
+                  var id = obj.component_state_id;
+                  return (
+                    <Button
+                      id="student-button"
+                      onClick={this.removeStudent}
+                      _id={id}
+                    >
+                      x {first + " " + last}
+                    </Button>
+                  );
+                })}
+              
+              </div>
+            </div>
+
+            <div className="submitButton-box">
+              <Button
+                id="Class-submit-button"
+                onClick={this.handleAddClassAndStudents}
+              >
+                Submit
+              </Button>
+            </div>
           </div>
         </div>
       </div>
-      </div>
-
     );
   }
 }
@@ -230,7 +267,9 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { addClass, addStudent }
-)(ClassForm);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    { addClass, addStudent }
+  )(ClassForm)
+);

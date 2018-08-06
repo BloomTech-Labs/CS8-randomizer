@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import { connect } from 'react-redux';
-import { Redirect } from 'react-router';
+import { connect } from "react-redux";
+import { Redirect } from "react-router";
 
-import DropBar from './navigation/SideBar/SideDrop';
-import BottomMenu from './navigation/SideBar/BottomMenu';
-import LogOut from './navigation/LogOut';
+import DropBar from "./navigation/SideBar/SideDrop";
+import BottomMenu from "./navigation/SideBar/BottomMenu";
+import LogOut from "./navigation/LogOut";
 
 import {
   Landing,
@@ -39,6 +39,7 @@ const routes = {
 
 const currentPath = window.location.pathname;
 
+
 class App extends Component {
   constructor() {
     super();
@@ -59,7 +60,6 @@ class App extends Component {
   componentDidMount() {
     console.log("Mounted...");
     console.log(this.state.isAuth);
-
   }
 
   render() {
@@ -71,7 +71,12 @@ class App extends Component {
               exact
               path={"/"}
               render={() =>
-                this.props.authed? <Redirect to="/classes/" /> : <Landing auth={this.state.isAuth} />}
+                this.props.authed ? (
+                  <Redirect to="/classes/" />
+                ) : (
+                  <Landing auth={this.state.isAuth} />
+                )
+              }
             />
           ) : (
             <div className="MainAppComponents">
@@ -83,20 +88,18 @@ class App extends Component {
                 <DropBar />
                 <BottomMenu />
                 <Route exact path={"/"} render={() => <Home />} />
-                <Route exact path={"/:id/edit"} render={() => <EditForm />} />
+                {/* <Route exact path={"/:id/edit"} render={() => <EditForm />} /> */}
                 <Route exact path={"/classes"} render={() => <ClassList />} />
+                <Route exact path={"/create"} render={() => <ClassForm />} />
                 <Route
-                  exact path={"/create"}
-                  render={() => <ClassForm />}
-                />
-                <Route
-                  exact path={"/classes/:id"}
+                  exact
+                  path={"/classes/:id"}
                   // params ={thi}
-                  render={(props) => <MagicRandomizer {...props} />}
+                  render={props => <MagicRandomizer {...props} />}
                 />
-                <Route exact path={"/billing"} render={() => <Billing/>} />
+                <Route exact path={"/billing"} render={() => <Billing />} />
                 <Route exact path={"/about"} render={() => <About />} />
-                <Route exact path={"/settings"} render={() => <Setup />} />  
+                <Route exact path={"/settings"} render={() => <Setup />} />
               </div>
             </div>
           )}
@@ -106,11 +109,14 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     users: state.users,
     authed: state.authed
   };
 };
 
-export default connect(mapStateToProps, {})(App);
+export default connect(
+  mapStateToProps,
+  {}
+)(App);
