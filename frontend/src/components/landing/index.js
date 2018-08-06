@@ -38,6 +38,8 @@ class Landing extends React.Component {
       password: "",
       confirmPassword: "",
 
+
+
     };
   }
 
@@ -110,11 +112,13 @@ class Landing extends React.Component {
       signModal: false,
       logModal: false,
       abModal: false,
+
     });
 
     
 
   
+
 
     
   };
@@ -150,6 +154,9 @@ class Landing extends React.Component {
   };
 
   render() {
+
+
+  
 
   
 
@@ -229,7 +236,9 @@ class Landing extends React.Component {
                   <Button id="nav-button" onClick={this.handleSubmit}>
                     Submit
                   </Button>
+
                 
+
                 </ModalFooter>
               </Modal>
             </Modal>
@@ -283,7 +292,9 @@ class Landing extends React.Component {
                 </Button> */}
               </ModalFooter>
             </Modal>
+
       
+
           </NavItem>
         </Nav>
       </div>

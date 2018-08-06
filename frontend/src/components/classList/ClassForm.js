@@ -31,7 +31,9 @@ class ClassForm extends React.Component {
       classname: "",
       firstname: "",
       lastname: "",
+
       participated: 0,
+
       allMode: false,
       partMode: false,
       students: [],
@@ -44,8 +46,8 @@ class ClassForm extends React.Component {
   };
 
   partToggle = () => {
-    this.setState({ partMode: !this.state.partMode });
-  };
+    this.setState({ partMode: !this.state.partMode});
+  }
 
   handleInputChange = event => {
     // console.log("handleInputChange");
@@ -93,6 +95,7 @@ class ClassForm extends React.Component {
   compileStudentList = () => {
     // This runs every time the `Add` button is pressed
     const { firstname, lastname, participated, allMode, partMode } = this.state;
+
     if (firstname === "") {
       swal({
         icon: "error",
@@ -125,6 +128,7 @@ class ClassForm extends React.Component {
       });
       // console.log("compileStudentList running:", this.state.students);
     }
+
   };
 
   removeStudent = event => {
@@ -142,8 +146,10 @@ class ClassForm extends React.Component {
   };
 
   render() {
+    console.log('rand', this)
     return (
       <div className="Form-div">
+
         <div className="Form-container">
           <div className="Form-container_left">
             <div className="Classname-box">
