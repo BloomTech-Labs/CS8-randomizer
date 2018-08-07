@@ -26,23 +26,34 @@ class ClassForm extends React.Component {
       classname: "",
       firstname: "",
       lastname: "",
-
       participated: 0,
-
-      allMode: false,
-      partMode: false,
+      // resetMode: this.props.,
+      allMode: this.props.classes.allMode,
+      trackMode: this.props.classes.trackMode,
       students: [],
       btnDropleft: false
     };
   }
 
-  toggle = () => {
-    this.setState({ allMode: !this.state.allMode });
-  };
+  
+  // allHandle = ()  => {
+    
+    // }
+    allToggle = () => {
+      this.setState({ allMode: !this.state.allMode });
+    };
+    
+  trackToggle = () => {
+    this.setState({ trackMode: !this.state.trackMode});
+    
+  }
 
-  partToggle = () => {
-    this.setState({ partMode: !this.state.partMode });
-  };
+
+
+  resetHandler = () =>{
+    this.setState({ resetMode: !this.state.resetMode})
+  }
+
 
   handleInputChange = event => {
     // console.log("handleInputChange");
@@ -51,7 +62,7 @@ class ClassForm extends React.Component {
   };
 
   handleAddClassAndStudents = () => {
-    const { classname, students } = this.state;
+    const { classname, students, allMode, trackMode } = this.state;
     const collection = students;
     const full_name = [];
     collection.map(item => {
@@ -75,7 +86,7 @@ class ClassForm extends React.Component {
       return;
     } else {
       this.props.addClass(
-        { name: classname, students: full_name },
+        { name: classname, students: full_name, allMode: allMode, trackMode: trackMode },
         this.props.history
       );
       this.setState({
@@ -89,8 +100,8 @@ class ClassForm extends React.Component {
 
   compileStudentList = () => {
     // This runs every time the `Add` button is pressed
+    const { firstname, lastname, participated, allMode, trackMode } = this.state;
 
-    const { firstname, lastname, participated, allMode, partMode } = this.state;
 
     if (firstname === "") {
       swal({
@@ -111,7 +122,7 @@ class ClassForm extends React.Component {
         component_state_id: uuidv4(),
         participated: participated,
         allMode: allMode,
-        partMode: partMode
+        trackMode: trackMode
       };
       const students = this.state.students;
       students.push(newStudent);
@@ -119,8 +130,9 @@ class ClassForm extends React.Component {
         students: students,
         firstname: "",
         lastname: "",
-        participated: 0,
-        allMode: false
+        // resetPart: false,
+        allMode: false,
+        trackMode: false,
       });
       console.log("compileStudentList running:", this.state.students);
     }
@@ -138,6 +150,7 @@ class ClassForm extends React.Component {
     this.setState({
       students: students
     });
+    
   };
 
   handleAddStudent = () => {
@@ -168,13 +181,13 @@ class ClassForm extends React.Component {
                 <div className="title">Options</div>
                 <FormGroup check>
                   <Label check>
-                    <Input type="checkbox" /> Track Participation
+                    <Input type="checkbox" onClick={this.trackToggle} /> Track Participation
                   </Label>
                 </FormGroup>
                 <Button id="Reset-button">Reset Participation</Button>
                 <FormGroup check>
                   <Label check>
-                    <Input type="checkbox" /> All Go
+                    <Input type="checkbox" onClick={this.allToggle} /> All Go
                   </Label>
                 </FormGroup>
               </div>
@@ -220,7 +233,6 @@ class ClassForm extends React.Component {
                 {this.state.students.map(obj => {
                   var first = obj.first_name;
                   var last = obj.last_name;
-                  // var id = obj.component_state_id;
                   return (
                     <Button
                       id="student-button"
@@ -254,7 +266,8 @@ const mapStateToProps = state => {
   return {
     error: state.errorMessage,
     addingClass: state.addingClass,
-    students: state.students
+    classes: state.classes,
+    students: state.students,
   };
 };
 
