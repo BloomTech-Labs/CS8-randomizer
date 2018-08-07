@@ -28,6 +28,8 @@ class CheckoutForm extends Component {
     }
   }
 
+  
+
   render() {
     if (this.state.complete) {
       return <h1>Purchase Complete</h1>;
@@ -36,7 +38,7 @@ class CheckoutForm extends Component {
     }
     return (
       <div className="checkout">
-        <CardElement />
+        <CardElement id="CardElement" style={{base: {fontSize: '16px', fontFamily: 'Times', color: 'black'}}}/>
         <label check className="checkout_subscribe">
         <input type="checkbox" className="subscribe_input" />
           1 Year Subscription - $9.99

@@ -51,7 +51,7 @@ class Setup extends Component {
   render() {
     return (
       <div className="set-div">
-        <Form>
+        <Form id="Form">
           <div className="set-div_title"><b>Update Username and Password</b></div>
           <FormGroup>
             {/* <Label for="userUsername">Username: </Label> */}

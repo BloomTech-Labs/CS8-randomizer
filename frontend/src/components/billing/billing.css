@@ -1,8 +1,21 @@
 .billing {
-  padding: 5% 2% 0% 2%;
+  display: flex;
+  justify-content: center;
+  padding: 5% 0% 0% 0%;
   width: 100%;
   background: rgb(229, 229, 229);
-  height: 852px;
+  height: 100%;
+  /* border: 5px solid gold; */
+}
+
+.example {
+  border: 5px solid white;
+  height: 30%;
+  width: 60%;
+  background: rgb(229, 229, 229);
+  padding: 1%;
+
+
 }
 
 .billing_title {
@@ -22,17 +35,21 @@
   box-shadow: 0 1px 3px 0 #e6ebf1;
   -webkit-transition: box-shadow 150ms ease;
   transition: box-shadow 150ms ease;
-  width: 60%;
+  width: 96%;
+  margin-left: 2%;
+  /* border: 5px solid salmon; */
 }
+
 
 .StripeElement--focus {
   box-shadow: 0 1px 3px 0 #cfd7df;
 }
 
 .StripeElement--invalid {
-  border-color: #fa755a;
+  /* border-color: #fa755a; */
 }
 
 .StripeElement--webkit-autofill {
   background-color: #fefde5 !important;
 }
+

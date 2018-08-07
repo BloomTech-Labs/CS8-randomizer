@@ -4,26 +4,43 @@
     width: 100%;
     height: 852px;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     background-color: rgb(230, 230, 230);
     padding-top: 5%;
-    padding: 4% 2% 0;
+    /* border: 5px solid gold; */
+}
+
+#Form {
+    display:flex;
+    flex-direction: column;
+    border: 5px solid white;
+    background: rgb(230, 230, 230);
+    width: 60%;
+    height: 38%;
+}
+
+input.form-control {
+    width: 92%;
+    margin: 0% 4%;
 }
 
 .set-div_title {
     margin-top: 10px;
     font-size: 1.5rem;
     margin-bottom: 10px;
+    margin: 2%;
 }
 
 .set-div button{
-    margin-left: .2%;
-    background-color: #322842;
+    background-color: #584573;
     border-left-color: #352847;
     border-right-color: #352847;
     border-bottom-color: #352847;
     border-top: #584573;
     transition: all 0.5s ease;
+    width: 10%;
+    margin: 2% 0% 0% 2%;
+    
 }
 
 .set-div button:hover{

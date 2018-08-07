@@ -3,12 +3,7 @@ import React from "react";
 import { connect } from "react-redux";
 import ReactDOM from "react-dom";
 import { CSVLink, CSVDownload } from "react-csv";
-import {
-  Button,
-  FormGroup,
-  Label,
-  Input,
-} from "reactstrap";
+import { Button, FormGroup, Label, Input } from "reactstrap";
 
 import { addClass, addStudent } from "../../actions";
 import swal from "sweetalert";
@@ -54,9 +49,11 @@ class ClassForm extends React.Component {
   }
 
 
+
   resetHandler = () =>{
     this.setState({ resetMode: !this.state.resetMode})
   }
+
 
   handleInputChange = event => {
     // console.log("handleInputChange");
@@ -105,6 +102,7 @@ class ClassForm extends React.Component {
     // This runs every time the `Add` button is pressed
     const { firstname, lastname, participated, allMode, trackMode } = this.state;
 
+
     if (firstname === "") {
       swal({
         icon: "error",
@@ -117,7 +115,7 @@ class ClassForm extends React.Component {
         text: "Oops!! Looks like you forgot to add a last name!"
       });
       return;
-    }else {
+    } else {
       const newStudent = {
         first_name: firstname,
         last_name: lastname,
@@ -136,22 +134,18 @@ class ClassForm extends React.Component {
         allMode: false,
         trackMode: false,
       });
-      // console.log("compileStudentList running:", this.state.students);
+      console.log("compileStudentList running:", this.state.students);
     }
-
   };
 
-  removeStudent = event => {
-    console.log("x", event.target.value);
-    console.log('rem', this)
+  removeStudent = e => {
+    console.log("x", e.target.value);
     const students = this.state.students;
-
-    for(let i = 0; i<students.length; i++){
-      if(event.target.value == students.component_state_id){
-    students.splice(i, 1);
+    for (let i = 0; i < students.length; i++) {
+      if (students[i].component_state_id === e.target.value) {
+        students.splice(i, 1);
       }
     }
-
 
     this.setState({
       students: students
@@ -164,14 +158,8 @@ class ClassForm extends React.Component {
   };
 
   render() {
-    // console.log('rand', this)
-
-    // console.log('tracked', this);
-    
-
     return (
       <div className="Form-div">
-
         <div className="Form-container">
           <div className="Form-container_left">
             <div className="Classname-box">
@@ -242,35 +230,30 @@ class ClassForm extends React.Component {
               <div className="title title_student-list">Student List</div>
 
               <div>
-               
                 {this.state.students.map(obj => {
                   var first = obj.first_name;
                   var last = obj.last_name;
-                  var id = obj.component_state_id;
-                  
-                  console.log(obj.comp)
-
                   return (
                     <Button
                       id="student-button"
                       onClick={this.removeStudent}
-                      value={id}
+                      value={obj.component_state_id}
+                      type="submit"
                     >
                       x {first + " " + last}
                     </Button>
                   );
                 })}
-              
               </div>
             </div>
 
             <div className="submitButton-box">
-              <Button
+              <button
                 id="Class-submit-button"
                 onClick={this.handleAddClassAndStudents}
               >
                 Submit
-              </Button>
+              </button>
             </div>
           </div>
         </div>
