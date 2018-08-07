@@ -163,12 +163,10 @@ class Landing extends React.Component {
     return (
       <div className="landing">
         <Nav className="nav">
-          <NavItem className="nav-about">
-            <NavLink>
-              <Button id="about-button" onClick={this.abToggle}>
+          <NavItem>
+              <Button id="nav-button" onClick={this.abToggle}>
                 About Magic Randomizer
               </Button>
-            </NavLink>
           </NavItem>
           <NavItem className="nav-signup">
             <Modal
@@ -246,10 +244,10 @@ class Landing extends React.Component {
         </Nav>
         <Nav id="nav-login" className="nav-login">
           <NavItem id="nav-login-button">
-            <Button id="nav-button" onClick={this.mainSignToggle}>
+            <Button id="nav-button" className = 'signUpButton' onClick={this.mainSignToggle}>
               Sign Up
             </Button>
-            <Button id="nav-button" onClick={this.logToggle}>
+            <Button id="nav-button" className = 'loginButton' onClick={this.logToggle}>
               Login
             </Button>
             <Modal
@@ -281,10 +279,10 @@ class Landing extends React.Component {
                 />
               </ModalBody>
               <ModalFooter className="modalFooter">
-                <Button id="nav-button" onClick={this.mainSignToggle}>
+                <Button id="nav-button"  className='modalSignup' onClick={this.mainSignToggle}>
                   Signup
                 </Button>
-                <Button id="nav-button" onClick={this.handleLogin}>
+                <Button id="nav-button" className='modalConfirm' onClick={this.handleLogin}>
                   Confirm
                 </Button>
                 {/* <Button color="secondary" onClick={this.logToggle}>
