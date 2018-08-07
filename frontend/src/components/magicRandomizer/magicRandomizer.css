@@ -19,7 +19,7 @@
   flex: wrap;
   /* width: 80%;  */
 
-  width: 71.3%;  
+  width: 69%;  
 
   /* margin-left: 3%;   */
   height: 50px;  
@@ -60,12 +60,14 @@
   font-style: 1;
   height: 30px;
   text-align: center;
+  background: #584573;
+  color: white;
 
   /* line-height: 1; */
   /* margin: 10px; */
   /* margin-right: 1%; */
   width: 30%;
-  border: 4px solid #584573;
+  border: 5px solid #322842;
   padding-top: .5%;
   padding-bottom: 3.3%;
 
@@ -155,7 +157,7 @@ transition: all 0.5 s ease;
 }
 
 .reset {
-  width: 120px;
+  width: 109px;
   margin: 90px;
   margin-top: -3.3%;
   height: 100px;
@@ -171,11 +173,13 @@ transition: all 0.5 s ease;
 
 .allgo-tracker {
   text-align: center;
-  width: 80%;
+  width: 75%;
   margin: 20px;
   margin-left: 18px;
   margin-top: 0px;
   height: 50px;
+  background-color: #584573;
+  color: white;
   border: 1px solid #584573;
   /* background: purple; */
 }
@@ -190,6 +194,9 @@ transition: all 0.5 s ease;
   /* margin-bottom: 0; */
   font-size: 100%;
   border: 1px solid #584573;
+  background-color: #584573;
+  color: white;
+  margin-top: 7%;
 }
 
 .caros {
@@ -244,7 +251,8 @@ transition: all 0.5 s ease;
   padding-top: 4%;
   font-size: 500%;
   border: 2px solid #584573;
-  color: #584573;
+  color: white;
+  background: #584573;
 
 }
 

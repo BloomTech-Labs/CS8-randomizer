@@ -39,9 +39,9 @@ class ClassList extends React.Component {
             <Jumbotron fluid id="jumb">
               <Container fluid>
                 <div className="display-3">Start By Adding A Class</div>
-                <Nav id="add-button">
-                  <NavLink className="NewClass" id="add-plus">
-                    <Link to="/create"> + </Link>
+                <Nav id="add-button" className="Empty-create">
+                  <NavLink href="/create" className="NewClass" id="add-plus">
+                    +
                   </NavLink>
                 </Nav>
                 <Nav id="createClass">

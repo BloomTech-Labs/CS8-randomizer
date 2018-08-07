@@ -105,12 +105,11 @@ class MagicRandomizer extends Component {
   }
 
   resetHandler = () => {
-    // let studentsCopy = this.state.students.slice(0);
-    // this.setState({
-    //   allstudents: studentsCopy
-    // })
-    ++this.props.location.state.class.participation;
-    // return this.state.allstudents = this.state.students.slice(0);
+    let studentsCopy = this.state.students.slice(0);
+    this.setState({
+      allstudents: studentsCopy
+    })
+    return this.state.allstudents = this.state.students.slice(0);
   }
 
   participatedHandler = () => {
@@ -136,10 +135,10 @@ class MagicRandomizer extends Component {
 
   declinedHandler = () => {
     if(this.state.partDecCheck == false){
-      let participateSub = this.state.participated;
-      --participateSub;
+      // let participateSub = this.state.participated;
+      --this.props.location.state.class.participation;
       this.setState({
-        participated: participateSub,
+        participated: this.props.location.state.class.participation,
         partDecCheck: true,
         randInit: true,
       })

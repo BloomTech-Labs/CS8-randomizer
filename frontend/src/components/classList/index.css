@@ -10,6 +10,10 @@
     height: 180px;
 }
 
+#Class-card a {
+    color: white;
+}
+
 .jumbo-div{
     /* margin-bottom: 50%; */
     height: 852px;
@@ -38,10 +42,6 @@
     text-align: center;;
 }
 
-.NewClass{
-    height: 180px;
-    width: 140px;     
-}
 
 #add-plus{
     display: flex;
@@ -80,7 +80,7 @@
 
 #add-button.nav {
     height: 180px;
-    width: 140px; 
+    /* width: 140px;  */
     
 }
 
@@ -144,6 +144,12 @@
     background-color: rgb(63, 29, 29);
     text-align: center;
 } */
+
+.Empty-create{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
 
 }
 

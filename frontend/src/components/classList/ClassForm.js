@@ -174,11 +174,6 @@ class ClassForm extends React.Component {
                     <Input type="checkbox" /> Track Participation
                   </Label>
                 </FormGroup>
-                <FormGroup check>
-                  <Label check>
-                    <Input type="checkbox" /> Show On Deck
-                  </Label>
-                </FormGroup>
                 <Button id="Reset-button">Reset Participation</Button>
                 <FormGroup check>
                   <Label check>
