@@ -25,7 +25,8 @@ class MagicRandomizer extends Component {
       studentPick:[],
       allstudents:[],
       allArr:[],
-      allPick: this.props.location.state.class.allMode,
+      allMode: this.props.location.state.class.allMode,
+      trackMode: this.props.location.state.class.trackMode,
       randInit: false,
       participated: this.props.location.state.class.participation,
       // declined: 0,
@@ -38,8 +39,8 @@ class MagicRandomizer extends Component {
   toggle = () => {
     // this
     this.props.location.state.class.allMode = !this.props.location.state.class.allMode,
-    this.setState({ allPick: this.props.location.state.class.allMode, })
-    console.log(this.state.allPick);
+    this.setState({ allMode: this.props.location.state.class.allMode, })
+    console.log(this.state.allMode);
   }
 
   idGetter = () => {
@@ -62,10 +63,10 @@ class MagicRandomizer extends Component {
 
   // checkHandler = () => {
   //   this.setState({
-  //     allPick: !this.state.allPick
+  //     allMode: !this.state.allMode
   //   })
 
-  //   console.log('check handler', this.state.allPick);
+  //   console.log('check handler', this.state.allMode);
   // }
 
   componentDidMount() {
@@ -73,10 +74,6 @@ class MagicRandomizer extends Component {
     console.log('mount', this.props)
 
   }
-
-
- 
-
 
   randomHandler = () => {
     let studentPick = this.state.studentPick;
@@ -169,6 +166,9 @@ class MagicRandomizer extends Component {
   );
     let currentStudent = this.state.studentPick;
     let currentAll = this.state.allArr;
+    // let trackerDisplay;
+
+    // if(this.state.trackMode == true)
 
     // let partDecTrack = ((this.state.declined / this.state.participated) * 100);
 
@@ -181,7 +181,7 @@ class MagicRandomizer extends Component {
         <div className="classid">{this.state.class.name}</div>
         <div className="header">
         <Button className="participated" id="Rando-top-button" onClick={this.participatedHandler}>Participated</Button> 
-        {this.state.allPick == true ? (
+        {this.state.allMode == true ? (
           <div className="studentName">{currentAll.first_name} {currentAll.last_name}</div>
         ) : (
           <div className="studentName">{currentStudent.first_name} {currentStudent.last_name}</div>
@@ -195,7 +195,7 @@ class MagicRandomizer extends Component {
             
 
            <Button className="reset_border" id="AllGo-button" onClick={this.resetHandler} >Reset 'All Go'</Button>
-           <Button id="AllGo-button" onClick={this.toggle}>Toggle All Go:{this.state.allPick == false ? (<div>Off</div>):(<div>On</div>)}</Button>
+           <Button id="AllGo-button" onClick={this.toggle}>Toggle All Go:{this.state.allMode == false ? (<div>Off</div>):(<div>On</div>)}</Button>
 
            
             {/* <FormGroup check>
@@ -211,8 +211,8 @@ class MagicRandomizer extends Component {
           </div>
           <div className="caros">
             {/* <Carousel /> */} 
-            {/* <Button id="Randomize-button" onClick={this.allPick == false ? (this.randomHandler) : (this.allGoHandler) }> RANDOMIZE! </Button>   */}
-            {this.state.allPick == true ? 
+            {/* <Button id="Randomize-button" onClick={this.allMode == false ? (this.randomHandler) : (this.allGoHandler) }> RANDOMIZE! </Button>   */}
+            {this.state.allMode == true ? 
             (<Button id="Randomize-button" onClick={this.allGoHandler }> RANDOMIZE! </Button> ) 
             :
             (<Button id="Randomize-button" onClick={this.randomHandler}> RANDOMIZE! </Button>
@@ -221,11 +221,22 @@ class MagicRandomizer extends Component {
          
           
         </div>
+        {this.state.trackMode == true ? (
         <div className="part_data">
-
+          
             <div className="part_data_title">Overall Class Participation Rate <br/> ↓ </div>
             <div className="part_graph">{this.participationTracker()}%</div>
             </div>
+        ) 
+        : 
+          (
+            <div className="part_data part_data_off">
+          
+          <div className="part_data_title part_data_title_off"></div>
+          <div className="part_graph part_graph_off"></div>
+          </div>
+        )
+        }
       </div>
     );
   }
