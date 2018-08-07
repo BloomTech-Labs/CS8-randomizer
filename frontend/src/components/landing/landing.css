@@ -162,6 +162,7 @@
     }
 
     #about-button{
+        margin-top: 50%;
         align-self: center;
         background-color: #584573;
         width: 300px; 
