@@ -224,17 +224,10 @@ export const addClass = (class_data, history) => dispatch => {
   const decoded_token = jwt_decode(localStorage.jwtToken);
   const user_id = decoded_token.sub;
   // const combine = {...class_data, users: decoded_token.sub}
-  if (class_data.students.length === 0) {
-    swal({
-      icon: "error",
-      text:
-        "Ooops! Please 'Add' at least one student before clicking 'Submit' :D"
-    });
-    return;
-  }
+  
   // TODO: Write an 'else if' which throws an swal error if a person tries to add a class with a name that already exists!
   // To do this, you will need to do an axios call to check throw the current list of classes OR, just check the list in the redux store!
-  else {
+  
     console.log("CLASS_DATA:", class_data);
     console.log("users:", user_id);
     dispatch({
@@ -307,7 +300,7 @@ export const addClass = (class_data, history) => dispatch => {
       .catch(err => {
         dispatch({ type: ERROR, errorMessage: "Error creating class..." });
       });
-  }
+  
 };
 
 export const editClass = class_data => dispatch => {
