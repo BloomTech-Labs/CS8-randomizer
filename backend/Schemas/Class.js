@@ -36,6 +36,10 @@ const classSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    trackMode: {
+      type: Boolean,
+      default: false,
+    },
     students: [subSchema],
     users: [{ type: ObjectId, ref: 'User' }]
   },
