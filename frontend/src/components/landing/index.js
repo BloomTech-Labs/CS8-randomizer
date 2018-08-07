@@ -162,6 +162,7 @@ class Landing extends React.Component {
 
     return (
       <div className="landing">
+
         {/* <Nav className="nav" id="Nav-div">
  
         </Nav> */}
@@ -173,9 +174,9 @@ class Landing extends React.Component {
             <NavItem className="nav-about">
             <NavLink>
               <Button id="about-button" onClick={this.abToggle}>
+
                 About Magic Randomizer
               </Button>
-            </NavLink>
           </NavItem>
           <NavItem className="nav-signup">
             <Modal
@@ -250,6 +251,7 @@ class Landing extends React.Component {
               </Modal>
             </Modal>
           </NavItem>
+
             <Button id="nav-button" onClick={this.logToggle}>
               Login
             </Button>
