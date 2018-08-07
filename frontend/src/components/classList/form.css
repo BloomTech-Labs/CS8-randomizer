@@ -158,6 +158,11 @@
   margin-bottom: 20%;
 }
 
+#student-button{
+  background: #584573;
+  color: white;
+}
+
 #student-button:hover{
   background-color: rgb(56, 3, 49);
 
@@ -181,7 +186,7 @@
   justify-content: center;
 }
 
-#Class-submit-button:hover {
+#Class-submit-button.btn.btn-secondary:hover {
   background-color: whitesmoke;
   border-color: whitesmoke;
   color: #584573;

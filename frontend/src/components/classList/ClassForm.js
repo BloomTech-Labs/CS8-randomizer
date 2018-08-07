@@ -142,13 +142,21 @@ class ClassForm extends React.Component {
   };
 
   removeStudent = event => {
-    console.log("x", event.target._id);
+    console.log("x", event.target.value);
+    console.log('rem', this)
     const students = this.state.students;
-    students.splice(event.target.id, 1);
+
+    for(let i = 0; i<students.length; i++){
+      if(event.target.value == students.component_state_id){
+    students.splice(i, 1);
+      }
+    }
+
 
     this.setState({
       students: students
     });
+    
   };
 
   handleAddStudent = () => {
@@ -159,7 +167,7 @@ class ClassForm extends React.Component {
     // console.log('rand', this)
 
     // console.log('tracked', this);
-    console.log('all', this.state.allMode);
+    
 
     return (
       <div className="Form-div">
@@ -239,11 +247,14 @@ class ClassForm extends React.Component {
                   var first = obj.first_name;
                   var last = obj.last_name;
                   var id = obj.component_state_id;
+                  
+                  console.log(obj.comp)
+
                   return (
                     <Button
                       id="student-button"
                       onClick={this.removeStudent}
-                      _id={id}
+                      value={id}
                     >
                       x {first + " " + last}
                     </Button>
