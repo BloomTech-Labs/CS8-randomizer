@@ -10,6 +10,10 @@
     height: 180px;
 }
 
+#Class-card a {
+    color: white;
+}
+
 .jumbo-div{
     /* margin-bottom: 50%; */
     height: 852px;
