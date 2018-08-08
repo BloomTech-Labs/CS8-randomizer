@@ -30,11 +30,11 @@ class ClassList extends React.Component {
       "this.props.classes from componentDidMount:",
       this.props.classes
     );
-    if (this.props.classes === 0) {
+    if (this.props.classes.length === 0) {
       this.setState({
         class_empty: true
       })
-    } else if (this.props !== 0)
+    } else if (this.props.classes.length !== 0)
 
     this.setState({
       class_empty: false
