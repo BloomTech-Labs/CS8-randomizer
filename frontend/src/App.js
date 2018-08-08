@@ -88,7 +88,7 @@ class App extends Component {
                 <DropBar />
                 <BottomMenu />
                 <Route exact path={"/"} render={() => <Home />} />
-                <Route exact path={"/:id/edit"} render={() => <ClassForm />} />
+                <Route exact path={"/:id/edit"} render={props => <EditForm {...props} />} />
                 <Route exact path={"/classes"} render={() => <ClassList />} />
                 <Route exact path={"/create"} render={() => <ClassForm />} />
                 <Route

@@ -22,15 +22,15 @@ class ClassForm extends React.Component {
     super(props);
     // this.toggle = this.toggle.bind(this);
     this.state = {
-      classname: "",
+      // classname: "",
       firstname: "",
       lastname: "",
-      participated: 0,
+      // participated: 0,
       // resetMode: this.props.,
       allMode: this.props.classes.allMode,
       trackMode: this.props.classes.trackMode,
       students: [],
-      btnDropleft: false
+      // btnDropleft: false
     };
   }
 
