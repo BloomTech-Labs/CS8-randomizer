@@ -40,7 +40,9 @@ class ClassForm extends React.Component {
     
     // }
     allToggle = () => {
+
       this.setState({ allMode: !this.state.allMode });
+      console.log("allMode:", this.state.allMode)
     };
     
   trackToggle = () => {
@@ -130,9 +132,6 @@ class ClassForm extends React.Component {
         students: students,
         firstname: "",
         lastname: "",
-        // resetPart: false,
-        allMode: false,
-        trackMode: false,
       });
       console.log("compileStudentList running:", this.state.students);
     }
@@ -248,12 +247,12 @@ class ClassForm extends React.Component {
             </div>
 
             <div className="submitButton-box">
-              <button
+              <Button
                 id="Class-submit-button"
                 onClick={this.handleAddClassAndStudents}
               >
                 Submit
-              </button>
+              </Button>
             </div>
           </div>
         </div>

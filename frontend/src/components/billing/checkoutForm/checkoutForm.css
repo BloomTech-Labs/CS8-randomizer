@@ -9,9 +9,7 @@
 }
 
 #CardElement {
-  box-shadow: none;
-  color: rgb(255, 0, 0);
-  
+  box-shadow: none;  
 }
 
 .checkout_subscribe {
@@ -25,7 +23,8 @@ margin-right: 10px;
 }
 
 button.checkout_button {
-  margin-top: 2%;
+  display: flex;
+  margin-top: 30px;
   background-color: #584573;
   border-left-color: #352847;
   border-right-color: #352847;

@@ -124,7 +124,7 @@ class MagicRandomizer extends Component {
       console.log(this.state);
     }
     else{
-      alert('Participation Already Tracked. Please Continue To The Next Student!')
+      swal({icon: "warning", text: 'Participation Already Tracked. Please Continue To The Next Student!'})
     }
 
     // console.log(this.state.participated);
@@ -141,7 +141,7 @@ class MagicRandomizer extends Component {
       })
     }
     else{
-      alert('Declination Already Tracked. Please Continue To The Next Student!')
+      swal({icon: "warning", text: 'Declination Already Tracked. Please Continue To The Next Student!'})
     }
   }
 
@@ -153,7 +153,7 @@ class MagicRandomizer extends Component {
       return 0;
     }
     else{
-      return participated / this.state.students.length * 100;
+      return Math.floor(participated / this.state.students.length * 100);
     }
   }
   

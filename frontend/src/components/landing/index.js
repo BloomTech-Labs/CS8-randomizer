@@ -173,10 +173,12 @@ class Landing extends React.Component {
             </Button>
             <NavItem className="nav-about">
             <NavLink>
+              
               <Button id="about-button" onClick={this.abToggle}>
 
                 About Magic Randomizer
               </Button>
+              </NavLink>
           </NavItem>
           <NavItem className="nav-signup">
             <Modal
@@ -241,7 +243,7 @@ class Landing extends React.Component {
                   />
                 </ModalBody>
                 <ModalFooter className="modalFooter">
-                  <Button id="nav-button" onClick={this.handleSubmit}>
+                  <Button id="nav-logconf-button" onClick={this.handleSubmit}>
                     Submit
                   </Button>
 
