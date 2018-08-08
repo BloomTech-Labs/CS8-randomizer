@@ -3,7 +3,7 @@
 Welcome from the Randomizer App Team! Please use the `Navigation Guide` below to begin exploring Randomizer's features!
  
 
-Deployed at: https://lambda-labs-backend.herokuapp.com/
+Deployed at: https://lambda-labs-frontend.herokuapp.com/
 
 # Navigation Guide
 
@@ -16,7 +16,7 @@ Click on `About Magic Randomizer` to learn more!
 ## Class List/ Add Class Page
 https://lambda-labs-frontend.herokuapp.com/classes
 
-Classes owned by users will be displayed here.
+Classes owned by users will be displayed here.  Note the `Menu` at the top left of the page which you can use to navigate to `Classes`, `Billing`, or `Settings`.
 
 If no classes are owned, clicking on the `[+]` button link while navigate your to the `Create Class Page`.
 
@@ -32,11 +32,10 @@ https://lambda-labs-frontend.herokuapp.com/classes/:id
 
 To navigate to the `Magic Randomizer Page`, you must have created at least one class.  To begin randomizing, simply navigate to your `Classes` via the hamburger menu (top left for desktops, bottom left for tablet/mobile devices), and select the class you wish to begin randomizing.
 
-Currently the `Magic Randomizer Page` will cycle through your student names once until each student has participated once.  Once all students have participated, you will need to click the `Reset 'All Go'` button to begin a new cycle. 
+Upon creation of your first class, before you begin randomizing, an alert with helpful guidelines to using randomizer will appear.  Once you have more than once class, this guideline will no longer appear.
 
 Sorry! The features below are not working yet!
 
-  * `Participated` and `Declined` buttons.
   * `Edit` link to `Class Edit Page`
   * `DATE`
   * `On Deck` feature - shows next randomized student to be called on.
@@ -45,14 +44,8 @@ Sorry! The features below are not working yet!
 ## Billing Page
 https://lambda-labs-frontend.herokuapp.com/billing
 
-Sorry! We are still working on this! Thank You for your patience!
-
 ## Settings Page
 https://lambda-labs-frontend.herokuapp.com/setting
-
-Sorry! This page is currently not working!
-
-When functioning, this page will serve as a way to update your `username` and/or `password`.
 
 ## Logout
 
