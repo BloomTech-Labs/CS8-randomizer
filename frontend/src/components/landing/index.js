@@ -177,6 +177,7 @@ class Landing extends React.Component {
 
                 About Magic Randomizer
               </Button>
+              </NavLink>
           </NavItem>
           <NavItem className="nav-signup">
             <Modal
