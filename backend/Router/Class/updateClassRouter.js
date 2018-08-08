@@ -22,7 +22,8 @@ router
     const { id } = req.params;
     const updateInfo = req.body;
     Class.findByIdAndUpdate(id, {
-      $push: { users: updateInfo.users, students: updateInfo.students }
+      name: updateInfo.name, users: updateInfo.users, students: updateInfo.students, allMode: updateInfo.allMode,
+      trackMode: updateInfo.trackMode, participation: updateInfo.participation
     }, { 'new': true})
       .then(response => {
         res.json(response);

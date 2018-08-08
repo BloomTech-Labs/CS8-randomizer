@@ -241,13 +241,13 @@ export const addClass = (class_data, history) => dispatch => {
         trackMode: class_data.trackMode,
         users: user_id,
       })
-      .then(response => {
-        console.log("ADDCLASS RESPONSE.CONFIG.DATA:", response.config.data);
-        dispatch({ type: ADDEDCLASS, classes: response.config.data });
-      })
-      .catch(() => {
-        dispatch({ type: ERROR, errorMessage: "Error Adding Class..." });
-      })
+      // .then(response => {
+      //   console.log("ADDCLASS RESPONSE.CONFIG.DATA:", response.config.data);
+      //   dispatch({ type: ADDEDCLASS, classes: response.config.data });
+      // })
+      // .catch(() => {
+      //   dispatch({ type: ERROR, errorMessage: "Error Adding Class..." });
+      // })
 
       .then(() => {
         // ======= Find ALL Classes associated with Logged in User ===== //
@@ -304,16 +304,17 @@ export const addClass = (class_data, history) => dispatch => {
   
 };
 
-export const editClass = class_data => dispatch => {
+export const editClass = (class_data, history, classid) => dispatch => {
   dispatch({
     type: EDITINGCLASS
   });
-  axios.put(`${URL}/updateclass`, class_data).then(response => {
+  axios.put(`${URL}/updateclass/${classid + ""}`, class_data).then(response => {
     dispatch({
       type: EDITEDCLASS,
       class_data: response.data
     });
   });
+  history.push("../classes");
 };
 
 export const deleteClass = classid => dispatch => {

@@ -93,9 +93,10 @@ export const Reducer = (state = initialState, action) => {
         classes: [...state.classes, action.classes],
         addingClass: false
       };
+    case EDITINGUSER:
+      return{ ...state, editingClass: true };
     case EDITEDCLASS:
-      return { ...state, classes: action.classes, editingClass: false };
-
+      return { ...state, editingClass: false };
 
     case GETTINGSTUDENTS:
       return { ...state, gettingStudents: true };
