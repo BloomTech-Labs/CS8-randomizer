@@ -153,7 +153,7 @@ class MagicRandomizer extends Component {
       return 0;
     }
     else{
-      return participated / this.state.students.length * 100;
+      return Math.floor(participated / this.state.students.length * 100);
     }
   }
   

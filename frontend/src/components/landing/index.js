@@ -173,10 +173,12 @@ class Landing extends React.Component {
             </Button>
             <NavItem className="nav-about">
             <NavLink>
+              
               <Button id="about-button" onClick={this.abToggle}>
 
                 About Magic Randomizer
               </Button>
+              </NavLink>
           </NavItem>
           <NavItem className="nav-signup">
             <Modal
