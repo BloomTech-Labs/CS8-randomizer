@@ -80,7 +80,7 @@ class App extends Component {
             />
           ) : (
             <div className="MainAppComponents">
-              <div className="top">
+              <div className="top" id="top-bar">
                 <Breadcrumbs id="Crumb" mappedRoutes={routes} />
                 <LogOut className="LogBar" />
               </div>
