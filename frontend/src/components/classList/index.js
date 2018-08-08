@@ -74,7 +74,7 @@ class ClassList extends React.Component {
                     to={{
                       pathname: `/classes/${classitem._id}`,
                       state: {
-                        classid: classitem._id,
+                        // classid: classitem._id,
                         class: classitem
                       }
                     }}

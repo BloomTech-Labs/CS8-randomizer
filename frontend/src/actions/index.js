@@ -304,16 +304,17 @@ export const addClass = (class_data, history) => dispatch => {
   
 };
 
-export const editClass = class_data => dispatch => {
+export const editClass = (class_data, history, classid) => dispatch => {
   dispatch({
     type: EDITINGCLASS
   });
-  axios.put(`${URL}/updateclass`, class_data).then(response => {
+  axios.put(`${URL}/updateclass/${classid + ""}`, class_data).then(response => {
     dispatch({
       type: EDITEDCLASS,
       class_data: response.data
     });
   });
+  history.push("../classes");
 };
 
 export const deleteClass = classid => dispatch => {

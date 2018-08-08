@@ -261,14 +261,24 @@ class MagicRandomizer extends Component {
             Declined{" "}
           </Button>
         </div>
+        <Link 
+                    to={{
+                      pathname: `/${this.state.classid}/edit`,
+                      state: {
+                        // classid: classitem._id,
+                        class: this.state.class
+                      }
+                    }}
+          >
         <Button
           className="edit"
           id="Rando-top-button"
-          href={`/${this.state.classid}/edit`}
+          // href={`/${this.state.classid}/edit`}
         >
           {" "}
           Edit{" "}
         </Button>
+        </Link>
         <div className="caro_container">
           <div className="reset">
             <Button
