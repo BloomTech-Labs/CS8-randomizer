@@ -52,23 +52,23 @@ a{
 }
 .breadcrumb{
   color: black;
-  
+  /* background-color: red; */
 }
 
 .breadcrumb li{
   margin-right: 10px;
-  color: #584573; 
+  color: white; 
 }
 
 .breadcrumb a{
-  color: #584573;
-  border: 1px solid #584573
+  color: white;
+  /* border: 1px solid #584573 */
   /* padding: 20% 0; */
 }
 
 .breadcrumb a:hover{
   /* background-color: rgb(230, 230, 230); */
-  color: #584573;
+  color: white;
 }
 
 .breadcrumb{
@@ -76,7 +76,7 @@ a{
 }
 
 #Crumb{
-  background-color: #445878;
+  background-color: red;
   
 }
 
@@ -114,6 +114,10 @@ a{
 
 .top{
   display: flex;
+}
+
+#top-bar ol{
+  background-color: #322842;
 }
 }
 

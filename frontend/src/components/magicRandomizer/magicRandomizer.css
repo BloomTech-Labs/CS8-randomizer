@@ -184,12 +184,12 @@ transition: all 0.5 s ease;
   /* background: purple; */
 }
 
-.allgo-tracker p{
+/* .allgo-tracker p{
   display: none;
-} 
+}  */
 
-.allgo-tracker:hover p{
-  display: inherit;
+.allgo-tracker p{
+  /* display: inherit; */
   height: 70px;
   /* margin-bottom: 0; */
   font-size: 100%;
@@ -281,3 +281,7 @@ transition: all 0.5 s ease;
   }
 
 } */
+
+.swal-overlay{
+  background-color: blue;
+}
