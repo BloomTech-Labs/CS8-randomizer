@@ -256,6 +256,23 @@ transition: all 0.5 s ease;
 
 }
 
+.part_data_off{
+  background: rgb(230, 230, 230);
+  border: rgb(230, 230, 230); 
+}
+
+.part_data_title_off{
+  background: rgb(230, 230, 230);
+  color: rgb(230, 230, 230);
+  border: rgb(230, 230, 230);
+}
+
+.part_graph_off{
+  background: rgb(230, 230, 230);
+  color: rgb(230, 230, 230);
+  border: rgb(230, 230, 230);
+}
+
 }
 
 /* @media(max-width: 1290px){

@@ -238,7 +238,8 @@ export const addClass = (class_data, history) => dispatch => {
         name: class_data.name,
         students: class_data.students,
         allMode: class_data.allMode,
-        users: user_id
+        trackMode: class_data.trackMode,
+        users: user_id,
       })
       .then(response => {
         console.log("ADDCLASS RESPONSE.CONFIG.DATA:", response.config.data);

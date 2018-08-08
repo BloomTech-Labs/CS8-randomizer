@@ -162,13 +162,23 @@ class Landing extends React.Component {
 
     return (
       <div className="landing">
-        <Nav className="nav">
-          <NavItem className="nav-about">
+
+        {/* <Nav className="nav" id="Nav-div">
+ 
+        </Nav> */}
+        <Nav id="nav-login" className="nav-login">
+          <NavItem id="nav-login-button">
+            <Button id="nav-button" onClick={this.mainSignToggle}>
+              Sign Up
+            </Button>
+            <NavItem className="nav-about">
             <NavLink>
+              
               <Button id="about-button" onClick={this.abToggle}>
+
                 About Magic Randomizer
               </Button>
-            </NavLink>
+              </NavLink>
           </NavItem>
           <NavItem className="nav-signup">
             <Modal
@@ -233,7 +243,7 @@ class Landing extends React.Component {
                   />
                 </ModalBody>
                 <ModalFooter className="modalFooter">
-                  <Button id="nav-button" onClick={this.handleSubmit}>
+                  <Button id="nav-logconf-button" onClick={this.handleSubmit}>
                     Submit
                   </Button>
 
@@ -243,12 +253,7 @@ class Landing extends React.Component {
               </Modal>
             </Modal>
           </NavItem>
-        </Nav>
-        <Nav id="nav-login" className="nav-login">
-          <NavItem id="nav-login-button">
-            <Button id="nav-button" onClick={this.mainSignToggle}>
-              Sign Up
-            </Button>
+
             <Button id="nav-button" onClick={this.logToggle}>
               Login
             </Button>
@@ -281,10 +286,10 @@ class Landing extends React.Component {
                 />
               </ModalBody>
               <ModalFooter className="modalFooter">
-                <Button id="nav-button" onClick={this.mainSignToggle}>
+                {/* <Button id="nav-button" onClick={this.mainSignToggle}>
                   Signup
-                </Button>
-                <Button id="nav-button" onClick={this.handleLogin}>
+                </Button> */}
+                <Button id="nav-logconf-button" onClick={this.handleLogin}>
                   Confirm
                 </Button>
                 {/* <Button color="secondary" onClick={this.logToggle}>
