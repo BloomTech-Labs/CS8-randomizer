@@ -17,13 +17,28 @@ import { getClasses } from "../../actions";
 import "./index.css";
 
 class ClassList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      class_empty: false
+    };
+  }
 
-  componentDidMount() {
+  componentWillMount() {
     this.props.getClasses();
     console.log(
       "this.props.classes from componentDidMount:",
       this.props.classes
     );
+    if (this.props.classes.length === 0) {
+      this.setState({
+        class_empty: true
+      })
+    } else if (this.props.classes.length !== 0)
+
+    this.setState({
+      class_empty: false
+    })
   }
 
   render() {
@@ -34,7 +49,7 @@ class ClassList extends React.Component {
 
     return (
       <div className="jumbo-div">
-        {this.props.classes.length === 0 ? (
+        {this.state.class_empty === true ? (
           <div className="jumbo-div">
             <Jumbotron fluid id="jumb">
               <Container fluid>

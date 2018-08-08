@@ -3,14 +3,10 @@ import React from "react";
 import { connect } from "react-redux";
 import ReactDOM from "react-dom";
 import { CSVLink, CSVDownload } from "react-csv";
-import CsvParse from '@vtex/react-csv-parse'
 
-import {
-  Button,
-  FormGroup,
-  Label,
-  Input,
-} from "reactstrap";
+import CsvParse from "@vtex/react-csv-parse";
+
+import { Button, FormGroup, Label, Input } from "reactstrap";
 
 
 import { addClass, addStudent } from "../../actions";
@@ -38,27 +34,21 @@ class ClassForm extends React.Component {
     };
   }
 
-  
   // allHandle = ()  => {
-    
-    // }
-    allToggle = () => {
 
-      this.setState({ allMode: !this.state.allMode });
-      console.log("allMode:", this.state.allMode)
-    };
-    
+  // }
+  allToggle = () => {
+    this.setState({ allMode: !this.state.allMode });
+    console.log("allMode:", this.state.allMode);
+  };
+
   trackToggle = () => {
-    this.setState({ trackMode: !this.state.trackMode});
-    
-  }
+    this.setState({ trackMode: !this.state.trackMode });
+  };
 
-
-
-  resetHandler = () =>{
-    this.setState({ resetMode: !this.state.resetMode})
-  }
-
+  resetHandler = () => {
+    this.setState({ resetMode: !this.state.resetMode });
+  };
 
   handleInputChange = event => {
     // console.log("handleInputChange");
@@ -67,10 +57,30 @@ class ClassForm extends React.Component {
   };
 
   //Import CSV
-  handleData = data => {
-    this.setState({ students:data })
-    console.log(data)
-  }
+
+  handleImportData = data => {
+    const { classname, allMode, trackMode, participated } = this.state;
+    const updated_students = this.state.students;
+    data.map(item => {
+      const newStudent = {
+        first_name: item.first_name,
+        last_name: item.last_name,
+        component_state_id: uuidv4(),
+        participated: participated,
+        allMode: allMode,
+        trackMode: trackMode
+      };
+      
+      updated_students.push(newStudent);
+    });
+
+    this.setState({
+      students: updated_students,
+      firstname: "",
+      lastname: ""
+    });
+  };
+
 
   handleAddClassAndStudents = () => {
     const { classname, students, allMode, trackMode } = this.state;
@@ -97,7 +107,12 @@ class ClassForm extends React.Component {
       return;
     } else {
       this.props.addClass(
-        { name: classname, students: full_name, allMode: allMode, trackMode: trackMode },
+        {
+          name: classname,
+          students: full_name,
+          allMode: allMode,
+          trackMode: trackMode
+        },
         this.props.history
       );
       this.setState({
@@ -111,8 +126,13 @@ class ClassForm extends React.Component {
 
   compileStudentList = () => {
     // This runs every time the `Add` button is pressed
-    const { firstname, lastname, participated, allMode, trackMode } = this.state;
-
+    const {
+      firstname,
+      lastname,
+      participated,
+      allMode,
+      trackMode
+    } = this.state;
 
     if (firstname === "") {
       swal({
@@ -140,7 +160,7 @@ class ClassForm extends React.Component {
       this.setState({
         students: students,
         firstname: "",
-        lastname: "",
+        lastname: ""
       });
       console.log("compileStudentList running:", this.state.students);
     }
@@ -158,7 +178,6 @@ class ClassForm extends React.Component {
     this.setState({
       students: students
     });
-    
   };
 
   handleAddStudent = () => {
@@ -167,12 +186,10 @@ class ClassForm extends React.Component {
 
   render() {
 
-    const keys = [
-      "first_name",
-      "last_name"
-    ]
-  
-    console.log('rand', this)
+    const keys = ["first_name", "last_name"];
+
+    console.log("rand", this);
+
 
     return (
       <div className="Form-div">
@@ -197,7 +214,8 @@ class ClassForm extends React.Component {
                 <div className="title">Options</div>
                 <FormGroup check>
                   <Label check>
-                    <Input type="checkbox" onClick={this.trackToggle} /> Track Participation
+                    <Input type="checkbox" onClick={this.trackToggle} /> Track
+                    Participation
                   </Label>
                 </FormGroup>
                 <Button id="Reset-button">Reset Participation</Button>
@@ -239,11 +257,13 @@ class ClassForm extends React.Component {
                   </span>
                 </Button> */}
                 <CsvParse
-      keys={keys}
-      onDataUploaded={this.handleData}
-      onError={this.handleError}
-      render={onChange => <input type="file" onChange={onChange}  />}
-    />
+
+                  keys={keys}
+                  onDataUploaded={this.handleImportData}
+                  onError={this.handleError}
+                  render={onChange => <input type="file" onChange={onChange} />}
+                />
+
               </div>
             </div>
           </div>
@@ -289,7 +309,7 @@ const mapStateToProps = state => {
     error: state.errorMessage,
     addingClass: state.addingClass,
     classes: state.classes,
-    students: state.students,
+    students: state.students
   };
 };
 
