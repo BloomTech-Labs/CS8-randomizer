@@ -52,7 +52,7 @@ class Setup extends Component {
     return (
       <div className="set-div">
         <Form id="Form">
-          <div className="set-div_title"><b className='topTitle'>Update Username and Password</b></div>
+          <div className="set-div_title"><b>Update Username and Password</b></div>
           <FormGroup>
             {/* <Label for="userUsername">Username: </Label> */}
             <Input
