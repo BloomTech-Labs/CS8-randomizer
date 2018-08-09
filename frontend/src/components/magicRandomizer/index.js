@@ -74,7 +74,7 @@ class MagicRandomizer extends Component {
     swal({
       title: "Getting Started with Randomizer",
       text:
-        "If ` Tracking Mode ` is ON (graph is visible):\n\n1. Click `Reset All Go` to fill your deck.\n2. Once the `RANDOMIZER` button is clicked, the name of the first student to call on will appear.\n3. Click the appropriate button for whether the student `Participated` or `Declined`.\n\n  If ` Tracking Mode` is OFF (no graph visible):\n\nSimply use the `RANDOMIZER` button to randomly select a student in the class."
+        "If ` Tracking Mode ` is ON (graph is visible):\n\nClick `Reset All Go` to fill your deck.\nOnce the `RANDOMIZER` button is clicked, the name of the first student to call on will appear.\nClick the appropriate button for whether the student `Participated` or `Declined`.\n\n  If ` Tracking Mode` is OFF (no graph visible):\n\nSimply use the `RANDOMIZER` button to randomly select a student in the class."
     });
     // }
   }

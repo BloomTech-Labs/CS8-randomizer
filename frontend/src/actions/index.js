@@ -185,11 +185,11 @@ export const editUser = (update_info, history) => dispatch => {
 };
 
 export const getClasses = () => dispatch => {
+  console.log('axios.get(`${URL}/classes`).response:', axios.get(`${URL}/classes`))
   // if (axios.get(`${URL}/classes`).response === undefined) {
-  //   console.log('axios.get(`${URL}/classes`).response === undefined')
   //   dispatch({ type: GOTCLASSES, classes: [] });
   //   return
-  // }
+  // } else {
 
   dispatch({
     type: GETTINGCLASSES
@@ -251,9 +251,9 @@ export const addClass = (class_data, history) => dispatch => {
 
       .then(() => {
         // ======= Find ALL Classes associated with Logged in User ===== //
-        dispatch({
-          type: GETTINGCLASSES
-        });
+        // dispatch({
+        //   type: GETTINGCLASSES
+        // });
 
         axios
           .get(`${URL}/classes`)
@@ -265,7 +265,7 @@ export const addClass = (class_data, history) => dispatch => {
             // // console.log("Last Added Class ID", response.data[response.data.length-1]._id)
 
             const class_id = response.data[response.data.length - 1]._id;
-            dispatch({ type: GOTCLASSES, classes: response.data });
+            // dispatch({ type: GOTCLASSES, classes: response.data });
 
             dispatch({
               type: EDITINGUSER

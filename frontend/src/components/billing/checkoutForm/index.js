@@ -2,12 +2,15 @@ import React, { Component } from "react";
 import { CardElement, injectStripe } from "react-stripe-elements";
 import { Button} from "reactstrap";
 import "./checkoutForm.css"
+import { connect } from "react-redux";
+import { editUser } from "../../../actions";
 
 class CheckoutForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      complete: false
+      complete: false,
+      toggle_stand_sub: false
     };
     this.submitPayment = this.submitPayment.bind(this);
   }
@@ -25,9 +28,17 @@ class CheckoutForm extends Component {
     if (response.ok) {
       this.setState({ complete: true });
       alert("Congratulations! Your payment has been successfully sent!");
+      this.props.editUser({subscription: "standard"})
     }
   }
 
+ checkbox_one_handler = () => {
+    const update = !this.state.toggle_stand_sub
+    this.setState ({
+      toggle_stand_sub: update
+    })
+    console.log('this.state.toggle_stand_sub:', this.state.toggle_stand_sub)
+  }
   
 
   render() {
@@ -36,11 +47,12 @@ class CheckoutForm extends Component {
     } else {
       console.log("Error");
     }
+    // console.log('this.state.toggle_stand_sub:', this.state.toggle_stand_sub)
     return (
       <div className="checkout">
         <CardElement id="CardElement" style={{base: {fontSize: '16px', fontFamily: 'Times', color: 'black'}}}/>
         <label check className="checkout_subscribe">
-        <input type="checkbox" className="subscribe_input" />
+        <input type="checkbox" className="subscribe_input" onChange={this.checkbox_one_handler} />
           1 Year Subscription - $9.99
           
           <br />
@@ -55,4 +67,14 @@ class CheckoutForm extends Component {
   }
 }
 
-export default injectStripe(CheckoutForm);
+
+const mapStateToProps = state => {
+  return {
+  };
+};
+
+export default
+  connect(
+    mapStateToProps,
+    { editUser }
+  )(injectStripe(CheckoutForm));

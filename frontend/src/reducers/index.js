@@ -39,7 +39,8 @@ const initialState = {
   loggingIn: false,
   loggingOut: false,
   addingClass: false,
-  editingUser: false
+  editingUser: false,
+  classes_empty: true,
 
 };
 
@@ -83,15 +84,15 @@ export const Reducer = (state = initialState, action) => {
         ...state,
         classes: action.classes,
         gettingClass: false,
-        error: null
+        error: null,
       };
     case ADDINGCLASS:
       return { ...state, addingClass: true };
     case ADDEDCLASS:
       return {
-        ...state,
-        classes: [...state.classes, action.classes],
-        addingClass: false
+        // ...state,
+        // classes: [...state.classes, action.classes],
+        // addingClass: false
       };
     case EDITINGUSER:
       return{ ...state, editingClass: true };
@@ -102,10 +103,10 @@ export const Reducer = (state = initialState, action) => {
       return { ...state, gettingStudents: true };
     case GOTSTUDENTS:
       return { ...state, students: action.students, gettingStudents: false };
-    case ADDINGSTUDENT:
-      return { ...state, addingStudent: true };
-    case ADDEDSTUDENT:
-      return { ...state, students: action.students, addingStudent: false };
+    // case ADDINGSTUDENT:
+    //   return { ...state, addingStudent: true };
+    // case ADDEDSTUDENT:
+    //   return { ...state, students: action.students, addingStudent: false };
 
 
     case ERROR:

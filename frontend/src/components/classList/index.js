@@ -17,39 +17,36 @@ import { getClasses } from "../../actions";
 import "./index.css";
 
 class ClassList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      class_empty: false
-    };
-  }
+ 
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.getClasses();
     console.log(
       "this.props.classes from componentDidMount:",
       this.props.classes
     );
-    if (this.props.classes.length === 0) {
-      this.setState({
-        class_empty: true
-      })
-    } else if (this.props.classes.length !== 0)
-
-    this.setState({
-      class_empty: false
-    })
+    // if (this.props.classes.length === 0) {
+    //   this.setState({
+    //     classes_empty: true
+    //   });
+    // } else if (this.props.classes.length > 0) {
+    //   this.setState({
+    //     classes_empty: false
+    //   });
+    // }
   }
 
   render() {
     console.log(
-      "this.props.classes outside componentDidMount:",
+      "this.props.classes in render:",
       this.props.classes
     );
+   
+    // console.log("classes_empty:", this.state.classes_empty);
 
     return (
       <div className="jumbo-div">
-        {this.state.class_empty === true ? (
+        {this.props.classes.length === 0? (
           <div className="jumbo-div">
             <Jumbotron fluid id="jumb">
               <Container fluid>
@@ -95,8 +92,11 @@ class ClassList extends React.Component {
               );
             })}
             <Nav id="add-button">
-              <NavLink className="NewClass" >
-                <Link to="/create" id="add-plus"> + </Link>
+              <NavLink className="NewClass">
+                <Link to="/create" id="add-plus">
+                  {" "}
+                  +{" "}
+                </Link>
               </NavLink>
             </Nav>
             <Nav id="createClass">
@@ -110,13 +110,13 @@ class ClassList extends React.Component {
       </div>
     );
   }
-
 }
 
 const mapStateToProps = state => {
   return {
     classes: state.classes,
-    user: state.user
+    user: state.user,
+    classes_empty: state.classes_empty
   };
 };
 
