@@ -190,14 +190,16 @@ class EditForm extends React.Component {
                 <div className="title">Options</div>
                 <FormGroup check>
                   <Label check>
-                    <Input type="checkbox" onClick={this.trackToggle} /> Track
+                  {this.state.trackMode === true? (<Input type="checkbox" onClick={this.trackToggle} checked/>):(<Input type="checkbox" onClick={this.trackToggle} />)} 
+                    Track
                     Participation
                   </Label>
                 </FormGroup>
                 <Button id="Reset-button">Reset Participation</Button>
                 <FormGroup check>
                   <Label check>
-                    <Input type="checkbox" onClick={this.allToggle} /> All Go
+                    {this.state.allMode === true? (<Input type="checkbox" onClick={this.allToggle} checked/>):(<Input type="checkbox" onClick={this.allToggle} />)}
+                    All Go
                   </Label>
                 </FormGroup>
               </div>

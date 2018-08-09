@@ -22,7 +22,7 @@ class ClassForm extends React.Component {
     super(props);
     // this.toggle = this.toggle.bind(this);
     this.state = {
-      // classname: "",
+      classname: "",
       firstname: "",
       lastname: "",
       // participated: 0,
@@ -59,7 +59,7 @@ class ClassForm extends React.Component {
   //Import CSV
 
   handleImportData = data => {
-    const { classname, allMode, trackMode, participated } = this.state;
+    const {allMode, trackMode, participated } = this.state;
     const updated_students = this.state.students;
     data.map(item => {
       const newStudent = {
