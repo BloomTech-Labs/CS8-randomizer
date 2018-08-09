@@ -227,6 +227,33 @@ class MagicRandomizer extends Component {
     let currentStudent = this.state.studentPick;
     let currentAll = this.state.allArr;
     console.log("CALL_RECORD", this.state.call_record);
+
+    let trackState;
+    let allState;
+    
+
+    if(this.state.trackMode == true){
+      return trackState = <div>
+
+            </div>
+    }
+    else{
+      return trackState = <div>
+                
+          </div>
+      }
+
+    if(this.state.allMode == true){
+      return allState = <div>
+
+            </div>
+    }
+    else{
+      return allState = <div>
+                
+          </div>
+      }
+    
     // let trackerDisplay;
 
     // if(this.state.trackMode == true)
