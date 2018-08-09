@@ -31,8 +31,8 @@ export const DELETEDSTUDENT = "DELETEDSTUDENT";
 
 export const ERROR = "ERROR";
 
-const URL = "https://lambda-labs-backend.herokuapp.com/api";
-// const URL = "http://localhost:5000/api";
+// const URL = "https://lambda-labs-backend.herokuapp.com/api";
+const URL = "http://localhost:5000/api";
 
 export const logIn = (user, history) => dispatch => {
   localStorage.clear();

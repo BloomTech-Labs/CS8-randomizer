@@ -233,24 +233,89 @@ class MagicRandomizer extends Component {
     
 
     if(this.state.trackMode == true){
-      return trackState = <div>
-
+      console.log('track true');
+      return trackState = 
+              <div>
+                <div className="caros">
+                    {/* <Carousel /> */}
+                    {/* <Button id="Randomize-button" onClick={this.allMode == false ? (this.randomHandler) : (this.allGoHandler) }> RANDOMIZE! </Button>   */}
+                    {this.state.allMode == true ? (
+                      <Button id="Randomize-button" onClick={this.allGoHandler}>
+                        {" "}
+                        RANDOMIZE!{" "}
+                      </Button>
+                    ) : (
+                      <Button id="Randomize-button" onClick={this.randomHandler}>
+                        {" "}
+                        RANDOMIZE!{" "}
+                      </Button>
+                    )}
+                  </div>
             </div>
     }
-    else{
-      return trackState = <div>
-                
+    else {
+      console.log('track false');
+      return trackState = 
+              <div>
+            <div className="caros">
+                {/* <Carousel /> */}
+                {/* <Button id="Randomize-button" onClick={this.allMode == false ? (this.randomHandler) : (this.allGoHandler) }> RANDOMIZE! </Button>   */}
+                    <Button className="participated"  id="Rando-top-button" onClick={this.participatedHandler}>
+                      {""}
+                        Participated
+                      {""}
+                    </Button>
+                  <Button id="declined" onClick={this.declinedHandler}>
+                    {" "}
+                        Declined
+                    {" "}
+                  </Button>
+                </div>
           </div>
-      }
-
+        
+    }
+    
     if(this.state.allMode == true){
-      return allState = <div>
+      return allState = 
+      <div>
+          <div className="reset">
+            <Button
+              className="reset_border"
+              id="AllGo-button"
+              onClick={this.resetHandler}
+            >
+              Reset 'All Go'
+            </Button>
+            <Button id="AllGo-button" onClick={this.toggle}>
+              Toggle All Go:{this.state.allMode == false ? (
+                <div>Off</div>
+              ) : (
+                <div>On</div>
+              )}
+            </Button>
 
+            {/* <FormGroup check>
+              <Label check>
+              <Input onClick={this.toggle} type='checkbox' /> {' '}
+              Toggle All Go
+              </Label>
+              </FormGroup>  */}
+
+            <div className="allgo-tracker">
+            Students in Deck:
+            <br/>
+            <div className="allgo-tracker-num">
+            {this.state.allstudents.length}
             </div>
+            
+            </div>
+          </div>
+                  
+      </div>
     }
     else{
       return allState = <div>
-                
+                Remove this test message
           </div>
       }
     
@@ -266,13 +331,13 @@ class MagicRandomizer extends Component {
       <div className="main">
         <div className="classid">{this.state.class.name}</div>
         <div className="header">
-          <Button
+          {/* <Button
             className="participated"
             id="Rando-top-button"
             onClick={this.participatedHandler}
           >
             Participated
-          </Button>
+          </Button> */}
           {this.state.allMode == true ? (
             <div className="studentName">
               {currentAll.first_name} {currentAll.last_name}
@@ -283,10 +348,10 @@ class MagicRandomizer extends Component {
             </div>
           )}
           {/* <div className="studentName">{currentAll.first_name} {currentAll.last_name}</div> */}
-          <Button id="declined" onClick={this.declinedHandler}>
+          {/* <Button id="declined" onClick={this.declinedHandler}>
             {" "}
             Declined{" "}
-          </Button>
+          </Button> */}
         </div>
         <Link 
                     to={{
@@ -342,7 +407,7 @@ class MagicRandomizer extends Component {
           <div className="caros">
             {/* <Carousel /> */}
             {/* <Button id="Randomize-button" onClick={this.allMode == false ? (this.randomHandler) : (this.allGoHandler) }> RANDOMIZE! </Button>   */}
-            {this.state.allMode == true ? (
+            {/* {this.state.allMode == true ? (
               <Button id="Randomize-button" onClick={this.allGoHandler}>
                 {" "}
                 RANDOMIZE!{" "}
@@ -352,7 +417,10 @@ class MagicRandomizer extends Component {
                 {" "}
                 RANDOMIZE!{" "}
               </Button>
-            )}
+            )} */}
+
+            {trackState}
+
           </div>
         </div>
         {this.state.trackMode == true ? (
