@@ -31,8 +31,8 @@ export const DELETEDSTUDENT = "DELETEDSTUDENT";
 
 export const ERROR = "ERROR";
 
-// const URL = "https://lambda-labs-backend.herokuapp.com/api";
-const URL = "http://localhost:5000/api";
+const URL = "https://lambda-labs-backend.herokuapp.com/api";
+// const URL = "http://localhost:5000/api";
 
 export const logIn = (user, history) => dispatch => {
   localStorage.clear();
@@ -80,8 +80,10 @@ export const logOut = () => dispatch => {
 
 export const addUser = data => dispatch => {
   // If there no users, go ahead and add a user:
+  localStorage.clear();
 
   if (axios.get(`${URL}/users`).response === undefined) {
+    localStorage.clear();
     dispatch({
       type: ADDINGUSER
     });
@@ -105,6 +107,7 @@ export const addUser = data => dispatch => {
         });
       });
   } else if (axios.get(`${URL}/users`).response.data.length > 0) {
+    localStorage.clear();
     //  If username is already taken, send sweet alert, else add the user.
     axios
       .get(`${URL}/users`)
@@ -230,7 +233,7 @@ export const addClass = (class_data, history) => dispatch => {
   // To do this, you will need to do an axios call to check throw the current list of classes OR, just check the list in the redux store!
 
   console.log("CLASS_DATA:", class_data);
-  console.log("users:", user_id);
+  console.log("user_id:", user_id);
   dispatch({
     type: ADDINGCLASS
   });
