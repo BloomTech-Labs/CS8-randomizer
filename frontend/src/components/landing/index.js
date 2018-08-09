@@ -153,6 +153,10 @@ class Landing extends React.Component {
     });
   };
 
+  componentDidMount(){
+    localStorage.clear();
+  }
+
   render() {
 
 
