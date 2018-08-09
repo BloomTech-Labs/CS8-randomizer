@@ -51,12 +51,12 @@ export const logIn = (user, history) => dispatch => {
       //   } else {
       //     delete axios.defaults.headers.common.Authorization;
       //   }
-      
+
       const decoded_token = jwt_decode(token);
       dispatch({ type: LOGGEDIN, payload: decoded_token });
 
-       // Fixes bug where url appears but page does not load
-       window.location.reload(true); // TODO: Fix this so that you are only using withRouter redirects
+      // Fixes bug where url appears but page does not load
+      window.location.reload(true); // TODO: Fix this so that you are only using withRouter redirects
       // swal({ icon: "success", text: "You are logged in!" }); // TODO: Find a way to have this render properly
     })
     .catch(err => {
@@ -66,7 +66,6 @@ export const logIn = (user, history) => dispatch => {
         text: "Well that didn't work! Click Signup to create a new account!"
       });
     });
-    
 };
 
 export const logOut = () => dispatch => {
@@ -95,8 +94,7 @@ export const addUser = data => dispatch => {
         dispatch({ type: ADDEDUSER, payload: res });
         swal({
           icon: "success",
-          text:
-            "You are registered! Click on Login to start magic randomizing!"
+          text: "You are registered! Click on Login to start magic randomizing!"
         });
       })
       .catch(err => {
@@ -185,7 +183,10 @@ export const editUser = (update_info, history) => dispatch => {
 };
 
 export const getClasses = () => dispatch => {
-  console.log('axios.get(`${URL}/classes`).response:', axios.get(`${URL}/classes`))
+  console.log(
+    "axios.get(`${URL}/classes`).response:",
+    axios.get(`${URL}/classes`)
+  );
   // if (axios.get(`${URL}/classes`).response === undefined) {
   //   dispatch({ type: GOTCLASSES, classes: [] });
   //   return
@@ -224,96 +225,105 @@ export const addClass = (class_data, history) => dispatch => {
   const decoded_token = jwt_decode(localStorage.jwtToken);
   const user_id = decoded_token.sub;
   // const combine = {...class_data, users: decoded_token.sub}
-  
+
   // TODO: Write an 'else if' which throws an swal error if a person tries to add a class with a name that already exists!
   // To do this, you will need to do an axios call to check throw the current list of classes OR, just check the list in the redux store!
-  
-    console.log("CLASS_DATA:", class_data);
-    console.log("users:", user_id);
-    dispatch({
-      type: ADDINGCLASS
-    });
-    axios
-      .post(`${URL}/createclass`, {
-        name: class_data.name,
-        students: class_data.students,
-        allMode: class_data.allMode,
-        trackMode: class_data.trackMode,
-        users: user_id,
-      })
-      // .then(response => {
-      //   console.log("ADDCLASS RESPONSE.CONFIG.DATA:", response.config.data);
-      //   dispatch({ type: ADDEDCLASS, classes: response.config.data });
-      // })
-      // .catch(() => {
-      //   dispatch({ type: ERROR, errorMessage: "Error Adding Class..." });
-      // })
 
-      .then(() => {
-        // ======= Find ALL Classes associated with Logged in User ===== //
-        // dispatch({
-        //   type: GETTINGCLASSES
-        // });
+  console.log("CLASS_DATA:", class_data);
+  console.log("users:", user_id);
+  dispatch({
+    type: ADDINGCLASS
+  });
+  axios
+    .post(`${URL}/createclass`, {
+      name: class_data.name,
+      students: class_data.students,
+      allMode: class_data.allMode,
+      trackMode: class_data.trackMode,
+      users: user_id
+    })
+    // .then(response => {
+    //   console.log("ADDCLASS RESPONSE.CONFIG.DATA:", response.config.data);
+    //   dispatch({ type: ADDEDCLASS, classes: response.config.data });
+    // })
+    // .catch(() => {
+    //   dispatch({ type: ERROR, errorMessage: "Error Adding Class..." });
+    // })
 
-        axios
-          .get(`${URL}/classes`)
-          .then(response => {
-            console.log(
-              `THESE ARE ${decoded_token.username}'s CLASSES:`,
-              response
-            );
-            // // console.log("Last Added Class ID", response.data[response.data.length-1]._id)
+    .then(() => {
+      // ======= Find ALL Classes associated with Logged in User ===== //
+      // dispatch({
+      //   type: GETTINGCLASSES
+      // });
 
-            const class_id = response.data[response.data.length - 1]._id;
-            // dispatch({ type: GOTCLASSES, classes: response.data });
+      axios
+        .get(`${URL}/classes`)
+        .then(response => {
+          console.log(
+            `THESE ARE ${decoded_token.username}'s CLASSES:`,
+            response
+          );
+          // // console.log("Last Added Class ID", response.data[response.data.length-1]._id)
 
-            dispatch({
-              type: EDITINGUSER
-            });
+          const class_id = response.data[response.data.length - 1]._id;
+          // dispatch({ type: GOTCLASSES, classes: response.data });
 
-            //       // LAST STEP: Add CLASS ID to stored in "response" to logged in User
-            //       console.log("user_id", user_id)
-            //       console.log("class_id", class_id)
-
-            axios // FIX THIS IN BACKEND
-              .put(`${URL}/addtouser/${user_id}`, {
-                classes: class_id
-              });
-            // .then(() => {
-            //   dispatch({ type: EDITEDUSER, payload: {classes: class_id}});
-            // })
-            // .catch(err => {
-            //   dispatch({ type: ERROR, payload: err });
-            // });
-            swal({
-              icon: "success",
-              text: "Congratulations! You created a new class!"
-            });
-            history.push("../classes");
-          })
-          .catch(res => {
-            dispatch({
-              type: ERROR,
-              errorMessage: "Error getting classes..."
-            });
+          dispatch({
+            type: EDITINGUSER
           });
-      })
-      .catch(err => {
-        dispatch({ type: ERROR, errorMessage: "Error creating class..." });
-      });
-  
+
+          //       // LAST STEP: Add CLASS ID to stored in "response" to logged in User
+          //       console.log("user_id", user_id)
+          //       console.log("class_id", class_id)
+
+          axios // FIX THIS IN BACKEND
+            .put(`${URL}/addtouser/${user_id}`, {
+              classes: class_id
+            });
+          // .then(() => {
+          //   dispatch({ type: EDITEDUSER, payload: {classes: class_id}});
+          // })
+          // .catch(err => {
+          //   dispatch({ type: ERROR, payload: err });
+          // });
+          swal({
+            icon: "success",
+            text: "Congratulations! You created a new class!"
+          });
+          history.push("../classes");
+        })
+        .catch(res => {
+          dispatch({
+            type: ERROR,
+            errorMessage: "Error getting classes..."
+          });
+        });
+    })
+    .catch(err => {
+      dispatch({ type: ERROR, errorMessage: "Error creating class..." });
+    });
 };
 
 export const editClass = (class_data, history, classid) => dispatch => {
+  const logged_in_user_id = jwt_decode(localStorage.jwtToken).sub
   dispatch({
     type: EDITINGCLASS
   });
-  axios.put(`${URL}/updateclass/${classid + ""}`, class_data).then(response => {
-    dispatch({
-      type: EDITEDCLASS,
-      class_data: response.data
+  axios
+    .put(`${URL}/updateclass/${classid + ""}`, {
+      name: class_data.name,
+      students: class_data.students,
+      allMode: class_data.allMode,
+      trackMode: class_data.trackMode,
+      users: logged_in_user_id,
+      participation: 0,
+    })
+    .then(response => {
+      dispatch({
+        type: EDITEDCLASS,
+        class_data: response.data
+      });
     });
-  });
   history.push("../classes");
 };
 

@@ -41,6 +41,8 @@ const initialState = {
   addingClass: false,
   editingUser: false,
   classes_empty: true,
+  allMode: false,
+  trackMode: false,
 
 };
 

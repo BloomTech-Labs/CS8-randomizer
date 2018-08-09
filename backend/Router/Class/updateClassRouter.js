@@ -21,11 +21,15 @@ router
     console.log('REQ', req.body)
     const { id } = req.params;
     const updateInfo = req.body;
-    Class.findByIdAndUpdate(id, {
-      name: updateInfo.name, users: updateInfo.users, students: updateInfo.students, allMode: updateInfo.allMode,
-      trackMode: updateInfo.trackMode, participation: updateInfo.participation
-    }, { 'new': true})
+
+    Class.findOneAndUpdate(
+      { _id: id }, // First argument is the "filter"
+      { name: updateInfo.name, students: updateInfo.students, allMode: updateInfo.allMode,
+        trackMode: updateInfo.trackMode },
+      { new: true }
+    )
       .then(response => {
+        response.save();
         res.json(response);
       })
       .catch(err => {
