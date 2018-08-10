@@ -270,7 +270,7 @@ class EditForm extends React.Component {
             </div>
 
             <div className="submitButton-box">
-            <Link
+            {/* <Link
                     to={{
                       pathname: `/classes/${classitem._id}`,
                       state: {
@@ -278,14 +278,15 @@ class EditForm extends React.Component {
                         class: classitem
                       }
                     }}
-                  >
+                  > */}
               <Button
                 id="Class-submit-button"
                 onClick={this.handleAddClassAndStudents}
+                href="/classes"
               >
                 Submit
               </Button>
-              </Link>
+              {/* </Link> */}
             </div>
           </div>
         </div>
