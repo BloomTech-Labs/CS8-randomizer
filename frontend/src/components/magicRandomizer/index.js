@@ -79,7 +79,7 @@ class MagicRandomizer extends Component {
   componentDidMount() {
     this.props.getClasses();
     console.log("mount", this.props);
-    if (this.props.classes.length === 1) {
+    if (this.props.classes.length <= 1) {
       swal({
         title: "Getting Started with Randomizer",
         text:
@@ -87,11 +87,9 @@ class MagicRandomizer extends Component {
       });
     }
 
-    // if (this.props.location.state.class.graph_data){
     this.setState({
       graph_data: this.make_graph_data()
-    });
-  // }
+    })
   console.log("this.props.location.state.class.graph_data", this.props.location.state.class.graph_data)
 
 
@@ -146,8 +144,9 @@ class MagicRandomizer extends Component {
           this.state.participation_rate
         )}% of your class participated this round!`
       });
-
-      this.date_format();
+     
+      console.log("UPDATINGINGINING")
+     
       // updates mLab participation property for this class
       this.props.updateParticipation({
         class_id: this.props.match.params.id,
@@ -159,6 +158,13 @@ class MagicRandomizer extends Component {
         class_id: this.props.match.params.id,
         graph_data: this.state.graph_data
       });
+
+      this.setState({
+        graph_data: this.make_graph_data()
+      })
+
+      this.date_format();
+    
 
       // [DO NOT DELETE THIS NOTE!!] TODO: The above only updates a single value for participation, which
       // satisfies the MVP however if you wanted to keep track of your daily participation values, you
@@ -221,9 +227,9 @@ class MagicRandomizer extends Component {
         partDecCheck: true,
         call_record: update_call_record,
         participation_rate:
-          (update_call_record.filter(item => item === "1").length /
+          Math.floor((update_call_record.filter(item => item === "1").length /
             update_call_record.length) *
-          100
+          100)
 
         // randInit: true,
       });
@@ -515,11 +521,6 @@ class MagicRandomizer extends Component {
                       }
                     }}
           >
-        <Button
-          className="edit"
-          id="Rando-top-button"
-          // href={`/${this.state.classid}/edit`}
-        >
           <Button
             className="edit"
             id="Rando-top-button"
