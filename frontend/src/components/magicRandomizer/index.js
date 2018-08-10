@@ -272,6 +272,8 @@ class MagicRandomizer extends Component {
     console.log("Saddle up...", this.state.mounted);
     
 
+    // NO TRACK
+
     if(this.state.trackMode == false){
       trackState = 
           <div className="caro_container">
@@ -290,6 +292,9 @@ class MagicRandomizer extends Component {
                       </div>
             </div>
     }
+
+
+    // Track On
 
     if(this.state.trackMode == true){
       trackState = 
@@ -311,6 +316,8 @@ class MagicRandomizer extends Component {
 
     }
     
+    // AllMode
+
     if(this.state.allMode == true){
 
       console.log('allMode on');
@@ -336,12 +343,15 @@ class MagicRandomizer extends Component {
                   
       </div>
     }
-    if(this.state.allMode == false){
-      console.log("allMode off")
-      allState = 
-                "Remove this test message"
+
+    // No All
+
+    // if(this.state.allMode == false){
+    //   console.log("allMode off")
+    //   allState = 
+    //             "Remove this test message"
   
-      }
+    //   }
     
 
     return (
