@@ -7,18 +7,17 @@ import {
   Card,
   CardBody,
   CardTitle,
-  CardSubtitle
+  CardSubtitle,
+  CardFooter
 } from "reactstrap";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { getClasses } from "../../actions";
 // import { ClassCard } from '../classCard';
-
+import { LineChart } from "react-easy-chart";
 import "./index.css";
 
 class ClassList extends React.Component {
- 
-
   componentDidMount() {
     this.props.getClasses();
     console.log(
@@ -37,16 +36,13 @@ class ClassList extends React.Component {
   }
 
   render() {
-    console.log(
-      "this.props.classes in render:",
-      this.props.classes
-    );
-   
+    console.log("this.props.classes in render:", this.props.classes);
+
     // console.log("classes_empty:", this.state.classes_empty);
 
     return (
       <div className="jumbo-div">
-        {this.props.classes.length === 0? (
+        {this.props.classes.length === 0 ? (
           <div className="jumbo-div">
             <Jumbotron fluid id="jumb">
               <Container fluid>
@@ -85,8 +81,36 @@ class ClassList extends React.Component {
 
                       <CardSubtitle>
                         Students: {classitem.students.length}
+                        <br />
+                        Participation: {classitem.participation}%
                       </CardSubtitle>
+                      
                     </CardBody>
+                    {/* <CardFooter> */}
+                    <LineChart
+                        // xDomainRange={[0, 100]}
+                        yDomainRange={[-5, 150]}
+                        xType={"time"}
+                        // dataPoints
+                        // axes
+                        grid
+                        verticalGrid
+                        // interpolate={"cardinal"}
+                        lineColors={["white"]}
+                        width={210}
+                        height={100}
+                        data={[
+                          classitem.graph_data
+                        ]}
+                        style={
+                          {
+                            // backgroundColor: "#584573",
+                            display: "flex",
+                            justifyContent: "center"
+                          }
+                        }
+                      />
+                      {/* </CardFooter> */}
                   </Link>
                 </Card>
               );

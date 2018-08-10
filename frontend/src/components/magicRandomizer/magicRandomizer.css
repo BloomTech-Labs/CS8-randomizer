@@ -5,7 +5,7 @@
   /* width: 90%; */  
   /* background: blue; */  
   
-  height: 852px;  
+  height: 1000px;  
   
   background: rgb(230, 230, 230);  
   border-radius: .25rem;  
@@ -23,8 +23,7 @@
 
   /* margin-left: 3%;   */
   height: 50px;  
-  margin-top: 2%;  
-  margin-bottom: 5%;
+  margin-top: 2%;
 
 }
 
@@ -261,9 +260,32 @@ transition: all 0.5 s ease;
 
 .part_data_title {
   margin-bottom: 15px;
-  margin-left: 4.5%;
   text-align: center;
   font-size: 120%;
+  /* border: 5px solid red;  */
+
+}
+
+.line_chart {
+  /* border: 5px solid red;  */
+  width: 50%;
+  margin-left: 24%;
+  background: #584573;
+  font-size: 12px;
+}
+
+.line-chart .y-axis text {
+  fill: grey;
+  font-size: 12px;
+  font-weight: 300;
+}
+/* 
+svg text{
+  font-size: 10px;
+} */
+
+line {
+  
 }
 
 .part_graph {

@@ -6,6 +6,7 @@ import ReactDOM from "react-dom";
 import { Link } from 'react-router-dom';
 
 import { Button, FormGroup, Label, Input } from "reactstrap";
+import CsvParse from "@vtex/react-csv-parse";
 
 import { addClass, addStudent, getClasses, editClass } from "../../actions";
 
@@ -13,7 +14,6 @@ import swal from "sweetalert";
 import "./form.css";
 
 import uuidv4 from "uuid/v4";
-
 
 class EditForm extends React.Component {
   constructor(props) {
@@ -29,6 +29,7 @@ class EditForm extends React.Component {
       trackMode: this.props.location.state.class.trackMode,
       students: this.props.location.state.class.students,
       // btnDropleft: false
+      myref: HTMLElement
     };
   }
 
@@ -52,6 +53,62 @@ class EditForm extends React.Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
+  // Updates this.students.state when you Import a CSV file
+  handleImportData = data => {
+    const { allMode, trackMode, participated } = this.state;
+    const updated_students = this.state.students;
+    data.map(item => {
+      const newStudent = {
+        first_name: item.first_name,
+        last_name: item.last_name,
+        component_state_id: uuidv4() // Needs to be here in order to for removeStudent to work
+      };
+
+      updated_students.push(newStudent);
+    });
+
+    this.setState({
+      students: updated_students,
+      firstname: "",
+      lastname: ""
+    });
+  };
+
+  // Updates this.student.state when you click 'Add'
+  compileStudentList = () => {
+    // This runs every time the `Add` button is pressed
+    const { firstname, lastname } = this.state;
+
+    if (firstname === "") {
+      swal({
+        icon: "error",
+        text: "Oops!! Looks like you forgot to add a first name!"
+      });
+      return;
+    } else if (lastname === "") {
+      swal({
+        icon: "error",
+        text: "Oops!! Looks like you forgot to add a last name!"
+      });
+      return;
+    } else {
+      const newStudent = {
+        first_name: firstname,
+        last_name: lastname,
+        component_state_id: uuidv4() // Needs to be here in order to for removeStudent to work
+      };
+      const students = this.state.students;
+      students.push(newStudent);
+      this.setState({
+        students: students,
+        firstname: "",
+        lastname: ""
+      });
+      console.log("compileStudentList running:", this.state.students);
+    }
+  };
+
+  // Updates the mLab database with whatever is stored in state
   handleAddClassAndStudents = () => {
     const { classname, students, allMode, trackMode } = this.state;
     const collection = students;
@@ -59,7 +116,8 @@ class EditForm extends React.Component {
     collection.map(item => {
       full_name.push({
         first_name: item.first_name,
-        last_name: item.last_name
+        last_name: item.last_name,
+        component_state_id: uuidv4()
       });
     });
     console.log("FULL_NAME ARRAY:", full_name);
@@ -84,7 +142,7 @@ class EditForm extends React.Component {
           trackMode: trackMode
         },
         this.props.history,
-        this.props.location.state.class._id,
+        this.props.location.state.class._id
       );
       this.setState({
         classname: "",
@@ -95,54 +153,17 @@ class EditForm extends React.Component {
     }
   };
 
-  compileStudentList = () => {
-    // This runs every time the `Add` button is pressed
-    const {
-      firstname,
-      lastname,
-      participated,
-      allMode,
-      trackMode
-    } = this.state;
-
-    if (firstname === "") {
-      swal({
-        icon: "error",
-        text: "Oops!! Looks like you forgot to add a first name!"
-      });
-      return;
-    } else if (lastname === "") {
-      swal({
-        icon: "error",
-        text: "Oops!! Looks like you forgot to add a last name!"
-      });
-      return;
-    } else {
-      const newStudent = {
-        first_name: firstname,
-        last_name: lastname,
-        component_state_id: uuidv4(),
-        participated: participated,
-        allMode: allMode,
-        trackMode: trackMode
-      };
-      const students = this.state.students;
-      students.push(newStudent);
-      this.setState({
-        students: students,
-        firstname: "",
-        lastname: ""
-      });
-      console.log("compileStudentList running:", this.state.students);
-    }
-  };
-
-  handleAddStudent = () => { // TODO: This will be used to add new students to a class AFTER it is made
-
+  handleAddStudent = () => {
+    // TODO: This will be used to add new students to a class AFTER it is made
   };
 
   removeStudent = e => {
     console.log("x", e.target.value);
+    console.log("this.myref:", this.myref);
+    console.log(
+      "this.props.location.state.class.students:",
+      this.props.location.state.class.students
+    );
     const students = this.state.students;
     for (let i = 0; i < students.length; i++) {
       if (students[i].component_state_id === e.target.value) {
@@ -155,19 +176,18 @@ class EditForm extends React.Component {
     });
   };
 
-
-  componentDidMount() {
-    this.props.getClasses();
-    console.log('mount')
-  }
-
+  // componentDidMount() {
+  //   this.props.getClasses();
+  //   console.log('mount')
+  // }
 
   render() {
-
     const keys = ["first_name", "last_name"];
+
 
     console.log('props', this)
     let classitem = this.props.location.state.class;
+
 
     return (
       <div className="Form-div">
@@ -192,15 +212,26 @@ class EditForm extends React.Component {
                 <div className="title">Options</div>
                 <FormGroup check>
                   <Label check>
-                  {this.state.trackMode === true? (<Input type="checkbox" onClick={this.trackToggle} checked/>):(<Input type="checkbox" onClick={this.trackToggle} />)} 
-                    Track
-                    Participation
+                    {this.state.trackMode === true ? (
+                      <Input
+                        type="checkbox"
+                        onClick={this.trackToggle}
+                        checked
+                      />
+                    ) : (
+                      <Input type="checkbox" onClick={this.trackToggle} />
+                    )}
+                    Track Participation
                   </Label>
                 </FormGroup>
                 <Button id="Reset-button">Reset Participation</Button>
                 <FormGroup check>
                   <Label check>
-                    {this.state.allMode === true? (<Input type="checkbox" onClick={this.allToggle} checked/>):(<Input type="checkbox" onClick={this.allToggle} />)}
+                    {this.state.allMode === true ? (
+                      <Input type="checkbox" onClick={this.allToggle} checked />
+                    ) : (
+                      <Input type="checkbox" onClick={this.allToggle} />
+                    )}
                     All Go
                   </Label>
                 </FormGroup>
@@ -229,21 +260,17 @@ class EditForm extends React.Component {
                 <Button id="Add-button" onClick={this.compileStudentList}>
                   Add
                 </Button>
-                {/* <Button id="Add-button">
-                  <span>
-                    <CSVLink data={data} onClick={this.compileStudentList}>
-                      Import CSV
-                    </CSVLink>
-                  </span>
-                </Button> */}
-                {/* <CsvParse
-
+              </div>
+            </div>
+            <div className="CSV-box">
+              <div className="CSV-box_content">
+                <div className="CSV_title">Import CSV</div>
+                <CsvParse
                   keys={keys}
                   onDataUploaded={this.handleImportData}
                   onError={this.handleError}
                   render={onChange => <input type="file" onChange={onChange} />}
-                /> */}
-
+                />
               </div>
             </div>
           </div>
@@ -261,12 +288,15 @@ class EditForm extends React.Component {
                       onClick={this.removeStudent}
                       value={obj.component_state_id}
                       type="submit"
+                      ref={r => {
+                        this.myref = r;
+                      }}
                     >
                       x {first + " " + last}
                     </Button>
                   );
                 })}
-              </div> 
+              </div>
             </div>
 
             <div className="submitButton-box">
@@ -301,7 +331,7 @@ const mapStateToProps = state => {
     addingClass: state.addingClass,
     students: state.students,
     classes: state.classes,
-    user: state.user,
+    user: state.user
   };
 };
 
