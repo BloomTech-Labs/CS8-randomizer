@@ -1,5 +1,4 @@
 import {
-  
   ADDINGUSER,
   ADDEDUSER,
   EDITINGUSER,
@@ -8,7 +7,6 @@ import {
   LOGGEDIN,
   LOGGINGOUT,
   LOGGEDOUT,
-
   GETTINGCLASSES,
   GOTCLASSES,
   ADDCLASS,
@@ -18,13 +16,16 @@ import {
   EDITEDCLASS,
   DELETECLASS,
   DELETEDCLASS,
-
   GETTINGSTUDENTS,
   GOTSTUDENTS,
   ADDINGSTUDENT,
   ADDEDSTUDENT,
   DELETESTUDENT,
   DELETEDSTUDENT,
+  UPDATINGPARTICIPATION,
+  UPDATEDPARTICIPATION,
+  UPDATINGGRAPHDATA,
+  UPDATEDGRAPHDATA,
   ERROR
 } from "../actions";
 
@@ -43,7 +44,8 @@ const initialState = {
   classes_empty: true,
   allMode: false,
   trackMode: false,
-
+  updatingParticipation: false,
+  updatingGraph: false
 };
 
 export const Reducer = (state = initialState, action) => {
@@ -62,9 +64,9 @@ export const Reducer = (state = initialState, action) => {
       };
 
     case EDITINGUSER:
-     return{ ...state, editingUser: true };
+      return { ...state, editingUser: true };
     case EDITEDUSER:
-    return{ ...state, users: action.users, editingUser: false }; 
+      return { ...state, users: action.users, editingUser: false };
     case LOGGINGIN:
       return { ...state, loggingIn: true };
     case LOGGEDIN:
@@ -76,8 +78,12 @@ export const Reducer = (state = initialState, action) => {
     case LOGGINGOUT:
       return { ...state, loggingOut: true };
     case LOGGEDOUT:
-      return { ...state, authed: false, isAuthenticated: false, loggingOut: false };
-
+      return {
+        ...state,
+        authed: false,
+        isAuthenticated: false,
+        loggingOut: false
+      };
 
     case GETTINGCLASSES:
       return { ...state, gettingClass: true };
@@ -86,18 +92,17 @@ export const Reducer = (state = initialState, action) => {
         ...state,
         classes: action.classes,
         gettingClass: false,
-        error: null,
+        error: null
       };
     case ADDINGCLASS:
       return { ...state, addingClass: true };
     case ADDEDCLASS:
       return {
-        // ...state,
-        // classes: [...state.classes, action.classes],
-        // addingClass: false
+        ...state,
+        addingClass: false
       };
     case EDITINGUSER:
-      return{ ...state, editingClass: true };
+      return { ...state, editingClass: true };
     case EDITEDCLASS:
       return { ...state, editingClass: false };
 
@@ -109,7 +114,36 @@ export const Reducer = (state = initialState, action) => {
     //   return { ...state, addingStudent: true };
     // case ADDEDSTUDENT:
     //   return { ...state, students: action.students, addingStudent: false };
-
+    case UPDATINGPARTICIPATION:
+      return { ...state, updatingParticipation: true };
+    case UPDATEDPARTICIPATION:
+      state.classes.forEach(item => {
+        if (item._id === action.class_id) {
+          return {
+            ...state,
+            updatingParticipation: false,
+            classes: {
+              ...state.classes[state.classes.indexOf(item)],
+              participation: action.class_data.participation
+            }
+          };
+        }
+      });
+    case UPDATINGGRAPHDATA:
+      return { ...state, updatingGraph: true };
+    case UPDATEDGRAPHDATA:
+      state.classes.forEach(item => {
+        if (item._id === action.class_id) {
+          return {
+            ...state,
+            updatingGraph: false,
+            classes: {
+              ...state.classes[state.classes.indexOf(item)],
+              graph_data: action.class_data.graph_data
+            }
+          };
+        }
+      });
 
     case ERROR:
       return { ...state, error: action.errorMessage };

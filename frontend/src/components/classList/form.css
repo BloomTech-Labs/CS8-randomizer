@@ -14,7 +14,7 @@
   margin-left: 1%;
   margin-top: 5%;
   /* border: 5px solid magenta; */
-  height: 65%;
+  height: 74%;
 }
 
 .Form-container_left {
@@ -136,6 +136,33 @@
   color: #584573;
   transition: all 0.5s ease;
 }
+
+.CSV-box {
+  width: 100%;
+  /* border: 5px solid gold; */
+  height: 100px;
+}
+
+.CSV-box_content {
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  width: 80%;
+  margin: 0% 10%;
+  border-top: 2px solid hsl(265, 40%, 60%);
+  padding: 1% 0%;
+  /* border: 5px solid gold; */
+
+
+}
+
+.CSV_title {
+  font-size: 1.6rem;
+  text-align: start;
+  margin-bottom: 12px;
+}
+
 
 
 .List-box {

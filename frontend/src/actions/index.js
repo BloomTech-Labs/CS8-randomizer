@@ -29,10 +29,17 @@ export const ADDEDSTUDENT = "ADDEDSTUDENT";
 export const DELETESTUDENT = "DELETESTUDENT";
 export const DELETEDSTUDENT = "DELETEDSTUDENT";
 
+export const UPDATINGPARTICIPATION = "UPDATINGPARTICIPATION";
+export const UPDATEDPARTICIPATION = "UPDATEDPARTICIPATION";
+
+export const UPDATINGGRAPHDATA = "UPDATINGGRAPHDATA";
+export const UPDATEDGRAPHDATA = "UPDATEDGRAPHDATA";
+
+
 export const ERROR = "ERROR";
 
-const URL = "https://lambda-labs-backend.herokuapp.com/api";
-// const URL = "http://localhost:5000/api";
+// const URL = "https://lambda-labs-backend.herokuapp.com/api";
+const URL = "http://localhost:5000/api";
 
 export const logIn = (user, history) => dispatch => {
   localStorage.clear();
@@ -243,7 +250,7 @@ export const addClass = (class_data, history) => dispatch => {
       students: class_data.students,
       allMode: class_data.allMode,
       trackMode: class_data.trackMode,
-      users: user_id
+      users: user_id,
     })
     // .then(response => {
     //   console.log("ADDCLASS RESPONSE.CONFIG.DATA:", response.config.data);
@@ -385,3 +392,52 @@ export const deleteStudent = studentid => dispatch => {
       });
     });
 };
+
+export const updateParticipation = data => dispatch => {
+  dispatch({
+    type: UPDATINGPARTICIPATION
+  });
+  axios
+    .put(`${URL}/updateparticipation/${data.class_id + ""}`, {
+      // name: class_data.name,
+      // students: class_data.students,
+      // allMode: class_data.allMode,
+      // trackMode: class_data.trackMode,
+      // users: logged_in_user_id,
+      participation: data.participation,
+    })
+    .then(response => {
+      console.log("updateParticipation response:", response)
+      dispatch({
+        type: UPDATEDPARTICIPATION,
+        class_data: response.data,
+        class_id: data.class_id
+      });
+    });
+  // TODO: axios PUT to /updateclass/ to update participation array for particular day
+  // Will need ID of class AND the participation rate
+
+}
+
+export const updateGraphData = data => dispatch => {
+  dispatch({
+    type: UPDATINGGRAPHDATA
+  });
+  axios
+    .put(`${URL}/updategraphdata/${data.class_id + ""}`, {
+      // name: class_data.name,
+      // students: class_data.students,
+      // allMode: class_data.allMode,
+      // trackMode: class_data.trackMode,
+      // users: logged_in_user_id,
+      graph_data: data.graph_data,
+    })
+    .then(response => {
+      console.log("updateGraphData response:", response)
+      dispatch({
+        type: UPDATEDGRAPHDATA,
+        class_data: response.data,
+        class_id: data.class_id
+      });
+    });
+}

@@ -2,12 +2,11 @@ import { withRouter } from "react-router-dom";
 import React from "react";
 import { connect } from "react-redux";
 import ReactDOM from "react-dom";
-import { CSVLink, CSVDownload } from "react-csv";
+// import { CSVLink, CSVDownload } from "react-csv";
 
 import CsvParse from "@vtex/react-csv-parse";
 
 import { Button, FormGroup, Label, Input } from "reactstrap";
-
 
 import { addClass, addStudent } from "../../actions";
 import swal from "sweetalert";
@@ -29,7 +28,7 @@ class ClassForm extends React.Component {
       // resetMode: this.props.,
       allMode: this.props.classes.allMode,
       trackMode: this.props.classes.trackMode,
-      students: [],
+      students: []
       // btnDropleft: false
     };
   }
@@ -56,21 +55,58 @@ class ClassForm extends React.Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-  //Import CSV
+  // Updates this.student.state when you click 'Add'
+  compileStudentList = () => {
+    // This runs every time the `Add` button is pressed (as opposed to importing CSV)
+    const {
+      firstname,
+      lastname,
+      participated,
+      allMode,
+      trackMode
+    } = this.state;
+
+    if (firstname === "") {
+      swal({
+        icon: "error",
+        text: "Oops!! Looks like you forgot to add a first name!"
+      });
+      return;
+    } else if (lastname === "") {
+      swal({
+        icon: "error",
+        text: "Oops!! Looks like you forgot to add a last name!"
+      });
+      return;
+    } else {
+      const newStudent = {
+        first_name: firstname,
+        last_name: lastname,
+        component_state_id: uuidv4() // Needs to be here in order to for removeStudent to work
+      };
+      const students = this.state.students;
+      students.push(newStudent);
+      this.setState({
+        students: students,
+        firstname: "",
+        lastname: ""
+      });
+      console.log("compileStudentList running:", this.state.students);
+    }
+  };
+
+  // Updates this.students.state when you Import a CSV file (as opposed  `Add`ing one by one)
 
   handleImportData = data => {
-    const {allMode, trackMode, participated } = this.state;
+    const { allMode, trackMode, participated } = this.state;
     const updated_students = this.state.students;
     data.map(item => {
       const newStudent = {
         first_name: item.first_name,
         last_name: item.last_name,
-        component_state_id: uuidv4(),
-        participated: participated,
-        allMode: allMode,
-        trackMode: trackMode
+        component_state_id: uuidv4() // Needs to be here in order to for removeStudent to work
       };
-      
+
       updated_students.push(newStudent);
     });
 
@@ -79,8 +115,8 @@ class ClassForm extends React.Component {
       firstname: "",
       lastname: ""
     });
+    console.log("handleImportData running:", this.state.students);
   };
-
 
   handleAddClassAndStudents = () => {
     const { classname, students, allMode, trackMode } = this.state;
@@ -89,7 +125,8 @@ class ClassForm extends React.Component {
     collection.map(item => {
       full_name.push({
         first_name: item.first_name,
-        last_name: item.last_name
+        last_name: item.last_name,
+        component_state_id: uuidv4()
       });
     });
     console.log("FULL_NAME ARRAY:", full_name);
@@ -124,48 +161,6 @@ class ClassForm extends React.Component {
     }
   };
 
-  compileStudentList = () => {
-    // This runs every time the `Add` button is pressed
-    const {
-      firstname,
-      lastname,
-      participated,
-      allMode,
-      trackMode
-    } = this.state;
-
-    if (firstname === "") {
-      swal({
-        icon: "error",
-        text: "Oops!! Looks like you forgot to add a first name!"
-      });
-      return;
-    } else if (lastname === "") {
-      swal({
-        icon: "error",
-        text: "Oops!! Looks like you forgot to add a last name!"
-      });
-      return;
-    } else {
-      const newStudent = {
-        first_name: firstname,
-        last_name: lastname,
-        component_state_id: uuidv4(),
-        participated: participated,
-        allMode: allMode,
-        trackMode: trackMode
-      };
-      const students = this.state.students;
-      students.push(newStudent);
-      this.setState({
-        students: students,
-        firstname: "",
-        lastname: ""
-      });
-      console.log("compileStudentList running:", this.state.students);
-    }
-  };
-
   removeStudent = e => {
     console.log("x", e.target.value);
     const students = this.state.students;
@@ -185,11 +180,9 @@ class ClassForm extends React.Component {
   };
 
   render() {
-
     const keys = ["first_name", "last_name"];
 
     console.log("rand", this);
-
 
     return (
       <div className="Form-div">
@@ -249,21 +242,17 @@ class ClassForm extends React.Component {
                 <Button id="Add-button" onClick={this.compileStudentList}>
                   Add
                 </Button>
-                {/* <Button id="Add-button">
-                  <span>
-                    <CSVLink data={data} onClick={this.compileStudentList}>
-                      Import CSV
-                    </CSVLink>
-                  </span>
-                </Button> */}
+              </div>
+            </div>
+            <div className="CSV-box">
+              <div className="CSV-box_content">
+                <div className="title">Import CSV</div>
                 <CsvParse
-
                   keys={keys}
                   onDataUploaded={this.handleImportData}
                   onError={this.handleError}
                   render={onChange => <input type="file" onChange={onChange} />}
                 />
-
               </div>
             </div>
           </div>

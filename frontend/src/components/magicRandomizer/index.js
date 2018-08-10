@@ -2,11 +2,16 @@ import React, { Component } from "react";
 // import Carousel from "./Carousel";
 import { Button, FormGroup, Label, Input } from "reactstrap";
 import { Link } from "react-router-dom";
-import { getClasses } from "../../actions";
+import {
+  getClasses,
+  updateParticipation,
+  updateGraphData
+} from "../../actions";
 import swal from "sweetalert";
 
 import "./magicRandomizer.css";
 import { connect } from "react-redux";
+import { LineChart } from "react-easy-chart";
 
 class MagicRandomizer extends Component {
   constructor(props) {
@@ -31,6 +36,7 @@ class MagicRandomizer extends Component {
       // declined: Number
       call_record: [],
       participation_rate: 0,
+      graph_data: []
     };
   }
 
@@ -70,13 +76,19 @@ class MagicRandomizer extends Component {
   componentDidMount() {
     this.props.getClasses();
     console.log("mount", this.props);
-    if (this.props.classes.length === 1){
-    swal({
-      title: "Getting Started with Randomizer",
-      text:
-        "If ` Tracking Mode ` is ON (graph is visible):\n\nClick `Reset All Go` to fill your deck.\nOnce the `RANDOMIZER` button is clicked, the name of the first student to call on will appear.\nClick the appropriate button for whether the student `Participated` or `Declined`.\n\n  If ` Tracking Mode` is OFF (no graph visible):\n\nSimply use the `RANDOMIZER` button to randomly select a student in the class."
-    });
+    if (this.props.classes.length === 1) {
+      swal({
+        title: "Getting Started with Randomizer",
+        text:
+          "If ` Tracking Mode ` is ON (graph is visible):\n\nClick `Reset All Go` to fill your deck.\nOnce the `RANDOMIZER` button is clicked, the name of the first student to call on will appear.\nClick the appropriate button for whether the student `Participated` or `Declined`.\n\n  If ` Tracking Mode` is OFF (no graph visible):\n\nSimply use the `RANDOMIZER` button to randomly select a student in the class."
+      });
     }
+    // if (this.props.location.state.class.graph_data){
+    this.setState({
+      graph_data: this.make_graph_data()
+    });
+  // }
+  console.log("this.props.location.state.class.graph_data", this.props.location.state.class.graph_data)
   }
 
   randomHandler = () => {
@@ -96,7 +108,7 @@ class MagicRandomizer extends Component {
         Math.floor(Math.random() * allArray.length),
         1
       );
-      console.log("p", pick);
+      console.log("student picked:", pick[0].first_name);
       this.setState({
         allArr: pick[0],
         partDecCheck: false
@@ -108,11 +120,29 @@ class MagicRandomizer extends Component {
       swal({
         // icon: "success",
         className: "out_of_students",
-        title: `${Math.floor(this.state.participation_rate)}% of your class participated this round!`,
+        title: `${Math.floor(
+          this.state.participation_rate
+        )}% of your class participated this round!`
       });
-      this.setState({
-        call_record: []
+
+      this.date_format();
+      // updates mLab participation property for this class
+      this.props.updateParticipation({
+        class_id: this.props.match.params.id,
+        participation: Math.floor(
+          this.state.graph_data[this.state.graph_data.length - 1].y
+        )
       });
+      this.props.updateGraphData({
+        class_id: this.props.match.params.id,
+        graph_data: this.state.graph_data
+      });
+
+      // [DO NOT DELETE THIS NOTE!!] TODO: The above only updates a single value for participation, which
+      // satisfies the MVP however if you wanted to keep track of your daily participation values, you
+      // would need something like what is written below -- an array of objects with a participation value
+      // for each school day:
+      // this.props.updateParticipation({class_id: this.props.match.params.id, participation: [{date: this.state.graph_data[this.state.graph_data.length - 1].x,  percent: Math.floor(this.state.graph_data[this.state.graph_data.length - 1].y)}]})
     }
   };
 
@@ -126,23 +156,19 @@ class MagicRandomizer extends Component {
 
   participatedHandler = () => {
     if (this.state.partDecCheck == false) {
-      // let participateAdd = this.state.participated;
-      // let participateAdd = this.props.location.state.class.participation;
-      ++this.props.location.state.class.participation;
       let update_call_record = this.state.call_record;
       update_call_record.push("1");
-      // ++participateAdd
       this.setState({
-        participated: this.props.location.state.class.participation,
         partDecCheck: true,
         call_record: update_call_record,
-        participation_rate: (update_call_record.filter(item => item === "1").length /
-        update_call_record.length) *
-        100
+        participation_rate:
+          (update_call_record.filter(item => item === "1").length /
+            update_call_record.length) *
+          100
 
         // randInit: true,
       });
-      console.log(this.state);
+      console.log("this.state in participateHandler", this.state);
     } else {
       swal({
         icon: "warning",
@@ -151,25 +177,22 @@ class MagicRandomizer extends Component {
       });
     }
     this.auto_randomize();
-
-    // console.log(this.state.participated);
   };
 
   declinedHandler = () => {
     if (this.state.partDecCheck == false) {
-      // let participateSub = this.state.participated;
-      --this.props.location.state.class.participation;
       let update_call_record = this.state.call_record;
       update_call_record.push("0");
       this.setState({
-        participated: this.props.location.state.class.participation,
         partDecCheck: true,
         randInit: true,
         call_record: update_call_record,
-        participation_rate: (update_call_record.filter(item => item === "1").length /
-        update_call_record.length) *
-        100
+        participation_rate:
+          (update_call_record.filter(item => item === "1").length /
+            update_call_record.length) *
+          100
       });
+      console.log("this.state in declinedHandler", this.state);
     } else {
       swal({
         icon: "warning",
@@ -190,15 +213,6 @@ class MagicRandomizer extends Component {
   };
 
   participationTracker = () => {
-    // let declined = this.state.declined;
-    let participated = this.state.participated;
-
-    // if(participated === 0){
-    //   return 0;
-    // }
-    // else{
-    //   return Math.floor(participated / this.state.students.length * 100);
-    // }
     console.log("CALL_RECORD", this.state.call_record);
 
     if (this.state.call_record.length === 0) {
@@ -219,22 +233,130 @@ class MagicRandomizer extends Component {
     }
   };
 
-  // componentDidUpdate()
+  recalculate_participation_rate = () => {
+    console.log("INSIDE THE BELLY OF REC_PART_RATE");
+    const updated_graph_data = this.state.graph_data;
+    console.log(
+      "updated_graph_data[this.state.graph_data.length-1]:",
+      updated_graph_data[this.state.graph_data.length - 1]
+    );
+    updated_graph_data[this.state.graph_data.length - 1].y = Math.floor(
+      (updated_graph_data[this.state.graph_data.length - 1].y +
+        this.state.participation_rate) /
+        2
+    );
+    this.setState({
+      call_record: [],
+      graph_data: updated_graph_data
+    });
+  };
+
+  make_graph_data = () => {
+    if (this.props.location.state.class.graph_data.length < 2){
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+    var yyyy = today.getFullYear();
+
+    var months = [
+      "Jan",
+      "Feb",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "Aug",
+      "Sept",
+      "Oct",
+      "Nov",
+      "Dec"
+    ];
+    var years = (mm = months[mm - 1]);
+    yyyy = (yyyy + "").slice(2);
+
+    today = dd + "-" + mm + "-" + yyyy;
+
+    const fake_data = [
+      { x: dd - 8 + "-" + mm + "-" + yyyy, y: Math.random()*80+10 },
+      { x: dd - 7 + "-" + mm + "-" + yyyy, y: Math.random()*80+10 },
+      { x: dd - 6 + "-" + mm + "-" + yyyy, y: Math.random()*80+10 },
+      { x: dd - 5 + "-" + mm + "-" + yyyy, y: Math.random()*80+10 },
+      { x: dd - 4 + "-" + mm + "-" + yyyy, y: Math.random()*80+10 },
+      { x: dd - 3 + "-" + mm + "-" + yyyy, y: Math.random()*80+10 },
+      { x: dd - 2 + "-" + mm + "-" + yyyy, y: Math.random()*80+10 },
+      { x: dd - 1 + "-" + mm + "-" + yyyy, y: Math.random()*80+10 }
+    ];
+    return fake_data;
+  } else {
+    return this.props.location.state.class.graph_data
+  }
+  };
+
+  date_format = () => {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+    var yyyy = today.getFullYear();
+
+    var months = [
+      "Jan",
+      "Feb",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "Aug",
+      "Sept",
+      "Oct",
+      "Nov",
+      "Dec"
+    ];
+    var years = (mm = months[mm - 1]);
+    yyyy = (yyyy + "").slice(2);
+
+    // if (dd < 10) {
+    //   dd = "0" + dd;
+    // }
+
+    // if (mm < 10) {
+    //   mm = "0" + mm;
+    // }
+
+    today = dd + "-" + mm + "-" + yyyy;
+
+    if (this.state.graph_data[this.state.graph_data.length - 1].x === today) {
+      console.log("SAME DAY!!!!");
+      this.recalculate_participation_rate();
+    } else if (
+      this.state.graph_data[this.state.graph_data.length - 1].x !== today
+    ) {
+      const new_graph_data = this.state.graph_data;
+      new_graph_data.push({
+        x: today,
+        y: Math.floor(this.state.participation_rate)
+      });
+      this.setState({
+        call_record: [],
+        graph_data: new_graph_data
+      });
+    }
+    console.log("this.state.graph_data", this.state.graph_data);
+  };
 
   render() {
-    console.log("radneee", this.studentPick);
-    console.log("rander", this);
+    // console.log("radneee", this.studentPick);
+    // console.log("rander", this);
     let currentStudent = this.state.studentPick;
     let currentAll = this.state.allArr;
-    console.log("CALL_RECORD", this.state.call_record);
+    // console.log("CALL_RECORD", this.state.call_record);
     // let trackerDisplay;
 
     // if(this.state.trackMode == true)
 
-    // let partDecTrack = ((this.state.declined / this.state.participated) * 100);
-
     // let allTracker = this.state.allstudents.length / this.state.students.length;
-    console.log("current student", currentAll.first_name);
+    // console.log("current student", currentAll.first_name);
     return (
       <div className="main">
         <div className="classid">{this.state.class.name}</div>
@@ -261,23 +383,23 @@ class MagicRandomizer extends Component {
             Declined{" "}
           </Button>
         </div>
-        <Link 
-                    to={{
-                      pathname: `/${this.state.classid}/edit`,
-                      state: {
-                        // classid: classitem._id,
-                        class: this.state.class
-                      }
-                    }}
-          >
-        <Button
-          className="edit"
-          id="Rando-top-button"
-          // href={`/${this.state.classid}/edit`}
+        <Link
+          to={{
+            pathname: `/${this.state.classid}/edit`,
+            state: {
+              // classid: classitem._id,
+              class: this.state.class
+            }
+          }}
         >
-          {" "}
-          Edit{" "}
-        </Button>
+          <Button
+            className="edit"
+            id="Rando-top-button"
+            // href={`/${this.state.classid}/edit`}
+          >
+            {" "}
+            Edit{" "}
+          </Button>
         </Link>
         <div className="caro_container">
           <div className="reset">
@@ -289,11 +411,8 @@ class MagicRandomizer extends Component {
               Reset 'All Go'
             </Button>
             <Button id="AllGo-button" onClick={this.toggle}>
-              Toggle All Go:{this.state.allMode == false ? (
-                <div>Off</div>
-              ) : (
-                <div>On</div>
-              )}
+              Toggle All Go:
+              {this.state.allMode == false ? <div>Off</div> : <div>On</div>}
             </Button>
 
             {/* <FormGroup check>
@@ -304,12 +423,11 @@ class MagicRandomizer extends Component {
               </FormGroup>  */}
 
             <div className="allgo-tracker">
-            Students in Deck:
-            <br/>
-            <div className="allgo-tracker-num">
-            {this.state.allstudents.length}
-            </div>
-            
+              Students in Deck:
+              <br />
+              <div className="allgo-tracker-num">
+                {this.state.allstudents.length}
+              </div>
             </div>
           </div>
           <div className="caros">
@@ -331,9 +449,30 @@ class MagicRandomizer extends Component {
         {this.state.trackMode == true ? (
           <div className="part_data">
             <div className="part_data_title">
-              Overall Class Participation Rate <br /> ↓{" "}
+              {/* Overall Class Participation Rate <br /> ↓{" "} */}
+              <div className="line_chart">
+                <LineChart
+                  // xDomainRange={[0, 100]}
+                  yDomainRange={[0, 100]}
+                  xType={"time"}
+                  dataPoints
+                  axes
+                  grid
+                  verticalGrid
+                  // interpolate={"cardinal"}
+                  lineColors={["pink", "purple"]}
+                  width={750}
+                  height={300}
+                  data={[this.state.graph_data]}
+                  style={
+                    {
+                      // backgroundColor: "#584573"
+                    }
+                  }
+                />
+              </div>
             </div>
-            <div className="part_graph">{this.participationTracker()}</div>
+            {/* <div className="part_graph">{this.participationTracker()}</div> */}
           </div>
         ) : (
           <div className="part_data part_data_off">
@@ -355,7 +494,7 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { getClasses }
+  { getClasses, updateParticipation, updateGraphData }
 )(MagicRandomizer);
 
 // export default MagicRandomizer;

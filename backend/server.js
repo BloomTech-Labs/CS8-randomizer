@@ -21,12 +21,6 @@ const corsOptions = {
 
 // ======== ROUTER requires ======== //
 
-// Student
-const createStudentRouter = require('./Router/Student/createStudentRouter.js');
-const findStudentsRouter = require('./Router/Student/findStudentsRouter.js');
-const deleteStudentRouter = require('./Router/Student/deleteStudentRouter.js');
-const updateStudentRouter = require('./Router/Student/updateStudentRouter.js');
-
 // Class
 const createClassRouter = require('./Router/Class/createClassRouter.js');
 const findClassesRouter = require('./Router/Class/findClassesRouter.js');
@@ -34,6 +28,9 @@ const deleteClassRouter = require('./Router/Class/deleteClassRouter.js');
 const updateClassRouter = require('./Router/Class/updateClassRouter.js');
 const addtoClassRouter = require('./Router/Class/addtoClassRouter.js');
 const removefromClassRouter = require('./Router/Class/removefromClassRouter.js');
+const updateClassParticipationRouter = require('./Router/Class/updateClassParticipationRouter.js')
+const updateClassGraphDataRouter = require('./Router/Class/updateClassGraphDataRouter.js')
+
 
 
 // User
@@ -56,9 +53,9 @@ server.use(morgan('dev'));
 server.use(cors(corsOptions));
 
 // For Heroku:
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true })
+// mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true })
 // For Local:
-// mongoose.connect('mongodb://username:abcd1234@ds161391.mlab.com:61391/lambda-labs', { useNewUrlParser: true })
+mongoose.connect('mongodb://username:abcd1234@ds161391.mlab.com:61391/lambda-labs', { useNewUrlParser: true })
 
 .then(() => console.log('\n===connected to mongo===\n'))
 .catch(err =>console.log('not connected'))
@@ -71,12 +68,6 @@ server.get('/', function(req, res) {
 
 // ======== ROUTERS .use ========== //
 
-// Student
-server.use('/api/createstudent/', createStudentRouter);
-server.use('/api/students/', findStudentsRouter);
-server.use('/api/deletestudent/', deleteStudentRouter);
-server.use('/api/updatestudent/', updateStudentRouter);
-
 // Class
 server.use('/api/createclass/', createClassRouter);
 server.use('/api/classes/', findClassesRouter);
@@ -84,6 +75,8 @@ server.use('/api/deleteclass/', deleteClassRouter);
 server.use('/api/updateclass/', updateClassRouter);
 server.use('/api/addtoclass/', addtoClassRouter); // Adds users or students to ref arrays
 server.use('/api/removefromclass/', removefromClassRouter);
+server.use('/api/updateparticipation/', updateClassParticipationRouter);
+server.use('/api/updategraphdata/', updateClassGraphDataRouter);
 
 // User
 server.use('/api/register/', registerUserRouter);
