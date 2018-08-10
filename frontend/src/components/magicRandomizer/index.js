@@ -39,7 +39,7 @@ class MagicRandomizer extends Component {
 
       graph_data: [],
 
-      mounted: false,
+      mounted: false
     };
   }
 
@@ -89,25 +89,26 @@ class MagicRandomizer extends Component {
 
     this.setState({
       graph_data: this.make_graph_data()
-    })
-  console.log("this.props.location.state.class.graph_data", this.props.location.state.class.graph_data)
-
+    });
+    console.log(
+      "this.props.location.state.class.graph_data",
+      this.props.location.state.class.graph_data
+    );
 
     this.setState({
-      mounted: true,
-    })
+      mounted: true
+    });
 
-    console.log("I'm mounting my horse...", this.state.mounted)
+    console.log("I'm mounting my horse...", this.state.mounted);
 
-    if(this.state.allMode == false){
-    this.randomHandler();
+    if (this.state.allMode == false) {
+      this.randomHandler();
     }
 
-    if(this.state.allMode == true){
+    if (this.state.allMode == true) {
       this.resetHandler();
       this.allGoHandler();
     }
-
   }
 
   randomHandler = () => {
@@ -134,7 +135,6 @@ class MagicRandomizer extends Component {
       });
     }
 
-
     if (allArray.length <= 0) {
       // this.resetHandler()
       swal({
@@ -144,9 +144,11 @@ class MagicRandomizer extends Component {
           this.state.participation_rate
         )}% of your class participated this round!`
       });
-     
-      console.log("UPDATINGINGINING")
-     
+
+      console.log("UPDATINGINGINING");
+
+      this.date_format();
+
       // updates mLab participation property for this class
       this.props.updateParticipation({
         class_id: this.props.match.params.id,
@@ -161,10 +163,7 @@ class MagicRandomizer extends Component {
 
       this.setState({
         graph_data: this.make_graph_data()
-      })
-
-      this.date_format();
-    
+      });
 
       // [DO NOT DELETE THIS NOTE!!] TODO: The above only updates a single value for participation, which
       // satisfies the MVP however if you wanted to keep track of your daily participation values, you
@@ -175,25 +174,28 @@ class MagicRandomizer extends Component {
 
     // if(this.trackMode == true){
 
-        if (allArray.length <= 0 && this.state.mounted == true) {
-        // this.resetHandler()
-        if(this.state.trackMode == true){
+    if (allArray.length <= 0 && this.state.mounted == true) {
+      // this.resetHandler()
+      if (this.state.trackMode == true) {
         swal({
           // icon: "success",
           className: "out_of_students",
-          title: `${Math.floor(this.state.participation_rate)}% of your class participated this round! Please Press Reset!`,
+          title: `${Math.floor(
+            this.state.participation_rate
+          )}% of your class participated this round! Please Press Reset!`
         });
-      } else if(this.state.trackMode == false){
-          swal({
-            // icon: "success",
-            className: "out_of_students",
-            title: `Please Press Reset!`,
-          });
-        }
-        this.setState({
-          call_record: []
+      } else if (this.state.trackMode == false) {
+        swal({
+          // icon: "success",
+          className: "out_of_students",
+          title: `Please Press Reset!`
         });
       }
+
+      this.setState({
+        call_record: []
+      });
+    }
     // }}
 
     // if(this.trackMode == false){
@@ -208,7 +210,6 @@ class MagicRandomizer extends Component {
     //       call_record: []
     //     });
     // }}
-
   };
 
   resetHandler = () => {
@@ -226,10 +227,11 @@ class MagicRandomizer extends Component {
       this.setState({
         partDecCheck: true,
         call_record: update_call_record,
-        participation_rate:
-          Math.floor((update_call_record.filter(item => item === "1").length /
+        participation_rate: Math.floor(
+          (update_call_record.filter(item => item === "1").length /
             update_call_record.length) *
-          100)
+            100
+        )
 
         // randInit: true,
       });
@@ -242,6 +244,32 @@ class MagicRandomizer extends Component {
       });
     }
     this.auto_randomize();
+
+    if (this.state.allMode === false && this.state.trackMode === true) {
+      this.date_format();
+
+      // updates mLab participation property for this class
+      this.props.updateParticipation({
+        class_id: this.props.match.params.id,
+        participation: Math.floor(
+          this.state.graph_data[this.state.graph_data.length - 1].y
+        )
+      });
+      this.props.updateGraphData({
+        class_id: this.props.match.params.id,
+        graph_data: this.state.graph_data
+      });
+
+      this.setState({
+        graph_data: this.make_graph_data()
+      });
+      // To show CALL-RECORD
+      console.log(
+        this.state.call_record.filter(item => item === "1").length,
+        "/",
+        this.state.call_record.length
+      );
+    }
   };
 
   declinedHandler = () => {
@@ -267,6 +295,32 @@ class MagicRandomizer extends Component {
     }
 
     this.auto_randomize();
+
+    if (this.state.allMode === false && this.state.trackMode === true) {
+      this.date_format();
+
+      // updates mLab participation property for this class
+      this.props.updateParticipation({
+        class_id: this.props.match.params.id,
+        participation: Math.floor(
+          this.state.graph_data[this.state.graph_data.length - 1].y
+        )
+      });
+      this.props.updateGraphData({
+        class_id: this.props.match.params.id,
+        graph_data: this.state.graph_data
+      });
+
+      this.setState({
+        graph_data: this.make_graph_data()
+      });
+      // To show CALL-RECORD
+      console.log(
+        this.state.call_record.filter(item => item === "1").length,
+        "/",
+        this.state.call_record.length
+      );
+    }
   };
 
   auto_randomize = () => {
@@ -310,52 +364,58 @@ class MagicRandomizer extends Component {
         this.state.participation_rate) /
         2
     );
-    this.setState({
-      call_record: [],
-      graph_data: updated_graph_data
-    });
+    if (this.state.allMode === false && this.state.trackMode === true) {
+      this.setState({
+        graph_data: updated_graph_data
+      });
+    } else {
+      this.setState({
+        call_record: [],
+        graph_data: updated_graph_data
+      });
+    }
   };
 
   make_graph_data = () => {
-    if (this.props.location.state.class.graph_data.length < 2){
-    var today = new Date();
-    var dd = today.getDate();
-    var mm = today.getMonth() + 1; //January is 0!
-    var yyyy = today.getFullYear();
+    if (this.props.location.state.class.graph_data.length < 2) {
+      var today = new Date();
+      var dd = today.getDate();
+      var mm = today.getMonth() + 1; //January is 0!
+      var yyyy = today.getFullYear();
 
-    var months = [
-      "Jan",
-      "Feb",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "Aug",
-      "Sept",
-      "Oct",
-      "Nov",
-      "Dec"
-    ];
-    var years = (mm = months[mm - 1]);
-    yyyy = (yyyy + "").slice(2);
+      var months = [
+        "Jan",
+        "Feb",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "Aug",
+        "Sept",
+        "Oct",
+        "Nov",
+        "Dec"
+      ];
+      var years = (mm = months[mm - 1]);
+      yyyy = (yyyy + "").slice(2);
 
-    today = dd + "-" + mm + "-" + yyyy;
+      today = dd + "-" + mm + "-" + yyyy;
 
-    const fake_data = [
-      { x: dd - 8 + "-" + mm + "-" + yyyy, y: Math.random()*80+10 },
-      { x: dd - 7 + "-" + mm + "-" + yyyy, y: Math.random()*80+10 },
-      { x: dd - 6 + "-" + mm + "-" + yyyy, y: Math.random()*80+10 },
-      { x: dd - 5 + "-" + mm + "-" + yyyy, y: Math.random()*80+10 },
-      { x: dd - 4 + "-" + mm + "-" + yyyy, y: Math.random()*80+10 },
-      { x: dd - 3 + "-" + mm + "-" + yyyy, y: Math.random()*80+10 },
-      { x: dd - 2 + "-" + mm + "-" + yyyy, y: Math.random()*80+10 },
-      { x: dd - 1 + "-" + mm + "-" + yyyy, y: Math.random()*80+10 }
-    ];
-    return fake_data;
-  } else {
-    return this.props.location.state.class.graph_data
-  }
+      const fake_data = [
+        { x: dd - 8 + "-" + mm + "-" + yyyy, y: Math.random() * 80 + 10 },
+        { x: dd - 7 + "-" + mm + "-" + yyyy, y: Math.random() * 80 + 10 },
+        { x: dd - 6 + "-" + mm + "-" + yyyy, y: Math.random() * 80 + 10 },
+        { x: dd - 5 + "-" + mm + "-" + yyyy, y: Math.random() * 80 + 10 },
+        { x: dd - 4 + "-" + mm + "-" + yyyy, y: Math.random() * 80 + 10 },
+        { x: dd - 3 + "-" + mm + "-" + yyyy, y: Math.random() * 80 + 10 },
+        { x: dd - 2 + "-" + mm + "-" + yyyy, y: Math.random() * 80 + 10 },
+        { x: dd - 1 + "-" + mm + "-" + yyyy, y: Math.random() * 80 + 10 }
+      ];
+      return fake_data;
+    } else {
+      return this.props.location.state.class.graph_data;
+    }
   };
 
   date_format = () => {
@@ -411,69 +471,67 @@ class MagicRandomizer extends Component {
   };
 
   render() {
-
     let currentStudent = this.state.studentPick;
     let currentAll = this.state.allArr;
-
 
     let trackState;
     let allState;
 
     // this.state.mounted = true;
     console.log("Saddle up...", this.state.mounted);
-    
 
     // NO TRACK
 
-    if(this.state.trackMode == false){
-      trackState = 
-          <div className="caro_container">
-                    <div className="caros">
-                        {this.state.allMode == true ? (
-                          <Button id="Randomize-button" onClick={this.allGoHandler}>
-                            {" "}
-                            RANDOMIZE!{" "}
-                          </Button>
-                        ) : (
-                          <Button id="Randomize-button" onClick={this.randomHandler}>
-                            {" "}
-                            RANDOMIZE!{" "}
-                          </Button>
-                        )}
-                      </div>
-            </div>
+    if (this.state.trackMode == false) {
+      trackState = (
+        <div className="caro_container">
+          <div className="caros">
+            {this.state.allMode == true ? (
+              <Button id="Randomize-button" onClick={this.allGoHandler}>
+                {" "}
+                RANDOMIZE!{" "}
+              </Button>
+            ) : (
+              <Button id="Randomize-button" onClick={this.randomHandler}>
+                {" "}
+                RANDOMIZE!{" "}
+              </Button>
+            )}
+          </div>
+        </div>
+      );
     }
-
 
     // Track On
 
-    if(this.state.trackMode == true){
-      trackState = 
-              
+    if (this.state.trackMode == true) {
+      trackState = (
         <div className="caro_container">
-            <div className="caros">
-                    <Button className="participated"  id="Rando-top-button" onClick={this.participatedHandler}>
-                      {""}
-                        Participated
-                      {""}
-                    </Button>
-                  <Button id="declined" onClick={this.declinedHandler}>
-                    {" "}
-                        Declined
-                    {" "}
-                  </Button>
-                </div>
+          <div className="caros">
+            <Button
+              className="participated"
+              id="Rando-top-button"
+              onClick={this.participatedHandler}
+            >
+              {""}
+              Participated
+              {""}
+            </Button>
+            <Button id="declined" onClick={this.declinedHandler}>
+              {" "}
+              Declined{" "}
+            </Button>
           </div>
-
+        </div>
+      );
     }
-    
+
     // AllMode
 
-    if(this.state.allMode == true){
-
-      console.log('allMode on');
-      allState = 
-      <div>
+    if (this.state.allMode == true) {
+      console.log("allMode on");
+      allState = (
+        <div>
           <div className="reset">
             <Button
               className="reset_border"
@@ -483,25 +541,23 @@ class MagicRandomizer extends Component {
               Reset 'All Go'
             </Button>
             <div className="allgo-tracker">
-            Students in Deck:
-            <br/>
-            <div className="allgo-tracker-num">
-            {this.state.allstudents.length}
-            </div>
-            
+              Students in Deck:
+              <br />
+              <div className="allgo-tracker-num">
+                {this.state.allstudents.length}
+              </div>
             </div>
           </div>
-                  
-      </div>
+        </div>
+      );
     }
 
     // No All
 
     return (
       <div className="main">
-         <div className="classid">{this.state.class.name}</div>
+        <div className="classid">{this.state.class.name}</div>
         <div className="header">
-
           {this.state.allMode == true ? (
             <div className="studentName">
               {currentAll.first_name} {currentAll.last_name}
@@ -511,16 +567,16 @@ class MagicRandomizer extends Component {
               {currentStudent.first_name} {currentStudent.last_name}
             </div>
           )}
-         </div>
-        <Link 
-                    to={{
-                      pathname: `/${this.state.classid}/edit`,
-                      state: {
-                        // classid: classitem._id,
-                        class: this.state.class
-                      }
-                    }}
-          >
+        </div>
+        <Link
+          to={{
+            pathname: `/${this.state.classid}/edit`,
+            state: {
+              // classid: classitem._id,
+              class: this.state.class
+            }
+          }}
+        >
           <Button
             className="edit"
             id="Rando-top-button"
@@ -531,11 +587,8 @@ class MagicRandomizer extends Component {
           </Button>
         </Link>
         <div className="caro_container">
-
-
-            {trackState}
-            {allState}
-   
+          {trackState}
+          {allState}
         </div>
         {this.state.trackMode == true ? (
           <div className="part_data">
