@@ -3,6 +3,8 @@ import React from "react";
 import { connect } from "react-redux";
 import ReactDOM from "react-dom";
 
+import { Link } from 'react-router-dom';
+
 import { Button, FormGroup, Label, Input } from "reactstrap";
 import CsvParse from "@vtex/react-csv-parse";
 
@@ -182,6 +184,11 @@ class EditForm extends React.Component {
   render() {
     const keys = ["first_name", "last_name"];
 
+
+    console.log('props', this)
+    let classitem = this.props.location.state.class;
+
+
     return (
       <div className="Form-div">
         <div className="Form-container">
@@ -293,12 +300,23 @@ class EditForm extends React.Component {
             </div>
 
             <div className="submitButton-box">
+            {/* <Link
+                    to={{
+                      pathname: `/classes/${classitem._id}`,
+                      state: {
+                        // classid: classitem._id,
+                        class: classitem
+                      }
+                    }}
+                  > */}
               <Button
                 id="Class-submit-button"
                 onClick={this.handleAddClassAndStudents}
+                href="/classes"
               >
                 Submit
               </Button>
+              {/* </Link> */}
             </div>
           </div>
         </div>

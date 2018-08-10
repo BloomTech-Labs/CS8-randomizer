@@ -36,7 +36,10 @@ class MagicRandomizer extends Component {
       // declined: Number
       call_record: [],
       participation_rate: 0,
-      graph_data: []
+
+      graph_data: [],
+
+      mounted: false,
     };
   }
 
@@ -83,12 +86,30 @@ class MagicRandomizer extends Component {
           "If ` Tracking Mode ` is ON (graph is visible):\n\nClick `Reset All Go` to fill your deck.\nOnce the `RANDOMIZER` button is clicked, the name of the first student to call on will appear.\nClick the appropriate button for whether the student `Participated` or `Declined`.\n\n  If ` Tracking Mode` is OFF (no graph visible):\n\nSimply use the `RANDOMIZER` button to randomly select a student in the class."
       });
     }
+
     // if (this.props.location.state.class.graph_data){
     this.setState({
       graph_data: this.make_graph_data()
     });
   // }
   console.log("this.props.location.state.class.graph_data", this.props.location.state.class.graph_data)
+
+
+    this.setState({
+      mounted: true,
+    })
+
+    console.log("I'm mounting my horse...", this.state.mounted)
+
+    if(this.state.allMode == false){
+    this.randomHandler();
+    }
+
+    if(this.state.allMode == true){
+      this.resetHandler();
+      this.allGoHandler();
+    }
+
   }
 
   randomHandler = () => {
@@ -114,6 +135,7 @@ class MagicRandomizer extends Component {
         partDecCheck: false
       });
     }
+
 
     if (allArray.length <= 0) {
       // this.resetHandler()
@@ -144,6 +166,43 @@ class MagicRandomizer extends Component {
       // for each school day:
       // this.props.updateParticipation({class_id: this.props.match.params.id, participation: [{date: this.state.graph_data[this.state.graph_data.length - 1].x,  percent: Math.floor(this.state.graph_data[this.state.graph_data.length - 1].y)}]})
     }
+
+    // if(this.trackMode == true){
+
+        if (allArray.length <= 0 && this.state.mounted == true) {
+        // this.resetHandler()
+        if(this.state.trackMode == true){
+        swal({
+          // icon: "success",
+          className: "out_of_students",
+          title: `${Math.floor(this.state.participation_rate)}% of your class participated this round! Please Press Reset!`,
+        });
+      } else if(this.state.trackMode == false){
+          swal({
+            // icon: "success",
+            className: "out_of_students",
+            title: `Please Press Reset!`,
+          });
+        }
+        this.setState({
+          call_record: []
+        });
+      }
+    // }}
+
+    // if(this.trackMode == false){
+    //   if (allArray.length <= 0 && this.state.mounted == true) {
+    //     // this.resetHandler()
+    //     swal({
+    //       // icon: "success",
+    //       className: "out_of_students",
+    //       title: `Please Press Reset!`,
+    //     });
+    //     this.setState({
+    //       call_record: []
+    //     });
+    // }}
+
   };
 
   resetHandler = () => {
@@ -346,28 +405,97 @@ class MagicRandomizer extends Component {
   };
 
   render() {
-    // console.log("radneee", this.studentPick);
-    // console.log("rander", this);
+
     let currentStudent = this.state.studentPick;
     let currentAll = this.state.allArr;
-    // console.log("CALL_RECORD", this.state.call_record);
-    // let trackerDisplay;
 
-    // if(this.state.trackMode == true)
 
-    // let allTracker = this.state.allstudents.length / this.state.students.length;
-    // console.log("current student", currentAll.first_name);
+    let trackState;
+    let allState;
+
+    // this.state.mounted = true;
+    console.log("Saddle up...", this.state.mounted);
+    
+
+    // NO TRACK
+
+    if(this.state.trackMode == false){
+      trackState = 
+          <div className="caro_container">
+                    <div className="caros">
+                        {this.state.allMode == true ? (
+                          <Button id="Randomize-button" onClick={this.allGoHandler}>
+                            {" "}
+                            RANDOMIZE!{" "}
+                          </Button>
+                        ) : (
+                          <Button id="Randomize-button" onClick={this.randomHandler}>
+                            {" "}
+                            RANDOMIZE!{" "}
+                          </Button>
+                        )}
+                      </div>
+            </div>
+    }
+
+
+    // Track On
+
+    if(this.state.trackMode == true){
+      trackState = 
+              
+        <div className="caro_container">
+            <div className="caros">
+                    <Button className="participated"  id="Rando-top-button" onClick={this.participatedHandler}>
+                      {""}
+                        Participated
+                      {""}
+                    </Button>
+                  <Button id="declined" onClick={this.declinedHandler}>
+                    {" "}
+                        Declined
+                    {" "}
+                  </Button>
+                </div>
+          </div>
+
+    }
+    
+    // AllMode
+
+    if(this.state.allMode == true){
+
+      console.log('allMode on');
+      allState = 
+      <div>
+          <div className="reset">
+            <Button
+              className="reset_border"
+              id="AllGo-button"
+              onClick={this.resetHandler}
+            >
+              Reset 'All Go'
+            </Button>
+            <div className="allgo-tracker">
+            Students in Deck:
+            <br/>
+            <div className="allgo-tracker-num">
+            {this.state.allstudents.length}
+            </div>
+            
+            </div>
+          </div>
+                  
+      </div>
+    }
+
+    // No All
+
     return (
       <div className="main">
-        <div className="classid">{this.state.class.name}</div>
+         <div className="classid">{this.state.class.name}</div>
         <div className="header">
-          <Button
-            className="participated"
-            id="Rando-top-button"
-            onClick={this.participatedHandler}
-          >
-            Participated
-          </Button>
+
           {this.state.allMode == true ? (
             <div className="studentName">
               {currentAll.first_name} {currentAll.last_name}
@@ -377,20 +505,20 @@ class MagicRandomizer extends Component {
               {currentStudent.first_name} {currentStudent.last_name}
             </div>
           )}
-          {/* <div className="studentName">{currentAll.first_name} {currentAll.last_name}</div> */}
-          <Button id="declined" onClick={this.declinedHandler}>
-            {" "}
-            Declined{" "}
-          </Button>
-        </div>
-        <Link
-          to={{
-            pathname: `/${this.state.classid}/edit`,
-            state: {
-              // classid: classitem._id,
-              class: this.state.class
-            }
-          }}
+         </div>
+        <Link 
+                    to={{
+                      pathname: `/${this.state.classid}/edit`,
+                      state: {
+                        // classid: classitem._id,
+                        class: this.state.class
+                      }
+                    }}
+          >
+        <Button
+          className="edit"
+          id="Rando-top-button"
+          // href={`/${this.state.classid}/edit`}
         >
           <Button
             className="edit"
@@ -402,49 +530,11 @@ class MagicRandomizer extends Component {
           </Button>
         </Link>
         <div className="caro_container">
-          <div className="reset">
-            <Button
-              className="reset_border"
-              id="AllGo-button"
-              onClick={this.resetHandler}
-            >
-              Reset 'All Go'
-            </Button>
-            <Button id="AllGo-button" onClick={this.toggle}>
-              Toggle All Go:
-              {this.state.allMode == false ? <div>Off</div> : <div>On</div>}
-            </Button>
 
-            {/* <FormGroup check>
-              <Label check>
-              <Input onClick={this.toggle} type='checkbox' /> {' '}
-              Toggle All Go
-              </Label>
-              </FormGroup>  */}
 
-            <div className="allgo-tracker">
-              Students in Deck:
-              <br />
-              <div className="allgo-tracker-num">
-                {this.state.allstudents.length}
-              </div>
-            </div>
-          </div>
-          <div className="caros">
-            {/* <Carousel /> */}
-            {/* <Button id="Randomize-button" onClick={this.allMode == false ? (this.randomHandler) : (this.allGoHandler) }> RANDOMIZE! </Button>   */}
-            {this.state.allMode == true ? (
-              <Button id="Randomize-button" onClick={this.allGoHandler}>
-                {" "}
-                RANDOMIZE!{" "}
-              </Button>
-            ) : (
-              <Button id="Randomize-button" onClick={this.randomHandler}>
-                {" "}
-                RANDOMIZE!{" "}
-              </Button>
-            )}
-          </div>
+            {trackState}
+            {allState}
+   
         </div>
         {this.state.trackMode == true ? (
           <div className="part_data">
