@@ -193,10 +193,6 @@ export const editUser = (update_info, history) => dispatch => {
 };
 
 export const getClasses = () => dispatch => {
-  console.log(
-    "axios.get(`${URL}/classes`).response:",
-    axios.get(`${URL}/classes`)
-  );
   // if (axios.get(`${URL}/classes`).response === undefined) {
   //   dispatch({ type: GOTCLASSES, classes: [] });
   //   return
@@ -365,33 +361,19 @@ export const getStudents = () => dispatch => {
     });
 };
 
-export const addStudent = studentName => dispatch => {
-  dispatch({
-    type: ADDINGSTUDENT
-  });
-  axios
-    .post(`${URL}/createstudent`, studentName)
-    .then(request => {
-      dispatch({ type: ADDEDSTUDENT, students: request.data });
-    })
-    .catch(err => {
-      dispatch({ type: ERROR, errorMessage: "Error Adding Student..." });
-    });
-};
-
-export const deleteStudent = studentid => dispatch => {
-  dispatch({
-    type: DELETESTUDENT
-  });
-  axios
-    .delete("http://localhost:5000/api/${classid}/${studentid)")
-    .then(response => {
-      dispatch({
-        type: DELETEDSTUDENT,
-        studentid: studentid
-      });
-    });
-};
+// export const addStudent = studentName => dispatch => {
+//   dispatch({
+//     type: ADDINGSTUDENT
+//   });
+//   axios
+//     .post(`${URL}/createstudent`, studentName)
+//     .then(request => {
+//       dispatch({ type: ADDEDSTUDENT, students: request.data });
+//     })
+//     .catch(err => {
+//       dispatch({ type: ERROR, errorMessage: "Error Adding Student..." });
+//     });
+// };
 
 export const updateParticipation = data => dispatch => {
   dispatch({

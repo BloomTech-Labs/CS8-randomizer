@@ -9,19 +9,16 @@ import {
   LOGGEDOUT,
   GETTINGCLASSES,
   GOTCLASSES,
-  ADDCLASS,
+
   ADDINGCLASS,
   ADDEDCLASS,
+
   EDITINGCLASS,
   EDITEDCLASS,
-  DELETECLASS,
-  DELETEDCLASS,
+
   GETTINGSTUDENTS,
   GOTSTUDENTS,
-  ADDINGSTUDENT,
-  ADDEDSTUDENT,
-  DELETESTUDENT,
-  DELETEDSTUDENT,
+
   UPDATINGPARTICIPATION,
   UPDATEDPARTICIPATION,
   UPDATINGGRAPHDATA,
@@ -92,7 +89,6 @@ export const Reducer = (state = initialState, action) => {
         ...state,
         classes: action.classes,
         gettingClass: false,
-        error: null
       };
     case ADDINGCLASS:
       return { ...state, addingClass: true };
@@ -101,8 +97,9 @@ export const Reducer = (state = initialState, action) => {
         ...state,
         addingClass: false
       };
-    case EDITINGUSER:
-      return { ...state, editingClass: true };
+
+    case EDITINGCLASS:
+     return{ ...state, editingClass: true}
     case EDITEDCLASS:
       return { ...state, editingClass: false };
 
@@ -129,6 +126,7 @@ export const Reducer = (state = initialState, action) => {
           };
         }
       });
+      break
     case UPDATINGGRAPHDATA:
       return { ...state, updatingGraph: true };
     case UPDATEDGRAPHDATA:
@@ -144,7 +142,7 @@ export const Reducer = (state = initialState, action) => {
           };
         }
       });
-
+      break
     case ERROR:
       return { ...state, error: action.errorMessage };
     default:
