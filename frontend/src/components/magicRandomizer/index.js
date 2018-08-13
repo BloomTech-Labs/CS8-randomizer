@@ -8,8 +8,11 @@ import {
   updateGraphData
 } from "../../actions";
 import swal from "sweetalert";
-
 import "./magicRandomizer.css";
+import "./NoTrackAll.css";
+import "./TrackNoAll.css";
+import "./TrackAll.css";
+import "./NoTrackNoAll.css";
 import { connect } from "react-redux";
 import { LineChart } from "react-easy-chart";
 

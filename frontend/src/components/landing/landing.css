@@ -142,6 +142,9 @@
 }
 
 @media (max-width:800px){
+    .App{
+        background-color: #584573
+    }
 
     .landing{
         background-image: url('./randologo5.jpg');
@@ -160,7 +163,7 @@
         color: #fff;
         padding-left: 0%;
         overflow: hidden;
-        /* margin-bottom: 70%; */
+        margin-bottom: 70%;
     }
     .nav.nav{
         background: none;
