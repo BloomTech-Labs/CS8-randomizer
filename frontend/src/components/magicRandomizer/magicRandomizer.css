@@ -43,7 +43,7 @@
 }
 
 .swal-overlay {
-  background-color: hsla(265, 25%, 36%, 0.451);
+  background-color: rgba(87, 68, 114, 0.451);
 }
 
 .swal-modal {
@@ -91,20 +91,16 @@
 .studentName {
   font-size: 1.5em;
   font-style: 1;
+  width: 100%;
   height: 30px;
   text-align: center;
   background: #584573;
   color: white;
-
-  /* line-height: 1; */
-  /* margin: 10px; */
-  /* margin-right: 1%; */
-  width: 30%;
+  width: 100%;
   border: 5px solid #322842;
-  padding-top: .5%;
-  padding-bottom: 3.3%;
-
-  /* background: pink; */
+  line-height: 1.0;
+  /* padding-top: .5%; */
+  /* padding-bottom: 3.3%; */
 }
 
 #declined { 
@@ -136,20 +132,20 @@
   border-style: solid;  
   color: whitesmoke;  
   transition: all 0.5s ease;  
-}  
-  
+} 
+
+
 #declined:hover{  
 background-color: whitesmoke;  
 color: #584573;  
 transition: all 0.5s ease;  
-  
 }  
-  
+
 #Rando-top-button:hover{  
   background-color: whitesmoke;  
-color: #584573;  
+color: rgb(87, 68, 114);  
 transition: all 0.5 s ease;  
-}  
+}
 
 #AllGo-button{
   border: 2px dashed black;  
@@ -168,7 +164,9 @@ transition: all 0.5 s ease;
   background-color: whitesmoke;  
 color: #584573;  
 transition: all 0.5 s ease;  
-}  
+}
+
+
 
 .edit {
   border: 2px dashed black;

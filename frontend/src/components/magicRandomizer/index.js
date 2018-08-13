@@ -12,6 +12,7 @@ import swal from "sweetalert";
 import "./magicRandomizer.css";
 import { connect } from "react-redux";
 import { LineChart } from "react-easy-chart";
+// import { on } from "cluster";
 
 class MagicRandomizer extends Component {
   constructor(props) {
@@ -20,31 +21,24 @@ class MagicRandomizer extends Component {
     this.state = {
       className: "",
       classid: this.props.match.params.id,
-      // student: this.props.classes.stud
       class: this.props.location.state.class,
       students: this.props.location.state.class.students,
-      studentPick: [],
       allstudents: [],
-      allArr: [],
+      current_student: [],
+      on_deck_student: [],
       allMode: this.props.location.state.class.allMode,
       trackMode: this.props.location.state.class.trackMode,
       randInit: false,
       participated: this.props.location.state.class.participation,
-      // declined: 0,
-      partDecCheck: false,
-      // participated: Number,
-      // declined: Number
       call_record: [],
       participation_rate: 0,
-
       graph_data: [],
-
-      mounted: false
+      spotlight: [],
+      shuffled: false
     };
   }
 
   toggle = () => {
-    // this
     (this.props.location.state.class.allMode = !this.props.location.state.class
       .allMode),
       this.setState({ allMode: this.props.location.state.class.allMode });
@@ -79,13 +73,15 @@ class MagicRandomizer extends Component {
   componentDidMount() {
     this.props.getClasses();
     console.log("mount", this.props);
-    if (this.props.classes.length <= 1) {
-      swal({
-        title: "Getting Started with Randomizer",
-        text:
-          "If ` Tracking Mode ` is ON (graph is visible):\n\nClick `Reset All Go` to fill your deck.\nOnce the `RANDOMIZER` button is clicked, the name of the first student to call on will appear.\nClick the appropriate button for whether the student `Participated` or `Declined`.\n\n  If ` Tracking Mode` is OFF (no graph visible):\n\nSimply use the `RANDOMIZER` button to randomly select a student in the class."
-      });
-    }
+
+    // TODO: Consider other ways of making randomizer use easier!
+    // if (this.props.classes.length <= 1) {
+    //   swal({
+    //     title: "Getting Started with Randomizer",
+    //     text:
+    //       "If ` Tracking Mode ` AND  ``is ON (graph is visible):\n\nClicking `Reset All Go` will randomly shuffle your deck.\nOnce the `RANDOMIZER` button is clicked, the name of the first student to call on will appear.\nClick the appropriate button for whether the student `Participated` or `Declined`.\n\n  If ` Tracking Mode` is OFF (no graph visible):\n\nSimply use the `RANDOMIZER` button to randomly select a student in the class."
+    //   });
+    // }
 
     this.setState({
       graph_data: this.make_graph_data()
@@ -95,154 +91,200 @@ class MagicRandomizer extends Component {
       this.props.location.state.class.graph_data
     );
 
-    this.setState({
-      mounted: true
-    });
-
-    console.log("I'm mounting my horse...", this.state.mounted);
-
     if (this.state.allMode == false) {
       this.randomHandler();
+    } else if (this.state.allMode == true) {
+      // this.shuffle_allstudents();
     }
 
-    if (this.state.allMode == true) {
-      this.resetHandler();
-      this.allGoHandler();
-    }
+    console.log("STATE at end of componentDidMount:", this.state);
   }
 
   randomHandler = () => {
-    let studentPick = this.state.studentPick;
-    let studentArray = this.state.students;
-    studentPick = studentArray[Math.floor(Math.random() * studentArray.length)];
-    this.setState({
-      studentPick: studentPick,
-      partDecCheck: false
-    });
+    // let current_student = this.state.current_student;
+    let student_copy = this.state.students.slice(0);
+    // The spotlight object will hold the current and on_deck students
+
+    if (
+      this.state.current_student.length === 0 &&
+      this.state.on_deck_student.length === 0
+    ) {
+      console.log("STUDENT_COPY", student_copy.length);
+      const current =
+        student_copy[Math.floor(Math.random() * student_copy.length)];
+      console.log("CURRENT:", current);
+      console.log("CURRENT INDEX:", student_copy.indexOf(current));
+      student_copy.splice(student_copy.indexOf(current), 1);
+      const on_deck =
+        student_copy[Math.floor(Math.random() * student_copy.length)];
+      this.setState({
+        current_student: current,
+        on_deck_student: on_deck
+      });
+
+      console.log("RANDOMHANDLER");
+      console.log("CURRENT_STUDENT:", this.state.current_student);
+      console.log("ON_DECK_STUDENT:", this.state.on_deck_student);
+      // console.log("SPOTLIGHT ON DECK:", this.state.spotlight[1]);
+    } else if (
+      this.state.current_student.length !== 0 &&
+      this.state.on_deck_student.length !== 0
+    ) {
+      const updated_current_student = this.state.on_deck_student;
+      console.log("STUDENT ARRAY BEFORE SPLICE:", student_copy);
+      student_copy.splice(student_copy.indexOf(this.state.on_deck_student), 1);
+      console.log("STUDENT ARRAY AFTER SPLICE:", student_copy);
+      const updated_on_deck =
+        student_copy[Math.floor(Math.random() * student_copy.length)];
+      this.setState({
+        on_deck_student: updated_on_deck,
+        current_student: updated_current_student
+      });
+    }
   };
 
   allGoHandler = () => {
-    let allArray = this.state.allstudents;
-    if (allArray.length > 0) {
-      let pick = allArray.splice(
-        Math.floor(Math.random() * allArray.length),
-        1
-      );
-      console.log("student picked:", pick[0].first_name);
-      this.setState({
-        allArr: pick[0],
-        partDecCheck: false
-      });
+    console.log("ALLGOHANDLER");
+    // let allArray = this.state.allstudents.slice(0); // TODO: Remove unneccessary allstudents, and just grab from this.state.students
+    if (this.state.allstudents.length > 0) {
+      if (this.state.shuffled === true) {
+        // shifts allstudents[0] off the array, and updates new current_student and on_deck_student
+        this.shift_allstudents();
+      }
+      // This needs to be an "if" NOT an "else if" so it is tested every time!
+      if (this.state.shuffled === false) {
+        // Randomly shuffles allstudents, then sets current_student and on_deck_student
+        this.shuffle_allstudents();
+      }
     }
 
-    if (allArray.length <= 0) {
-      // this.resetHandler()
-      swal({
-        // icon: "success",
-        className: "out_of_students",
-        title: `${Math.floor(
-          this.state.participation_rate
-        )}% of your class participated this round!`
-      });
-
-      console.log("UPDATINGINGINING");
-
-      this.date_format();
-
-      // updates mLab participation property for this class
-      this.props.updateParticipation({
-        class_id: this.props.match.params.id,
-        participation: Math.floor(
-          this.state.graph_data[this.state.graph_data.length - 1].y
-        )
-      });
-      this.props.updateGraphData({
-        class_id: this.props.match.params.id,
-        graph_data: this.state.graph_data
-      });
-
-      this.setState({
-        graph_data: this.make_graph_data()
-      });
-
-      // [DO NOT DELETE THIS NOTE!!] TODO: The above only updates a single value for participation, which
-      // satisfies the MVP however if you wanted to keep track of your daily participation values, you
-      // would need something like what is written below -- an array of objects with a participation value
-      // for each school day:
-      // this.props.updateParticipation({class_id: this.props.match.params.id, participation: [{date: this.state.graph_data[this.state.graph_data.length - 1].x,  percent: Math.floor(this.state.graph_data[this.state.graph_data.length - 1].y)}]})
-    }
-
-    // if(this.trackMode == true){
-
-    if (allArray.length <= 0 && this.state.mounted == true) {
-      // this.resetHandler()
-      if (this.state.trackMode == true) {
+    if (this.state.allstudents.length <= 0) {
+      if (this.state.trackMode === true) {
+        console.log("ALLSTUDENTS EMPTY!!!");
+        // Runs once the deck is empty
+        // Throws sweet alert with current participation_rate
         swal({
           // icon: "success",
           className: "out_of_students",
           title: `${Math.floor(
             this.state.participation_rate
-          )}% of your class participated this round! Please Press Reset!`
+          )}% of your class participated this round!`
+        });
+
+        // updates graph_data and participation_rate in state
+        this.date_format();
+
+        // updates mLab participation property for this class
+        this.props.updateParticipation({
+          class_id: this.props.match.params.id,
+          participation: Math.floor(
+            this.state.graph_data[this.state.graph_data.length - 1].y
+          )
+        });
+        this.props.updateGraphData({
+          class_id: this.props.match.params.id,
+          graph_data: this.state.graph_data
+        });
+
+        this.setState({
+          graph_data: this.state.graph_data,
+          allstudents: [],
+          shuffled: false,
+          call_record: []
         });
       } else if (this.state.trackMode == false) {
         swal({
           // icon: "success",
           className: "out_of_students",
-          title: `Please Press Reset!`
+          title: `That's all your students! Please click Reset to continue randomizing!`
         });
       }
-
-      this.setState({
-        call_record: []
-      });
     }
-    // }}
-
-    // if(this.trackMode == false){
-    //   if (allArray.length <= 0 && this.state.mounted == true) {
-    //     // this.resetHandler()
-    //     swal({
-    //       // icon: "success",
-    //       className: "out_of_students",
-    //       title: `Please Press Reset!`,
-    //     });
-    //     this.setState({
-    //       call_record: []
-    //     });
-    // }}
   };
 
-  resetHandler = () => {
-    let studentsCopy = this.state.students.slice(0);
-    this.setState({
-      allstudents: studentsCopy
+  shuffle_allstudents = () => {
+    let allArray = this.state.students.slice(0);
+    const shuffle = () => {
+      console.log("SHUFFLING");
+      var j, x, i;
+      for (i = allArray.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        x = allArray[i];
+        allArray[i] = allArray[j];
+        allArray[j] = x;
+      }
+      return allArray;
+    };
+    allArray = shuffle(allArray);
+    const new_allstudents = [];
+    allArray.map(item => {
+      new_allstudents.push(item);
     });
-    return (this.state.allstudents = this.state.students.slice(0));
+    this.setState({
+      allstudents: new_allstudents,
+      on_deck_student: new_allstudents[1],
+      current_student: new_allstudents[0]
+    });
+
+    console.log(
+      "MAKE SURE the first two students in allstudents are in fact the current_student and on_deck_student"
+    );
+    console.log("allstudents:", this.state.allstudents);
+    console.log("current_student:", this.state.current_student);
+    console.log("on_deck_student:", this.state.on_deck_student);
+
+    this.setState({
+      shuffled: true
+    });
+  };
+
+  shift_allstudents = () => {
+    console.log("NOT SHUFFLING");
+    // allArray[0] is removed from the array using .shift().
+    const shifted_allstudents = this.state.allstudents;
+    shifted_allstudents.shift();
+    this.setState({
+      allstudents: shifted_allstudents
+    });
+
+    console.log("all_students shifted????", this.state.allstudents);
+
+    if (this.state.allstudents[1] === undefined) {
+      this.setState({
+        on_deck_student: "slot empty"
+      });
+    } else if (this.state.allstudents[1] !== undefined) {
+      this.setState({
+        on_deck_student: this.state.allstudents[1]
+      });
+    }
+
+    // This conditional should never be used, since all of this is wrapped in `if (allArray.length>0)`
+    // and if allArray[0] === undefined, that means that allArray is empty.
+    if (this.state.allstudents[0] === undefined) {
+      this.setState({
+        current_student: "slot empty"
+      });
+    } else if (this.state.allstudents[0] !== undefined) {
+      this.setState({
+        current_student: this.state.allstudents[0]
+      });
+    }
   };
 
   participatedHandler = () => {
-    if (this.state.partDecCheck == false) {
-      let update_call_record = this.state.call_record;
-      update_call_record.push("1");
-      this.setState({
-        partDecCheck: true,
-        call_record: update_call_record,
-        participation_rate: Math.floor(
-          (update_call_record.filter(item => item === "1").length /
-            update_call_record.length) *
-            100
-        )
+    let update_call_record = this.state.call_record;
+    update_call_record.push("1");
+    this.setState({
+      call_record: update_call_record,
+      participation_rate: Math.floor(
+        (update_call_record.filter(item => item === "1").length /
+          update_call_record.length) *
+          100
+      )
+    });
+    console.log("this.state in participateHandler", this.state);
 
-        // randInit: true,
-      });
-      console.log("this.state in participateHandler", this.state);
-    } else {
-      swal({
-        icon: "warning",
-        text:
-          "Participation Already Tracked. Please Continue To The Next Student!"
-      });
-    }
     this.auto_randomize();
 
     if (this.state.allMode === false && this.state.trackMode === true) {
@@ -269,34 +311,29 @@ class MagicRandomizer extends Component {
         "/",
         this.state.call_record.length
       );
+    } else if (this.state.allMode === true) {
     }
   };
 
+  // This is only active when trackMode is TRUE
   declinedHandler = () => {
-    if (this.state.partDecCheck == false) {
-      let update_call_record = this.state.call_record;
-      update_call_record.push("0");
-      this.setState({
-        partDecCheck: true,
-        randInit: true,
-        call_record: update_call_record,
-        participation_rate:
-          (update_call_record.filter(item => item === "1").length /
-            update_call_record.length) *
-          100
-      });
-      console.log("this.state in declinedHandler", this.state);
-    } else {
-      swal({
-        icon: "warning",
-        text:
-          "Declination Already Tracked. Please Continue To The Next Student!"
-      });
-    }
+    let update_call_record = this.state.call_record;
+    update_call_record.push("0");
+    this.setState({
+      randInit: true,
+      call_record: update_call_record,
+      participation_rate:
+        (update_call_record.filter(item => item === "1").length /
+          update_call_record.length) *
+        100
+    });
+    console.log("this.state in declinedHandler", this.state);
 
     this.auto_randomize();
 
-    if (this.state.allMode === false && this.state.trackMode === true) {
+    if (this.state.allMode === false) {
+      // updates this.state.graph_data with current this.state.participation_rate AND
+      // clears the call_record EVERY TIME Decline is pressed
       this.date_format();
 
       // updates mLab participation property for this class
@@ -320,6 +357,7 @@ class MagicRandomizer extends Component {
         "/",
         this.state.call_record.length
       );
+    } else if (this.state.allMode === true) {
     }
   };
 
@@ -353,8 +391,9 @@ class MagicRandomizer extends Component {
   };
 
   recalculate_participation_rate = () => {
-    console.log("INSIDE THE BELLY OF REC_PART_RATE");
-    const updated_graph_data = this.state.graph_data;
+    // Makes a copy of this.state.graph_data
+    const updated_graph_data = this.state.graph_data; // Check, is .slice(0) necessary?
+
     console.log(
       "updated_graph_data[this.state.graph_data.length-1]:",
       updated_graph_data[this.state.graph_data.length - 1]
@@ -364,6 +403,15 @@ class MagicRandomizer extends Component {
         this.state.participation_rate) /
         2
     );
+    // TODO: Look at this console.log and update the code appropriately:
+    console.log(
+      "If this:",
+      this.state.graph_data,
+      " is different from this: ",
+      updated_graph_data,
+      " then .slice(0) IS necessary to ensure you are not mutating the state without using setState"
+    );
+    // This conditional just ensures that the call_record is NOT reset when allMode is false.
     if (this.state.allMode === false && this.state.trackMode === true) {
       this.setState({
         graph_data: updated_graph_data
@@ -376,8 +424,11 @@ class MagicRandomizer extends Component {
     }
   };
 
+  // This method creates some initial fake graph_data to give new users a visual example of what they will see
+  // once they really start using randomizer.  This data will no longer render once two or more days of
+  // graph_data have been collected.
   make_graph_data = () => {
-    if (this.props.location.state.class.graph_data.length < 2) {
+    if (this.props.location.state.class.graph_data.length === 0) {
       var today = new Date();
       var dd = today.getDate();
       var mm = today.getMonth() + 1; //January is 0!
@@ -403,14 +454,14 @@ class MagicRandomizer extends Component {
       today = dd + "-" + mm + "-" + yyyy;
 
       const fake_data = [
-        { x: dd - 8 + "-" + mm + "-" + yyyy, y: Math.random() * 80 + 10 },
-        { x: dd - 7 + "-" + mm + "-" + yyyy, y: Math.random() * 80 + 10 },
-        { x: dd - 6 + "-" + mm + "-" + yyyy, y: Math.random() * 80 + 10 },
-        { x: dd - 5 + "-" + mm + "-" + yyyy, y: Math.random() * 80 + 10 },
-        { x: dd - 4 + "-" + mm + "-" + yyyy, y: Math.random() * 80 + 10 },
-        { x: dd - 3 + "-" + mm + "-" + yyyy, y: Math.random() * 80 + 10 },
-        { x: dd - 2 + "-" + mm + "-" + yyyy, y: Math.random() * 80 + 10 },
-        { x: dd - 1 + "-" + mm + "-" + yyyy, y: Math.random() * 80 + 10 }
+        { x: dd - 8 + "-" + mm + "-" + yyyy, y: 90 },
+        { x: dd - 7 + "-" + mm + "-" + yyyy, y: 40 },
+        { x: dd - 6 + "-" + mm + "-" + yyyy, y: 50 },
+        { x: dd - 5 + "-" + mm + "-" + yyyy, y: 95 },
+        { x: dd - 4 + "-" + mm + "-" + yyyy, y: 78 },
+        { x: dd - 3 + "-" + mm + "-" + yyyy, y: 56 },
+        { x: dd - 2 + "-" + mm + "-" + yyyy, y: 97 },
+        { x: dd - 1 + "-" + mm + "-" + yyyy, y: 85 }
       ];
       return fake_data;
     } else {
@@ -418,6 +469,8 @@ class MagicRandomizer extends Component {
     }
   };
 
+  // This method updates this.state.graph_data with current this.state.participation_rate AND
+  // clears the call_record:
   date_format = () => {
     var today = new Date();
     var dd = today.getDate();
@@ -451,6 +504,11 @@ class MagicRandomizer extends Component {
 
     today = dd + "-" + mm + "-" + yyyy;
 
+    // If there already exists a this.state.graph_data point with today's date,
+    // then you do not want to create a NEW data point, but just update the
+    // value of participation for that point, by averaging it with the current
+    // this.state.participation_rate.  Otherwise, a new point is created with
+    // today's date, and this.state.participation_rate.
     if (this.state.graph_data[this.state.graph_data.length - 1].x === today) {
       console.log("SAME DAY!!!!");
       this.recalculate_participation_rate();
@@ -471,40 +529,130 @@ class MagicRandomizer extends Component {
   };
 
   render() {
-    let currentStudent = this.state.studentPick;
-    let currentAll = this.state.allArr;
+    // let currentStudent = this.state.current_student;
 
     let trackState;
     let allState;
 
-    // this.state.mounted = true;
-    console.log("Saddle up...", this.state.mounted);
+    console.log("STATE at top of render", this.state);
 
     // NO TRACK
 
     if (this.state.trackMode == false) {
-      trackState = (
-        <div className="caro_container">
-          <div className="caros">
-            {this.state.allMode == true ? (
-              <Button id="Randomize-button" onClick={this.allGoHandler}>
-                {" "}
-                RANDOMIZE!{" "}
-              </Button>
-            ) : (
-              <Button id="Randomize-button" onClick={this.randomHandler}>
-                {" "}
-                RANDOMIZE!{" "}
-              </Button>
-            )}
+      if (this.state.allstudents.length > 0) {
+        trackState = (
+          <div className="caro_container">
+            <div className="caros">
+              {this.state.allMode == true ? (
+                <div>
+                  <Button id="Randomize-button" onClick={this.allGoHandler}>
+                    {" "}
+                    RANDOMIZE!{" "}
+                  </Button>
+                  <div className="on_deck">
+                    On Deck: {this.state.on_deck_student.first_name}{" "}
+                    {this.state.on_deck_student.last_name}
+                  </div>
+                </div>
+              ) : (
+                <div>
+                  <Button id="Randomize-button" onClick={this.randomHandler}>
+                    {" "}
+                    RANDOMIZE!{" "}
+                  </Button>
+                  <div className="on_deck">
+                    On Deck: {this.state.on_deck_student.first_name}{" "}
+                    {this.state.on_deck_student.last_name}
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
-        </div>
-      );
+        );
+      } else if (this.state.allstudents.length === 0) {
+        console.log("HERE!!!")
+        trackState = (
+          <div className="caro_container">
+            <div className="caros">
+              {this.state.allMode == true ? (
+                <div>
+                  <Button
+                    id="Randomize-button"
+                    style={{ backgroundColor: "rgba(87,68,114,0.2)" }}
+                  >
+                    {" "}
+                    RANDOMIZE!{" "}
+                  </Button>
+                 
+                </div>
+              ) : (
+                <div>
+                  <Button
+                    id="Randomize-button"
+                    onClick={this.randomHandler}
+                  >
+                    {" "}
+                    RANDOMIZE!{" "}
+                  </Button>
+                  
+                </div>
+              )}
+            </div>
+          </div>
+        );
+      }
     }
 
     // Track On
 
-    if (this.state.trackMode == true) {
+    if (this.state.trackMode == true && this.state.allMode === true) {
+      // The conditional below deactivated the Participated and Declined buttons by
+      // removing the onClick methods when the deck is empty.
+      if (this.state.allstudents.length > 0) {
+        trackState = (
+          <div className="caro_container">
+            <div className="caros">
+              <Button
+                className="participated"
+                id="Rando-top-button"
+                onClick={this.participatedHandler}
+              >
+                {""}
+                Participated
+                {""}
+              </Button>
+              <Button id="declined" onClick={this.declinedHandler}>
+                {" "}
+                Declined{" "}
+              </Button>
+            </div>
+          </div>
+        );
+      } else if (this.state.allstudents.length <= 0) {
+        trackState = (
+          <div className="caro_container">
+            <div className="caros">
+              <Button
+                className="participated"
+                id="Rando-top-button"
+                style={{ backgroundColor: "rgba(87,68,114,0.2)" }}
+              >
+                {""}
+                Participated
+                {""}
+              </Button>
+              <Button
+                id="declined"
+                style={{ backgroundColor: "rgba(87,68,114,0.2)" }}
+              >
+                {" "}
+                Declined{" "}
+              </Button>
+            </div>
+          </div>
+        );
+      }
+    } else if (this.state.trackMode == true && this.state.allMode === false){
       trackState = (
         <div className="caro_container">
           <div className="caros">
@@ -524,6 +672,7 @@ class MagicRandomizer extends Component {
           </div>
         </div>
       );
+
     }
 
     // AllMode
@@ -536,7 +685,7 @@ class MagicRandomizer extends Component {
             <Button
               className="reset_border"
               id="AllGo-button"
-              onClick={this.resetHandler}
+              onClick={this.shuffle_allstudents}
             >
               Reset 'All Go'
             </Button>
@@ -559,12 +708,26 @@ class MagicRandomizer extends Component {
         <div className="classid">{this.state.class.name}</div>
         <div className="header">
           {this.state.allMode == true ? (
-            <div className="studentName">
-              {currentAll.first_name} {currentAll.last_name}
+            <div>
+              <div className="studentName">
+                {this.state.current_student.first_name}{" "}
+                {this.state.current_student.last_name}
+              </div>
+              <div className="on_deck">
+                On Deck: {this.state.on_deck_student.first_name}{" "}
+                {this.state.on_deck_student.last_name}
+              </div>
             </div>
           ) : (
-            <div className="studentName">
-              {currentStudent.first_name} {currentStudent.last_name}
+            <div>
+              <div className="studentName">
+                {this.state.current_student.first_name}{" "}
+                {this.state.current_student.last_name}
+              </div>
+              <div className="on_deck">
+                On Deck: {this.state.on_deck_student.first_name}{" "}
+                {this.state.on_deck_student.last_name}
+              </div>
             </div>
           )}
         </div>

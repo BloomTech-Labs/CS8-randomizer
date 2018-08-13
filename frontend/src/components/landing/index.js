@@ -13,7 +13,6 @@ import {
   ModalHeader,
   ModalFooter,
   ModalBody,
-  InputGroup,
   Input
 } from "reactstrap";
 
