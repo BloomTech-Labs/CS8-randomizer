@@ -29,7 +29,7 @@ class Setup extends Component {
       return;
     }
     if (this.state.password.length < 6) {
-      alert("Password must be six or more chatacters in length");
+      alert("Password must be six or more characters in length");
       return;
     }
     console.log("this.state.username", this.state.username)

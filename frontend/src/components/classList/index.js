@@ -1,4 +1,4 @@
-import React, { Component, Fragment} from "react";
+import React, { Component, Fragment } from "react";
 import {
   Jumbotron,
   Container,
@@ -11,13 +11,22 @@ import {
 } from "reactstrap";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { getClasses } from "../../actions";
+import { getClasses, getUser } from "../../actions";
 // import { ClassCard } from '../classCard';
 import { LineChart } from "react-easy-chart";
 import "./index.css";
 
 class ClassList extends Component {
-
+  constructor(props) {
+    super(props);
+    this.state = {
+      // classes: this.props.classes
+      loaded: false
+    }
+    this.props.getClasses();
+    this.props.getUser();
+  }
+  
   // componentWillReceiveProps() {
   //   this.props.getClasses()
   //   console.log("CLASSES in state from componentDidMount:", this.state.classes)
@@ -34,17 +43,15 @@ class ClassList extends Component {
   //   }
   // }
 
-  async componentDidMount() {
-    await this.props.getClasses();
+  componentDidMount() {
     console.log(
       "this.props.classes from componentDidMount:",
       this.props.classes
     );
- 
+    
   }
 
-
-  class_list_full_content () {
+  class_list_full_content() {
     return (
       <div className="jumbo-div">
         <div className="Class-div">
@@ -133,38 +140,31 @@ class ClassList extends Component {
         </div>
       </div>
     );
-    
   }
-
-
 
   render() {
-  
-    if (this.props.classes.length > 0) {
-      return(
-       <Fragment>
-        {this.class_list_full_content()}
-        </Fragment>
-      )
-      
-    } else if (this.props.classes.length === 0){
-      return(
-        <Fragment>
-          {this.class_list_empty_content()}
-          </Fragment>
-      )
-    } 
+    console.log("this.props.user:", this.props.user)
+    if (this.props.classes.length > 0 && this.state.loaded) {
+      return <Fragment>{this.class_list_full_content()}</Fragment>;
+    } else if (this.props.classes.length === 0 && this.state.loaded) {
+      return <Fragment>{this.class_list_empty_content()}</Fragment>;
+    } else if (this.state.loaded === false){
+      this.setState({
+        loaded: true
+      })
+      return null
     }
   }
-
+}
 
 const mapStateToProps = state => {
   return {
-    classes: state.classes
+    classes: state.classes,
+    users: state.users
   };
 };
 
 export default connect(
   mapStateToProps,
-  { getClasses }
+  { getClasses, getUser }
 )(ClassList);
