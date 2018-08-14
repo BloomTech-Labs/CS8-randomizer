@@ -8,8 +8,6 @@ import { Reducer } from './reducers'
 import logger from 'redux-logger';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import thunk from 'redux-thunk';
-import Setting from './components';
-import Billing from './components';
 
 // Redux Thunk:
 // const store = createStore(Reducer, applyMiddleware(logger, thunk));

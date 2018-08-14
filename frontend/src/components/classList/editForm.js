@@ -337,5 +337,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { addClass, addStudent, getClasses, editClass }
+  { addClass, getClasses, editClass }
 )(EditForm);

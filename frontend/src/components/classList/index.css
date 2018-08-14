@@ -5,10 +5,10 @@
     flex-wrap: wrap;
 }
 
-/* #Class-card {
-    min-width: 140px;
-    height: 180px;
-} */
+#Class-card {
+    min-width: 165px;
+    min-height: 260px;
+}
 
 #Class-card a {
     color: white;
@@ -79,7 +79,12 @@
 /* } */
 
 #add-button.nav {
-    height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 22.42%;
+    min-height: 260px;
     /* width: 140px;  */
     
 }

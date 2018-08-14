@@ -8,7 +8,7 @@ import CsvParse from "@vtex/react-csv-parse";
 
 import { Button, FormGroup, Label, Input } from "reactstrap";
 
-import { addClass, addStudent } from "../../actions";
+import { addClass} from "../../actions";
 import swal from "sweetalert";
 import "./form.css";
 
@@ -136,10 +136,10 @@ class ClassForm extends React.Component {
         text: "Oh no!! Looks like you forgot to add a Class Name!"
       });
       return;
-    } else if (students === []) {
+    } else if (students.length < 2) {
       swal({
         icon: "error",
-        text: "Sorry! You must add at least one student to create a class!"
+        text: "Sorry! You must add at least two students to create a class!"
       });
       return;
     } else {
@@ -305,6 +305,6 @@ const mapStateToProps = state => {
 export default withRouter(
   connect(
     mapStateToProps,
-    { addClass, addStudent }
+    { addClass}
   )(ClassForm)
 );
