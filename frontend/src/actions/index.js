@@ -2,6 +2,7 @@ import axios from "axios";
 import jwt_decode from "jwt-decode";
 import swal from "sweetalert";
 
+
 export const ADDINGUSER = "ADDINGUSER";
 export const ADDEDUSER = "ADDEDUSER";
 
@@ -12,6 +13,12 @@ export const LOGGINGIN = "LOGGINGIN";
 export const LOGGEDIN = "LOGGEDIN";
 export const LOGGINGOUT = "LOGGINGOUT";
 export const LOGGEDOUT = "LOGOUT";
+
+export const GETTINGUSER = "GETTINGUSER";
+export const GOTUSER = "GOTUSER";
+
+export const UPDATINGSUB = "UPDATINGSUB";
+export const UPDATEDSUB = "UPDATEDSUB";
 
 export const GETTINGCLASSES = "GETTINGCLASSES";
 export const GOTCLASSES = "GOTCLASSES";
@@ -34,7 +41,6 @@ export const UPDATEDPARTICIPATION = "UPDATEDPARTICIPATION";
 
 export const UPDATINGGRAPHDATA = "UPDATINGGRAPHDATA";
 export const UPDATEDGRAPHDATA = "UPDATEDGRAPHDATA";
-
 
 export const ERROR = "ERROR";
 
@@ -167,28 +173,112 @@ export const editUser = (update_info, history) => dispatch => {
   const logged_in_user_id = jwt_decode(localStorage.jwtToken).sub + "";
   console.log("typeof logged_in_user_id:", typeof logged_in_user_id);
   console.log("typeof update_info", typeof update_info);
+  if (update_info.username && update_info.password) {
+    dispatch({
+      type: EDITINGUSER
+    });
+    axios
+      .put(`${URL}/updateuser/${logged_in_user_id}`, update_info)
+
+      .then(response => {
+        dispatch({
+          type: EDITEDUSER,
+          user_email_pass: response.data
+        });
+        swal({ icon: "success", text: "Username and password updated!" });
+        history.push("../classes");
+      })
+      .catch(err => {
+        dispatch({ type: ERROR, errorMessage: "Error updating user." });
+        swal({
+          icon: "error",
+          text:
+            "Sorry! We were unable to update your username and password! Please try again later!"
+        });
+      });
+  } else if (update_info.subscription === "standard") {
+    dispatch({
+      type: UPDATINGSUB
+    });
+    axios
+      .put(
+        `http://localhost:5000/api/updatesubscription/${logged_in_user_id}`,
+        { subscription: "standard" }
+      )
+      .then(response => {
+        dispatch({
+          type: UPDATEDSUB,
+          subscription: response.data
+        });
+        swal({ icon: "success", text: "Subscription Updated!" });
+        // history.push("../classes");
+      })
+      .catch(err => {
+        dispatch({ type: ERROR, errorMessage: "Error updating subscription." });
+        swal({
+          icon: "error",
+          text:
+            "Sorry! We were unable to update your subscription at this time! Please try again later!"
+        });
+      });
+  } else if (update_info.subscription === "premium") {
+    dispatch({
+      type: UPDATINGSUB
+    });
+    axios
+      .put(
+        `http://localhost:5000/api/updatesubscription/${logged_in_user_id}`,
+        { subscription: "premium" }
+      )
+      .then(response => {
+        dispatch({
+          type: UPDATEDSUB,
+          subscription: response.data
+        });
+        swal({ icon: "success", text: "Subscription Updated!" });
+        // history.push("../classes");
+      })
+      .catch(err => {
+        dispatch({ type: ERROR, errorMessage: "Error updating subscription." });
+        swal({
+          icon: "error",
+          text:
+            "Sorry! We were unable to update your subscription at this time! Please try again later!"
+        });
+      });
+  }
+};
+
+export const getUser = () => dispatch => {
+  // if (axios.get(`${URL}/classes`).response === undefined) {
+  //   dispatch({ type: GOTCLASSES, classes: [] });
+  //   return
+  // } else {
 
   dispatch({
-    type: EDITINGUSER
+    type: GETTINGUSER
   });
-  axios
-    .put(`${URL}/updateuser/${logged_in_user_id}`, update_info)
 
+  axios
+    .get(`${URL}/users`)
     .then(response => {
-      dispatch({
-        type: EDITEDUSER,
-        class_data: response.data
+      console.log("RESPONSE FROM GETUSERS", response.data.length);
+      const logged_in_user_id = jwt_decode(localStorage.jwtToken).sub;
+      const all_users = response.data;
+      let signedin_user = [];
+      console.log("logged_in_user_id", logged_in_user_id);
+      console.log("ALL_USERS", all_users);
+      all_users.map(item => {
+        if (item._id === logged_in_user_id) {
+          signedin_user = item
+        }
       });
-      swal({ icon: "success", text: "Username and password updated!" });
-      history.push("../classes");
+
+      console.log("SIGNEDIN_USER", signedin_user);
+      dispatch({ type: GOTUSER, user: signedin_user });
     })
     .catch(err => {
-      dispatch({ type: ERROR, errorMessage: "Error updating user." });
-      swal({
-        icon: "error",
-        text:
-          "Sorry! We were unable to update your username and password! Please try again later!"
-      });
+      dispatch({ type: ERROR, payload: err });
     });
 };
 
@@ -246,7 +336,7 @@ export const addClass = (class_data, history) => dispatch => {
       students: class_data.students,
       allMode: class_data.allMode,
       trackMode: class_data.trackMode,
-      users: user_id,
+      users: user_id
     })
     // .then(response => {
     //   console.log("ADDCLASS RESPONSE.CONFIG.DATA:", response.config.data);
@@ -311,7 +401,7 @@ export const addClass = (class_data, history) => dispatch => {
 };
 
 export const editClass = (class_data, history, classid) => dispatch => {
-  const logged_in_user_id = jwt_decode(localStorage.jwtToken).sub
+  const logged_in_user_id = jwt_decode(localStorage.jwtToken).sub;
   dispatch({
     type: EDITINGCLASS
   });
@@ -322,7 +412,7 @@ export const editClass = (class_data, history, classid) => dispatch => {
       allMode: class_data.allMode,
       trackMode: class_data.trackMode,
       users: logged_in_user_id,
-      participation: 0,
+      participation: 0
     })
     .then(response => {
       dispatch({
@@ -386,10 +476,10 @@ export const updateParticipation = data => dispatch => {
       // allMode: class_data.allMode,
       // trackMode: class_data.trackMode,
       // users: logged_in_user_id,
-      participation: data.participation,
+      participation: data.participation
     })
     .then(response => {
-      console.log("updateParticipation response:", response)
+      console.log("updateParticipation response:", response);
       dispatch({
         type: UPDATEDPARTICIPATION,
         class_data: response.data,
@@ -398,8 +488,7 @@ export const updateParticipation = data => dispatch => {
     });
   // TODO: axios PUT to /updateclass/ to update participation array for particular day
   // Will need ID of class AND the participation rate
-
-}
+};
 
 export const updateGraphData = data => dispatch => {
   dispatch({
@@ -412,14 +501,14 @@ export const updateGraphData = data => dispatch => {
       // allMode: class_data.allMode,
       // trackMode: class_data.trackMode,
       // users: logged_in_user_id,
-      graph_data: data.graph_data,
+      graph_data: data.graph_data
     })
     .then(response => {
-      console.log("updateGraphData response:", response)
+      console.log("updateGraphData response:", response);
       dispatch({
         type: UPDATEDGRAPHDATA,
         class_data: response.data,
         class_id: data.class_id
       });
     });
-}
+};

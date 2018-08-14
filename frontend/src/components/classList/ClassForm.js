@@ -8,7 +8,7 @@ import CsvParse from "@vtex/react-csv-parse";
 
 import { Button, FormGroup, Label, Input } from "reactstrap";
 
-import { addClass} from "../../actions";
+import { addClass, getUser, getClasses } from "../../actions";
 import swal from "sweetalert";
 import "./form.css";
 
@@ -33,7 +33,10 @@ class ClassForm extends React.Component {
     };
   }
 
-  // allHandle = ()  => {
+ componentDidMount(){
+   this.props.getClasses()
+   this.props.getUser()
+ }
 
   // }
   allToggle = () => {
@@ -119,45 +122,57 @@ class ClassForm extends React.Component {
   };
 
   handleAddClassAndStudents = () => {
-    const { classname, students, allMode, trackMode } = this.state;
-    const collection = students;
-    const full_name = [];
-    collection.map(item => {
-      full_name.push({
-        first_name: item.first_name,
-        last_name: item.last_name,
-        component_state_id: uuidv4()
+    console.log("this.props.classes.length:", this.props.classes.length)
+    console.log("this.props.user:", this.props.user)
+    if (
+      (this.props.classes.length < 2 &&
+        this.props.user.subscription === "trial") ||
+      (this.props.classes.length < 5 &&
+        this.props.user.subscription === "standard") ||
+      this.props.user.subscription === "premium"
+    ) {
+      const { classname, students, allMode, trackMode } = this.state;
+      const collection = students;
+      const full_name = [];
+      collection.map(item => {
+        full_name.push({
+          first_name: item.first_name,
+          last_name: item.last_name,
+          component_state_id: uuidv4()
+        });
       });
-    });
-    console.log("FULL_NAME ARRAY:", full_name);
-    if (classname === "") {
-      swal({
-        icon: "error",
-        text: "Oh no!! Looks like you forgot to add a Class Name!"
-      });
-      return;
-    } else if (students.length < 2) {
-      swal({
-        icon: "error",
-        text: "Sorry! You must add at least two students to create a class!"
-      });
-      return;
+      console.log("FULL_NAME ARRAY:", full_name);
+      if (classname === "") {
+        swal({
+          icon: "error",
+          text: "Oh no!! Looks like you forgot to add a Class Name!"
+        });
+        return;
+      } else if (students.length < 2) {
+        swal({
+          icon: "error",
+          text: "Sorry! You must add at least two students to create a class!"
+        });
+        return;
+      } else {
+        this.props.addClass(
+          {
+            name: classname,
+            students: full_name,
+            allMode: allMode,
+            trackMode: trackMode
+          },
+          this.props.history
+        );
+        this.setState({
+          classname: "",
+          students: [],
+          firstname: "",
+          lastname: ""
+        });
+      }
     } else {
-      this.props.addClass(
-        {
-          name: classname,
-          students: full_name,
-          allMode: allMode,
-          trackMode: trackMode
-        },
-        this.props.history
-      );
-      this.setState({
-        classname: "",
-        students: [],
-        firstname: "",
-        lastname: ""
-      });
+      swal({icon: "error", text: `Sorry! Your ${this.props.user.subscription} subscription cannot make more than ${this.props.classes.length} classes. Please update your subscription to add more classes!`})
     }
   };
 
@@ -298,13 +313,15 @@ const mapStateToProps = state => {
     error: state.errorMessage,
     addingClass: state.addingClass,
     classes: state.classes,
-    students: state.students
+    students: state.students,
+    users: state.users,
+    user: state.user
   };
 };
 
 export default withRouter(
   connect(
     mapStateToProps,
-    { addClass}
+    { addClass, getUser, getClasses }
   )(ClassForm)
 );

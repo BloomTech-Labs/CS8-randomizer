@@ -7,18 +7,18 @@ import {
   LOGGEDIN,
   LOGGINGOUT,
   LOGGEDOUT,
+  UPDATINGSUB,
+  UPDATEDSUB,
+  GETTINGUSER,
+  GOTUSER,
   GETTINGCLASSES,
   GOTCLASSES,
-
   ADDINGCLASS,
   ADDEDCLASS,
-
   EDITINGCLASS,
   EDITEDCLASS,
-
   GETTINGSTUDENTS,
   GOTSTUDENTS,
-
   UPDATINGPARTICIPATION,
   UPDATEDPARTICIPATION,
   UPDATINGGRAPHDATA,
@@ -38,6 +38,7 @@ const initialState = {
   loggingOut: false,
   addingClass: false,
   editingUser: false,
+  gettinguser: false,
   classes_empty: true,
   allMode: false,
   trackMode: false,
@@ -63,7 +64,23 @@ export const Reducer = (state = initialState, action) => {
     case EDITINGUSER:
       return { ...state, editingUser: true };
     case EDITEDUSER:
-      return { ...state, users: action.users, editingUser: false };
+      return {
+        ...state,
+        user: {
+          ...state.users,
+          username: action.user_email_pass.username,
+          password: action.user_email_pass.password
+        },
+        editingUser: false
+      };
+    case UPDATINGSUB:
+      return { ...state, updatingSub: true };
+    case UPDATEDSUB:
+      return {
+        ...state,
+        users: { ...state.users, subscription: action.subscription },
+        updatingSub: false
+      };
     case LOGGINGIN:
       return { ...state, loggingIn: true };
     case LOGGEDIN:
@@ -82,13 +99,18 @@ export const Reducer = (state = initialState, action) => {
         loggingOut: false
       };
 
+    case GETTINGUSER:
+      return { ...state, gettinguser: true };
+    case GOTUSER:
+      return { ...state, user: action.user, gettinguser: false };
+
     case GETTINGCLASSES:
       return { ...state, gettingClass: true };
     case GOTCLASSES:
       return {
         ...state,
         classes: action.classes,
-        gettingClass: false,
+        gettingClass: false
       };
     case ADDINGCLASS:
       return { ...state, addingClass: true };
@@ -99,7 +121,7 @@ export const Reducer = (state = initialState, action) => {
       };
 
     case EDITINGCLASS:
-     return{ ...state, editingClass: true}
+      return { ...state, editingClass: true };
     case EDITEDCLASS:
       return { ...state, editingClass: false };
 
@@ -126,7 +148,7 @@ export const Reducer = (state = initialState, action) => {
           };
         }
       });
-      break
+      break;
     case UPDATINGGRAPHDATA:
       return { ...state, updatingGraph: true };
     case UPDATEDGRAPHDATA:
@@ -142,7 +164,7 @@ export const Reducer = (state = initialState, action) => {
           };
         }
       });
-      break
+      break;
     case ERROR:
       return { ...state, error: action.errorMessage };
     default:

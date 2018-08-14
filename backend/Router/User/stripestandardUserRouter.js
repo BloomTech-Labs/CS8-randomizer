@@ -6,11 +6,15 @@ const stripe = require("stripe")(SECRET_KEY);
 app.use(require("body-parser").text());
 
 app.route("/").post( async (req, res) => {
+  console.log("req.body:", req.body)
+  console.log("req.type:", req.type)
+  console.log("req.amount:", req.amount)
+
     try {
       let { status } = await stripe.charges.create({
-        amount: 990,
+        amount: "999",
         currency: "usd",
-        description: "An example charge",
+        description: "standard",
         source: req.body
       });
   
