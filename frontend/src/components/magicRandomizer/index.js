@@ -10,6 +10,7 @@ import {
 import swal from "sweetalert";
 
 import "./magicRandomizer.css";
+import "./TrackNoAll.css";
 import { connect } from "react-redux";
 import { LineChart } from "react-easy-chart";
 // import { on } from "cluster";
@@ -570,7 +571,7 @@ class MagicRandomizer extends Component {
           </div>
         );
       } else if (this.state.allstudents.length === 0) {
-        console.log("HERE!!!")
+        console.log("HERE!!!");
         trackState = (
           <div className="caro_container">
             <div className="caros">
@@ -583,18 +584,13 @@ class MagicRandomizer extends Component {
                     {" "}
                     RANDOMIZE!{" "}
                   </Button>
-                 
                 </div>
               ) : (
                 <div>
-                  <Button
-                    id="Randomize-button"
-                    onClick={this.randomHandler}
-                  >
+                  <Button id="Randomize-button" onClick={this.randomHandler}>
                     {" "}
                     RANDOMIZE!{" "}
                   </Button>
-                  
                 </div>
               )}
             </div>
@@ -652,27 +648,26 @@ class MagicRandomizer extends Component {
           </div>
         );
       }
-    } else if (this.state.trackMode == true && this.state.allMode === false){
+    } else if (this.state.trackMode == true && this.state.allMode === false) {
       trackState = (
-        <div className="caro_container">
-          <div className="caros">
+        <div className="caro_container_track-only">
+          <div className="caros_track-only">
             <Button
-              className="participated"
-              id="Rando-top-button"
+              className="participated_track-only"
+              id="Rando-top-button_track-only"
               onClick={this.participatedHandler}
             >
               {""}
               Participated
               {""}
             </Button>
-            <Button id="declined" onClick={this.declinedHandler}>
+            <Button id="declined_track-only" onClick={this.declinedHandler}>
               {" "}
               Declined{" "}
             </Button>
           </div>
         </div>
       );
-
     }
 
     // AllMode
@@ -705,88 +700,97 @@ class MagicRandomizer extends Component {
 
     return (
       <div className="main">
-        <div className="classid">{this.state.class.name}</div>
-        <div className="header">
-          {this.state.allMode == true ? (
-            <div>
-              <div className="studentName">
-                {this.state.current_student.first_name}{" "}
-                {this.state.current_student.last_name}
+        <div className="main_contents">
+          <div className="top-section">
+            <div className="classid_container">
+              <div className="classid">{this.state.class.name}</div>
+            </div>
+            <div className="header">
+              {this.state.allMode === true ? (
+                <div>
+                  <div className="studentName">
+                    {this.state.current_student.first_name}{" "}
+                    {this.state.current_student.last_name}
+                  </div>
+                  <div className="on_deck">
+                    On Deck: {this.state.on_deck_student.first_name}{" "}
+                    {this.state.on_deck_student.last_name}
+                  </div>
+                </div>
+              ) : (
+                <div>
+                  <div className="studentName">
+                    {this.state.current_student.first_name}{" "}
+                    {this.state.current_student.last_name}
+                  </div>
+                  <div className="on_deck">
+                    On Deck: {this.state.on_deck_student.first_name}{" "}
+                    {this.state.on_deck_student.last_name}
+                  </div>
+                </div>
+              )}
+            </div>
+            <div className="edit_container">
+            <Link
+              to={{
+                pathname: `/${this.state.classid}/edit`,
+                state: {
+                  // classid: classitem._id,
+                  class: this.state.class
+                }
+              }}
+            >
+              <Button
+                className="edit"
+                id="Rando-top-button_edit"
+                // href={`/${this.state.classid}/edit`}
+              >
+                {" "}
+                Edit{" "}
+              </Button>
+            </Link>
+          </div>
+          </div>
+          <div className="caro_container">
+            {trackState}
+            {allState}
+          </div>
+          {this.state.trackMode == true ? (
+            <div className="part_data">
+              <div className="part_data_title">
+                {/* Overall Class Participation Rate <br /> ↓{" "} */}
+                <div className="line_chart">
+                  <LineChart
+                    // xDomainRange={[0, 100]}
+                    yDomainRange={[0, 100]}
+                    xType={"time"}
+                    dataPoints
+                    axes
+                    grid
+                    verticalGrid
+                    // interpolate={"cardinal"}
+                    lineColors={["pink", "purple"]}
+                    className={"line-chart_track-only"}
+                    // width={675}
+                    // height={300}
+                    data={[this.state.graph_data]}
+                    style={{
+                      ".line": {
+                        background: "red"
+                      }
+                    }}
+                  />
+                </div>
               </div>
-              <div className="on_deck">
-                On Deck: {this.state.on_deck_student.first_name}{" "}
-                {this.state.on_deck_student.last_name}
-              </div>
+              {/* <div className="part_graph">{this.participationTracker()}</div> */}
             </div>
           ) : (
-            <div>
-              <div className="studentName">
-                {this.state.current_student.first_name}{" "}
-                {this.state.current_student.last_name}
-              </div>
-              <div className="on_deck">
-                On Deck: {this.state.on_deck_student.first_name}{" "}
-                {this.state.on_deck_student.last_name}
-              </div>
+            <div className="part_data part_data_off">
+              <div className="part_data_title part_data_title_off" />
+              <div className="part_graph part_graph_off" />
             </div>
           )}
         </div>
-        <Link
-          to={{
-            pathname: `/${this.state.classid}/edit`,
-            state: {
-              // classid: classitem._id,
-              class: this.state.class
-            }
-          }}
-        >
-          <Button
-            className="edit"
-            id="Rando-top-button"
-            // href={`/${this.state.classid}/edit`}
-          >
-            {" "}
-            Edit{" "}
-          </Button>
-        </Link>
-        <div className="caro_container">
-          {trackState}
-          {allState}
-        </div>
-        {this.state.trackMode == true ? (
-          <div className="part_data">
-            <div className="part_data_title">
-              {/* Overall Class Participation Rate <br /> ↓{" "} */}
-              <div className="line_chart">
-                <LineChart
-                  // xDomainRange={[0, 100]}
-                  yDomainRange={[0, 100]}
-                  xType={"time"}
-                  dataPoints
-                  axes
-                  grid
-                  verticalGrid
-                  // interpolate={"cardinal"}
-                  lineColors={["pink", "purple"]}
-                  width={750}
-                  height={300}
-                  data={[this.state.graph_data]}
-                  style={
-                    {
-                      // backgroundColor: "#584573"
-                    }
-                  }
-                />
-              </div>
-            </div>
-            {/* <div className="part_graph">{this.participationTracker()}</div> */}
-          </div>
-        ) : (
-          <div className="part_data part_data_off">
-            <div className="part_data_title part_data_title_off" />
-            <div className="part_graph part_graph_off" />
-          </div>
-        )}
       </div>
     );
   }
