@@ -205,7 +205,7 @@ class ClassForm extends React.Component {
           <div className="Form-container_left">
             <div className="Classname-box">
               <div className="Classname-box_content">
-                <div className="title">Settings</div>
+                <div className="title_Classname">Settings</div>
 
                 <input
                   className="Classname-input"
@@ -219,7 +219,7 @@ class ClassForm extends React.Component {
             </div>
             <div className="Options-box">
               <div className="Options-box_content">
-                <div className="title">Options</div>
+                <div className="title_Options">Options</div>
                 <FormGroup check>
                   <Label check>
                     <Input type="checkbox" onClick={this.trackToggle} /> Track
@@ -236,7 +236,7 @@ class ClassForm extends React.Component {
             </div>
             <div className="Add-box">
               <div className="Add-box_content">
-                <div className="title">Add Students</div>
+                <div className="title_Add">Add Students</div>
 
                 <input
                   className="firstname-input"
@@ -261,7 +261,7 @@ class ClassForm extends React.Component {
             </div>
             <div className="CSV-box">
               <div className="CSV-box_content">
-                <div className="title">Import CSV</div>
+                <div className="title_CSV">Import CSV</div>
                 <CsvParse
                   keys={keys}
                   onDataUploaded={this.handleImportData}
@@ -273,7 +273,7 @@ class ClassForm extends React.Component {
           </div>
           <div className="List-box">
             <div className="List-box_content">
-              <div className="title title_student-list">Student List</div>
+              <div className="title_student-list">Student List</div>
 
               <div>
                 {this.state.students.map(obj => {
