@@ -1,0 +1,81 @@
+.caro_container_none {
+  display: flex;
+  flex-wrap: wrap;
+  /* TODO: center and width = 100% at mobile. */
+  width: 100%;
+  justify-content: center;
+  /* width: 100%; */
+  border: 5px solid red;
+  height: 100%;
+}
+
+.caros_none {
+  /* TODO: THIS IS WORKING CORRECTLY! - just need the correct image sizes! */
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  /* padding-bottom: 100px; */
+}
+
+#Randomize-button_none {
+  border: 5px solid green;
+  /* padding-top: 70px;   */
+  /* padding-bottom: 70px;   */
+  /* background: rgb(230, 230, 230);  
+  color: #332259;   */
+  background: #332259;
+  color: rgb(230, 230, 230);
+  font-size: 380%;
+  height: 300px;
+  transition: all 1s ease-in;
+  /* padding: 10% 0; */
+}
+
+.on_deck_none{
+
+}
+
+.reset_none {
+  width: 109px;
+  margin-top: -3.3%;
+  height: 100px;
+  /* background: rgb(140, 140, 194); */
+}
+
+.reset_border_none {
+  font-size: 18px;
+  text-align: center;
+  border: 2px dashed black;
+  width: 105%;
+}
+
+#AllGo-button_none {
+  border: 2px dashed black;
+  /* line-height: 0.6;   */
+  /* padding: 10px;   */
+  height: 100px;
+  background-color: #322842;
+  border-color: whitesmoke;
+  border-style: solid;
+  color: whitesmoke;
+  transition: all 0.5s ease;
+  margin-bottom: 13%;
+}
+
+.allgo-tracker_none {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  /* align-items: center; */
+  width: 102%;
+  height: 100px;
+  background-color: #584573;
+  color: white;
+  border-radius: 2%;
+  margin-left: 3px;
+  padding: 5px;
+}
+
+.allgo-tracker-num_none {
+  font-size: 30px;
+}
