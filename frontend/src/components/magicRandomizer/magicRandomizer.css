@@ -8,11 +8,9 @@
   background: rgb(230, 230, 230);  
   border-radius: .25rem;  
   height: 100%; 
-  border: 5px solid powderblue; 
 }
 
 .main_contents {
-  border: 5px solid saddlebrown;
   width: 100%;
   height: 100%;
 
@@ -21,7 +19,7 @@
 .top-section {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   width: 100%;
   /* border: 5px solid maroon; */
 }
@@ -127,11 +125,16 @@ a {
   /* background: brown; */
 }
 
+.header_container{
+  width: 25%;
+  height: 150px;
+}
+
 .studentName {
   font-size: 1.5em;
   font-style: 1;
   width: 100%;
-  height: 30px;
+  height: 100px;
   text-align: center;
   background: #584573;
   color: white;
@@ -206,7 +209,7 @@ transition: all 0.5 s ease;
 }
 
 .edit_container {
-  border: 5px solid grey;
+
   width: 100%;
 }
 
@@ -362,9 +365,18 @@ line {
 
 }
 
-svg {
-  width: 1000px;
+
+svg{
+  width: 100%;
 }
+
+.line-chart_track-only{
+  width: 500px;
+}
+
+.line-chart {
+  width: 500px;
+}s
 
 .part_data_off{
   display: none;
