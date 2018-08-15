@@ -9,6 +9,9 @@ import {
 } from "../../actions";
 import swal from "sweetalert";
 import "./magicRandomizer.css";
+import "./NoTrackAll.css";
+import "./NoTrackNoAll.css";
+import "./TrackAll.css";
 import "./TrackNoAll.css";
 import { connect } from "react-redux";
 import { LineChart } from "react-easy-chart";
@@ -528,78 +531,18 @@ class MagicRandomizer extends Component {
     console.log("this.state.graph_data", this.state.graph_data);
   };
 
+  // ============================================== RENDER FUNCTION - START =============================================== //
+  // ====================================================================================================================== //
+
   render() {
-    // let currentStudent = this.state.current_student;
+    // =========== trackState + allState Conditionals - START========== //
 
     let trackState;
     let allState;
 
     console.log("STATE at top of render", this.state);
 
-    // NO TRACK
-
-    if (this.state.trackMode == false) {
-      if (this.state.allstudents.length > 0) {
-        trackState = (
-          <div className="caro_container">
-            <div className="caros">
-              {this.state.allMode == true ? (
-                <div>
-                  <Button id="Randomize-button" onClick={this.allGoHandler}>
-                    {" "}
-                    RANDOMIZE!{" "}
-                  </Button>
-                  <div className="on_deck">
-                    On Deck: {this.state.on_deck_student.first_name}{" "}
-                    {this.state.on_deck_student.last_name}
-                  </div>
-                </div>
-              ) : (
-                <div>
-                  <Button id="Randomize-button" onClick={this.randomHandler}>
-                    {" "}
-                    RANDOMIZE!{" "}
-                  </Button>
-                  <div className="on_deck">
-                    On Deck: {this.state.on_deck_student.first_name}{" "}
-                    {this.state.on_deck_student.last_name}
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-        );
-      } else if (this.state.allstudents.length === 0) {
-        console.log("HERE!!!");
-        trackState = (
-          <div className="caro_container">
-            <div className="caros">
-              {this.state.allMode == true ? (
-                <div>
-                  <Button
-                    id="Randomize-button"
-                    style={{ backgroundColor: "rgba(87,68,114,0.2)" }}
-                  >
-                    {" "}
-                    RANDOMIZE!{" "}
-                  </Button>
-                </div>
-              ) : (
-                <div>
-                  <Button id="Randomize-button" onClick={this.randomHandler}>
-                    {" "}
-                    RANDOMIZE!{" "}
-                  </Button>
-                </div>
-              )}
-            </div>
-          </div>
-        );
-      }
-    }
-
-    // Track On
-
+    // ======== #1 - track TRUE all TRUE ======== //
     if (this.state.trackMode == true && this.state.allMode === true) {
       // The conditional below deactivated the Participated and Declined buttons by
       // removing the onClick methods when the deck is empty.
@@ -647,7 +590,10 @@ class MagicRandomizer extends Component {
           </div>
         );
       }
-    } else if (this.state.trackMode == true && this.state.allMode === false) {
+    }
+    // ======== #2 - track TRUE all FALSE ======== //
+
+    if (this.state.trackMode == true && this.state.allMode === false) {
       trackState = (
         <div className="caro_container_track-only">
           <div className="caros_track-only">
@@ -669,10 +615,40 @@ class MagicRandomizer extends Component {
       );
     }
 
-    // AllMode
-
-    if (this.state.allMode == true) {
+    // ======== #3 - track FALSE all TRUE ======== //
+    if (this.state.trackMode === false && this.state.allMode === true) {
       console.log("allMode on");
+      if (this.state.allstudents.length > 0) {
+        trackState = (
+          <div className="caro_container">
+            <div className="caros">
+              <div>
+                <Button id="Randomize-button" onClick={this.allGoHandler}>
+                  {" "}
+                  RANDOMIZE!{" "}
+                </Button>
+              </div>
+            </div>
+          </div>
+        );
+      } else if (this.state.allstudents.length === 0) {
+        console.log("HERE!!!");
+        trackState = (
+          <div className="caro_container">
+            <div className="caros">
+              <div>
+                <Button
+                  id="Randomize-button"
+                  style={{ backgroundColor: "rgba(87,68,114,0.2)" }}
+                >
+                  {" "}
+                  RANDOMIZE!{" "}
+                </Button>
+              </div>
+            </div>
+          </div>
+        );
+      }
       allState = (
         <div>
           <div className="reset">
@@ -695,7 +671,59 @@ class MagicRandomizer extends Component {
       );
     }
 
-    // No All
+    // ======== #4 - track FALSE all FALSE ======== //
+
+    if (this.state.trackMode === false && this.state.allMode == false) {
+      if (this.state.allstudents.length > 0) {
+        trackState = (
+          <div className="caro_container_none">
+            <div className="caros_none">
+              <Button id="Randomize-button_none" onClick={this.randomHandler}>
+                {" "}
+                RANDOMIZE!{" "}
+              </Button>
+              <div className="on_deck_none">
+                On Deck: {this.state.on_deck_student.first_name}{" "}
+                {this.state.on_deck_student.last_name}
+              </div>
+            </div>
+          </div>
+        );
+      } else if (this.state.allstudents.length === 0) {
+        console.log("HERE!!!");
+        trackState = (
+          <div className="caro_container_none">
+            <div className="caros_none">
+              <Button id="Randomize-button_none" onClick={this.randomHandler}>
+                {" "}
+                RANDOMIZE!{" "}
+              </Button>
+            </div>
+          </div>
+        );
+      }
+      allState = (
+        <div>
+          <div className="reset_none">
+            <Button
+              className="reset_border_none"
+              id="AllGo-button_none"
+              onClick={this.shuffle_allstudents}
+            >
+              Reset 'All Go'
+            </Button>
+            <div className="allgo-tracker_none">
+              Students in Deck:
+              <br />
+              <div className="allgo-tracker-num_none">
+                {this.state.allstudents.length}
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+    // =========== trackState + allState Conditionals - END ========== //
 
     return (
       <div className="main">
@@ -730,30 +758,30 @@ class MagicRandomizer extends Component {
               )}
             </div>
             <div className="edit_container">
-            <Link
-              to={{
-                pathname: `/${this.state.classid}/edit`,
-                state: {
-                  // classid: classitem._id,
-                  class: this.state.class
-                }
-              }}
-            >
-              <Button
-                className="edit"
-                id="Rando-top-button_edit"
-                // href={`/${this.state.classid}/edit`}
+              <Link
+                to={{
+                  pathname: `/${this.state.classid}/edit`,
+                  state: {
+                    // classid: classitem._id,
+                    class: this.state.class
+                  }
+                }}
               >
-                {" "}
-                Edit{" "}
-              </Button>
-            </Link>
+                <Button
+                  className="edit"
+                  id="Rando-top-button_edit"
+                  // href={`/${this.state.classid}/edit`}
+                >
+                  {" "}
+                  Edit{" "}
+                </Button>
+              </Link>
+            </div>
           </div>
-          </div>
-          <div className="caro_container">
-            {trackState}
-            {allState}
-          </div>
+
+          {trackState}
+          {allState}
+
           {this.state.trackMode == true ? (
             <div className="part_data">
               <div className="part_data_title">

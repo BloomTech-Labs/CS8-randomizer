@@ -7,13 +7,14 @@
   /* height: 1000px;   */
   background: rgb(230, 230, 230);  
   border-radius: .25rem;  
-  width: 100%; 
+  height: 100%; 
   border: 5px solid powderblue; 
 }
 
 .main_contents {
   border: 5px solid saddlebrown;
   width: 100%;
+  height: 100%;
 
 }
 
@@ -229,6 +230,8 @@ transition: all 0.5 s ease;
 
 }
 
+
+
 .reset {
   width: 109px;
   margin: 90px;
@@ -237,12 +240,15 @@ transition: all 0.5 s ease;
   /* background: rgb(140, 140, 194); */
 }
 
+
 .reset_border{
   font-size: 18px;
   text-align: center;
   border: 2px dashed black;
   width: 105%;
 }
+
+
 
 .allgo-tracker {
   display: flex; 
@@ -258,9 +264,11 @@ transition: all 0.5 s ease;
   padding: 5px;
 }
 
+
 .allgo-tracker-num {
   font-size: 30px;
 }
+
 
 .caros {
   /* TODO: THIS IS WORKING CORRECTLY! - just need the correct image sizes! */
@@ -270,6 +278,8 @@ transition: all 0.5 s ease;
   margin-top: -50px;  
   /* padding-bottom: 100px; */  
 }  
+
+
   
 #Randomize-button{  
   border: 5px solid pink;
@@ -285,6 +295,8 @@ transition: all 0.5 s ease;
   transition: all 1s ease-in;  
   /* padding: 10% 0; */  
 }  
+
+
   
 #Randomize-button:hover{  
   background-color: #584573;  
@@ -355,20 +367,15 @@ svg {
 }
 
 .part_data_off{
-  background: rgb(230, 230, 230);
-  border: rgb(230, 230, 230); 
+  display: none;
 }
 
 .part_data_title_off{
-  background: rgb(230, 230, 230);
-  color: rgb(230, 230, 230);
-  border: rgb(230, 230, 230);
+  display: none;
 }
 
 .part_graph_off{
-  background: rgb(230, 230, 230);
-  color: rgb(230, 230, 230);
-  border: rgb(230, 230, 230);
+  display: none;
 }
 
 /* } */
