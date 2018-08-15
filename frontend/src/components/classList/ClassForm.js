@@ -8,7 +8,7 @@ import CsvParse from "@vtex/react-csv-parse";
 
 import { Button, FormGroup, Label, Input } from "reactstrap";
 
-import { addClass} from "../../actions";
+import { addClass, getUser, getClasses } from "../../actions";
 import swal from "sweetalert";
 import "./form.css";
 
@@ -33,7 +33,10 @@ class ClassForm extends React.Component {
     };
   }
 
-  // allHandle = ()  => {
+ componentDidMount(){
+   this.props.getClasses()
+   this.props.getUser()
+ }
 
   // }
   allToggle = () => {
@@ -119,45 +122,57 @@ class ClassForm extends React.Component {
   };
 
   handleAddClassAndStudents = () => {
-    const { classname, students, allMode, trackMode } = this.state;
-    const collection = students;
-    const full_name = [];
-    collection.map(item => {
-      full_name.push({
-        first_name: item.first_name,
-        last_name: item.last_name,
-        component_state_id: uuidv4()
+    console.log("this.props.classes.length:", this.props.classes.length)
+    console.log("this.props.user:", this.props.user)
+    if (
+      (this.props.classes.length < 2 &&
+        this.props.user.subscription === "trial") ||
+      (this.props.classes.length < 5 &&
+        this.props.user.subscription === "standard") ||
+      this.props.user.subscription === "premium"
+    ) {
+      const { classname, students, allMode, trackMode } = this.state;
+      const collection = students;
+      const full_name = [];
+      collection.map(item => {
+        full_name.push({
+          first_name: item.first_name,
+          last_name: item.last_name,
+          component_state_id: uuidv4()
+        });
       });
-    });
-    console.log("FULL_NAME ARRAY:", full_name);
-    if (classname === "") {
-      swal({
-        icon: "error",
-        text: "Oh no!! Looks like you forgot to add a Class Name!"
-      });
-      return;
-    } else if (students.length < 2) {
-      swal({
-        icon: "error",
-        text: "Sorry! You must add at least two students to create a class!"
-      });
-      return;
+      console.log("FULL_NAME ARRAY:", full_name);
+      if (classname === "") {
+        swal({
+          icon: "error",
+          text: "Oh no!! Looks like you forgot to add a Class Name!"
+        });
+        return;
+      } else if (students.length < 2) {
+        swal({
+          icon: "error",
+          text: "Sorry! You must add at least two students to create a class!"
+        });
+        return;
+      } else {
+        this.props.addClass(
+          {
+            name: classname,
+            students: full_name,
+            allMode: allMode,
+            trackMode: trackMode
+          },
+          this.props.history
+        );
+        this.setState({
+          classname: "",
+          students: [],
+          firstname: "",
+          lastname: ""
+        });
+      }
     } else {
-      this.props.addClass(
-        {
-          name: classname,
-          students: full_name,
-          allMode: allMode,
-          trackMode: trackMode
-        },
-        this.props.history
-      );
-      this.setState({
-        classname: "",
-        students: [],
-        firstname: "",
-        lastname: ""
-      });
+      swal({icon: "error", text: `Sorry! Your ${this.props.user.subscription} subscription cannot make more than ${this.props.classes.length} classes. Please update your subscription to add more classes!`})
     }
   };
 
@@ -190,7 +205,7 @@ class ClassForm extends React.Component {
           <div className="Form-container_left">
             <div className="Classname-box">
               <div className="Classname-box_content">
-                <div className="title">Settings</div>
+                <div className="title_Classname">Settings</div>
 
                 <input
                   className="Classname-input"
@@ -204,7 +219,7 @@ class ClassForm extends React.Component {
             </div>
             <div className="Options-box">
               <div className="Options-box_content">
-                <div className="title">Options</div>
+                <div className="title_Options">Options</div>
                 <FormGroup check>
                   <Label check>
                     <Input type="checkbox" onClick={this.trackToggle} /> Track
@@ -221,7 +236,7 @@ class ClassForm extends React.Component {
             </div>
             <div className="Add-box">
               <div className="Add-box_content">
-                <div className="title">Add Students</div>
+                <div className="title_Add">Add Students</div>
 
                 <input
                   className="firstname-input"
@@ -246,7 +261,7 @@ class ClassForm extends React.Component {
             </div>
             <div className="CSV-box">
               <div className="CSV-box_content">
-                <div className="title">Import CSV</div>
+                <div className="title_CSV">Import CSV</div>
                 <CsvParse
                   keys={keys}
                   onDataUploaded={this.handleImportData}
@@ -258,7 +273,7 @@ class ClassForm extends React.Component {
           </div>
           <div className="List-box">
             <div className="List-box_content">
-              <div className="title title_student-list">Student List</div>
+              <div className="title_student-list">Student List</div>
 
               <div>
                 {this.state.students.map(obj => {
@@ -298,13 +313,15 @@ const mapStateToProps = state => {
     error: state.errorMessage,
     addingClass: state.addingClass,
     classes: state.classes,
-    students: state.students
+    students: state.students,
+    users: state.users,
+    user: state.user
   };
 };
 
 export default withRouter(
   connect(
     mapStateToProps,
-    { addClass}
+    { addClass, getUser, getClasses }
   )(ClassForm)
 );

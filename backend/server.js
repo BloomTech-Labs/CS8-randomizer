@@ -41,7 +41,9 @@ const deleteUserRouter = require('./Router/User/deleteUserRouter.js');
 const updateUserRouter = require('./Router/User/updateUserRouter.js');
 const addtoUserRouter = require('./Router/User/addtoUserRouter.js');
 const removefromUserRouter = require('./Router/User/removefromUserRouter.js');
-const stripepaymentUserRouter = require('./Router/User/stripepaymentUserRouter.js');
+const stripestandardUserRouter = require('./Router/User/stripestandardUserRouter.js');
+const stripepremiumUserRouter = require('./Router/User/stripepremiumUserRouter.js');
+const updateUserSubRouter = require('./Router/User/updateUserSubRouter.js');
 
 
 const server = express();
@@ -86,10 +88,8 @@ server.use('/api/deleteuser/', deleteUserRouter);
 server.use('/api/updateuser/', updateUserRouter);
 server.use('/api/addtouser/', addtoUserRouter); // Adds classes to ref arrays
 server.use('/api/removefromuser/', removefromUserRouter);
-server.use('/api/charge/', stripepaymentUserRouter);
-
-
-
-
+server.use('/api/chargestandard/', stripestandardUserRouter); // charges stripe for premium subscription
+server.use('/api/chargepremium/', stripepremiumUserRouter); // charges stripe for standard subscription
+server.use('/api/updatesubscription/', updateUserSubRouter); // Updates mlab database
 
 server.listen(port, () => console.log('API on port 5000...or wherever Heroku is'));
