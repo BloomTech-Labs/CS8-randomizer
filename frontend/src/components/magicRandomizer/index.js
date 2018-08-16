@@ -1,5 +1,6 @@
-import React, { Component } from "react";
-// import Carousel from "./Carousel";
+import React, { Component, Fragment} from "react";
+
+// import middleusel from "./middleusel";
 import { Button, FormGroup, Label, Input } from "reactstrap";
 import { Link } from "react-router-dom";
 import {
@@ -38,7 +39,10 @@ class MagicRandomizer extends Component {
       participation_rate: 0,
       graph_data: [],
       spotlight: [],
-      shuffled: false
+      shuffled: false,
+      width: 800,
+      height: 400,
+      axes: true
     };
   }
 
@@ -74,6 +78,55 @@ class MagicRandomizer extends Component {
   //   console.log('check handler', this.state.allMode);
   // }
 
+  // =========== Line Chart Dimensions Update Code ========= //
+  /**
+   * Calculate & Update state of new dimensions
+   */
+  updateDimensions() {
+    console.log("UPDATE_DIMENSIONS");
+    // iPhone X
+    if (window.innerWidth <= 500) {
+      let update_width = window.innerWidth * 0.8;
+      let update_height = Math.round(update_width / 2);
+      this.setState({
+        width: update_width,
+        height: update_height,
+        axes: false
+      });
+    } else if (window.innerWidth <= 500 && window.innerWidth <= 740) {
+      let update_width = window.innerWidth * 0.85;
+      let update_height = Math.round(update_width / 2);
+      this.setState({ width: update_width, height: update_height, axes: true });
+    } else if (window.innerWidth <= 740 && window.innerWidth <= 900) {
+      let update_width = window.innerWidth * 0.8;
+      let update_height = Math.round(update_width / 2);
+      this.setState({ width: update_width, height: update_height, axes: true });
+    } else if (window.innerWidth <= 900 && window.innerWidth <= 1100) {
+      let update_width = window.innerWidth * 0.7;
+      let update_height = Math.round(update_width / 2);
+      this.setState({ width: update_width, height: update_height, axes: true });
+    }else if (window.innerWidth <= 1100 && window.innerWidth <= 1300) {
+      let update_width = window.innerWidth * 0.65;
+      let update_height = Math.round(update_width / 2);
+      this.setState({ width: update_width, height: update_height, axes: true });
+    }else if (window.innerWidth <= 1300 && window.innerWidth <= 1500) {
+      let update_width = window.innerWidth * 0.5;
+      let update_height = Math.round(update_width / 2);
+      this.setState({ width: update_width, height: update_height, axes: true });
+    }else if (window.innerWidth >= 1500) {
+      let update_width = window.innerWidth * 0.4;
+      let update_height = Math.round(update_width / 2);
+      this.setState({ width: update_width, height: update_height, axes: true });
+  }
+}
+
+  /**
+   * Remove event listener
+   */
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.updateDimensions.bind(this));
+  }
+
   componentDidMount() {
     this.props.getClasses();
     console.log("mount", this.props);
@@ -94,6 +147,9 @@ class MagicRandomizer extends Component {
       "this.props.location.state.class.graph_data",
       this.props.location.state.class.graph_data
     );
+    // Graph Dimensions Update Event Listener
+    this.updateDimensions();
+    window.addEventListener("resize", this.updateDimensions.bind(this));
 
     if (this.state.allMode == false) {
       this.randomHandler();
@@ -549,18 +605,29 @@ class MagicRandomizer extends Component {
       // removing the onClick methods when the deck is empty.
       if (this.state.allstudents.length > 0) {
         trackState = (
-          <div className="caro_container">
-            <div className="caros">
-              <Button
-                className="participated"
-                id="Rando-top-button"
-                onClick={this.participatedHandler}
-              >
+          <div className="middle_container_ta">
+            <div className="middle_ta_left_container">
+              <div className="middle_ta_left">
+                <Button id="reset_ta" onClick={this.shuffle_allstudents}>
+                  Reset 'All Go'
+                </Button>
+
+                <div className="allgo-tracker_ta">
+                  Students in Deck
+            
+                  <div className="allgo-tracker-num_ta">
+                    {this.state.allstudents.length}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="middle_ta_right">
+              <Button id="participated_ta" onClick={this.participatedHandler}>
                 {""}
                 Participated
                 {""}
               </Button>
-              <Button id="declined" onClick={this.declinedHandler}>
+              <Button id="declined_ta" onClick={this.declinedHandler}>
                 {" "}
                 Declined{" "}
               </Button>
@@ -569,11 +636,25 @@ class MagicRandomizer extends Component {
         );
       } else if (this.state.allstudents.length <= 0) {
         trackState = (
-          <div className="caro_container">
-            <div className="caros">
+          <div className="middle_container_ta">
+            <div className="middle_ta_left_container">
+              <div className="middle_ta_left">
+                <Button id="reset_ta" onClick={this.shuffle_allstudents}>
+                  Reset 'All Go'
+                </Button>
+
+                <div className="allgo-tracker_ta">
+                  Students in Deck:
+            
+                  <div className="allgo-tracker-num_ta">
+                    {this.state.allstudents.length}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="middle_ta_right">
               <Button
-                className="participated"
-                id="Rando-top-button"
+                id="participated_ta"
                 style={{ backgroundColor: "rgba(87,68,114,0.2)" }}
               >
                 {""}
@@ -581,7 +662,7 @@ class MagicRandomizer extends Component {
                 {""}
               </Button>
               <Button
-                id="declined"
+                id="declined_ta"
                 style={{ backgroundColor: "rgba(87,68,114,0.2)" }}
               >
                 {" "}
@@ -596,18 +677,14 @@ class MagicRandomizer extends Component {
 
     if (this.state.trackMode == true && this.state.allMode === false) {
       trackState = (
-        <div className="caro_container_track-only">
-          <div className="caros_track-only">
-            <Button
-              className="participated_track-only"
-              id="Rando-top-button_track-only"
-              onClick={this.participatedHandler}
-            >
+        <div className="middle_container_t">
+          <div className="middle_t">
+            <Button id="participated_t" onClick={this.participatedHandler}>
               {""}
               Participated
               {""}
             </Button>
-            <Button id="declined_track-only" onClick={this.declinedHandler}>
+            <Button id="declined_t" onClick={this.declinedHandler}>
               {" "}
               Declined{" "}
             </Button>
@@ -617,115 +694,97 @@ class MagicRandomizer extends Component {
     }
 
     // ======== #3 - track FALSE all TRUE ======== //
-    if (this.state.trackMode === false && this.state.allMode === true) {
-      console.log("allMode on");
+    if (this.state.trackMode === false && this.state.allMode == true) {
       if (this.state.allstudents.length > 0) {
         trackState = (
-          <div className="caro_container">
-            <div className="caros">
-              <div>
-                <Button id="Randomize-button" onClick={this.allGoHandler}>
-                  {" "}
-                  RANDOMIZE!{" "}
-                </Button>
+          <div className="middle_container_a">
+            <div className="middle_a">
+              <div className="middle_a_left_container">
+                <div className="middle_a_left">
+                  <Button id="reset_a" onClick={this.shuffle_allstudents}>
+                    Reset 'All Go'
+                  </Button>
+
+                  <div className="allgo-tracker_a">
+                    Students in Deck
+              
+                    <div className="allgo-tracker-num_a">
+                      {this.state.allstudents.length}
+                    </div>
+                  </div>
+                </div>
               </div>
+              <Button id="Randomize-button_a" onClick={this.allGoHandler}>
+                {" "}
+                RANDOMIZE!{" "}
+              </Button>
             </div>
           </div>
         );
       } else if (this.state.allstudents.length === 0) {
         console.log("HERE!!!");
         trackState = (
-          <div className="caro_container">
-            <div className="caros">
-              <div>
-                <Button
-                  id="Randomize-button"
-                  style={{ backgroundColor: "rgba(87,68,114,0.2)" }}
-                >
-                  {" "}
-                  RANDOMIZE!{" "}
-                </Button>
+          <div className="middle_container_a">
+            <div className="middle_a">
+              <div className="middle_a_left_container">
+                <div className="middle_a_left">
+                  <Button id="reset_a" onClick={this.shuffle_allstudents}>
+                    Reset 'All Go'
+                  </Button>
+
+                  <div className="allgo-tracker_a">
+                    Students in Deck
+              
+                    <div className="allgo-tracker-num_a">
+                      {this.state.allstudents.length}
+                    </div>
+                  </div>
+                </div>
               </div>
+              <Button
+                id="Randomize-button_a"
+                style={{ backgroundColor: "rgba(87,68,114,0.2)" }}
+              >
+                {" "}
+                RANDOMIZE!{" "}
+              </Button>
             </div>
           </div>
         );
       }
-      allState = (
-        <div>
-          <div className="reset">
-            <Button
-              className="reset_border"
-              id="AllGo-button"
-              onClick={this.shuffle_allstudents}
-            >
-              Reset 'All Go'
-            </Button>
-            <div className="allgo-tracker">
-              Students in Deck:
-              <br />
-              <div className="allgo-tracker-num">
-                {this.state.allstudents.length}
-              </div>
-            </div>
-          </div>
-        </div>
-      );
     }
 
     // ======== #4 - track FALSE all FALSE ======== //
 
     if (this.state.trackMode === false && this.state.allMode == false) {
-      if (this.state.allstudents.length > 0) {
-        trackState = (
-          <div className="caro_container_none">
-            <div className="caros_none">
-              <Button id="Randomize-button_none" onClick={this.randomHandler}>
-                {" "}
-                RANDOMIZE!{" "}
-              </Button>
-              <div className="on_deck_none">
-                On Deck: {this.state.on_deck_student.first_name}{" "}
-                {this.state.on_deck_student.last_name}
-              </div>
-            </div>
-          </div>
-        );
-      } else if (this.state.allstudents.length === 0) {
-        console.log("HERE!!!");
-        trackState = (
-          <div className="caro_container_none">
-            <div className="caros_none">
-              <Button id="Randomize-button_none" onClick={this.randomHandler}>
-                {" "}
-                RANDOMIZE!{" "}
-              </Button>
-            </div>
-          </div>
-        );
-      }
-      allState = (
-        <div>
-          <div className="reset_none">
-            <Button
-              className="reset_border_none"
-              id="AllGo-button_none"
-              onClick={this.shuffle_allstudents}
-            >
-              Reset 'All Go'
+      trackState = (
+        <div className="middle_container_none">
+          <div className="middle_none">
+            {/* <div className="middle_none_left">
+                <Button
+                  id="reset_none"
+                  onClick={this.shuffle_allstudents}
+                >
+                  Reset 'All Go'
+                </Button>
+                <div className="allgo-tracker_none">
+                  Students in Deck
+            
+                  <div className="allgo-tracker-num_none">
+                    {this.state.allstudents.length}
+                  </div>
+                </div>
+              </div> */}
+            <Button id="Randomize-button_none" onClick={this.randomHandler}>
+              {" "}
+              RANDOMIZE!{" "}
             </Button>
-            <div className="allgo-tracker_none">
-              Students in Deck:
-              <br />
-              <div className="allgo-tracker-num_none">
-                {this.state.allstudents.length}
-              </div>
-            </div>
           </div>
         </div>
       );
     }
     // =========== trackState + allState Conditionals - END ========== //
-
+    console.log("WINDOW_WIDTH:", document.documentElement.clientWidth);
     return (
       <div className="main">
         <div className="main_contents">
@@ -733,79 +792,75 @@ class MagicRandomizer extends Component {
             <div className="classid_container">
               <div className="classid">{this.state.class.name}</div>
             </div>
-            <div className="header">
-              {this.state.allMode === true ? (
-                <div>
-                  <div className="studentName">
-                    {this.state.current_student.first_name}{" "}
-                    {this.state.current_student.last_name}
-                  </div>
-                  <div className="on_deck">
-                    On Deck: {this.state.on_deck_student.first_name}{" "}
-                    {this.state.on_deck_student.last_name}
-                  </div>
-                </div>
-              ) : (
-                <div>
-                  <div className="studentName">
-                    {this.state.current_student.first_name}{" "}
-                    {this.state.current_student.last_name}
-                  </div>
-                  <div className="on_deck">
-                    On Deck: {this.state.on_deck_student.first_name}{" "}
-                    {this.state.on_deck_student.last_name}
-                  </div>
-                </div>
-              )}
+            <div className="header_container">
+              <div className="header">
+                {this.state.allMode === true ? (
+                  <Fragment>
+                    <div className="studentName">
+                      {this.state.current_student.first_name}{" "}
+                      {this.state.current_student.last_name}
+                    </div>
+                    <div className="on_deck">
+                      On Deck: {this.state.on_deck_student.first_name}{" "}
+                      {this.state.on_deck_student.last_name}
+                    </div>
+                  </Fragment>
+                ) : (
+                  <Fragment>
+                    <div className="studentName">
+                      {this.state.current_student.first_name}{" "}
+                      {this.state.current_student.last_name}
+                    </div>
+                    <div className="on_deck">
+                      On Deck: {this.state.on_deck_student.first_name}{" "}
+                      {this.state.on_deck_student.last_name}
+                    </div>
+                  </Fragment>
+                )}
+              </div>
             </div>
-            <div className="edit_container">
-              <Link
-                to={{
-                  pathname: `/${this.state.classid}/edit`,
-                  state: {
-                    // classid: classitem._id,
-                    class: this.state.class
-                  }
-                }}
-              >
-                <Button
-                  className="edit"
-                  id="Rando-top-button_edit"
-                  // href={`/${this.state.classid}/edit`}
-                >
-                  {" "}
-                  Edit{" "}
-                </Button>
-              </Link>
-            </div>
+
+            <Link
+              className="edit_container"
+              to={{
+                pathname: `/${this.state.classid}/edit`,
+                state: {
+                  // classid: classitem._id,
+                  class: this.state.class
+                }
+              }}
+            >
+              <Button id="edit"> Edit </Button>
+            </Link>
           </div>
 
           {trackState}
-          {allState}
+          {/* {allState} */}
 
           {this.state.trackMode == true ? (
             <div className="part_data">
               <div className="part_data_title">
-                {/* Overall Class Participation Rate <br /> ↓{" "} */}
+                {/* Overall Class Participation Ra ↓{" "} */}
                 <div className="line_chart">
                   <LineChart
                     // xDomainRange={[0, 100]}
+                    id="LineChart"
                     yDomainRange={[0, 100]}
                     xType={"time"}
                     dataPoints
-                    axes
+                    axes={this.state.axes}
                     grid
                     verticalGrid
                     // interpolate={"cardinal"}
                     lineColors={["pink", "purple"]}
                     className={"line-chart_track-only"}
-                    // width={675}
-                    // height={300}
+                    width={this.state.width}
+                    height={this.state.height}
                     data={[this.state.graph_data]}
                     style={{
-                      ".line": {
-                        background: "red"
-                      }
+                      stroke: "white",
+
+                      backgroundColor: "#332259"
                     }}
                   />
                 </div>

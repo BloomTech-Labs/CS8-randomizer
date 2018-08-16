@@ -1,0 +1,169 @@
+.middle_container_ta {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: center;
+  /* border: 5px solid red; */
+  height: 30%;
+}
+
+.middle_ta_left_container{
+  /* border: 5px solid brown; */
+  width: 20%;
+
+}
+
+.middle_ta_left {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  /* border: 5px solid aquamarine; */
+  height: 100%;
+}
+
+#reset_ta{
+  width: 100%;
+  height: 40%;   
+  background-color: #322842;  
+  border-color: 322842;  
+  border-style: solid;  
+  color: whitesmoke;
+  transition: all 0.5s ease; 
+  /* border-radius: 3%;  */
+  font-size: 1.3rem; 
+}
+
+#reset_ta:hover {
+  background-color: whitesmoke;
+  color: #584573;
+  transition: all 0.5s ease;
+}
+
+.allgo-tracker_ta{
+  color: whitesmoke;
+  height: 40%;  
+  background-color: #584573;  
+  border-color: 322842;  
+  border-style: solid;  
+  transition: all 0.5s ease; 
+  text-align: center;
+  font-size: 1.3rem;
+  /* border-radius: 3%;  */
+}
+
+.allgo-tracker-num_ta{
+  font-size: 2rem;
+  
+  
+}
+
+
+
+.middle_ta_right{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  /* border: 5px solid saddlebrown; */
+  width: 20%;
+}
+
+#participated_ta{
+  height: 40%;  
+  width: 100%;
+  background-color: #322842;  
+  border-color: whitesmoke;  
+  border-style: solid;  
+  color: whitesmoke;
+  transition: all 0.5s ease;
+  font-size: 1.3rem;   
+}
+
+#participated_ta:hover {
+  background-color: whitesmoke;
+  color: #584573;
+  transition: all 0.5s ease;
+}
+#declined_ta{
+  width: 100%;
+  height: 40%;   
+  background-color: #322842;  
+  border-color: whitesmoke;  
+  border-style: solid;  
+  color: whitesmoke;
+  transition: all 0.5s ease; 
+  font-size: 1.3rem;  
+}
+
+#declined_ta:hover {
+  background-color: whitesmoke;
+  color: #584573;
+  transition: all 0.5s ease;
+}
+
+/* 
+
+button#declined_track-only{
+
+ height: 60px;  
+ background-color: #322842;  
+ border-color: whitesmoke;  
+ border-style: solid;  
+ color: whitesmoke;  
+
+ transition: all 0.5s ease; 
+} */
+
+@media(max-width: 420px){
+
+  .middle_ta_left_container{
+    /* border: 5px solid brown; */
+    width: 100%;
+  
+  }
+
+  .middle_ta_right{
+    display: flex;
+    flex-direction: column;
+   
+    /* border: 5px solid saddlebrown; */
+    width: 100%;
+  }
+
+  
+  #participated_ta {
+    font-size: 1rem;
+  }
+  #declined_ta{
+    font-size: 1rem;
+  }
+
+  #reset_ta{
+    width: 100%;
+    height: 40%;   
+    background-color: #322842;  
+    border-color: 322842;  
+    border-style: solid;  
+    color: whitesmoke;
+    transition: all 0.5s ease; 
+    /* border-radius: 3%;  */
+    font-size: 1rem; 
+  }
+  
+  .allgo-tracker_ta{
+    color: whitesmoke;
+    height: 60%;  
+    background: #584573;
+    /* border: 5px solid black; */
+    text-align: center;
+    font-size: 1rem;
+    /* border-radius: 3%;  */
+  }
+  
+  .allgo-tracker-num_ta{
+    font-size: 1.5rem;
+    
+    
+  }
+
+
+}
