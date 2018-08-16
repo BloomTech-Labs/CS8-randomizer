@@ -1,54 +1,58 @@
-
-.caro_container_track-only {
-  /* TODO: center and width = 100% at mobile. */
+.middle_container_t {
   display: flex;
-  width: 100%; 
+  flex-wrap: wrap;
+  width: 100%;
   justify-content: center;
-  /* width: 100%; */
-  /* border: 5px solid gold; */
-
+  /* border: 5px solid red; */
 }
 
-.caros_track-only {
-  /* TODO: THIS IS WORKING CORRECTLY! - just need the correct image sizes! */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 30%;  
-  height: 100%; 
-  /* padding-bottom: 100px; */
-  /* border: 5px solid green;   */
-}  
+.middle_t {
+/* border:5px solid hotpink; */
+display: flex;
 
-#Rando-top-button_track-only.participated_track-only {
- /* TODO: Remove this hack */
- /* border: 2px solid hotpink; */
- height: 60px;  
- background-color: #322842;  
- border-color: whitesmoke;  
- border-style: solid;  
- color: whitesmoke;  
+flex-direction: column;
+align-items: center;
 
- transition: all 0.5s ease; 
 
+
+ width: 40%
 }
 
-#Rando-top-button_track-only {
-  /* border: 5px dashed blue;   */
-  /* line-height: 0.6;   */
-  padding: 10px;  
+#participated_t{
   height: 60px;  
-  margin-right: 1%;
+  width: 100%;
   background-color: #322842;  
   border-color: whitesmoke;  
   border-style: solid;  
-  color: whitesmoke;  
+  color: whitesmoke;
+  transition: all 0.5s ease;   
+}
+
+#participated_t:hover {
+  background-color: whitesmoke;
+  color: #584573;
+  transition: all 0.5s ease;
+}
+#declined_t{
+  width: 100%;
+  height: 60px;  
+  background-color: #322842;  
+  border-color: whitesmoke;  
+  border-style: solid;  
+  color: whitesmoke;
+  transition: all 0.5s ease;   
+}
+
+#declined_t:hover {
+  background-color: whitesmoke;
+  color: #584573;
   transition: all 0.5s ease;
 }
 
+/* 
+
 button#declined_track-only{
- /* TODO: Remove this hack */
- /* border: 2px solid hotpink; */
+
  height: 60px;  
  background-color: #322842;  
  border-color: whitesmoke;  
@@ -56,35 +60,9 @@ button#declined_track-only{
  color: whitesmoke;  
 
  transition: all 0.5s ease; 
-}
-
-button#Rando-top-button_track-only.Rando-top-button_track-only.participated_track-only{
-  /* border: 5px solid yellow; */
-}
-
-svg{
-  width: 100%;
-}
-
-.line-chart_track-only{
-  width: 500px;
-}
-
-.line-chart {
-  width: 500px;
-}
-
-@media (max-width: 380px){
-  .caros_track-only {
-    /* TODO: THIS IS WORKING CORRECTLY! - just need the correct image sizes! */
-    display: flex;
-    flex-direction: row;
-    /* flex-direction: column; */
-    /* justify-content: center; */
-    width: 30%;  
-    height: 100%; 
-    /* border: 5px solid green;   */
-  }  
+} */
 
 
-}
+
+
+
