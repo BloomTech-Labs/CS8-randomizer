@@ -547,50 +547,72 @@ class MagicRandomizer extends Component {
     if (this.state.trackMode == true && this.state.allMode === true) {
       // The conditional below deactivated the Participated and Declined buttons by
       // removing the onClick methods when the deck is empty.
-      if (this.state.allstudents.length > 0) {
+      // if (this.state.allstudents.length > 0) {
         trackState = (
-          <div className="caro_container">
-            <div className="caros">
+          <div className="caro_container caro_container_tt">
+            <div className="caros_tt"> 
               <Button
                 className="participated"
-                id="Rando-top-button"
+                id="Participated-button_tt"
                 onClick={this.participatedHandler}
               >
                 {""}
                 Participated
                 {""}
               </Button>
-              <Button id="declined" onClick={this.declinedHandler}>
+              <Button id="Declined-button_tt" onClick={this.declinedHandler}>
                 {" "}
                 Declined{" "}
               </Button>
             </div>
-          </div>
-        );
-      } else if (this.state.allstudents.length <= 0) {
-        trackState = (
-          <div className="caro_container">
-            <div className="caros">
+          <div>
+            {/* <div className="reset"> */}
               <Button
-                className="participated"
-                id="Rando-top-button"
-                style={{ backgroundColor: "rgba(87,68,114,0.2)" }}
+                className="reset_border"
+                id="AllGo-button_tt"
+                onClick={this.shuffle_allstudents}
               >
-                {""}
-                Participated
-                {""}
+                Reset 'All Go'
               </Button>
-              <Button
-                id="declined"
-                style={{ backgroundColor: "rgba(87,68,114,0.2)" }}
-              >
-                {" "}
-                Declined{" "}
-              </Button>
-            </div>
+              <div className="allgo-tracker_tt">
+                Students in Deck:
+                <br />
+                <div className="allgo-tracker-num">
+                  {this.state.allstudents.length}
+                </div>
+              </div>
+            {/* </div> */}
           </div>
+          </div>
+
         );
-      }
+   
+        
+      // } 
+      // else if (this.state.allstudents.length <= 0) {
+      //   trackState = (
+      //     <div className="caro_container caro_container_tt">
+      //       <div className="caros">
+      //         <Button
+      //           className="participated"
+      //           id="Rando-top-button"
+      //           style={{ backgroundColor: "rgba(87,68,114,0.2)" }}
+      //         >
+      //           {""}
+      //           Participated
+      //           {""}
+      //         </Button>
+      //         <Button
+      //           id="declined"
+      //           style={{ backgroundColor: "rgba(87,68,114,0.2)" }}
+      //         >
+      //           {" "}
+      //           Declined{" "}
+      //         </Button>
+      //       </div>
+      //     </div>
+      //   );
+      // }
     }
     // ======== #2 - track TRUE all FALSE ======== //
 
@@ -730,25 +752,25 @@ class MagicRandomizer extends Component {
       <div className="main">
         <div className="main_contents">
           <div className="top-section">
-            <div className="classid_container">
-              <div className="classid">{this.state.class.name}</div>
+            <div className="classid_container_tt">
+              <div className="classid_tt">{this.state.class.name}</div>
             </div>
-            <div className="header">
+            <div className="header tt_header">
               {this.state.allMode === true ? (
-                <div>
+                <div className="header_container tt_header_container">
                   <div className="studentName">
                     {this.state.current_student.first_name}{" "}
                     {this.state.current_student.last_name}
                   </div>
-                  <div className="on_deck">
-                    On Deck: {this.state.on_deck_student.first_name}{" "}
+                  <div className="on_deck_tt">
+                    On Deck:   {this.state.on_deck_student.first_name}{" "}
                     {this.state.on_deck_student.last_name}
                   </div>
                 </div>
               ) : (
                 <div>
                   <div className="studentName">
-                    {this.state.current_student.first_name}{" "}
+                    {this.state .current_student.first_name}{" "}
                     {this.state.current_student.last_name}
                   </div>
                   <div className="on_deck">
@@ -758,7 +780,7 @@ class MagicRandomizer extends Component {
                 </div>
               )}
             </div>
-            <div className="edit_container">
+            <div className="edit_container edit_container_tt">
               <Link
                 to={{
                   pathname: `/${this.state.classid}/edit`,
