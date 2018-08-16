@@ -5,16 +5,13 @@
   width: 100%;
   /* background: blue; */
   /* height: 1000px;   */
-  background: rgb(230, 230, 230);
-  /* border-radius: 0.25rem; */
-  height: 100%;
-  /* border: 5px solid powderblue; */
+  background: rgb(230, 230, 230);  
+  border-radius: .25rem;  
+  height: 100%; 
 }
 
 .main_contents {
-  /* border: 5px solid saddlebrown; */
-  margin: 0% 5%;
-  width: 95%;
+  width: 100%;
   height: 100%;
 }
 
@@ -106,11 +103,16 @@ a {
   border: 2px dashed black;
 }
 
+.header_container{
+  width: 25%;
+  height: 150px;
+}
+
 .studentName {
   font-size: 1.5em;
   /* font-style: 1; */
   width: 100%;
-
+  height: 100px;
   text-align: center;
   background: #584573;
   color: white;
@@ -188,12 +190,9 @@ a {
 }
 
 .edit_container {
-  display: flex;
-  justify-content: flex-end;
-  /* border: 5px solid grey; */
-  width: 20%;
-  margin: 0px;
-  padding: 0px;
+
+
+  width: 100%;
 }
 
 #edit {
@@ -341,6 +340,7 @@ svg text {
   background: #584573;
 }
 
+
 svg {
   display: flex;
   justify-content: center;
@@ -348,6 +348,7 @@ svg {
 }
 
 .part_data_off {
+
   display: none;
 }
 
