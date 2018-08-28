@@ -1,27 +1,23 @@
-import { withRouter } from "react-router-dom";
-import React from "react";
-import { connect } from "react-redux";
-import ReactDOM from "react-dom";
+import React from 'react';
+import { connect } from 'react-redux';
 
-import { Link } from 'react-router-dom';
+import { Button, FormGroup, Label, Input } from 'reactstrap';
+import CsvParse from '@vtex/react-csv-parse';
 
-import { Button, FormGroup, Label, Input } from "reactstrap";
-import CsvParse from "@vtex/react-csv-parse";
+import { addClass, getClasses, editClass } from '../../actions';
 
-import { addClass, addStudent, getClasses, editClass } from "../../actions";
+import swal from 'sweetalert';
+import './form.css';
 
-import swal from "sweetalert";
-import "./form.css";
-
-import uuidv4 from "uuid/v4";
+import uuidv4 from 'uuid/v4';
 
 class EditForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       classname: this.props.location.state.class.name,
-      firstname: "",
-      lastname: "",
+      firstname: '',
+      lastname: '',
       participated: this.props.location.state.class.participation,
       resetMode: false,
       resetConf: false,
@@ -35,7 +31,7 @@ class EditForm extends React.Component {
 
   allToggle = () => {
     this.setState({ allMode: !this.state.allMode });
-    console.log("allMode:", this.state.allMode);
+    console.log('allMode:', this.state.allMode);
   };
 
   trackToggle = () => {
@@ -55,7 +51,6 @@ class EditForm extends React.Component {
 
   // Updates this.students.state when you Import a CSV file
   handleImportData = data => {
-    const { allMode, trackMode, participated } = this.state;
     const updated_students = this.state.students;
     data.map(item => {
       const newStudent = {
@@ -69,8 +64,8 @@ class EditForm extends React.Component {
 
     this.setState({
       students: updated_students,
-      firstname: "",
-      lastname: ""
+      firstname: '',
+      lastname: ''
     });
   };
 
@@ -79,16 +74,16 @@ class EditForm extends React.Component {
     // This runs every time the `Add` button is pressed
     const { firstname, lastname } = this.state;
 
-    if (firstname === "") {
+    if (firstname === '') {
       swal({
-        icon: "error",
-        text: "Oops!! Looks like you forgot to add a first name!"
+        icon: 'error',
+        text: 'Oops!! Looks like you forgot to add a first name!'
       });
       return;
-    } else if (lastname === "") {
+    } else if (lastname === '') {
       swal({
-        icon: "error",
-        text: "Oops!! Looks like you forgot to add a last name!"
+        icon: 'error',
+        text: 'Oops!! Looks like you forgot to add a last name!'
       });
       return;
     } else {
@@ -101,10 +96,10 @@ class EditForm extends React.Component {
       students.push(newStudent);
       this.setState({
         students: students,
-        firstname: "",
-        lastname: ""
+        firstname: '',
+        lastname: ''
       });
-      console.log("compileStudentList running:", this.state.students);
+      console.log('compileStudentList running:', this.state.students);
     }
   };
 
@@ -120,17 +115,17 @@ class EditForm extends React.Component {
         component_state_id: uuidv4()
       });
     });
-    console.log("FULL_NAME ARRAY:", full_name);
-    if (classname === "") {
+    console.log('FULL_NAME ARRAY:', full_name);
+    if (classname === '') {
       swal({
-        icon: "error",
-        text: "Oh no!! Looks like you forgot to add a Class Name!"
+        icon: 'error',
+        text: 'Oh no!! Looks like you forgot to add a Class Name!'
       });
       return;
     } else if (students === []) {
       swal({
-        icon: "error",
-        text: "Sorry! You must add at least one student to create a class!"
+        icon: 'error',
+        text: 'Sorry! You must add at least one student to create a class!'
       });
       return;
     } else {
@@ -145,10 +140,10 @@ class EditForm extends React.Component {
         this.props.location.state.class._id
       );
       this.setState({
-        classname: "",
+        classname: '',
         students: [],
-        firstname: "",
-        lastname: ""
+        firstname: '',
+        lastname: ''
       });
     }
   };
@@ -158,10 +153,10 @@ class EditForm extends React.Component {
   };
 
   removeStudent = e => {
-    console.log("x", e.target.value);
-    console.log("this.myref:", this.myref);
+    console.log('x', e.target.value);
+    console.log('this.myref:', this.myref);
     console.log(
-      "this.props.location.state.class.students:",
+      'this.props.location.state.class.students:',
       this.props.location.state.class.students
     );
     const students = this.state.students;
@@ -182,13 +177,9 @@ class EditForm extends React.Component {
   // }
 
   render() {
-    const keys = ["first_name", "last_name"];
+    const keys = ['first_name', 'last_name'];
 
-
-    console.log('props', this)
-    let classitem = this.props.location.state.class;
-
-
+    console.log('props', this);
     return (
       <div className="Form-div">
         <div className="Form-container">
@@ -292,7 +283,7 @@ class EditForm extends React.Component {
                         this.myref = r;
                       }}
                     >
-                      x {first + " " + last}
+                      x {first + ' ' + last}
                     </Button>
                   );
                 })}
@@ -300,7 +291,7 @@ class EditForm extends React.Component {
             </div>
 
             <div className="submitButton-box">
-            {/* <Link
+              {/* <Link
                     to={{
                       pathname: `/classes/${classitem._id}`,
                       state: {
@@ -335,7 +326,6 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { addClass, getClasses, editClass }
-)(EditForm);
+export default connect(mapStateToProps, { addClass, getClasses, editClass })(
+  EditForm
+);
