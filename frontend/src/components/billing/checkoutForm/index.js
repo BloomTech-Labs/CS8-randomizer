@@ -1,11 +1,9 @@
-import React, { Component } from "react";
-import { CardElement, injectStripe } from "react-stripe-elements";
-import { Button } from "reactstrap";
-import "./checkoutForm.css";
-import { connect } from "react-redux";
-import { editUser } from "../../../actions";
-import jwt_decode from "jwt-decode";
-import axios from "axios";
+import React, { Component } from 'react';
+import { CardElement, injectStripe } from 'react-stripe-elements';
+import { Button } from 'reactstrap';
+import './checkoutForm.css';
+import { connect } from 'react-redux';
+import { editUser } from '../../../actions';
 
 class CheckoutForm extends Component {
   constructor(props) {
@@ -20,19 +18,18 @@ class CheckoutForm extends Component {
 
   async submitPayment(ev) {
     let { token } = await this.props.stripe.createToken({
-      name: "Finigus T. Barth"
+      name: 'Finigus T. Barth'
     });
 
     if (this.state.standard === true && this.state.premium === false) {
-      let response = await fetch("http://localhost:5000/api/chargestandard", {
-        method: "POST",
-        headers: { "Content-Type": "text/plain" },
+      let response = await fetch('http://localhost:5000/api/chargestandard', {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain' },
         body: token.id
       });
-      const logged_in_user_id = jwt_decode(localStorage.jwtToken).sub + "";
       if (response.ok) {
         this.setState({ complete: true });
-        this.props.editUser({subscription: "standard"})
+        this.props.editUser({ subscription: 'standard' });
         // axios.put(
         //   `http://localhost:5000/api/updatesubscription/${logged_in_user_id}`,
         //   { subscription: "standard" }
@@ -53,18 +50,17 @@ class CheckoutForm extends Component {
         //       "Sorry! We were unable to update your subscription at this time! Please try again later!"
         //   });
         // });
-        alert("Splendid! Your payment has been successfully sent!");
+        alert('Splendid! Your payment has been successfully sent!');
       }
     } else if (this.state.premium === true && this.state.standard === false) {
-      let response = await fetch("http://localhost:5000/api/chargepremium", {
-        method: "POST",
-        headers: { "Content-Type": "text/plain" },
+      let response = await fetch('http://localhost:5000/api/chargepremium', {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain' },
         body: token.id
       });
-      const logged_in_user_id = jwt_decode(localStorage.jwtToken).sub + "";
       if (response.ok) {
         this.setState({ complete: true });
-        this.props.editUser({subscription: "premium"})
+        this.props.editUser({ subscription: 'premium' });
         // axios.put(
         //   `http://localhost:5000/api/updatesubscription/${logged_in_user_id}`,
         //   { subscription: "premium" }
@@ -85,22 +81,22 @@ class CheckoutForm extends Component {
         //       "Sorry! We were unable to update your subscription at this time! Please try again later!"
         //   });
         // });
-        alert("Splendid! Your payment has been successfully sent!");
+        alert('Splendid! Your payment has been successfully sent!');
       }
     } else {
-      return "Error submitting payment";
+      return 'Error submitting payment';
     }
   }
 
   checkbox_one_handler = event => {
-    console.log("event:", event);
-    if (event.target.value === "standard") {
+    console.log('event:', event);
+    if (event.target.value === 'standard') {
       const update = !this.state.standard;
       this.setState({
         standard: update
       });
       // console.log("this.state.standard:", this.state.standard);
-    } else if (event.target.value === "premium") {
+    } else if (event.target.value === 'premium') {
       const update = !this.state.premium;
       this.setState({
         premium: update
@@ -110,12 +106,12 @@ class CheckoutForm extends Component {
   };
 
   render() {
-    console.log("this.state.standard:", this.state.standard);
-    console.log("this.state.premium:", this.state.premium);
+    console.log('this.state.standard:', this.state.standard);
+    console.log('this.state.premium:', this.state.premium);
     if (this.state.complete) {
       return <h1>Purchase Complete</h1>;
     } else {
-      console.log("Error, this.state.complete is not true");
+      console.log('Error, this.state.complete is not true');
     }
     // console.log('this.state.toggle_stand_sub:', this.state.toggle_stand_sub)
     return (
@@ -123,7 +119,7 @@ class CheckoutForm extends Component {
         <CardElement
           id="CardElement"
           style={{
-            base: { fontSize: "16px", fontFamily: "Times", color: "black" }
+            base: { fontSize: '16px', fontFamily: 'Times', color: 'black' }
           }}
         />
         <label check className="checkout_subscribe">
@@ -156,7 +152,6 @@ const mapStateToProps = state => {
   return {};
 };
 
-export default connect(
-  mapStateToProps,
-  { editUser }
-)(injectStripe(CheckoutForm));
+export default connect(mapStateToProps, { editUser })(
+  injectStripe(CheckoutForm)
+);
