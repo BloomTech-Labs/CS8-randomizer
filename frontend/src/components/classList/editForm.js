@@ -1,10 +1,14 @@
+import { withRouter } from 'react-router-dom';
 import React from 'react';
 import { connect } from 'react-redux';
+import ReactDOM from 'react-dom';
+
+import { Link } from 'react-router-dom';
 
 import { Button, FormGroup, Label, Input } from 'reactstrap';
 import CsvParse from '@vtex/react-csv-parse';
 
-import { addClass, getClasses, editClass } from '../../actions';
+import { addClass, addStudent, getClasses, editClass } from '../../actions';
 
 import swal from 'sweetalert';
 import './form.css';
@@ -51,6 +55,7 @@ class EditForm extends React.Component {
 
   // Updates this.students.state when you Import a CSV file
   handleImportData = data => {
+    const { allMode, trackMode, participated } = this.state;
     const updated_students = this.state.students;
     data.map(item => {
       const newStudent = {
@@ -180,6 +185,8 @@ class EditForm extends React.Component {
     const keys = ['first_name', 'last_name'];
 
     console.log('props', this);
+    let classitem = this.props.location.state.class;
+
     return (
       <div className="Form-div">
         <div className="Form-container">

@@ -1,6 +1,8 @@
 import { withRouter } from 'react-router-dom';
 import React from 'react';
 import { connect } from 'react-redux';
+import ReactDOM from 'react-dom';
+// import { CSVLink, CSVDownload } from "react-csv";
 
 import CsvParse from '@vtex/react-csv-parse';
 
@@ -59,7 +61,13 @@ class ClassForm extends React.Component {
   // Updates this.student.state when you click 'Add'
   compileStudentList = () => {
     // This runs every time the `Add` button is pressed (as opposed to importing CSV)
-    const { firstname, lastname } = this.state;
+    const {
+      firstname,
+      lastname,
+      participated,
+      allMode,
+      trackMode
+    } = this.state;
 
     if (firstname === '') {
       swal({
@@ -93,6 +101,7 @@ class ClassForm extends React.Component {
   // Updates this.students.state when you Import a CSV file (as opposed  `Add`ing one by one)
 
   handleImportData = data => {
+    const { allMode, trackMode, participated } = this.state;
     const updated_students = this.state.students;
     data.map(item => {
       const newStudent = {
