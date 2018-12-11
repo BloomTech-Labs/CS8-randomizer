@@ -5,8 +5,11 @@ html, body {
   font-family: 'Acme', sans-serif !important;
   background-color: #584573;
   height: 880px;
+  font-size: 16px;
 }
 
 #root {
   height: 100%;
 }
+
+

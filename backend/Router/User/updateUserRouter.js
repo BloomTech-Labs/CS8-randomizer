@@ -46,7 +46,7 @@ router.route("/:id").put((req, res) => {
 
   User.findOneAndUpdate(
     { _id: id }, // First argument is the "filter"
-    { username: updateInfo.username, password: updateInfo.password },
+    { username: updateInfo.username, password: updateInfo.password},
     { new: true }
   )
     .then(response => {

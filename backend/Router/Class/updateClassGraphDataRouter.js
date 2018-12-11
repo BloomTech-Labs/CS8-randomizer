@@ -24,8 +24,7 @@ router
 
     Class.findOneAndUpdate(
       { _id: id }, // First argument is the "filter"
-      { name: updateInfo.name, students: updateInfo.students, allMode: updateInfo.allMode,
-        trackMode: updateInfo.trackMode },
+      { graph_data: updateInfo.graph_data},
       { new: true }
     )
       .then(response => {

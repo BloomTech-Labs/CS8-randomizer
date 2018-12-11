@@ -1,5 +1,4 @@
 import {
-  
   ADDINGUSER,
   ADDEDUSER,
   EDITINGUSER,
@@ -8,23 +7,22 @@ import {
   LOGGEDIN,
   LOGGINGOUT,
   LOGGEDOUT,
-
+  UPDATINGSUB,
+  UPDATEDSUB,
+  GETTINGUSER,
+  GOTUSER,
   GETTINGCLASSES,
   GOTCLASSES,
-  ADDCLASS,
   ADDINGCLASS,
   ADDEDCLASS,
   EDITINGCLASS,
   EDITEDCLASS,
-  DELETECLASS,
-  DELETEDCLASS,
-
   GETTINGSTUDENTS,
   GOTSTUDENTS,
-  ADDINGSTUDENT,
-  ADDEDSTUDENT,
-  DELETESTUDENT,
-  DELETEDSTUDENT,
+  UPDATINGPARTICIPATION,
+  UPDATEDPARTICIPATION,
+  UPDATINGGRAPHDATA,
+  UPDATEDGRAPHDATA,
   ERROR
 } from "../actions";
 
@@ -39,8 +37,13 @@ const initialState = {
   loggingIn: false,
   loggingOut: false,
   addingClass: false,
-  editingUser: false
-
+  editingUser: false,
+  gettinguser: false,
+  classes_empty: true,
+  allMode: false,
+  trackMode: false,
+  updatingParticipation: false,
+  updatingGraph: false
 };
 
 export const Reducer = (state = initialState, action) => {
@@ -59,9 +62,25 @@ export const Reducer = (state = initialState, action) => {
       };
 
     case EDITINGUSER:
-     return{ ...state, editingUser: true };
+      return { ...state, editingUser: true };
     case EDITEDUSER:
-    return{ ...state, users: action.users, editingUser: false }; 
+      return {
+        ...state,
+        user: {
+          ...state.users,
+          username: action.user_email_pass.username,
+          password: action.user_email_pass.password
+        },
+        editingUser: false
+      };
+    case UPDATINGSUB:
+      return { ...state, updatingSub: true };
+    case UPDATEDSUB:
+      return {
+        ...state,
+        users: { ...state.users, subscription: action.subscription },
+        updatingSub: false
+      };
     case LOGGINGIN:
       return { ...state, loggingIn: true };
     case LOGGEDIN:
@@ -73,8 +92,17 @@ export const Reducer = (state = initialState, action) => {
     case LOGGINGOUT:
       return { ...state, loggingOut: true };
     case LOGGEDOUT:
-      return { ...state, authed: false, isAuthenticated: false, loggingOut: false };
+      return {
+        ...state,
+        authed: false,
+        isAuthenticated: false,
+        loggingOut: false
+      };
 
+    case GETTINGUSER:
+      return { ...state, gettinguser: true };
+    case GOTUSER:
+      return { ...state, user: action.user, gettinguser: false };
 
     case GETTINGCLASSES:
       return { ...state, gettingClass: true };
@@ -82,31 +110,61 @@ export const Reducer = (state = initialState, action) => {
       return {
         ...state,
         classes: action.classes,
-        gettingClass: false,
-        error: null
+        gettingClass: false
       };
     case ADDINGCLASS:
       return { ...state, addingClass: true };
     case ADDEDCLASS:
       return {
         ...state,
-        classes: [...state.classes, action.classes],
         addingClass: false
       };
-    case EDITEDCLASS:
-      return { ...state, classes: action.classes, editingClass: false };
 
+    case EDITINGCLASS:
+      return { ...state, editingClass: true };
+    case EDITEDCLASS:
+      return { ...state, editingClass: false };
 
     case GETTINGSTUDENTS:
       return { ...state, gettingStudents: true };
     case GOTSTUDENTS:
       return { ...state, students: action.students, gettingStudents: false };
-    case ADDINGSTUDENT:
-      return { ...state, addingStudent: true };
-    case ADDEDSTUDENT:
-      return { ...state, students: action.students, addingStudent: false };
-
-
+    // case ADDINGSTUDENT:
+    //   return { ...state, addingStudent: true };
+    // case ADDEDSTUDENT:
+    //   return { ...state, students: action.students, addingStudent: false };
+    case UPDATINGPARTICIPATION:
+      return { ...state, updatingParticipation: true };
+    case UPDATEDPARTICIPATION:
+      state.classes.forEach(item => {
+        if (item._id === action.class_id) {
+          return {
+            ...state,
+            updatingParticipation: false,
+            classes: {
+              ...state.classes[state.classes.indexOf(item)],
+              participation: action.class_data.participation
+            }
+          };
+        }
+      });
+      break;
+    case UPDATINGGRAPHDATA:
+      return { ...state, updatingGraph: true };
+    case UPDATEDGRAPHDATA:
+      state.classes.forEach(item => {
+        if (item._id === action.class_id) {
+          return {
+            ...state,
+            updatingGraph: false,
+            classes: {
+              ...state.classes[state.classes.indexOf(item)],
+              graph_data: action.class_data.graph_data
+            }
+          };
+        }
+      });
+      break;
     case ERROR:
       return { ...state, error: action.errorMessage };
     default:

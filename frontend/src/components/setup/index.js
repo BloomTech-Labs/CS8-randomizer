@@ -29,7 +29,7 @@ class Setup extends Component {
       return;
     }
     if (this.state.password.length < 6) {
-      alert("Password must be six or more chatacters in length");
+      alert("Password must be six or more characters in length");
       return;
     }
     console.log("this.state.username", this.state.username)
@@ -51,7 +51,7 @@ class Setup extends Component {
   render() {
     return (
       <div className="set-div">
-        <Form>
+        <Form id="Form">
           <div className="set-div_title"><b>Update Username and Password</b></div>
           <FormGroup>
             {/* <Label for="userUsername">Username: </Label> */}

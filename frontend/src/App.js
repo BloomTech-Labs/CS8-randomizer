@@ -80,7 +80,7 @@ class App extends Component {
             />
           ) : (
             <div className="MainAppComponents">
-              <div className="top">
+              <div className="top" id="top-bar">
                 <Breadcrumbs id="Crumb" mappedRoutes={routes} />
                 <LogOut className="LogBar" />
               </div>
@@ -88,7 +88,7 @@ class App extends Component {
                 <DropBar />
                 <BottomMenu />
                 <Route exact path={"/"} render={() => <Home />} />
-                {/* <Route exact path={"/:id/edit"} render={() => <EditForm />} /> */}
+                <Route exact path={"/:id/edit"} render={props => <EditForm {...props} />} />
                 <Route exact path={"/classes"} render={() => <ClassList />} />
                 <Route exact path={"/create"} render={() => <ClassForm />} />
                 <Route
