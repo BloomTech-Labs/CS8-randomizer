@@ -8,7 +8,7 @@
     background-size: 60%;
     display: flex;
     width: 185%;
-    height: 820px;
+    height: 100vh;
     /* padding-left: 42.5%; */
     justify-content: center;
     align-items: flex-end;
@@ -70,8 +70,8 @@
     border-top: #352847;
     border: 1px solid #352847;
     text-align: center;
-    width: 120%;
-    height: 50px;
+    width: 140%;
+    height: 100px;
     font-weight: 900;
     padding: 0;
     margin-left: 0%;

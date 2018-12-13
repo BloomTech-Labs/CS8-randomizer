@@ -175,13 +175,13 @@ class Landing extends React.Component {
               Sign Up
             </Button>
             <NavItem className="nav-about">
-            <NavLink>
+            {/* <NavLink> */}
               
               <Button id="about-button" onClick={this.abToggle}>
 
                 About Magic Randomizer
               </Button>
-            </NavLink>
+            {/* </NavLink> */}
           </NavItem>
           <NavItem className="nav-signup">
             <Modal
