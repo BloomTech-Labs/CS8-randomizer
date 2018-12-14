@@ -18,8 +18,11 @@
  .nav-about{
     /* align-self: flex-end; */
     /* margin-left: 9.5%; */
-    /* width: 50%; */
+    width: 50vw;
     display: flex;
+    align-items: center;
+    justify-content: center;
+    
     /* margin-right: 5%; */
     
     /* flex-direction: column; */
@@ -31,11 +34,14 @@
 }
 
 #landing-nav{
-    width: 50vw;
+    width: 25vw;
+    height: 20vh;
 
 }
 .landing-buttons{
     width: 100%;
+    display: flex;
+    justify-content: space-around;
 }
 
 /* .nav-signup{
@@ -54,7 +60,8 @@
     border-top: #352847;
     border: 1px solid #352847;
     text-align: center;
-    width: 100%;
+    width: 12vw;
+    height: 5vh;
     /* margin-top: 5%; */
 }
 
@@ -75,8 +82,8 @@
     border-top: #352847;
     border: 1px solid #352847;
     text-align: center;
-    width: 140%;
-    height: 5vh;
+    width: 25vw;
+    height: 10vh;
     font-weight: 900;
     padding: 0;
     margin-left: 0%;
