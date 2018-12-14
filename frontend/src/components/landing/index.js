@@ -169,8 +169,9 @@ class Landing extends React.Component {
         {/* <Nav className="nav" id="Nav-div">
  
         </Nav> */}
-        <Nav id="nav-login" className="nav-login">
-          <NavItem id="nav-login-button">
+        <img src={require("./randologo5.jpg")} className="app-logo" />
+        <Nav id="landing-nav" className="landing-nav">
+          <NavItem className="landing-buttons">
             <Button id="nav-button" onClick={this.mainSignToggle}>
               Sign Up
             </Button>

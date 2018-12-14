@@ -2,7 +2,7 @@
 .landing{
     /* background: #31353D; */
     background: #584573;
-    background-image: url('./randologo5.jpg');
+    /* background-image: url('./randologo5.jpg'); */
     background-repeat: no-repeat;
     background-position: center;
     background-size: 60%;
@@ -11,7 +11,8 @@
     height: 100vh;
     /* padding-left: 42.5%; */
     justify-content: center;
-    align-items: flex-end;
+    align-items: center;
+    flex-direction: column;
 }
 
  .nav-about{
@@ -24,12 +25,17 @@
     /* flex-direction: column; */
 } 
 
-#nav-login{
-    margin-top: 0%;
-    margin-left: 0%;
-    left: 20px;
-    padding-bottom: 3%;
-    /* padding-left: 35%; */
+.app-logo{
+    width: 50%;
+    height: 50%;;
+}
+
+#landing-nav{
+    width: 50vw;
+
+}
+.landing-buttons{
+    width: 100%;
 }
 
 /* .nav-signup{
@@ -50,7 +56,6 @@
     text-align: center;
     width: 100%;
     /* margin-top: 5%; */
-    margin-left: 8%;
 }
 
 #nav-button:hover{
@@ -71,7 +76,7 @@
     border: 1px solid #352847;
     text-align: center;
     width: 140%;
-    height: 100px;
+    height: 5vh;
     font-weight: 900;
     padding: 0;
     margin-left: 0%;
@@ -204,7 +209,7 @@
         margin-left: -25px;
     }
     
-    #nav-login{
+    #landing-nav{
         display:flex;
         flex-direction: row;
         margin: 50%;
