@@ -9,7 +9,6 @@ import {
   updateGraphData
 } from "../../actions";
 import swal from "sweetalert";
-
 import "./magicRandomizer.css";
 import "./NoTrackAll.css";
 import "./NoTrackNoAll.css";
