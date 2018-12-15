@@ -849,7 +849,7 @@ class MagicRandomizer extends Component {
                 }
               }}
             >
-              <Button id="edit"> Edit </Button>
+              {/* <Button id="edit"> Edit </Button> */}
             </Link>
           </div>
 

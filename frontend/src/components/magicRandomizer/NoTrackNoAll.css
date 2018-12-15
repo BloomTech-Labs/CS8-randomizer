@@ -11,8 +11,6 @@
 display: flex;
 /* flex-direction: row; */
 justify-content: center;
-
-
  width: 100%
 }
 
@@ -30,9 +28,7 @@ justify-content: center;
   height: 200px;
 }
 
-.on_deck_none{
 
-}
 
 
 
