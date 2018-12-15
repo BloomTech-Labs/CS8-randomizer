@@ -1,56 +1,77 @@
 import React from 'react';
-import { Nav, NavItem, NavLink, Button, ButtonGroup, Dropdown, DropdownMenu, DropdownToggle, Modal, ModalHeader, ModalFooter, ModalBody, } from 'reactstrap';
+import {
+  Nav,
+  NavItem,
+  NavLink,
+  Button,
+  ButtonGroup,
+  Modal,
+  ModalHeader,
+  ModalFooter
+} from 'reactstrap';
 import './index.css';
 
 export default class BottomMenu extends React.Component {
+  constructor(props) {
+    super(props);
+    this.toggle = this.toggle.bind(this);
+    this.abToggle = this.abToggle.bind(this);
+    this.state = { cSelected: [], dropdownOpen: false, abModal: false };
 
-    constructor (props) {
-        super(props);
-        this.toggle = this.toggle.bind(this);
-        this.abToggle = this.abToggle.bind(this);
-        this.state = { cSelected: [], dropdownOpen: false, abModal: false };
-    
-        this.onRadioBtnClick = this.onRadioBtnClick.bind(this);
-      }
-    
-      onRadioBtnClick(rSelected) {
-        this.setState({ rSelected });
-      }
+    this.onRadioBtnClick = this.onRadioBtnClick.bind(this);
+  }
 
-      toggle() {
-          this.setState({
-              dropdownOpen: !this.state.dropdownOpen
-          });
-      }
+  onRadioBtnClick(rSelected) {
+    this.setState({ rSelected });
+  }
 
-      abToggle() {
-        this.setState({
-          abModal: !this.state.abModal
-        });
-      }
-    
+  toggle() {
+    this.setState({
+      dropdownOpen: !this.state.dropdownOpen
+    });
+  }
 
-    render(){
-        return (
-            <div className='bottomDiv'>
-                <Nav>
-                    <ButtonGroup id='buttonGroup'>
-                        <Button id='sideBarButtonA' onClick={() => this.onRadioBtnClick(1)} active={this.state.rSelected === 1}>
-                            <NavItem >
-                                <NavLink href="/classes" active>Classes</NavLink>
-                            </NavItem>
-                        </Button >
-                        <Button id='sideBarButtonB' onClick={() => this.onRadioBtnClick(2)} active={this.state.rSelected === 2}>
-                            <NavItem >
-                                <NavLink href="/billing">Billing</NavLink>
-                            </NavItem>
-                        </Button>
-                        <Button id='sideBarButtonC' onClick={() => this.onRadioBtnClick(3)} active={this.state.rSelected === 3}>
-                            <NavItem >
-                                <NavLink href="/settings">Settings</NavLink>
-                            </NavItem>
-                        </Button>
-                        {/* <Button id='sideBarButtonD' onClick={() => this.onRadioBtnClick(4)} active={this.state.rSelected === 4}>
+  abToggle() {
+    this.setState({
+      abModal: !this.state.abModal
+    });
+  }
+
+  render() {
+    return (
+      <div className="bottomDiv">
+        <Nav>
+          <ButtonGroup id="buttonGroup">
+            <Button
+              id="sideBarButtonA"
+              onClick={() => this.onRadioBtnClick(1)}
+              active={this.state.rSelected === 1}
+            >
+              <NavItem>
+                <NavLink href="/classes" active>
+                  Classes
+                </NavLink>
+              </NavItem>
+            </Button>
+            <Button
+              id="sideBarButtonB"
+              onClick={() => this.onRadioBtnClick(2)}
+              active={this.state.rSelected === 2}
+            >
+              <NavItem>
+                <NavLink href="/billing">Billing</NavLink>
+              </NavItem>
+            </Button>
+            <Button
+              id="sideBarButtonC"
+              onClick={() => this.onRadioBtnClick(3)}
+              active={this.state.rSelected === 3}
+            >
+              <NavItem>
+                <NavLink href="/settings">Settings</NavLink>
+              </NavItem>
+            </Button>
+            {/* <Button id='sideBarButtonD' onClick={() => this.onRadioBtnClick(4)} active={this.state.rSelected === 4}>
                             <Dropdown direction="up" size="lg" isOpen={this.state.dropdownOpen} toggle={this.toggle}>
                                 <DropdownToggle
                                     
@@ -67,31 +88,33 @@ export default class BottomMenu extends React.Component {
                                 </DropdownMenu>
                             </Dropdown>
                         </Button> */}
-                        <NavItem id='sideBarButtonD'>
-                            <NavLink>
-                                <Button onClick={this.abToggle}>
-                                    Logout
-                                </Button>
-                            </NavLink>
-                        </NavItem>
-                        <NavItem className="nav-signup">
-                            <Modal
-                            isOpen={this.state.abModal}
-                            toggle={this.abToggle}
-                            className={this.props.className}
-                            >
-                            <ModalHeader className = 'modalHeader' toggle={this.abToggle}>Logout</ModalHeader>
-                            <ModalFooter className = 'modalFooter'>
-                                <Button id='buttonConfirm'><a href="/">Confirm</a></Button>
-                                <Button id="nav-button" onClick={this.abToggle}>
-                                Cancel
-                                </Button>{" "}
-                            </ModalFooter>
-                        </Modal>
-                        </NavItem>
-                    </ButtonGroup>
-                </Nav>
-                </div>
-        )
-    }
+            <NavItem id="sideBarButtonD">
+              <NavLink>
+                <Button onClick={this.abToggle}>Logout</Button>
+              </NavLink>
+            </NavItem>
+            <NavItem className="nav-signup">
+              <Modal
+                isOpen={this.state.abModal}
+                toggle={this.abToggle}
+                className={this.props.className}
+              >
+                <ModalHeader className="modalHeader" toggle={this.abToggle}>
+                  Logout
+                </ModalHeader>
+                <ModalFooter className="modalFooter">
+                  <Button id="buttonConfirm">
+                    <a href="/">Confirm</a>
+                  </Button>
+                  <Button id="nav-button" onClick={this.abToggle}>
+                    Cancel
+                  </Button>{' '}
+                </ModalFooter>
+              </Modal>
+            </NavItem>
+          </ButtonGroup>
+        </Nav>
+      </div>
+    );
+  }
 }

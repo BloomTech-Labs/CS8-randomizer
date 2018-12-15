@@ -1,18 +1,18 @@
-import { withRouter } from "react-router-dom";
-import React from "react";
-import { connect } from "react-redux";
-import ReactDOM from "react-dom";
+import { withRouter } from 'react-router-dom';
+import React from 'react';
+import { connect } from 'react-redux';
+import ReactDOM from 'react-dom';
 // import { CSVLink, CSVDownload } from "react-csv";
 
-import CsvParse from "@vtex/react-csv-parse";
+import CsvParse from '@vtex/react-csv-parse';
 
-import { Button, FormGroup, Label, Input } from "reactstrap";
+import { Button, FormGroup, Label, Input } from 'reactstrap';
 
-import { addClass, getUser, getClasses } from "../../actions";
-import swal from "sweetalert";
-import "./form.css";
+import { addClass, getUser, getClasses } from '../../actions';
+import swal from 'sweetalert';
+import './form.css';
 
-import uuidv4 from "uuid/v4";
+import uuidv4 from 'uuid/v4';
 
 //const data = [["classname", "firstname", "lastname"]];
 
@@ -21,9 +21,9 @@ class ClassForm extends React.Component {
     super(props);
     // this.toggle = this.toggle.bind(this);
     this.state = {
-      classname: "",
-      firstname: "",
-      lastname: "",
+      classname: '',
+      firstname: '',
+      lastname: '',
       // participated: 0,
       // resetMode: this.props.,
       allMode: this.props.classes.allMode,
@@ -33,15 +33,15 @@ class ClassForm extends React.Component {
     };
   }
 
- componentDidMount(){
-   this.props.getClasses()
-   this.props.getUser()
- }
+  componentDidMount() {
+    this.props.getClasses();
+    this.props.getUser();
+  }
 
   // }
   allToggle = () => {
     this.setState({ allMode: !this.state.allMode });
-    console.log("allMode:", this.state.allMode);
+    console.log('allMode:', this.state.allMode);
   };
 
   trackToggle = () => {
@@ -69,16 +69,16 @@ class ClassForm extends React.Component {
       trackMode
     } = this.state;
 
-    if (firstname === "") {
+    if (firstname === '') {
       swal({
-        icon: "error",
-        text: "Oops!! Looks like you forgot to add a first name!"
+        icon: 'error',
+        text: 'Oops!! Looks like you forgot to add a first name!'
       });
       return;
-    } else if (lastname === "") {
+    } else if (lastname === '') {
       swal({
-        icon: "error",
-        text: "Oops!! Looks like you forgot to add a last name!"
+        icon: 'error',
+        text: 'Oops!! Looks like you forgot to add a last name!'
       });
       return;
     } else {
@@ -91,10 +91,10 @@ class ClassForm extends React.Component {
       students.push(newStudent);
       this.setState({
         students: students,
-        firstname: "",
-        lastname: ""
+        firstname: '',
+        lastname: ''
       });
-      console.log("compileStudentList running:", this.state.students);
+      console.log('compileStudentList running:', this.state.students);
     }
   };
 
@@ -115,21 +115,21 @@ class ClassForm extends React.Component {
 
     this.setState({
       students: updated_students,
-      firstname: "",
-      lastname: ""
+      firstname: '',
+      lastname: ''
     });
-    console.log("handleImportData running:", this.state.students);
+    console.log('handleImportData running:', this.state.students);
   };
 
   handleAddClassAndStudents = () => {
-    console.log("this.props.classes.length:", this.props.classes.length)
-    console.log("this.props.user:", this.props.user)
+    console.log('this.props.classes.length:', this.props.classes.length);
+    console.log('this.props.user:', this.props.user);
     if (
       (this.props.classes.length < 2 &&
-        this.props.user.subscription === "trial") ||
+        this.props.user.subscription === 'trial') ||
       (this.props.classes.length < 5 &&
-        this.props.user.subscription === "standard") ||
-      this.props.user.subscription === "premium"
+        this.props.user.subscription === 'standard') ||
+      this.props.user.subscription === 'premium'
     ) {
       const { classname, students, allMode, trackMode } = this.state;
       const collection = students;
@@ -141,17 +141,17 @@ class ClassForm extends React.Component {
           component_state_id: uuidv4()
         });
       });
-      console.log("FULL_NAME ARRAY:", full_name);
-      if (classname === "") {
+      console.log('FULL_NAME ARRAY:', full_name);
+      if (classname === '') {
         swal({
-          icon: "error",
-          text: "Oh no!! Looks like you forgot to add a Class Name!"
+          icon: 'error',
+          text: 'Oh no!! Looks like you forgot to add a Class Name!'
         });
         return;
       } else if (students.length < 2) {
         swal({
-          icon: "error",
-          text: "Sorry! You must add at least two students to create a class!"
+          icon: 'error',
+          text: 'Sorry! You must add at least two students to create a class!'
         });
         return;
       } else {
@@ -165,19 +165,26 @@ class ClassForm extends React.Component {
           this.props.history
         );
         this.setState({
-          classname: "",
+          classname: '',
           students: [],
-          firstname: "",
-          lastname: ""
+          firstname: '',
+          lastname: ''
         });
       }
     } else {
-      swal({icon: "error", text: `Sorry! Your ${this.props.user.subscription} subscription cannot make more than ${this.props.classes.length} classes. Please update your subscription to add more classes!`})
+      swal({
+        icon: 'error',
+        text: `Sorry! Your ${
+          this.props.user.subscription
+        } subscription cannot make more than ${
+          this.props.classes.length
+        } classes. Please update your subscription to add more classes!`
+      });
     }
   };
 
   removeStudent = e => {
-    console.log("x", e.target.value);
+    console.log('x', e.target.value);
     const students = this.state.students;
     for (let i = 0; i < students.length; i++) {
       if (students[i].component_state_id === e.target.value) {
@@ -195,9 +202,9 @@ class ClassForm extends React.Component {
   };
 
   render() {
-    const keys = ["first_name", "last_name"];
+    const keys = ['first_name', 'last_name'];
 
-    console.log("rand", this);
+    console.log('rand', this);
 
     return (
       <div className="Form-div">
@@ -286,7 +293,7 @@ class ClassForm extends React.Component {
                       value={obj.component_state_id}
                       type="submit"
                     >
-                      x {first + " " + last}
+                      x {first + ' ' + last}
                     </Button>
                   );
                 })}
@@ -320,8 +327,5 @@ const mapStateToProps = state => {
 };
 
 export default withRouter(
-  connect(
-    mapStateToProps,
-    { addClass, getUser, getClasses }
-  )(ClassForm)
+  connect(mapStateToProps, { addClass, getUser, getClasses })(ClassForm)
 );
