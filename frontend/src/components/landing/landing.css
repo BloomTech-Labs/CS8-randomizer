@@ -2,16 +2,18 @@
 .landing{
     /* background: #31353D; */
     background: #584573;
-    background-image: url('./randologo5.jpg');
+    /* background-image: url('./randologo5.jpg'); */
     background-repeat: no-repeat;
     background-position: center;
     background-size: 60%;
     display: flex;
     width: 185%;
-    height: 820px;
+    height: 100vh;
     /* padding-left: 42.5%; */
     justify-content: center;
-    align-items: flex-end;
+    align-items: center;
+    flex-direction: column;
+
 }
 
  .nav-about{
@@ -24,12 +26,18 @@
     /* flex-direction: column; */
 } 
 
-#nav-login{
-    margin-top: 0%;
-    margin-left: 0%;
-    left: 20px;
-    padding-bottom: 3%;
-    /* padding-left: 35%; */
+.app-logo{
+    width: 50%;
+    height: 50%;;
+}
+
+#landing-nav{
+    width: 50vw;
+
+}
+.landing-buttons{
+    width: 100%;
+
 }
 
 /* .nav-signup{
@@ -50,7 +58,6 @@
     text-align: center;
     width: 100%;
     /* margin-top: 5%; */
-    margin-left: 8%;
 }
 
 #nav-button:hover{
@@ -58,6 +65,67 @@
     color: #352847;
     font-weight: 900;
     text-align: center;
+}
+
+#about-button{
+    
+    /* align-self: flex-end; */
+    background-color: #352847;
+    border-left-color: #352847;
+    border-right-color: #352847;
+    border-bottom-color: #352847;
+    border-top: #352847;
+    border: 1px solid #352847;
+    text-align: center;
+    width: 140%;
+    height: 5vh;
+
+    font-weight: 900;
+    padding: 0;
+    margin-left: 0%;
+    /* align-self: flex-end; */
+    /* margin-right: 15%; */
+    /* margin-left: 315%; */
+}
+
+#nav-logconf-button{
+    color: #352847;
+    background-color: #a894c5;
+    /* font-size: 100%; */
+    font-weight: 800;
+    border-left-color: #352847;
+    border-right-color: #352847;
+    border-bottom-color: #352847;
+    border-top: #352847;
+    border: 1px solid #352847;
+    text-align: center;
+    width: 100%;
+    /* margin-top: 5%; */
+    /* margin-left: 8%; */
+}
+
+
+#about-button:hover{
+    background-color: whitesmoke;
+    color: #352847;
+    /* font-weight: 900; */
+    /* text-align: center; */
+}
+
+.Alert-msg{
+    color: red;
+}
+
+.Alert-success{
+    background-color: white;
+    color: #775d9b;
+    margin-top: 5%;
+    width: 100%;
+    font-size: 95%;
+    font-weight: 1000;
+    text-align: center;
+    border: 1px solid white;
+    /* padding: 0 5%; */
 }
 
 #about-button{
@@ -204,7 +272,8 @@
         margin-left: -25px;
     }
     
-    #nav-login{
+
+    #landing-nav{
         display:flex;
         flex-direction: row;
         margin: 50%;

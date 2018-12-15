@@ -72,7 +72,7 @@ class App extends Component {
               path={"/"}
               render={() =>
                 this.props.authed ? (
-                  <Redirect to="/classes/" />
+                  <Redirect to="/classes" />
                 ) : (
                   <Landing auth={this.state.isAuth} />
                 )

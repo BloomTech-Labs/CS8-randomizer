@@ -8,9 +8,9 @@ a{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  padding: 1.2% 1%;
+  /* padding: 1.2% 1%; */
   background: hsl(265, 25%, 36%);
-  height: 100%;
+  height: 100vh;
 }
 
 .LogBar{
