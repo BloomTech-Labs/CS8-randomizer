@@ -2,15 +2,18 @@
 .SideDiv{
     /* border: 1px solid black;  */
     padding-bottom: 40%; 
-     padding-right: 0; 
-     width: 0%; 
-     height: 0px; 
-     margin: 0; 
+    padding-right: 0; 
+    width: 3vw;
+    height: 96vh; 
+    margin: 0; 
 
-     background-color: #332259; 
+     background-color: rgb(230, 230, 230); 
      border-radius: .25rem; 
      text-align: left; 
      padding: 0;
+     display: flex;
+     justify-content: center;
+
    }
  
   .side-link{
@@ -194,6 +197,10 @@ visibility: hidden;
 
 #dropdown-button{
 visibility: hidden;
+}
+
+#dropright{
+  width: 100%
 }
 
 .bottomDiv{

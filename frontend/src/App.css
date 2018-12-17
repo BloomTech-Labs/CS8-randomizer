@@ -86,6 +86,7 @@ a{
   padding-top: .1%;
   border-radius: 0rem;
   display: flex;
+  justify-content: center;
 }
 /* .MainComponentsHidden{
   display: block;

@@ -789,13 +789,13 @@ class MagicRandomizer extends Component {
       <div className="main">
         <div className="main_contents">
           <div className="top-section">
-            <div className="classid_container_tt">
-              <div className="classid_tt">{this.state.class.name}</div>
+            <div className="classid_container">
+              <div className="classid">{this.state.class.name}</div>
             </div>
 
-            <div className="header tt_header">
+            <div className="header">
               {this.state.allMode === true ? (
-                <div className="header_container tt_header_container">
+                <div className="header_container">
                   <div className="studentName">
                     {this.state.current_student.first_name}{" "}
                     {this.state.current_student.last_name}
@@ -806,7 +806,7 @@ class MagicRandomizer extends Component {
                   </div>
                 </div>
               ) : (
-                <div>
+                <div className="header_container">
                   <div className="studentName">
                     {this.state .current_student.first_name}{" "}
                     {this.state.current_student.last_name}
@@ -838,19 +838,6 @@ class MagicRandomizer extends Component {
                 </Button>
               </Link>
             </div>
-
-            <Link
-              className="edit_container"
-              to={{
-                pathname: `/${this.state.classid}/edit`,
-                state: {
-                  // classid: classitem._id,
-                  class: this.state.class
-                }
-              }}
-            >
-              {/* <Button id="edit"> Edit </Button> */}
-            </Link>
           </div>
 
           {trackState}
