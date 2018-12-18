@@ -39,10 +39,6 @@ a{
   height: 100%;
 }
 
-.appPanel {
-  height: 100%;
-}
-
 .CrumbBar{
   width: 50%;
   margin-top: 0%;
@@ -87,6 +83,7 @@ a{
   border-radius: 0rem;
   display: flex;
   justify-content: center;
+  height: 88.8vh;
 }
 /* .MainComponentsHidden{
   display: block;

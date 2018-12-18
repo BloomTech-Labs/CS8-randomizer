@@ -6,7 +6,8 @@
     /* height: 1000px;   */
     background: rgb(230, 230, 230);  
     border-radius: .25rem;  
-    width: 95.6vw; 
+    width: 96.5vw; 
+    height: 88.4vh;
   }
   
   .main_contents {
@@ -31,8 +32,3 @@
       width: 10%
   }
 
-#dropright{
-  width: 100%;
-  background: rgb(230, 230, 230);
-  height: 96vh
-}
