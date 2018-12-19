@@ -33,21 +33,21 @@ export default class BottomMenu extends React.Component {
     render(){
         return (
             <div className='bottomDiv'>
-                <Nav>
+                <Nav id='bottomNav'>
                     <ButtonGroup id='buttonGroup'>
-                        <Button id='sideBarButtonA' onClick={() => this.onRadioBtnClick(1)} active={this.state.rSelected === 1}>
+                        <Button id='bottomDivButton' onClick={() => this.onRadioBtnClick(1)} active={this.state.rSelected === 1}>
                             <NavItem >
-                                <NavLink href="/classes" active>Classes</NavLink>
+                                <NavLink id="bottomNavLink" href="/classes" active>Classes</NavLink>
                             </NavItem>
                         </Button >
-                        <Button id='sideBarButtonB' onClick={() => this.onRadioBtnClick(2)} active={this.state.rSelected === 2}>
+                        <Button id='bottomDivButton' onClick={() => this.onRadioBtnClick(2)} active={this.state.rSelected === 2}>
                             <NavItem >
-                                <NavLink href="/billing">Billing</NavLink>
+                                <NavLink id="bottomNavLink" href="/billing">Billing</NavLink>
                             </NavItem>
                         </Button>
-                        <Button id='sideBarButtonC' onClick={() => this.onRadioBtnClick(3)} active={this.state.rSelected === 3}>
+                        <Button id='bottomDivButton' onClick={() => this.onRadioBtnClick(3)} active={this.state.rSelected === 3}>
                             <NavItem >
-                                <NavLink id='bottomSettingsButton' href="/settings">Settings</NavLink>
+                                <NavLink id="bottomNavLink" href="/settings">Settings</NavLink>
                             </NavItem>
                         </Button>
                         {/* <Button id='sideBarButtonD' onClick={() => this.onRadioBtnClick(4)} active={this.state.rSelected === 4}>
@@ -67,14 +67,14 @@ export default class BottomMenu extends React.Component {
                                 </DropdownMenu>
                             </Dropdown>
                         </Button> */}
-                        <NavItem id='sideBarButtonD'>
+                        {/* <NavItem id='sideBarButtonD'>
                             <NavLink>
                                 <Button onClick={this.abToggle}>
                                     Logout
                                 </Button>
                             </NavLink>
-                        </NavItem>
-                        <NavItem className="nav-signup">
+                        </NavItem> */}
+                        {/* <NavItem id="sideBarButtonD" className="nav-logout">
                             <Modal
                             isOpen={this.state.abModal}
                             toggle={this.abToggle}
@@ -88,7 +88,7 @@ export default class BottomMenu extends React.Component {
                                 </Button>{" "}
                             </ModalFooter>
                         </Modal>
-                        </NavItem>
+                        </NavItem> */}
                     </ButtonGroup>
                 </Nav>
                 </div>
