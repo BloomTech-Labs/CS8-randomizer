@@ -677,7 +677,7 @@ class MagicRandomizer extends Component {
 
     if (this.state.trackMode == true && this.state.allMode === false) {
       trackState = (
-        <div className="middle_container_t">
+        <div className="middle_container">
           <div className="middle_t">
             <Button id="participated_t" onClick={this.participatedHandler}>
               {""}
@@ -697,7 +697,7 @@ class MagicRandomizer extends Component {
     if (this.state.trackMode === false && this.state.allMode == true) {
       if (this.state.allstudents.length > 0) {
         trackState = (
-          <div className="middle_container_a">
+          <div className="middle_container">
             <div className="middle_a">
               <div className="middle_a_left_container">
                 <div className="middle_a_left">
@@ -724,7 +724,7 @@ class MagicRandomizer extends Component {
       } else if (this.state.allstudents.length === 0) {
         console.log("HERE!!!");
         trackState = (
-          <div className="middle_container_a">
+          <div className="middle_container">
             <div className="middle_a">
               <div className="middle_a_left_container">
                 <div className="middle_a_left">
@@ -758,24 +758,24 @@ class MagicRandomizer extends Component {
 
     if (this.state.trackMode === false && this.state.allMode == false) {
       trackState = (
-        <div className="middle_container_none">
-          <div className="middle_none">
-            {/* <div className="middle_none_left">
+        <div className="middle_container">
+          <div className="middle_ff">
+            {/* <div className="middle_ff_left">
                 <Button
-                  id="reset_none"
+                  id="reset_ff"
                   onClick={this.shuffle_allstudents}
                 >
                   Reset 'All Go'
                 </Button>
-                <div className="allgo-tracker_none">
+                <div className="allgo-tracker_ff">
                   Students in Deck
             
-                  <div className="allgo-tracker-num_none">
+                  <div className="allgo-tracker-num_ff">
                     {this.state.allstudents.length}
                   </div>
                 </div>
               </div> */}
-            <Button id="Randomize-button_none" onClick={this.randomHandler}>
+            <Button id="Randomize-button_ff" onClick={this.randomHandler}>
               {" "}
               RANDOMIZE!{" "}
             </Button>
