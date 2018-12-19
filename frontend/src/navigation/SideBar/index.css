@@ -127,6 +127,22 @@
 
 .bottomDiv{
   display: none;
+  height: 10vh;
+}
+
+#bottomNav{
+  height: 10vh;
+  width: 100vw;
+}
+
+#buttonGroup{
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+}
+
+#bottomNavLink{
+  padding: 0;
 }
 
 #bottomSettingsButton{
@@ -215,7 +231,7 @@ visibility: hidden;
 .bottomDiv{
   /* display: unset; */
   display: flex;
-  flex: 1;
+  /* flex: 1; */
   /* background-color: greenyellow; */
   /* color: #fff; */
   /* height: 500px; */
@@ -224,6 +240,7 @@ visibility: hidden;
   /* margin-top: auto; */
   /* float: bottom; */
   align-self: center;
+  /* justify-content: center; */
 }
 
 /* #buttonGroup{ */
@@ -247,18 +264,19 @@ visibility: hidden;
   height: 55px; */
 /* } 
 */
-#sideBarButtonA{
+#bottomDivButton{
   align-items: center;
-  width:0;
+  width: 30vw;
+  font-size: 90%;
   background-color: #584573;
   color: #fff;
   border: hidden;
-  margin-bottom: 50px;
+  /* margin-bottom: 50px; */
 }
 
-#sideBarButtonB{
+/* #sideBarButtonB{
   align-items: center;
-  width:0;
+  width: 20vw;
   background-color: #584573;
   color: #fff;
   border: hidden;
@@ -267,7 +285,7 @@ visibility: hidden;
 
 #sideBarButtonC{
   align-items: center;
-  width: 0;
+  width:  20vw;
   background-color: #584573;
   color: #fff;
   border: hidden;
@@ -278,12 +296,12 @@ visibility: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width:0;
+  width: 20vw;
   background-color: #584573;
   color: #fff;
   border: hidden;
   margin-bottom: 50px;
-} 
+}  */
 
 /*
 .nav{
