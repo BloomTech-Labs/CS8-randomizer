@@ -47,7 +47,7 @@ export default class BottomMenu extends React.Component {
                         </Button>
                         <Button id='sideBarButtonC' onClick={() => this.onRadioBtnClick(3)} active={this.state.rSelected === 3}>
                             <NavItem >
-                                <NavLink href="/settings">Settings</NavLink>
+                                <NavLink id='bottomSettingsButton' href="/settings">Settings</NavLink>
                             </NavItem>
                         </Button>
                         {/* <Button id='sideBarButtonD' onClick={() => this.onRadioBtnClick(4)} active={this.state.rSelected === 4}>

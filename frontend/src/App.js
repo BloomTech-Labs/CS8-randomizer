@@ -84,9 +84,8 @@ class App extends Component {
                 <Breadcrumbs id="Crumb" mappedRoutes={routes} />
                 <LogOut className="LogBar" />
               </div>
-              <div className="appPanel">
-                <DropBar />
-                <BottomMenu />
+              <div id="appPanel" className="appPanel">
+                <DropBar />  
                 <Route exact path={"/"} render={() => <Home />} />
                 <Route exact path={"/:id/edit"} render={props => <EditForm {...props} />} />
                 <Route exact path={"/classes"} render={() => <ClassList />} />
@@ -101,6 +100,7 @@ class App extends Component {
                 <Route exact path={"/about"} render={() => <About />} />
                 <Route exact path={"/settings"} render={() => <Setup />} />
               </div>
+              <BottomMenu />
             </div>
           )}
         </div>
