@@ -759,7 +759,7 @@ class MagicRandomizer extends Component {
     if (this.state.trackMode === false && this.state.allMode == false) {
       trackState = (
         <div className="middle_container">
-          <div className="middle_ff">
+          <div className="middle_button middle_button_ff">
             {/* <div className="middle_ff_left">
                 <Button
                   id="reset_ff"

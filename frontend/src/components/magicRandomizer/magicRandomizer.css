@@ -14,7 +14,7 @@
     /* width: 100%; */
     /* height: 100%; */
     width: 100vw;
-    height: 75vh;
+    height: 79vh;
   }
   .top-section {
     /* border: 5px solid maroon; */
@@ -52,12 +52,19 @@
   }
 
   .middle_container{
-    /* height: 30vh; */
+    height: 55.5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .middle_button{
+    height: 25vh;;
   }
 
   /* ------------------ All Go = False; Tracking = False; -------------------- */
 
-  .middle_ff{
+  .middle_button_ff{
     display: flex;
     justify-content: center;
 
