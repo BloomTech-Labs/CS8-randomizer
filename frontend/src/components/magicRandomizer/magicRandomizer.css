@@ -59,7 +59,8 @@
   }
 
   .middle_button{
-    height: 25vh;;
+    height: 25vh;
+    width: 25vw;
   }
 
   /* ------------------ All Go = False; Tracking = False; -------------------- */
