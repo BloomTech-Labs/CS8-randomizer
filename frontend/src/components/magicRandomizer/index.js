@@ -743,7 +743,7 @@ class MagicRandomizer extends Component {
               </div>
               <Button
                 id="Randomize-button_a"
-                style={{ backgroundColor: "rgba(87,68,114,0.2)" }}
+                // style={{ backgroundColor: "rgba(87,68,114,0.2)" }}
               >
                 {" "}
                 RANDOMIZE!{" "}
@@ -830,7 +830,7 @@ class MagicRandomizer extends Component {
               >
                 <Button
                   className="edit"
-                  id="Rando-top-button_edit"
+                  id="edit_button"
                   // href={`/${this.state.classid}/edit`}
                 >
                   {" "}

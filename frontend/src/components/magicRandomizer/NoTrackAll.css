@@ -11,9 +11,7 @@
 /* border:5px solid hotpink; */
 display: flex;
 flex-direction: row;
-
-
-
+justify-content: center;
  width: 100%
 }
 
@@ -83,19 +81,6 @@ transition: all 0.5 s ease;
 }
 
 
-#Randomize-button_a {
-  /* border: 5px solid green; */
-  /* padding-top: 70px;   */
-  /* padding-bottom: 70px;   */
-  /* background: rgb(230, 230, 230);  
-  color: #332259;   */
-  background: #332259;
-  color: rgb(230, 230, 230);
-  transition: all 0.75s ease-in;
-  /* padding: 10% 0; */
-  width: 50%;
-  font-size: 5rem;
-}
 
 .on_deck_a{
 

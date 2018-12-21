@@ -31,6 +31,10 @@
 
   .classid_container{
       width: 2.8vw;
+      text-align: center;
+      border: 2px solid #332259;
+      background: hsl(265, 25%, 36%);
+      color: white;
   }
 
   .header{
@@ -39,6 +43,10 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
+    border: 5px solid black;
+    background: hsl(265, 25%, 36%);
+    color: white;
+    font-size: 1.5vw;
   }
 
   .header_container{
@@ -49,8 +57,39 @@
     justify-content: space-around;
   }
 
+  .studentName{
+    border-bottom: 2px solid white;
+  }
+
+  #edit_button{
+    background: hsl(265, 25%, 36%);
+  }
+
+  #edit_button:hover{
+    background: #332259;
+  }
+
   .middle_container{
+    height: 50vh;
+    /* width: 30vw; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #Randomize-button {
+    /* border: 5px solid pink; */
+    /* padding-top: 70px;   */
+    /* padding-bottom: 70px;   */
+    /* background: rgb(230, 230, 230);  
+    color: #332259;   */
+    background: #332259;
+    color: rgb(230, 230, 230);
+    font-size: 380%;
+    width: 30vw;
     height: 30vh;
+    transition: all 1s ease-in;
+    /* padding: 10% 0; */
   }
 
   .data_container{
@@ -81,8 +120,23 @@
     background: #332259;
     color: rgb(230, 230, 230);
     font-size: 380%;
-    width: 40vw;
-    height: 300px;
+    width: 30vw;
+    height: 30vh;
+    transition: all 1s ease-in;
+    /* padding: 10% 0; */
+  }
+
+  #Randomize-button_a {
+    /* border: 5px solid pink; */
+    /* padding-top: 70px;   */
+    /* padding-bottom: 70px;   */
+    /* background: rgb(230, 230, 230);  
+    color: #332259;   */
+    background: #332259;
+    color: rgb(230, 230, 230);
+    font-size: 380%;
+    width: 20vw;
+    height: 30vh;
     transition: all 1s ease-in;
     /* padding: 10% 0; */
   }
