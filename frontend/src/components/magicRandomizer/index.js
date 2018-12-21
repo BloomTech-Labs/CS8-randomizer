@@ -606,41 +606,36 @@ class MagicRandomizer extends Component {
       // if (this.state.allstudents.length > 0) {
         trackState = (
 
-          <div className="caro_container caro_container_tt">
-            <div className="caros_tt"> 
-              <Button
-                className="participated"
-                id="Participated-button_tt"
-                onClick={this.participatedHandler}
-              >
+          <div className="caro_container middle_container_t">
+ 
+
+          <div>
+            {/* <div className="reset"> */}
+            <Button id="reset_a" onClick={this.shuffle_allstudents}>
+                    Reset 'All Go'
+                  </Button>
+
+                  <div className="allgo-tracker_a">
+                    Students in Deck
+              
+                    <div className="allgo-tracker-num_a">
+                      {this.state.allstudents.length}
+                    </div>
+              </div>
+            {/* </div> */}
+          </div>
+
+                     <div className="caros_tt"> 
+              <Button id="participated_t" onClick={this.participatedHandler}>
                 {""}
                 Participated
-                {""}
+              {""}
               </Button>
-              <Button id="Declined-button_tt" onClick={this.declinedHandler}>
+              <Button id="declined_t" onClick={this.declinedHandler}>
                 {" "}
                 Declined{" "}
               </Button>
             </div>
-
-          <div>
-            {/* <div className="reset"> */}
-              <Button
-                className="reset_border"
-                id="AllGo-button_tt"
-                onClick={this.shuffle_allstudents}
-              >
-                Reset 'All Go'
-              </Button>
-              <div className="allgo-tracker_tt">
-                Students in Deck:
-                <br />
-                <div className="allgo-tracker-num">
-                  {this.state.allstudents.length}
-                </div>
-              </div>
-            {/* </div> */}
-          </div>
 
           </div>
 
