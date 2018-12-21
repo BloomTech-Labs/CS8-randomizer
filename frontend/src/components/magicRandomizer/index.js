@@ -677,7 +677,7 @@ class MagicRandomizer extends Component {
 
     if (this.state.trackMode == true && this.state.allMode === false) {
       trackState = (
-        <div className="middle_container">
+        <div className="middle_container middle_container_t">
           <div className="middle_t">
             <Button id="participated_t" onClick={this.participatedHandler}>
               {""}
@@ -759,7 +759,7 @@ class MagicRandomizer extends Component {
     if (this.state.trackMode === false && this.state.allMode == false) {
       trackState = (
         <div className="middle_container">
-          <div className="middle_ff">
+          <div className="middle_button middle_button_ff">
             {/* <div className="middle_ff_left">
                 <Button
                   id="reset_ff"
@@ -844,6 +844,7 @@ class MagicRandomizer extends Component {
           {/* {allState} */}
 
           {this.state.trackMode == true ? (
+            <div className="data_container">
             <div className="part_data">
               <div className="part_data_title">
                 {/* Overall Class Participation Ra ↓{" "} */}
@@ -870,6 +871,7 @@ class MagicRandomizer extends Component {
                     }}
                   />
                 </div>
+              </div>
               </div>
               {/* <div className="part_graph">{this.participationTracker()}</div> */}
             </div>

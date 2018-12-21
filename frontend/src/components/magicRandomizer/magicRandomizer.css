@@ -53,6 +53,17 @@
     height: 30vh;
   }
 
+  .data_container{
+    display: flex;
+    justify-content: center;
+  }
+
+  .part_data{
+    width: 41vw;
+    display: flex;
+    justify-content: center;
+  }
+
   /* ------------------ All Go = False; Tracking = False; -------------------- */
 
   .middle_ff{
