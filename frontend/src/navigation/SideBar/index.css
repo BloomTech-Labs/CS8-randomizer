@@ -127,26 +127,6 @@
 
 .bottomDiv{
   display: none;
-  height: 10vh;
-}
-
-#bottomNav{
-  height: 10vh;
-  width: 100vw;
-}
-
-#buttonGroup{
-  width: 100vw;
-  display: flex;
-  justify-content: center;
-}
-
-#bottomNavLink{
-  padding: 0;
-}
-
-#bottomSettingsButton{
-  padding: 0;
 }
 
 @media only screen 
@@ -155,7 +135,7 @@
   {  
  
 .SideDiv{
-display: none;
+visibility: hidden;
  }
 
 .side-link{
@@ -231,7 +211,7 @@ visibility: hidden;
 .bottomDiv{
   /* display: unset; */
   display: flex;
-  /* flex: 1; */
+  flex: 1;
   /* background-color: greenyellow; */
   /* color: #fff; */
   /* height: 500px; */
@@ -240,87 +220,84 @@ visibility: hidden;
   /* margin-top: auto; */
   /* float: bottom; */
   align-self: center;
-  /* justify-content: center; */
 }
 
-/* #buttonGroup{ */
+#buttonGroup{
   /* width: 100%; */
-  /* position: fixed;
+  position: fixed;
   right: 0;
   left: 0;
-  bottom: 0; */
+  bottom: 0;
   /* top: 100%; */
-  /* width: 100%;
+  width: 100%;
   margin-top: -2.5em;
   background-color: #584573;
   border: hidden;
   color: #fff;
-  align-items: center; */
+  align-items: center;
   /* justify-content: flex-end; */
   /* width: 0px; */
   /* min-width: 100%; */
   /* margin-top: 100%; */
   /* margin-top: -55px;
   height: 55px; */
-/* } 
-*/
-#bottomDivButton{
+}
+
+#sideBarButtonA{
   align-items: center;
-  width: 30vw;
-  font-size: 90%;
+  width:25%;
   background-color: #584573;
   color: #fff;
   border: hidden;
   /* margin-bottom: 50px; */
 }
 
-/* #sideBarButtonB{
+#sideBarButtonB{
   align-items: center;
-  width: 20vw;
+  width:25%;
   background-color: #584573;
   color: #fff;
   border: hidden;
-  margin-bottom: 50px;
+  /* margin-bottom: 50px; */
 }
 
 #sideBarButtonC{
   align-items: center;
-  width:  20vw;
+  width:25%;
   background-color: #584573;
   color: #fff;
   border: hidden;
-  margin-bottom: 50px;
+  /* margin-bottom: 50px; */
 }
 
 #sideBarButtonD{
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 20vw;
+  width:25%;
   background-color: #584573;
   color: #fff;
   border: hidden;
-  margin-bottom: 50px;
-}  */
+  /* margin-bottom: 50px; */
+}
 
-/*
 .nav{
   background-color: #584573;
   color: #fff;
   border: hidden;
 }
-/* #buttomButton{
+#buttomButton{
   text-decoration-style: none;
   background-color: #584573;
   color: #fff;
-  height: 35px; */
+  height: 35px;
   /* width: 100%; */
-  /* margin-top: -8px;
+  margin-top: -8px;
   margin-bottom: -8px;
   width: 100%;
-  transition: all 0.5s ease; */
+  transition: all 0.5s ease;
   /* margin-right: -90px; */
-/* } */
+}
 
 #buttomButton:hover{
   
@@ -350,11 +327,11 @@ visibility: hidden;
   background-color: #584573;
   color: #fff;
 }
-/* .nav-link{
+.nav-link{
   background-color: #584573;
   color: #fff;
-  border: hidden; 
-}*/
+  border: hidden;
+}
 
 #nav-button{
   display: flex;
