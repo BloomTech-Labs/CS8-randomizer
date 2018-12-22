@@ -45,7 +45,7 @@ justify-content: center;
   color: whitesmoke;
   transition: all 0.5s ease;
   width: 100%;
-  height: 40%;
+  height: 6.3vh;
   font-size: 1.2rem;
 
 
@@ -67,7 +67,7 @@ transition: all 0.5 s ease;
   border-style: solid;
   color: whitesmoke;
   width: 100%;
-  height: 40%;
+  height: 6.3vh;
 }
 
 .allgo-tracker_a:hover{  
