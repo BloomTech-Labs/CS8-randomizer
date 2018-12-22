@@ -3,7 +3,27 @@
     background: yellow;
 } */
 
-
+.caro_container_tt {
+    display: flex;
+    flex-wrap: nowrap;
+    /* TODO: center and width = 100% at mobile. */
+    width: 101%;
+    justify-content: center;
+    flex-direction: column;
+    /* width: 100%; */
+    height: 50%;
+    align-items: center;
+  }
+  
+  .caros_tt
+ {
+    /* TODO: THIS IS WORKING CORRECTLY! - just need the correct image sizes! */
+    display: flex;
+    flex-direction: column;
+    width: 15%;
+    margin-bottom: 2%;
+    /* padding-bottom: 100px; */
+  }
 
   .tT_Name_display{ 
     width: 25%; 
@@ -133,13 +153,16 @@
     display: flex;
     
   } */
+
 /* 
+
   .classid_tt{
     width: 63%;
     display: flex;
     justify-content: center;
     border: 5px solid black;
     background: #322842;
+
     color: white; */
     /* border: 1px solid rgb(87, 68, 114); */
     /* border: 5px solid goldenrod; */
@@ -150,8 +173,6 @@
     text-align: center;
     padding-top:3%;
     
-    
-
   } */
 
 

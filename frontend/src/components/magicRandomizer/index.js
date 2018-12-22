@@ -638,7 +638,6 @@ class MagicRandomizer extends Component {
             </div>
 
           </div>
-
         );
    
         
@@ -826,6 +825,7 @@ class MagicRandomizer extends Component {
                 <Button
                   className="edit"
                   id="edit_button"
+
                   // href={`/${this.state.classid}/edit`}
                 >
                   {" "}
