@@ -129,25 +129,7 @@
     /* padding: 0 5%; */
 }
 
-#about-button{
-    
-    /* align-self: flex-end; */
-    background-color: #352847;
-    border-left-color: #352847;
-    border-right-color: #352847;
-    border-bottom-color: #352847;
-    border-top: #352847;
-    border: 1px solid #352847;
-    text-align: center;
-    width: 120%;
-    height: 50px;
-    font-weight: 900;
-    padding: 0;
-    margin-left: 0%;
-    /* align-self: flex-end; */
-    /* margin-right: 15%; */
-    /* margin-left: 315%; */
-}
+
 
 #nav-logconf-button{
     color: #352847;
