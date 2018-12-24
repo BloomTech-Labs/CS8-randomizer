@@ -88,9 +88,9 @@
     }  
   
   
-  #Rando-top-button_edit{
+  /* #Rando-top-button_edit{
     font-size: 100%;
-  }
+  } */
   
   .reset_tt
  {
@@ -142,7 +142,7 @@
     font-size: 30px;
   }
 
-  .edit_container_tt{
+  /* .edit_container_tt{
     width: 20%;
     align-self: center;
     margin-right: 2%;
@@ -152,7 +152,9 @@
     width: 25%;
     display: flex;
     
-  }
+  } */
+
+/* 
 
   .classid_tt{
     width: 63%;
@@ -160,52 +162,47 @@
     justify-content: center;
     border: 5px solid black;
     background: #322842;
-    color: white;
+
+    color: white; */
     /* border: 1px solid rgb(87, 68, 114); */
     /* border: 5px solid goldenrod; */
-    height: 35%;
+    /* height: 35%; */
     /* background: orange; */
-    margin-left: 16%;
+    /* margin-left: 16%;
     align-self: center;
     text-align: center;
     padding-top:3%;
     
-    
-
-  }
+  } */
 
 
-  .tt_header{
-      display: flex;
-      justify-content: center;
+  /* .tt_header{ */
+      /* display: flex; */
+      /* justify-content: center; */
       /* flex: wrap; */
       /* width: 80%;  */
       /* border: 5px solid blueviolet; */
     
-      width: 100%;  
+      /* width: 100%;   */
       /* margin-top: 1%; */
       /* margin-left: 3%;   */
       /* height: 100%;   */
-  }
+  /* } */
 
-  .tt_header_container{
-      width: 75%;
-      height: 150px;
-      padding-top: 1%;
+  /* .tt_header_container{ */
+      /* width: 75%; */
+      /* height: 150px; */
+      /* padding-top: 1%; */
       /* margin-top: 1%;s */
-  }
+  /* } */
 
-  .studentName{
-    padding-top: 4%;
-  }
-
-  .on_deck_tt{
+  /* .on_deck_tt{
     background: #584573;
     color: white;
     border: 4px #322842 solid;
     height: 40px;
     text-align: center;
-  }
+  } */
 
   @media(max-width: 880px){
       .classid_tt{

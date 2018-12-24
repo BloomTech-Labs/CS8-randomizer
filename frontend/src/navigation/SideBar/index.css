@@ -2,15 +2,18 @@
 .SideDiv{
     /* border: 1px solid black;  */
     padding-bottom: 40%; 
-     padding-right: 0; 
-     width: 0%; 
-     height: 0px; 
-     margin: 0; 
+    padding-right: 0; 
+    width: 2vw;
+    height: 88.4vh; 
+    margin: 0; 
 
-     background-color: #332259; 
+     background-color: rgb(230, 230, 230); 
      border-radius: .25rem; 
      text-align: left; 
      padding: 0;
+     display: flex;
+     justify-content: center;
+
    }
  
   .side-link{
@@ -113,11 +116,11 @@
 } 
 
 #dropdown-button{
-  background-color: rgb(230, 230, 230);
+  background-color: #332259;
   border: none;
   padding: 0;
-  padding-left: 3px;
-  padding-top: 2px;
+  /* padding-left: 3px;
+  padding-top: 2px; */
   /* padding-left: 0px;
   padding-top: 0px; */
 }
@@ -194,6 +197,15 @@ visibility: hidden;
 
 #dropdown-button{
 visibility: hidden;
+}
+
+.SideDiv div{
+  width: 100%;
+  background: rgb(230, 230, 230);
+  height: 88.4vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
 }
 
 .bottomDiv{
