@@ -1,9 +1,5 @@
 
 @media(min-width: 801px){
-.Class-div{
-    display: flex;
-    flex-wrap: wrap;
-}
 
 #Class-card {
     min-width: 165px;
@@ -16,11 +12,11 @@
 
 .jumbo-div{
     /* margin-bottom: 50%; */
-    height: 852px;
+    height: 92vh;
 
     background: rgb(230, 230, 230);
     border-radius: .25rem;
-    width: 100%;
+    width: 97vw;
 }
 
 #jumb{
@@ -112,10 +108,14 @@
 }
 
 .Class-div{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
     width: 80%;
     padding-bottom: 0%;
     padding-left: 11%;
     padding-top: 2%;
+
 }
 
 #Class-card{

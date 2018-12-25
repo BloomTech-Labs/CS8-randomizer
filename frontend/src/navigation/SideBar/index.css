@@ -4,7 +4,7 @@
     padding-bottom: 40%; 
     padding-right: 0; 
     width: 2vw;
-    height: 88.4vh; 
+    height: 92vh; 
     margin: 0; 
 
      background-color: rgb(230, 230, 230); 
@@ -371,4 +371,10 @@ visibility: hidden;
 .logout-link{
   color: #fff;
 }
+}
+
+@media(max-width: 250px){
+  .SideDiv{
+    display: none;
+  }
 }

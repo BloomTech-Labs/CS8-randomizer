@@ -8,7 +8,7 @@
     background: rgb(230, 230, 230);  
     border-radius: .25rem;  
     width: 96.5vw; 
-    height: 88.4vh;
+    height: 92vh;
   }
   
   .main_contents {
@@ -76,7 +76,7 @@
   }
 
   .middle_container{
-    height: 50vh;
+    height: 10vh;
     /* width: 30vw; */
     display: flex;
     justify-content: center;
@@ -149,3 +149,9 @@
     transition: all 1s ease-in;
     /* padding: 10% 0; */
   }
+
+@media(max-width: 500px){
+  .data_container{
+    display: none;
+  }
+}

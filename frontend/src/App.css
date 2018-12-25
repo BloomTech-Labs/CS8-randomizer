@@ -83,6 +83,7 @@ a{
   border-radius: 0rem;
   display: flex;
   justify-content: center;
+  flex-direction: column;
   height: 88.8vh;
 }
 /* .MainComponentsHidden{
