@@ -36,7 +36,7 @@
   }
 
   .classid_container{
-      width: 2.8vw;
+      width: 4.8vw;
       text-align: center;
       border: 2px solid #332259;
       background: hsl(265, 25%, 36%);
@@ -69,6 +69,8 @@
 
   #edit_button{
     background: hsl(265, 25%, 36%);
+    width: 5vw;
+    height: 5vh;
   }
 
   #edit_button:hover{
@@ -154,4 +156,11 @@
   .data_container{
     display: none;
   }
+}
+
+@media(max-width: 250px){
+  .main{
+    width: 100vw;
+  }
+  
 }

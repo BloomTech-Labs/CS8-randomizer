@@ -1,4 +1,4 @@
-/* @media(min-width: 801px){ */
+/* @media(min-width: 1920px){ */
 a{
   text-decoration: none;
   
@@ -48,6 +48,8 @@ a{
 }
 .breadcrumb{
   color: black;
+  width: 100%;
+  
   /* background-color: red; */
 }
 
@@ -67,10 +69,6 @@ a{
   color: white;
 }
 
-.breadcrumb{
-  width: 100%;
-}
-
 #Crumb{
   background-color: red;
   
@@ -83,7 +81,6 @@ a{
   border-radius: 0rem;
   display: flex;
   justify-content: center;
-  flex-direction: column;
   height: 88.8vh;
 }
 /* .MainComponentsHidden{
@@ -120,3 +117,13 @@ a{
 }
 /* } */
 
+@media (max-width: 1024px){
+  .appPanel{
+    flex-direction: column;
+    height: 80vh;
+  }
+  .breadcrumb{
+    margin-bottom: 0;
+  }
+}
+/* } */
