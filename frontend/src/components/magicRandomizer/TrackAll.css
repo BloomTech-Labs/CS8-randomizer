@@ -3,11 +3,11 @@
     background: yellow;
 } */
 
-.caro_container_tt {
+.middle_container_tt {
     display: flex;
     flex-wrap: nowrap;
     /* TODO: center and width = 100% at mobile. */
-    width: 101%;
+    width: 100%;
     justify-content: center;
     flex-direction: column;
     /* width: 100%; */
@@ -15,13 +15,12 @@
     align-items: center;
   }
   
-  .caros_tt
+  .middle_tt
  {
     /* TODO: THIS IS WORKING CORRECTLY! - just need the correct image sizes! */
     display: flex;
     flex-direction: column;
-    width: 15%;
-    margin-bottom: 2%;
+    width: 50vw;
     /* padding-bottom: 100px; */
   }
 
@@ -29,6 +28,12 @@
     width: 25%; 
     padding-top: .5%; 
 } 
+
+  .middle_tt_left{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
   
   #Randomize-button_tt
  {
@@ -45,12 +50,12 @@
     /* padding: 10% 0; */
   }
 
-  #Participated-button_tt{  
-    border: 2px dashed black;  
+  #participated_tt{  
+    /* border: 2px dashed black;   */
     /* line-height: 0.6;   */
-    padding: 10px;  
-    height: 60px;  
-    
+    /* padding: 10px;   */
+    height: 10vh;  
+    width: 7.2vw;
     background-color: #322842;  
     border-color: whitesmoke;  
     border-style: solid;  
@@ -64,20 +69,20 @@
   transition: all 0.5 s ease;  
   }
 
-  #Declined-button_tt { 
+  #declined_tt { 
     /* TODO: Remove this hack */
-    border: 2px dashed black;
+    /* border: 2px dashed black; */
   
     /* line-height: 0.6; */
-    padding: 10px 19px;
+    /* padding: 10px 19px; */
     
     /* padding-right: 2%; */
-    height: 60px;  
+    height: 10vh;  
+    width: 7.2vw;
     background-color: #322842;  
     border-color: whitesmoke;  
     border-style: solid;  
-    color: whitesmoke;  
-  
+    color: whitesmoke;
     transition: all 0.5s ease; 
   }
 
@@ -92,11 +97,18 @@
     font-size: 100%;
   } */
   
-  .reset_tt
- {
-    width: 109px;
-    height: 100px;
-    /* background: rgb(140, 140, 194); */
+  #reset_tt{
+  border: 0px;
+  background-color: #574472;
+  border-color: whitesmoke;
+  border-style: solid;
+  color: whitesmoke;
+  transition: all 0.5s ease;
+  width: 7.1vw;
+  height: 8vh;
+  font-size: 1rem;
+  padding: 0;
+  border-radius: 2%;
   }
   
   .reset_border_tt
@@ -122,14 +134,14 @@
     margin-bottom: 5%;
   }
   
-  .allgo-tracker_tt
+  #allgo-tracker_tt
  {
     display: flex;
     flex-direction: column;
     text-align: center;
     /* align-items: center; */
-    width: 100%;
-    height: 80px;
+    width: 7.2vw;
+    height: 8vh;
     background-color: #584573;
     color: white;
     border-radius: 2%;
@@ -255,17 +267,37 @@
   }
 
   @media(max-width: 268px){
-    #Rando-top-button_edit{
-      font-size: 65%;
-    }
-    .caros_tt{
-      font-size: 70%;
-  }
 
-  #Declined-button_tt{
-    padding: 10px 0;
-  }
-    
+    .middle_tt{
+      height: 45vh;
+      width: 60vw;
+    }
+    .middle_container_tt{
+      height: 60vh;
+    }
+    #reset_tt{
+      width: 29vw;
+      font-size: .8rem;
+      height: 20vh;
+    }
+    #allgo-tracker_tt{
+      width: 29vw;
+      height: 20vh;
+      font-size: .8rem;
+    }
+    #participated_tt{
+      width: 30vw;
+      height: 20vh;
+      font-size: 5vw;
+      padding: 0;
+    }
+    #declined_tt{
+      width: 30vw;
+      height: 20vh;
+      font-size: 5vw;
+      padding: 0;
+    }
+  
   }
 
 

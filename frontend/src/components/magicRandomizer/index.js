@@ -606,35 +606,35 @@ class MagicRandomizer extends Component {
       // if (this.state.allstudents.length > 0) {
         trackState = (
 
-          <div className="caro_container middle_container_t">
+          <div className="middle_container middle_container_tt">
  
+          <div className="middle_tt"> 
 
-          <div>
-            {/* <div className="reset"> */}
-            <Button id="reset_a" onClick={this.shuffle_allstudents}>
-                    Reset 'All Go'
+            <div className='middle_tt_left'>
+              {/* <div className="reset"> */}
+              <Button id="reset_tt" onClick={this.shuffle_allstudents}>
+                      Reset 'All Go'
+                    </Button>
+                    <div id="allgo-tracker_tt">
+                      Students in Deck
+                
+                      <div className="allgo-tracker-num_a">
+                        {this.state.allstudents.length}
+                      </div>
+                </div>
+              {/* </div> */}
+            </div>
+                <div className='middle_tt_right'>
+                  <Button id="participated_tt" onClick={this.participatedHandler}>
+                    {""}
+                    Participated
+                  {""}
                   </Button>
-
-                  <div className="allgo-tracker_a">
-                    Students in Deck
-              
-                    <div className="allgo-tracker-num_a">
-                      {this.state.allstudents.length}
-                    </div>
-              </div>
-            {/* </div> */}
-          </div>
-
-                     <div className="caros_tt"> 
-              <Button id="participated_t" onClick={this.participatedHandler}>
-                {""}
-                Participated
-              {""}
-              </Button>
-              <Button id="declined_t" onClick={this.declinedHandler}>
-                {" "}
-                Declined{" "}
-              </Button>
+                  <Button id="declined_tt" onClick={this.declinedHandler}>
+                    {" "}
+                    Declined{" "}
+                  </Button>
+                </div>
             </div>
 
           </div>
