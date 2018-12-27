@@ -162,5 +162,16 @@
   .main{
     width: 100vw;
   }
+  .header{
+    font-size: 7vw;
+    width: 52vw;
+  }
+  .classid_container{
+    width: 18vw;
+  }
+  #edit_button{
+    width: 20vw;
+    height: 10vh;
+  }
   
 }

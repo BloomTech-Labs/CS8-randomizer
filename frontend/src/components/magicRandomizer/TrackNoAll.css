@@ -65,17 +65,6 @@ button#declined_track-only{
 
 
 @media(max-width: 251px){
-  .header{
-    font-size: 7vw;
-    width: 52vw;
-  }
-  .classid_container{
-    width: 18vw;
-  }
-  #edit_button{
-    width: 20vw;
-    height: 10vh;
-  }
 
   #participated_t{
     width: 42vw;
