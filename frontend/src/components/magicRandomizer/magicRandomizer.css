@@ -100,6 +100,10 @@
     /* padding: 10% 0; */
   }
 
+  #Randomize-button:hover{
+    background: #574472;
+  }
+
   .data_container{
     display: flex;
     justify-content: center;
@@ -150,6 +154,10 @@
     height: 30vh;
     transition: all 1s ease-in;
     /* padding: 10% 0; */
+  }
+
+  #Randomize-button_a:hover{
+    background: #574472;
   }
 
 @media(max-width: 500px){
