@@ -141,24 +141,7 @@
     /* padding: 10% 0; */
   }
 
-  #Randomize-button_a {
-    /* border: 5px solid pink; */
-    /* padding-top: 70px;   */
-    /* padding-bottom: 70px;   */
-    /* background: rgb(230, 230, 230);  
-    color: #332259;   */
-    background: #332259;
-    color: rgb(230, 230, 230);
-    font-size: 380%;
-    width: 20vw;
-    height: 30vh;
-    transition: all 1s ease-in;
-    /* padding: 10% 0; */
-  }
 
-  #Randomize-button_a:hover{
-    background: #574472;
-  }
 
 @media(max-width: 500px){
   .data_container{
