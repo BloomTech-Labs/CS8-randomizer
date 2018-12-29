@@ -1,6 +1,7 @@
 import React from 'react';
 import { Nav, NavItem, NavLink, Button, ButtonGroup, Dropdown, DropdownMenu, DropdownToggle, Modal, ModalHeader, ModalFooter, ModalBody, } from 'reactstrap';
 import './index.css';
+import './bottomMenu.css';
 
 export default class BottomMenu extends React.Component {
 

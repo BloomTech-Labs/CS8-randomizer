@@ -35,7 +35,7 @@ export default class DropBar extends React.Component {
 render(){
         return (
             <div className="SideDiv">
-                <Dropdown direction="right" isOpen={this.state.btnDropright} toggle={() => { this.setState({ btnDropright: !this.state.btnDropright }); }} >
+                <Dropdown direction="right" id="dropright" isOpen={this.state.btnDropright} toggle={() => { this.setState({ btnDropright: !this.state.btnDropright }); }} >
                         {/* <div className='bar' tpe='button' onMouseOver={this.toggle}> */}
                     <DropdownToggle id="dropdown-button" className='dropbutton' >
                     <div className='bar'>

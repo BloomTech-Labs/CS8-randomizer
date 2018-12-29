@@ -72,7 +72,7 @@ class App extends Component {
               path={"/"}
               render={() =>
                 this.props.authed ? (
-                  <Redirect to="/classes/" />
+                  <Redirect to="/classes" />
                 ) : (
                   <Landing auth={this.state.isAuth} />
                 )
@@ -86,7 +86,6 @@ class App extends Component {
               </div>
               <div className="appPanel">
                 <DropBar />
-                <BottomMenu />
                 <Route exact path={"/"} render={() => <Home />} />
                 <Route exact path={"/:id/edit"} render={props => <EditForm {...props} />} />
                 <Route exact path={"/classes"} render={() => <ClassList />} />
@@ -100,6 +99,7 @@ class App extends Component {
                 <Route exact path={"/billing"} render={() => <Billing />} />
                 <Route exact path={"/about"} render={() => <About />} />
                 <Route exact path={"/settings"} render={() => <Setup />} />
+                <BottomMenu />
               </div>
             </div>
           )}

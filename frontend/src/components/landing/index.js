@@ -169,20 +169,21 @@ class Landing extends React.Component {
         {/* <Nav className="nav" id="Nav-div">
  
         </Nav> */}
-        <Nav id="nav-login" className="nav-login">
-          <NavItem id="nav-login-button">
+        <img src={require("./randologo5.jpg")} className="app-logo" />
+        <Nav id="landing-nav" className="landing-nav">
+          <NavItem className="nav-about">
+              {/* <NavLink> */}
+                
+                <Button id="about-button" onClick={this.abToggle}>
+
+                  About Magic Randomizer
+                </Button>
+              {/* </NavLink> */}
+            </NavItem>
+          <NavItem className="landing-buttons">
             <Button id="nav-button" onClick={this.mainSignToggle}>
               Sign Up
             </Button>
-            <NavItem className="nav-about">
-            <NavLink>
-              
-              <Button id="about-button" onClick={this.abToggle}>
-
-                About Magic Randomizer
-              </Button>
-            </NavLink>
-          </NavItem>
           <NavItem className="nav-signup">
             <Modal
               isOpen={this.state.abModal}

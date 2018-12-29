@@ -1,0 +1,36 @@
+@media(max-width: 250px){
+    #sideBarButtonA{
+        font-size: 7vw;
+        width: 26vw;
+    }
+    #sideBarButtonA li a{
+        padding: 0;
+    }
+
+    #sideBarButtonB{
+        font-size: 7vw;
+        width: 23vw;
+    }
+
+    #sideBarButtonB li a{
+        padding: 0;
+    }    
+    #sideBarButtonC{
+        font-size: 7vw;
+        width: 25vw;
+    }
+    #sideBarButtonC li a{
+        padding: 0;
+    }
+    #sideBarButtonD{
+        font-size: 7vw;
+        width: 28vw;
+    }
+    #sideBarButtonD a{
+        padding: 0;
+    }
+    .nav-link{
+        padding: 0;
+
+    }
+}

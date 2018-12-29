@@ -57,7 +57,8 @@ server.use(cors(corsOptions));
 // For Heroku:
 // mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true })
 // For Local:
-mongoose.connect('mongodb://username:abcd1234@ds161391.mlab.com:61391/lambda-labs', { useNewUrlParser: true })
+mongoose.connect('mongodb://addy:x4nnyy@ds149742.mlab.com:49742/randomizer', { useNewUrlParser: true })
+// mongoose.connect('mongodb://username:abcd1234@ds161391.mlab.com:61391/lambda-labs', { useNewUrlParser: true })
 
 .then(() => console.log('\n===connected to mongo===\n'))
 .catch(err =>console.log('not connected'))
